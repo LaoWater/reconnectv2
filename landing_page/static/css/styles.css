@@ -1275,7 +1275,19 @@ hr {
 
 
 
+/* Adding user login message */
 
+.user-message {
+    position: absolute;
+    right: 9.5%; /* Adjust based on button width */
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #fff;
+    background-color: rgba(0, 128, 0, 0.8);
+    padding: 5px 10px;
+    border-radius: 5px;
+}
 
 
 
@@ -1288,6 +1300,14 @@ hr {
 
 /* Mobile Adjustments */
 @media (max-width: 768px) {
+
+
+}
+    .user-message {
+        display: none;
+        top: 100px;
+    }*/
+
     .newsletter-container {
         transform: scale(0.9); /* Scales down the entire container */
         max-width: calc(600px * 0.9); /* Adjust width proportionally */

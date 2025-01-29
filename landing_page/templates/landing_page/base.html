@@ -280,6 +280,9 @@ document.addEventListener('DOMContentLoaded', function () {
         <a href="/contact" id="a2">Contact</a>
         </div>
 
+            {% if user.is_authenticated %}
+        <span class="user-message">Welcome, {{ user.username }}!</span>
+    {% endif %}
         <!-- User Login/Register Modal -->
     <button id="loginBtn" class="login-btn">Login</button>
     </nav>
