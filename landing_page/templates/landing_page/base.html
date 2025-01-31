@@ -281,7 +281,7 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
 
             {% if user.is_authenticated %}
-        <span class="user-message">Welcome, {{ user.username }}!</span>
+        <span class="user-message">Welcome, {{ user.username|capfirst }}</span>
     {% endif %}
         <!-- User Login/Register Modal -->
     <button id="loginBtn" class="login-btn">Login</button>

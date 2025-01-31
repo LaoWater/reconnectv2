@@ -1296,8 +1296,18 @@ hr {
 /* Mobile Adjustments */
 @media (max-width: 768px) {
 
-
+#loginBtn {
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    font-size: 10px; /* Slightly larger text */
+    opacity: 0; /* Initial state */
+    transition: opacity 3s ease; /* Smooth fade effect */
 }
+
+
+
+
     .user-message {
         display: none;
         top: 100px;
@@ -1337,18 +1347,12 @@ left: 0.88rem;
 
 }
 
-#loginBtn {
-    position: absolute;
-    top: 50px;
-    right: 10px;
-    font-size: 10px; /* Slightly larger text */
-    opacity: 0; /* Initial state */
-    transition: opacity 3s ease; /* Smooth fade effect */
-}
 
 
 
 .custom-modal .modal {
     width: 80% !important;
 }
+}
+
 }
