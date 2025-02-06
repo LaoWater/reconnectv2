@@ -1114,11 +1114,11 @@ canvas {
     font-size: 16px; /* Slightly larger text */
     font-weight: bold; /* Bold text for emphasis */
     padding: 10px 20px; /* Comfortable padding */
-    border: 2px solid #FFD700; /* Golden border for a luxury touch */
     border-radius: 10px; /* Smooth rounded corners */
     cursor: pointer; /* Pointer cursor on hover */
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
     transition: all 0.3s ease; /* Smooth transition for hover effects */
+    animation: colorPulse 6s ease-in-out infinite;
 }
 
 /* Hover effect */

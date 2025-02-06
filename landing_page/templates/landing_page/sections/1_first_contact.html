@@ -114,12 +114,13 @@ document.addEventListener("DOMContentLoaded", () => {
 // Add scroll event listener to toggle button visibility
     document.body.addEventListener("scroll", () => {
             const scrollPosition = document.body.scrollTop; // Recalculate scroll position on each scroll event
-
+            console.log(`Scroll To Top: `, scrollToTopBtn)
             if (scrollPosition == 0) {
                 // Hide button after if manual scrolling reaches top
                 scrollToTopBtn.classList.add("hide");
                 scrollToTopBtn.classList.remove("show");
                 isAutoScrolling = false;
+                return;
             }
 
             if (isAutoScrolling) {
