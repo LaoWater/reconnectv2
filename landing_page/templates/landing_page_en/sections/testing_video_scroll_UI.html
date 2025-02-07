@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scroll-Controlled Video</title>
+  <style>
+    body {
+      margin: 0;
+      height: 300vh; /* For ample scroll area */
+      background: linear-gradient(to bottom, #1a1a1a, #000);
+      color: #ddd;
+      font-family: "Open Sans", sans-serif;
+      font-weight: bold;
+    }
+    video {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80vw;
+      height: auto;
+      pointer-events: none; /* Prevent interaction with the video */
+    }
+  </style>
+</head>
+<body>
+  <video id="scroll-video" preload="auto" muted>
+    <source src="images/video-scroll.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <script>
+    const video = document.getElementById('scroll-video');
+
+    // Ensure video is loaded before controlling it
+    video.addEventListener('loadedmetadata', () => {
+      const totalFrames = video.duration * 30; // Assuming 30 FPS video
+      const scrollHeight = document.body.scrollHeight - window.innerHeight;
+
+      window.addEventListener('scroll', () => {
+        const scrollPosition = window.scrollY; // Current scroll position
+        const scrollFraction = scrollPosition / scrollHeight; // Scroll progress (0 to 1)
+        const currentTime = scrollFraction * video.duration; // Map scroll to video time
+
+        // Smoothly update video time using requestAnimationFrame
+        requestAnimationFrame(() => {
+          video.currentTime = currentTime;
+        });
+      });
+    });
+  </script>
+</body>
+</html>

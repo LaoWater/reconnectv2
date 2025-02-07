@@ -1,0 +1,196 @@
+{% load static %}
+
+<head>
+
+<link rel="stylesheet" href="/static/css/styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        /* Subtitles (H3) */
+.section h3 {
+    font-size: 1rem;
+    font-family: 'Cinzel', serif;
+    background: linear-gradient(90deg, #ff4500, #ff8c00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0rem;
+    text-shadow: 0 0 15px rgba(255,140,0,0.8), 0 0 30px rgba(255,69,0,0.5);
+    font-weight: bold;       /* Enhance visibility */
+    letter-spacing: 1px;     /* Add slight spacing for better readability */
+}
+
+    </style>
+</head>
+
+<section id="about-us">
+    <!-- Page Title -->
+    <div class="page-title">
+        <h1>Despre Autori</h1>
+    </div>
+
+<!-- Image Section -->
+<div class="image-wrapper">
+    <div class="image-container">
+        <img class="image1" src="{% static 'images/authors.jpg' %}" alt="Authors" />
+        <img class="image2" src="{% static 'images/authors2.jpg' %}" alt="Authors2" />
+    </div>
+</div>
+
+    <!-- Text Content -->
+    <div class="text-container">
+        <div class="section">
+            <h2>Re-Connect este rezultatul a peste 15 ani de studiu</h2>
+            <p>
+                <strong><br>Re-Connect a fost născut din nevoia de a rezolva dureri aparent nerezolvabile, bazându-se pe
+                <em>ani de explorare</em> prin colțurile lumii.<br></strong>
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>ISTORIA NOASTRĂ</h2>
+            <h3>Căutarea unui corp FIT</h3>
+            <p>
+                <strong>Am început cu dorința de a avea un corp sănătos și puternic, obținând certificări precum
+                <strong>PT, Let's Bands Level 1&2, TRX și Animal Flow</strong>.</strong>
+            </p>
+
+            <h3>Recuperarea afecțiunilor biomecanice</h3>
+            <p>
+                <strong>Ne-am dedicat recuperării biomecanice prin modulele <strong>Dimifitness Movement</strong>,
+                <em>Trigger Point</em>, linii fasciale, TRX și performanță.</strong>
+            </p>
+
+
+            <h3>Înțelegerea minții</h3>
+            <p>
+                <strong>Am aprofundat cunoștințele în <strong>antropologie, psihoanaliză, NLP</strong> și
+                <em>Theta Healing</em>, însă am întâmpinat o lacună care ne-a forțat să ne îndreptăm
+                către învățăturile Antice și Religii.</strong>
+            </p>
+
+
+
+            <h3>Vindecarea sistemelor principale</h3>
+            <p>
+                <strong>Am explorat certificări și metode precum <strong>Nutriție, Oxygen Advantage</strong> și medicina
+                pe bază de plante pentru a aborda afecțiunile sistemelor digestiv, respirator și emoțional,
+                realizând că adevăratul control al sănătății noastre nu este în mâinile altora. </strong>
+            </p>
+
+
+            <h3>Vindecarea sufletului & Dezvăluirea Adevărurilor Absolute</h3>
+            <p>
+                <strong>Am căutat răspunsuri în munți, la bătrâni și copii – adevărații maeștri ai vieții – în Asia,
+                în Buddhism, Zen, Hinduism și Creștinism. Dincolo de separare, privindu-le ca niște comori
+                    de înțelepciune, în toate găsim <strong>Secrete ale Vieții</strong>. </strong>
+            </p>
+        </div>
+    </div>
+
+<!-- Slideshow Section -->
+<div class="slideshow">
+    <div class="slideshow-container">
+        <!-- Each slide is a link to its modal -->
+        <div class="slide">
+            <a href="#modal-img1">
+                <img src="{% static 'images/before_after1.png' %}" alt="Before and After 1">
+            </a>
+        </div>
+        <div class="slide">
+            <a href="#modal-img2">
+                <img src="{% static 'images/before_after2.png' %}" alt="Before and After 2">
+            </a>
+        </div>
+        <div class="slide">
+            <a href="#modal-img3">
+                <img src="{% static 'images/before_after3.png' %}" alt="Before and After 3">
+            </a>
+        </div>
+        <div class="slide">
+            <a href="#modal-img4">
+                <img src="{% static 'images/before_after4.png' %}" alt="Before and After 4">
+            </a>
+        </div>
+        <div class="slide">
+            <a href="#modal-img5">
+                <img src="{% static 'images/before_after5.png' %}" alt="Before and After 5">
+            </a>
+        </div>
+        <div class="slide">
+            <a href="#modal-img6">
+                <img src="{% static 'images/before_after6.png' %}" alt="Before and After 6">
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript -->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const container = document.querySelector(".slideshow-container");
+        const slides = container.querySelectorAll(".slide");
+        const slideWidth = slides[0].offsetWidth; // Width of a single slide
+        let position = 0;
+
+        function loopSlides() {
+            position -= 1; // Adjust the speed of sliding
+            container.style.transform = `translateX(${position}px)`;
+
+            // When the first slide is completely out of view
+            if (Math.abs(position) >= slideWidth) {
+                position += slideWidth + 15; // Correct the position to prevent spiking
+                container.appendChild(container.firstElementChild); // Move first slide to the end
+                container.style.transform = `translateX(${position}px)`; // Maintain smooth flow
+            }
+
+            requestAnimationFrame(loopSlides); // Keep the animation running
+        }
+
+        loopSlides(); // Start the animation
+    });
+</script>
+
+<!-- Modals for each image -->
+<div id="modal-img1" class="modal">
+    <div class="modal-content">
+        <a href="#" class="close">&times;</a>
+        <img src="{% static 'images/before_after1.png' %}" alt="Before and After 1 - Enlarged">
+    </div>
+</div>
+
+<div id="modal-img2" class="modal">
+    <div class="modal-content">
+        <a href="#" class="close">&times;</a>
+        <img src="{% static 'images/before_after2.png' %}" alt="Before and After 2 - Enlarged">
+    </div>
+</div>
+
+<div id="modal-img3" class="modal">
+    <div class="modal-content">
+        <a href="#" class="close">&times;</a>
+        <img src="{% static 'images/before_after3.png' %}" alt="Before and After 3 - Enlarged">
+    </div>
+</div>
+
+<div id="modal-img4" class="modal">
+    <div class="modal-content">
+        <a href="#" class="close">&times;</a>
+        <img src="{% static 'images/before_after4.png' %}" alt="Before and After 4 - Enlarged">
+    </div>
+</div>
+
+<div id="modal-img5" class="modal">
+    <div class="modal-content">
+        <a href="#" class="close">&times;</a>
+        <img src="{% static 'images/before_after5.png' %}" alt="Before and After 5 - Enlarged">
+    </div>
+</div>
+
+<div id="modal-img6" class="modal">
+    <div class="modal-content">
+        <a href="#" class="close">&times;</a>
+        <img src="{% static 'images/before_after6.png' %}" alt="Before and After 6 - Enlarged">
+    </div>
+</div>
+</section>

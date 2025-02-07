@@ -12,7 +12,7 @@
       font-family: 'Poppins', Tahoma, Geneva, Verdana, sans-serif;
       background: #1f1f1f;
       color: #fefefe;
-      min-height: 173vh; /* just to allow scrolling for demo */
+      min-height: 180vh; /* just to allow scrolling for demo */
       overflow-x: hidden;
       position: relative;
       overflow: hidden; /* Prevent scrolling if unnecessary */

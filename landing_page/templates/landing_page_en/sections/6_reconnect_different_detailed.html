@@ -1,0 +1,160 @@
+<style>
+    /* Fade-in animation */
+    @keyframes fadeInEffect {
+        from {
+            opacity: 0;
+            transform: translateY(20px); /* Start slightly below */
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0); /* Reset to normal position */
+        }
+    }
+
+    .section-different {
+        background-color: rgba(0, 0, 0, 0.2); /* Highly transparent background */
+        border: 2px solid rgba(255, 140, 0, 0.2); /* Subtle neon border */
+        border-radius: 15px;
+        padding: 25px;
+        margin: 20px auto;
+        width: 100%;
+        color: #ffffff;
+        text-align: center;
+        font-size: 0.95rem; /* Smaller font size */
+        position: relative; /* Ensure the title stays in view */
+        box-shadow: 0 0 20px rgba(255, 69, 0, 0.3); /* Faint glow initially */
+        transition: all 0.4s ease-in-out;
+        opacity: 0; /* Initially invisible */
+        animation: fadeInEffect 1.5s ease-in-out forwards; /* Fade-in effect */
+    }
+
+    .section-different h5 {
+        background: linear-gradient(90deg, #ff4500, #ff8c00);
+        font-family: 'Cinzel'; sans-serif;
+        font-size: 1.2rem; /* Slightly smaller title */
+
+        margin-bottom: 15px;
+        z-index: 10; /* Ensure the title is in front */
+        position: relative;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 10px rgba(255,140,0,0.8);
+    text-shadow: 0 0 15px rgba(255,140,0,0.8), 0 0 30px rgba(255,69,0,0.5);
+    }
+
+    .section-different:hover {
+        background-color: rgba(0, 0, 0, 0.8); /* Fully visible on hover */
+        border-color: rgba(255, 140, 0, 1); /* Bright neon border */
+        box-shadow: 0 0 20px rgba(255, 140, 0, 0.8), 0 0 40px rgba(255, 69, 0, 0.6); /* Intense glow on hover */
+        transform: translateY(-5px); /* Slight lift */
+    }
+
+
+    .section-different h5 span.underline:after {
+        content: '';
+        width: 0%;
+        height: 4px;
+        background-color: #5DADE2;
+        bottom: -5px;
+        margin-left: 50%; /* Moves the underline to start around the middle */
+        border-radius: 2px;
+        transition: width 0.5s ease-in-out;
+        position: relative;
+        display: block; /* Makes the underline appear on a new line */
+
+    }
+
+        /* First underline animation: from 0% to 50% */
+        .section-different:nth-of-type(1) h5 span.underline:after {
+            left: -50%;
+        }
+
+        .section-different:nth-of-type(1):hover h5 span.underline:after {
+            width: 50%;
+        }
+
+        /* Second underline animation: from 50% to 100% */
+        .section-different:nth-of-type(2) h5 span.underline:after {
+            left: 0%;
+        }
+
+        .section-different:nth-of-type(2):hover h5 span.underline:after {
+            width: 50%;
+        }
+
+        /* Last underline animation: from 0% to 100% */
+        .section-different:nth-of-type(3) h5 span.underline:after {
+            left: -50%;
+        }
+
+        .section-different:nth-of-type(3):hover h5 span.underline:after {
+            width: 100%;
+        }
+
+
+
+
+    .section-different p {
+        font-size: 0.85rem;
+        line-height: 1.6;
+        margin-bottom: 15px;
+        color: #ffffff;
+        z-index: 10; /* Ensure text is in front */
+        position: relative;
+    }
+
+    .section-different p strong {
+        color: #ff8c00; /* Red-gold highlight */
+        font-weight: bold;
+        text-shadow: 0 0 10px rgba(255, 140, 0, 0.8),
+            0 0 15px rgba(255, 140, 0, 0.8), 0 0 30px rgba(255, 69, 0, 0.5);
+    }
+
+
+    @media (max-width: 768px) {
+    .section-different p {
+        font-size: 85%;
+        margin-bottom: 8px;
+        margin: 1rem 0rem;
+    }
+}
+
+</style>
+
+<section id="page-6">
+        <!-- Page Title -->
+        <div class="page-title">
+            <h1>De ce Re-Connect este diferit?</h1>
+        </div>
+
+        <div class="text-container">
+
+            <div class="section-different">
+                <h5><br><span class="underline">1. Metoda Fără Efort</span></h5>
+                <p><br>În învățăturile estice există conceptul de a calma Respirația sau de a o privi cum se calmează singură.</p>
+                <p>S-a observat că, dintr-un <strong>Suflet împăcat</strong>, o <strong>Minte clară</strong> și un <strong>Corp sănătos</strong> – respirația se va calma singură, fără a fi forțată.</p>
+                <p>Astfel,"Calmarea Respirației" devine un drum intim și holistic către Vindecarea și conectarea celor 3 sisteme, mai degrabă decât o serie de respirații cronometrate.</p>
+                <p>La fel, am realizat că și celelalte două <strong>Adevăruri Absolute</strong> – Mâncarea și Mișcarea – se vor desfășura de la sine, fără "Efort".</p>
+                <p>În niciun moment din acest curs nu va trebui să te forțezi să faci Mișcare, să Mănânci într-un anume fel sau să faci orice altceva decât ceea ce ai "Chef".</p>
+            </div>
+
+            <div class="section-different">
+                <h5><br><span class="underline">2. Înțelegerea Profundă a Corpului și Minții</span></h5>
+                <p><br>În multe metode tradiționale, se oferă „pași de urmat” fără a oferi contextul necesar pentru a înțelege de ce funcționează acei pași.</p>
+                <p><strong>Re-Connect</strong> schimbă această perspectivă, punând accent pe înțelegerea profundă a întregului Sistem.</p>
+                <p>Înțelegerea nu vine din teorie, ci din <strong>Experiență directă.</strong></p>
+                <p>Vei învăța să-ți asculți propriul Corp și Minte, in sincron cu Mediul in care ele există.</p>
+                <p>Această înțelegere devine un <strong>Ghid Intern in continuă Adaptare</strong>, nu o rețetă externă.</p>
+            </div>
+
+            <div class="section-different">
+                <h5><br><span class="underline">3. Fără Separare</span></h5>
+                <p><br>Orice metodă sau unealtă abordăm în Re-Connect, rămânem mereu <br>ancorați în întregul Sistem.</p>
+                <p>Nu vom lucra <strong>„Corp separat de Minte”</strong>.</p>
+                <p>Nu vom forța nimic.</p>
+                <p>Aducem <strong>Lumina</strong> peste necunoscut, iar apoi privim Schimbarea<br>cum se întâmplă de la Sine.</p>
+            </div>
+
+
+        </div>
+    </section>

@@ -1,0 +1,176 @@
+<h2>Ediția 2 din Cursul Re-Connect</h2>
+
+<p>
+    <strong>Descoperă <span class="underline">Arta subtilă a Alchimiei Interioare</span></strong>, unde <strong>Corpul</strong> și <strong>Mintea</strong>
+    nu mai luptă unul împotriva celuilalt, ci lucrează împreună pentru a crea sănătate autentică și o
+    viață cu sens — <span class="underline">fără Suferință.</span>
+</p>
+
+<p>
+    <br><span class="underline">Nu mai e vorba de metode forțate sau soluții pe termen scurt.</span><br>
+    Este vorba despre <strong>vindecare reală</strong>, care vine atunci când Mintea și Corpul devin, din nou, <em>Aliați</em>.
+    <br><strong>Cum se întâmplă asta?</strong> — <span class="underline">Redescoperind Adevărurile Absolute.</span><br><br>
+</p>
+
+    <!-- Here Natural Truths media symbol -->
+<div class="symbols-page-wrapper">
+  <div class="symbols-container">
+      {% load static %}
+              <!-- Air - The Breath of Life -->
+        <div class="symbol air">
+            <div class="air-core">
+                <!-- Heartbeat video centered inside the air-core -->
+                <video class="heartbeat-video" autoplay loop muted playsinline>
+                    <source src="{% static 'images/heartbeat.mp4' %}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="airwave wave1"></div>
+            <div class="airwave wave2"></div>
+            <div class="airwave wave3"></div>
+            <div class="airwave wave4"></div>
+
+
+        </div>
+
+      <!-- Food - Seed to Full Tree -->
+      <div class="symbol food">
+          <div class="soil"></div>
+          <div class="seed"></div>
+          <div class="sprout"></div>
+          <div class="trunk"></div>
+          <!-- More branches for a fuller tree -->
+          <div class="branch-layer">
+              <div class="branch branch-left"></div>
+              <div class="branch branch-right"></div>
+          </div>
+          <div class="branch-layer layer2">
+              <div class="branch branch-left-2"></div>
+              <div class="branch branch-right-2"></div>
+          </div>
+          <!-- A full leafy canopy -->
+          <div class="leaf-canopy"></div>
+      </div>
+
+      <!-- Movement - Cosmic Dance (as is, just scaled down) -->
+      <div class="symbol movement">
+          <div class="cosmic-center"></div>
+          <div class="spiral"></div>
+          <div class="orbit"></div>
+      </div>
+  </div>
+</div>
+
+
+
+
+<p>
+    <br><br>Nu e ceva voodoo, ci este întâlnirea măreției Medicinei și Științei moderne cu Învățăturile Antice.
+</p>
+
+<p>
+    <strong><br>Re-Connect V2.0</strong> — Mai mult decât o metodă, e drumul spre
+    <br><span class="underline"> <em>Legenda ta Personală</em></span>.
+</p>
+
+<div class="newsletter-container">
+    <h2>Abonează-te la Newsletter-ul nostru</h2>
+    <p class="newsletter-info">*Nu trimitem multe mailuri, decât articole și noutăți relevante.</p>
+    <p class="newsletter-info">*Maxim 1 email/săptămână.</p>
+    <form id="newsletter-form">
+         {% csrf_token %}
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" placeholder="Introduceți e-mailul dvs." required>
+        <label for="phone">Telefon (Opțional):</label>
+        <input type="text" id="phone" name="phone" placeholder="Introduceți telefonul dvs.">
+        <button type="submit">Trimite</button>
+    </form>
+</div>
+
+
+<script>
+
+
+// Function to get the CSRF token from cookies
+const getCookie = (name) => {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.startsWith(name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+};
+
+// Fetch the CSRF token
+const csrftoken = getCookie('csrftoken');
+
+// Add event listener for form submission
+document.getElementById("newsletter-form").addEventListener("submit", async function(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    // Get the values from the form inputs
+    const email = document.getElementById("email").value;
+    const phone = document.getElementById("phone").value;
+
+    // Prepare the data to send
+    const data = {
+        email: email,
+        phone: phone
+    };
+
+    try {
+        // Send the POST request to the Django backend
+        const response = await fetch('/submit-newsletter', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrftoken,
+            },
+            body: JSON.stringify(data),
+        });
+
+        // Handle the server response
+        const result = await response.json(); // Parse the JSON response
+
+        if (response.ok) {
+            alert("Înscriere reușită!"); // Success message
+        } else {
+            alert(result.error || "Eroare la înscriere. Încercați din nou."); // Error message
+        }
+    } catch (error) {
+        console.error("Error:", error);
+        alert("Eroare la înscriere. Încercați din nou.");
+    }
+});
+
+
+
+/* Heart-Beast older script - disregarded
+    document.addEventListener('DOMContentLoaded', function() {
+    var heartbeatLine = document.querySelector('.heartbeat-line');
+
+    function scheduleBeat() {
+        // Random interval between 1.2s and 2.2s for a natural heartbeat rhythm
+        var nextInterval = (Math.random() * (2.2 - 1.2) + 1.2) * 1000;
+
+        setTimeout(function() {
+            heartbeatLine.classList.add('beat');
+
+            // Remove the beat class after the animation ends (1s)
+            setTimeout(function() {
+                heartbeatLine.classList.remove('beat');
+                scheduleBeat(); // Schedule the next beat
+            }, 1000);
+        }, nextInterval);
+    }
+
+    scheduleBeat();
+});
+*/
+</script>

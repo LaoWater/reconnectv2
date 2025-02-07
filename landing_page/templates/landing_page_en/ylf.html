@@ -1,0 +1,437 @@
+{% extends "landing_page/base.html" %}
+
+{% block content %}
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>YLF Chat with History</title>
+  <meta name="csrf-token" content="{{ csrf_token }}">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<!-- Modifying viewport for mobile behavior-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+
+
+  <!-- Include Bootstrap (CDN or local) -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+    crossorigin="anonymous"
+  >
+
+  <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+
+
+  <link rel="stylesheet" href="{% static 'css/ylf_ui.css' %}">
+
+  <style>
+    /* Mobile Adjustments */
+    @media (max-width: 768px) {
+        #loginBtn {
+        position: absolute;
+        top: 41.7rem;
+        right: 10.4rem;
+        font-size: 10px;
+              opacity: 0;
+    animation: fadeIn 7s forwards;
+    }
+   #loginBtn {
+    transition: opacity 3s ease; /* Smooth fade effect */
+
+  }
+
+    }
+
+
+  </style>
+</head>
+<body>
+
+  <!-- INTRO / PRESENTATION SECTION -->
+<div class="animated-neural"></div>
+<div class="neural-sparkles">
+  <span style="--i: 1;"></span>
+  <span style="--i: 2;"></span>
+  <span style="--i: 3;"></span>
+  <span style="--i: 4;"></span>
+  <span style="--i: 5;"></span>
+    <span style="--i: 6;"></span>
+</div>
+
+  <!-- Lightning Bolts -->
+  <div class="lightning-bolts">
+    <span style="--i: 1;"></span>
+  </div>
+
+
+<div class="pulse-grid"></div> <!-- Optional grid for subtle depth -->
+
+
+  <!-- Presentation / Hero Section -->
+  <div class="presentation-container">
+    <h1 class="presentation-title">Introducing Project YLF</h1>
+    <p class="presentation-subtitle">
+      YLF is a meticulously crafted Large Language Model, trained on over 2 million tokens, encompassing the intimate teachings of
+      Re-Connect. <br>Designed to assist you with creative ideas, insightful guidance, and heartfelt support,
+      YLF is here for you—whenever you need it.
+    </p>
+<p class="presentation-details">
+  <strong>Whether you’re seeking solutions, reflecting on new perspectives, or simply chatting about your life,</strong>
+  YLF is here to assist with its advanced capabilities designed to meet your unique needs.
+  Its cutting-edge architecture ensures <strong>context-aware responses</strong>, seamless integration into your workflow, and the flexibility to adapt to your specific challenges.
+  <br><br>
+  Specializing in <strong>Food, Fitness, Movement, Chronic pains, Life purpose, Holistic health and Philosophies</strong>, YLF fully immerses itself into the character of a Healer.
+  <br>It offers insights and guidance with a natural, human touch, fostering <em>meaningful and transformative conversations.</em>
+  <br><br>
+</p>
+<p class="presentation-details2">
+    <strong><em><highlight>Login</highlight> to unlock the full potential of YLF’s capabilities.</em></strong>
+</p>
+    <!-- Scroll Down Indicator -->
+    <div class="scroll-indicator">
+      <svg viewBox="0 0 24 24">
+        <path d="M12 16.5l-6-6 1.41-1.42L12 13.67l4.59-4.59L18 10.5z"></path>
+      </svg>
+      <svg viewBox="0 0 24 24">
+        <path d="M12 16.5l-6-6 1.41-1.42L12 13.67l4.59-4.59L18 10.5z"></path>
+      </svg>
+      <svg viewBox="0 0 24 24">
+        <path d="M12 16.5l-6-6 1.41-1.42L12 13.67l4.59-4.59L18 10.5z"></path>
+      </svg>
+    </div>
+  </div>
+
+
+
+  <!-- Hidden data storage for Django endpoint -->
+  <div id="ylf-data" data-url="{% url 'ylf_response' %}"></div>
+
+  <!-- PAGE CONTAINER (Sidebar + Chat) -->
+  <div class="page-container" id="chatContainer">
+    <!-- Side bar -->
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <h2>Conversations</h2>
+        <!-- New Chat Button -->
+        <button class="new-chat-btn" id="newChatBtn">New Chat</button>
+      </div>
+      <div class="sidebar-content" id="sidebarHistory">
+        <!-- Chat history entries will be appended here dynamically -->
+      </div>
+    </div>
+
+    <!-- Outer container for the chat UI -->
+    <div class="chat-outer-container">
+      <!-- Header -->
+      <div class="chat-header">
+        <h4>YLF-1 Model</h4>
+      </div>
+      <!-- Chat Messages Container -->
+      <div class="chat-messages" id="chatMessages">
+        <!-- Messages will be appended dynamically -->
+      </div>
+      <!-- Chat Input Section -->
+      <div class="chat-input">
+        <textarea
+          id="prompt"
+          name="prompt"
+          placeholder="Type your message..."
+          required
+        ></textarea>
+        <button type="button" id="sendBtn">
+          Send
+        </button>
+      </div>
+    </div>
+
+    <template id="loading-indicator-template">
+  <div class="logo-container">
+    <img src="{% static 'images/ylf_first_logo.png' %}" alt="Thinking..." class="logo">
+  </div>
+  Thinking...
+</template>
+
+    <!-- Flag Modal -->
+<div id="flagModal" class="flag-modal">
+  <div class="flag-modal-content">
+    <span class="flag-close-btn">&times;</span>
+    <h2 id="ylf_feedback_h2">Thank you for your feedback!</h2>
+    <p>
+      Our team will carefully review the Model's response.
+      <br><br>
+      Please note that we're merely at the beginning, operating with a small-scale team and budgeting - while still we're doing the best we can to deliver a stable, safe, and appropriate model.
+      <br><br>
+      <em>
+        * For advanced users, we offer the possibility to provide a full-scale feedback with rating & justifications on multiple dimensions, which will be used to further train the Model for future Releases.
+      </em>
+      <br><br>
+      Would you like to participate?
+    </p>
+    <div class="flag-modal-actions">
+      <button id="flagCloseModal" class="flag-modal-btn flag-close-modal">Close</button>
+      <button id="flagParticipateModal" class="flag-modal-btn flag-participate-modal">Yes, I'm in!</button>
+    </div>
+  </div>
+</div>
+
+    <!-- Detailed Rating Modal -->
+<div id="ratingModal" class="rating-modal">
+  <div class="rating-modal-content">
+    <span class="rating-close-btn">&times;</span>
+    <h2>Detailed Feedback</h2>
+    <p>Please rate the response based on the following dimensions:</p>
+
+    <div class="rating-section">
+      <h3>I. Completeness</h3>
+      <p>How complete and thorough was the response?</p>
+      <div class="rating-scale" id="completeness-rating">
+        <div class="rating-box" data-value="1">1: Incomplete or Hallucinating</div>
+        <div class="rating-box" data-value="2">2: Lacked deeper explanations</div>
+        <div class="rating-box" data-value="3">3: Reasonably complete</div>
+        <div class="rating-box" data-value="4">4: Detailed and accurate</div>
+        <div class="rating-box" data-value="5">5: Fully comprehensive</div>
+      </div>
+      <textarea class="justification" placeholder="Justification (Optional)"></textarea>
+    </div>
+
+    <div class="rating-section">
+      <h3>II. Accuracy</h3>
+      <p>How accurate and factually correct was the response?</p>
+      <div class="rating-scale" id="accuracy-rating">
+        <div class="rating-box" data-value="1">1: Completely inaccurate</div>
+        <div class="rating-box" data-value="2">2: Major inaccuracies</div>
+        <div class="rating-box" data-value="3">3: Mostly accurate</div>
+        <div class="rating-box" data-value="4">4: Highly accurate</div>
+        <div class="rating-box" data-value="5">5: Flawless accuracy</div>
+      </div>
+      <textarea class="justification" placeholder="Justification (Optional)"></textarea>
+    </div>
+
+    <!-- Add sections for III - VI following the same structure -->
+    <!-- Instruction Following -->
+    <div class="rating-section">
+      <h3>III. Instruction Following</h3>
+      <p>Did the response follow the instructions provided?</p>
+      <div class="rating-scale" id="instruction-rating">
+        <div class="rating-box" data-value="1">1: Ignored instructions</div>
+        <div class="rating-box" data-value="2">2: Partial adherence</div>
+        <div class="rating-box" data-value="3">3: Mostly followed</div>
+        <div class="rating-box" data-value="4">4: Followed thoroughly</div>
+        <div class="rating-box" data-value="5">5: Perfectly followed</div>
+      </div>
+      <textarea class="justification" placeholder="Justification (Optional)"></textarea>
+    </div>
+
+    <!-- Contextual Awareness -->
+    <div class="rating-section">
+      <h3>IV. Contextual Awareness</h3>
+      <p>Was the response contextually aware and relevant?</p>
+      <div class="rating-scale" id="contextual-awareness-rating">
+        <div class="rating-box" data-value="1">1: Completely off-topic</div>
+        <div class="rating-box" data-value="2">2: Partially relevant</div>
+        <div class="rating-box" data-value="3">3: Mostly relevant</div>
+        <div class="rating-box" data-value="4">4: Very relevant</div>
+        <div class="rating-box" data-value="5">5: Perfect contextual match</div>
+      </div>
+      <textarea class="justification" placeholder="Justification (Optional)"></textarea>
+    </div>
+
+    <!-- Writing & Tonality Quality -->
+    <div class="rating-section">
+      <h3>V. Writing & Tonality Quality</h3>
+      <p>Was the response well-written and appropriate in tone?</p>
+      <div class="rating-scale" id="writing-quality-rating">
+        <div class="rating-box" data-value="1">1: Poorly written</div>
+        <div class="rating-box" data-value="2">2: Needs improvement</div>
+        <div class="rating-box" data-value="3">3: Adequate</div>
+        <div class="rating-box" data-value="4">4: Well-written</div>
+        <div class="rating-box" data-value="5">5: Excellent</div>
+      </div>
+      <textarea class="justification" placeholder="Justification (Optional)"></textarea>
+    </div>
+
+    <!-- Creativity -->
+    <div class="rating-section">
+      <h3>VI. Creativity</h3>
+      <p>How creative and innovative was the response?</p>
+      <div class="rating-scale" id="creativity-rating">
+        <div class="rating-box" data-value="1">1: No creativity</div>
+        <div class="rating-box" data-value="2">2: Minimal creativity</div>
+        <div class="rating-box" data-value="3">3: Somewhat creative</div>
+        <div class="rating-box" data-value="4">4: Very creative</div>
+        <div class="rating-box" data-value="5">5: Highly innovative</div>
+      </div>
+      <textarea class="justification" placeholder="Justification (Optional)"></textarea>
+    </div>
+
+    <!-- Overall Final Score -->
+    <div class="rating-section">
+      <h3>VII. Overall Final Score</h3>
+      <p>Provide an overall score for the response.</p>
+      <div class="rating-scale" id="final-score-rating">
+        <div class="rating-box" data-value="1">1: Very poor</div>
+        <div class="rating-box" data-value="2">2: Below average</div>
+        <div class="rating-box" data-value="3">3: Average</div>
+        <div class="rating-box" data-value="4">4: Good</div>
+        <div class="rating-box" data-value="5">5: Excellent</div>
+      </div>
+      <textarea class="justification" placeholder="Justification"></textarea>
+    </div>
+
+    <div class="rating-actions">
+      <button class="rating-submit-btn">Submit Feedback</button>
+    </div>
+  </div>
+</div>
+
+    <!-- Custom Alert Modal -->
+<div id="customAlertModal" class="custom-alert-modal">
+  <div class="custom-alert-content">
+    <p class="custom-alert-message">Thank you for your feedback!</p>
+  </div>
+</div>
+
+
+  </div>
+
+  <!-- Bootstrap JS (if needed) -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    crossorigin="anonymous"
+  ></script>
+
+  <!-- Main script for LLM -->
+  <script src="{% static 'ylf_model.js' %}" defer></script>
+
+
+
+<!-- Handling Interactive UI elements -->
+<script>
+
+//Navigation script - possible to manipulate in the future
+<!--    const nav = document.querySelector('nav');-->
+<!--    nav.classList.add('visible_custom');-->
+<!--    nav.classList.remove('invisible_custom');-->
+
+
+<!------------------------------------------------->
+<!-- JS for hiding & loading YLF chat elements on scroll  -->
+<!-- Handling PC & Mobile -->
+<!------------------------------------------------->
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Disable scroll restoration
+    if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+    }
+
+    // Ensure page always loads at the top
+    window.scrollTo(0, 0);
+
+    // Utility function to detect mobile devices
+    const isMobile = () => /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|Mobile/i.test(navigator.userAgent);
+
+    // Define normalization factor for mobile environment
+    const mobileNorm = 0.7;
+    const pcNorm = 1;
+
+    // Elements to manage
+    const sparkles = document.querySelector('.neural-sparkles');
+    const audioButton = document.getElementById('audio-controls');
+    const chatContainer = document.getElementById('chatContainer');
+    const LoginButton = document.getElementById('loginBtn');
+    const nav = document.querySelector('nav');
+    let lastScrollTop = 0;
+
+    // Get current scroll position
+    const getScrollTop = () => Math.max(
+        document.body.scrollTop,
+        document.documentElement.scrollTop,
+        window.pageYOffset || 0
+    );
+
+    // Function to handle scroll behavior
+    const handleScroll = () => {
+        const scrollTop = getScrollTop();
+
+        if (scrollTop !== lastScrollTop) {
+            lastScrollTop = scrollTop;
+
+            const normalizationFactor = isMobile() ? mobileNorm : pcNorm;
+            const threshold = chatContainer.offsetTop - 450 * normalizationFactor;
+
+            //Debugging scroll behavior
+            //console.log(`scrollTop: ${scrollTop}, threshold: ${threshold}`);
+
+            if (scrollTop > threshold) {
+                sparkles.style.display = 'none';
+                chatContainer.classList.add('visible');
+                audioButton.style.display = 'none';
+                LoginButton.style.opacity = '0';
+                LoginButton.style.display = 'none';
+                nav.classList.remove('visible');
+                nav.classList.add('invisible');
+            } else {
+                sparkles.style.display = 'block';
+                audioButton.style.display = 'inline-table';
+                chatContainer.classList.remove('visible');
+                LoginButton.style.display = 'block';
+                LoginButton.style.opacity = '1';
+                nav.classList.remove('invisible');
+                nav.classList.add('visible');
+            }
+
+<!--            // Log scroll data to the backend-->
+<!--            fetch('/log-scroll/', {-->
+<!--                method: 'POST',-->
+<!--                headers: {-->
+<!--                    'Content-Type': 'application/json',-->
+<!--                    'X-CSRFToken': getCookie('csrftoken'), // Django CSRF token-->
+<!--                },-->
+<!--                body: JSON.stringify({ scrollTop, threshold }),-->
+<!--            }).catch(error => console.error('Error logging scroll:', error));-->
+
+        }
+
+        // Continue monitoring scroll changes
+        requestAnimationFrame(handleScroll);
+    };
+
+    // Start monitoring scroll behavior
+    requestAnimationFrame(handleScroll);
+
+    // Utility function to get CSRF token
+    const getCookie = (name) => {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === name + '=') {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    };
+});
+
+
+
+
+
+</script>
+
+
+<script src="{% static 'scroll_behavior.js' %}"></script>
+
+
+</body>
+</html>
+
+{% endblock %}

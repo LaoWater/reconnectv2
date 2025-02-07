@@ -1,0 +1,245 @@
+
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/first_contact.css' %}">
+
+<div class="anvil-animation">
+        <div class="anvil-container">
+            <div class="hammer"></div>
+            <div class="anvil"></div>
+            <div class="sparks"></div>
+        </div>
+    </div>
+
+<h1>Secretele Alchimiei Adevărate</h1>
+<p><br></br>
+    O singură dată e suficient să transformi <strong><span class="underline">Suferința în Sănătate</span>, și vei simți că presupusa schimbare a metalului în aur pălește în fața acestei experiențe.</strong></p>
+
+<p><em><br>Acea relaxare după accidentare, acea respirație profundă după un virus puternic, acel sistem digestiv calm după dezechilibre</em> —
+    <strong><span class="underline">sunt mai valoroase decât orice Mit despre Aur.</span></strong></p>
+
+<!-- Mystical Alchemy Symbol -->
+<div class="mystical-symbol">
+    <div class="triangle"></div>
+    <div class="radiation"></div>
+</div>
+
+<div class="hover-text">Breath In</div>
+<div class="hover-text2">Breath Out</div>
+
+<p><strong><br>Orice durere cronică ai avea </strong> — de la dureri de spate, nemulțumiri, lipsă de energie, lipsă de direcție, lipsa acelui "chef" de viață, dezorientare —
+    <strong><span class="underline">toate pot fi înțelese și vindecate.</span></strong></p>
+
+
+
+<!-- Embedded YouTube Section -->
+<div class="video-container">
+    <iframe
+        width="100%"
+        height="315"
+        src="https://www.youtube.com/embed/KDi793OZNyo?start=5176"
+        title="Vezi Ultimul Webinar Re-Connect"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+    </iframe>
+    <h3 class="video-subtitle">🎥 Vezi Ultimul Webinar Re-Connect</h3>
+</div>
+
+
+<!-- Scroll Indicator -->
+<div class="scroll-indicator">▼ Scroll ▼</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+<script>
+
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    // Check for mobile screen size (<768px)
+    if (window.matchMedia("(max-width: 768px)").matches) {
+        const loginBtn = document.getElementById('loginBtn');
+        const nav = document.querySelector('nav');
+        const nav_threshold = 1300;
+
+        // Ensure the login button is hidden initially
+        loginBtn.style.display = 'none';
+
+
+        // Add scroll event listener to toggle button visibility
+        document.body.addEventListener("scroll", () => {
+            const scrollPosition = document.body.scrollTop; // Recalculate scroll position on each scroll event
+
+
+            // Login button visibility logic
+            if (scrollPosition >= 200 && scrollPosition <= 2300) {
+                loginBtn.style.display = 'block';
+                setTimeout(() => {
+                    loginBtn.style.opacity = '1'; // Fade in
+                }, 0);
+            } else {
+                loginBtn.style.opacity = '0';
+            }
+
+            // Nav bar visibility logic
+            if (scrollPosition > nav_threshold) {
+                nav.classList.remove('visible');
+                nav.classList.add('invisible');
+            } else {
+                nav.classList.remove('invisible');
+                nav.classList.add('visible');
+            }
+        });
+
+} // Mobile section end
+
+
+// Dynamically generate the Scroll-to-Top button
+    const scrollToTopBtn = document.createElement("div");
+    scrollToTopBtn.id = "scrollToTop";
+    scrollToTopBtn.innerHTML = `
+        <div class="line line-1"></div>
+        <div class="line line-2"></div>
+    `;
+    document.body.appendChild(scrollToTopBtn); // Append to body
+
+
+    let cumulativeScrollUp = 0;
+    let lastScrollPosition = window.scrollY || 0;
+    let isAutoScrolling = false; // Add a flag to detect automatic scrolling
+
+// Scroll-Up functionality
+// Add scroll event listener to toggle button visibility
+    document.body.addEventListener("scroll", () => {
+            const scrollPosition = document.body.scrollTop; // Recalculate scroll position on each scroll event
+            console.log(`Scroll To Top: `, scrollToTopBtn)
+            if (scrollPosition == 0) {
+                // Hide button after if manual scrolling reaches top
+                scrollToTopBtn.classList.add("hide");
+                scrollToTopBtn.classList.remove("show");
+                isAutoScrolling = false;
+                return;
+            }
+
+            if (isAutoScrolling) {
+                return; // Ignore scroll events during automatic scrolling
+            }
+
+            // Check scroll direction and accumulate upward scroll
+            if (scrollPosition < lastScrollPosition) {
+                const scrollDelta = lastScrollPosition - scrollPosition;
+                cumulativeScrollUp += scrollDelta;
+            } else {
+                cumulativeScrollUp = 0; // Reset if scrolling down
+                isAutoScrolling = false; // Reset mechanism
+            }
+
+            lastScrollPosition = scrollPosition; // Update last scroll position
+
+            // Show button if cumulative upward scroll exceeds 300px
+            if (cumulativeScrollUp > 200) {
+                scrollToTopBtn.classList.remove("hide");
+                scrollToTopBtn.classList.add("show");
+            } else {
+                scrollToTopBtn.classList.add("hide");
+                scrollToTopBtn.classList.remove("show");
+            }
+});
+
+        // Scroll-to-Top button click
+        scrollToTopBtn.addEventListener('click', () => {
+            const start = document.body.scrollTop || document.documentElement.scrollTop;
+            const duration = 500; // Total duration of scroll animation (in ms)
+            const startTime = performance.now();
+
+            isAutoScrolling = true; // Set the flag to true during automatic scrolling
+
+            const smoothScroll = (currentTime) => {
+                const elapsedTime = currentTime - startTime;
+                const progress = Math.min(elapsedTime / duration, 1); // Ensure progress doesn't exceed 1
+                const ease = 1 - Math.pow(1 - progress, 3); // Ease-out cubic
+
+                const newScrollTop = start * (1 - ease);
+                document.body.scrollTop = newScrollTop; // For most browsers
+                document.documentElement.scrollTop = newScrollTop; // For WebKit-based browsers (Chrome, Safari)
+
+                if (progress < 1) {
+                    requestAnimationFrame(smoothScroll); // Continue animation
+                } else {
+                    // Hide button after scrolling finishes
+                    scrollToTopBtn.classList.add("hide");
+                    scrollToTopBtn.classList.remove("show");
+
+                    // Reset last scroll variables after scrolling to top
+                    lastScrollPosition = 0;
+                    cumulativeScrollUp = 0;
+
+                }
+            };
+
+            requestAnimationFrame(smoothScroll); // Start the animation
+
+        });
+
+
+});
+
+
+
+    <!-- Debugging & Exploring Scroll behavior -->
+
+    document.querySelectorAll('*').forEach((el) => {
+    const style = getComputedStyle(el);
+    if (style.overflowY === 'scroll' || style.overflowY === 'auto') {
+        console.log('Scrollable Element:', el);
+    }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Add scroll event listener for the <body> element
+    document.body.addEventListener("scroll", () => {
+        console.log("Body scroll event triggered. Scroll Top:", document.body.scrollTop);
+    });
+
+    // Add scroll event listener for the <html> element
+    document.documentElement.addEventListener("scroll", () => {
+        console.log("HTML scroll event triggered. Scroll Top:", document.documentElement.scrollTop);
+    });
+
+    // Add scroll event listener for the window to observe window.scrollY
+    window.addEventListener("scroll", () => {
+        console.log("Window scroll event triggered. Scroll Y:", window.scrollY);
+    });
+});
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    console.log("Scroll Y:", window.scrollY);
+    console.log("Inner Width:", window.innerWidth);
+    console.log("Inner Height:", window.innerHeight);
+    console.log("Document Body Offset Height:", document.body.offsetHeight);
+
+   // Add scroll event listener to print the current scroll position
+    document.addEventListener('scroll', () => {
+        console.log('Scroll event triggered. Scroll Y:', window.scrollY);
+    });
+
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+
+window.addEventListener("load", () => {
+ console.log("Using Load Listener: \nScroll Y:");
+    console.log("Scroll Y:", window.scrollY);
+    console.log("Inner Width:", window.innerWidth);
+    console.log("Inner Height:", window.innerHeight);
+    console.log("Document Body Offset Height:", document.body.offsetHeight);
+});
+});
+
+</script>
+
+
+<script src="{% static 'anvil_strike.js' %}"></script>

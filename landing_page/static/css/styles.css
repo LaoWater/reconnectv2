@@ -292,6 +292,18 @@ canvas {
     50% {transform: translate(-50%,-10px);}
 }
 
+/* Triangle color pulse */
+@keyframes colorPulse {
+    0%, 100% {
+        border-bottom-color: #ffaa00; /* Reddish gold */
+        filter: drop-shadow(0 0 20px rgba(255, 119, 51, 0.9));
+    }
+    50% {
+        border-bottom-color: #40e0d0; /* Light Blue */
+        filter: drop-shadow(0 0 30px rgba(0, 212, 255, 0.8)); /* More transparent blue */
+    }
+}
+
 /******************************/
 /* Responsive Design Adjustments */
 /******************************/

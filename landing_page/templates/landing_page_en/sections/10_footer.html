@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page with Conditional Footer</title>
+    <style>
+
+
+#footer {
+    margin-top: auto; /* Pushes the footer to the bottom of the page */
+    overflow: hidden; /* Ensures no content below the footer is visible */
+    background-color: rgba(34, 34, 34, 0.9);
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    width: 100%;
+    position: relative; /* Keeps the footer static within the page */
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.footer-link {
+    color: #ff9900;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+}
+
+/* Separate rows for layout */
+.footer-content {
+    flex-wrap: wrap;
+}
+
+/* Left align Terms & Conditions */
+.footer-content > :nth-child(1) {
+    margin-right: auto;
+}
+
+/* Right align social media icons */
+.footer-content > :nth-child(2) {
+    margin-left: auto;
+}
+
+/* New row for All Rights Reserved */
+.footer-content > :nth-child(3) {
+    flex-basis: 100%;
+    text-align: center;
+    margin-top: 20px; /* Adds space above the third element */
+}
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icon img {
+            width: 30px;
+            height: 30px;
+        }
+
+        .social-icon:hover img {
+            filter: brightness(1.2);
+        }
+
+        .end-of-site {
+            font-size: 14px;
+        }
+
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-content > :nth-child(1),
+    .footer-content > :nth-child(2) {
+        margin: 0;
+        margin-bottom: 10px;
+    }
+
+    .footer-content > :nth-child(3) {
+        margin-top: 10px;
+    }
+}
+
+
+    </style>
+</head>
+<body>
+{% load static %}
+    <footer id="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <a href="#" class="footer-link">Termeni și Condiții</a>
+            </div>
+
+            <div class="footer-section social-icons">
+                <a href="https://www.instagram.com/reconnect.course" target="_blank" class="social-icon instagram">
+                    <img src="{% static 'images/instagram_icon.png' %}" alt="Instagram">
+                </a>
+                <a href="https://www.youtube.com/@re-connect./featured" target="_blank" class="social-icon youtube">
+                    <img src="{% static 'images/youtube_icon.png' %}" alt="YouTube">
+                </a>
+                <a href="https://www.facebook.com/Reconnect.Course" target="_blank" class="social-icon facebook">
+                    <img src="{% static 'images/facebook_icon.png' %}" alt="Facebook">
+                </a>
+                <a href="https://www.tiktok.com/@reconnect.course" target="_blank" class="social-icon tiktok">
+                    <img src="{% static 'images/tiktok_icon.png' %}" alt="TikTok">
+                </a>
+            </div>
+
+            <div class="footer-section end-of-site">
+                <p>© 2024 All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

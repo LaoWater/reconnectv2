@@ -1,0 +1,188 @@
+{% extends "landing_page/base.html" %}
+
+{% block content %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon</title>
+    <style>
+        .coming-soon-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 80vh; /* Adjust height */
+            text-align: center;
+        }
+
+        .coming-soon-content {
+            max-width: 700px;
+            padding: 2em;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+
+        .coming-soon-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .coming-soon-content p {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            margin-top: 2rem;
+        }
+
+        .back-home {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-top: 4rem;
+            text-decoration: none;
+        }
+
+        .back-home img {
+            width: 100px;
+            height: 100px;
+            margin-right: 0rem;
+        }
+
+        .back-home:hover {
+            text-decoration: underline;
+        }
+
+
+
+        /* Footer Styling */
+#footer {
+    margin-top: auto; /* Push the footer to the bottom */
+    background: linear-gradient(
+        180deg,
+        rgba(255, 69, 0, 0.2) 0%,    /* Subtle neon glow at the top */
+        rgba(20, 30, 40, 0.95) 20%, /* Darker and semi-transparent */
+        rgba(10, 20, 30, 1) 50%,    /* Solid dark center */
+        rgba(20, 30, 40, 0.8) 80%,  /* Gradual dissipation */
+        rgba(20, 30, 40, 0.3) 100%  /* Transparent fade at the bottom */
+    );
+    color: #ecf0f1;
+    padding: 20px 0px;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    width: 100%; /* Ensure full-width */
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around; /* Spread items evenly */
+    align-items: flex-start; /* Align items at the top */
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 50px 0px; /* Adjusted padding for a balanced layout */
+}
+
+
+
+.footer-section {
+    margin: 10px 0;
+}
+
+.footer-link {
+    color: #ecf0f1;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+    color: #f39c12;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-icon img {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.social-icon img:hover {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+}
+
+.end-of-site p {
+    font-size: 14px;
+    color: #bdc3c7;
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: row;
+            padding: 0px 0px
+    }
+
+    .social-icons {
+        margin-top: 20px;
+    }
+
+
+.social-icon img {
+    width: 25px;
+    height: 25px;
+}
+
+}
+
+    </style>
+</head>
+<body>
+    <div class="coming-soon-container">
+        <div class="coming-soon-content">
+            <h1><span class="underline">Coming Soon</span></h1>
+            <p>We're working hard to bring you something amazing.<br>Stay tuned for updates.</p>
+            <a class="back-home" href="/">
+                <img src="/static/images/logo.png" alt="Home Icon">
+            </a>
+        </div>
+    </div>
+
+{% load static %}
+    <footer id="footer">
+        <div class="footer-content">
+
+            <!-- Social Media Icons -->
+            <div class="footer-section social-icons">
+                <a href="https://www.instagram.com/reconnect.course" target="_blank" class="social-icon instagram">
+                    <img src="{% static 'images/instagram_icon.png' %}" alt="Instagram">
+                </a>
+                <a href="https://www.youtube.com/@re-connect./featured" target="_blank" class="social-icon youtube">
+                    <img src="{% static 'images/youtube_icon.png' %}" alt="YouTube">
+                </a>
+                <a href="https://www.facebook.com/Reconnect.Course" target="_blank" class="social-icon facebook">
+                    <img src="{% static 'images/facebook_icon.png' %}" alt="Facebook">
+                </a>
+                <a href="https://www.tiktok.com/@reconnect.course" target="_blank" class="social-icon tiktok">
+                    <img src="{% static 'images/tiktok_icon.png' %}" alt="TikTok">
+                </a>
+            </div>
+
+            <!-- Copyright Information -->
+            <div class="footer-section end-of-site">
+                <p>Re-Connect © 2024 All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+
+{% endblock %}

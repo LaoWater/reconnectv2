@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matrix Rain with Distinct Patterns</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      overflow: hidden;
+    }
+
+    #matrix {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="matrix"></canvas>
+
+  <script>
+    const canvas = document.getElementById("matrix");
+    const ctx = canvas.getContext("2d");
+
+    // Set canvas size
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const matrixChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()";
+    const fontSize = 14;
+    const columns = Math.floor(canvas.width / fontSize);
+    const drops = Array(columns).fill(0);
+
+    // Shape Patterns
+    const shapesToDraw = {
+      "Re-Connect": [
+        "RRRR   EEEE   CCCC  OOO  N   N N   N EEEE CCCC TTTTT",
+        "R   R  E     C     O   O NN  N NN  N E    C      T  ",
+        "RRRR   EEEE  C     O   O N N N N N N EEEE C      T  ",
+        "R  R   E     C     O   O N  NN N  NN E    C      T  ",
+        "R   R  EEEE   CCCC  OOO  N   N N   N EEEE  CCCC  T  ",
+      ],
+      "The Alchemist": [
+        " TTT H   H  EEEE       A   L     CCCC  H   H EEEE M   M III SSS TTT ",
+        "  T  H   H  E         A A  L    C      H   H E    MM MM  I  S     T ",
+        "  T  HHHHH  EEEE     AAAAA L    C      HHHHH EEEE M M M  I   SSS  T ",
+        "  T  H   H  E        A   A L    C      H   H E    M   M  I     S  T ",
+        "  T  H   H  EEEE     A   A LLLL  CCCC  H   H EEEE M   M III SSS  T ",
+      ],
+      "Awaken": [
+        " A   W   W  A   K   K EEEE N   N",
+        "A A  W   W A A  K  K  E    NN  N",
+        "AAA  W W W AAA  KKK   EEEE N N N",
+        "A A  WW WW A A  K  K  E    N  NN",
+        "A A  W   W A A  K   K EEEE N   N",
+      ],
+      "Legend": [
+        " L     EEEE  GGG  EEEE N   N DDDD ",
+        " L     E     G    E    NN  N D   D",
+        " L     EEEE  G GG EEEE N N N D   D",
+        " L     E     G  G E    N  NN D   D",
+        " LLLLL EEEE   GGG EEEE N   N DDDD ",
+      ],
+    };
+
+    // Active patterns to draw
+    const activePatterns = [];
+
+    function addPattern() {
+      const shapeKeys = Object.keys(shapesToDraw);
+      const randomKey = shapeKeys[Math.floor(Math.random() * shapeKeys.length)];
+      const shape = shapesToDraw[randomKey];
+
+      // Random column for the pattern
+      const startColumn = Math.floor(Math.random() * (columns - shape[0].length / fontSize));
+      activePatterns.push({ shape, startColumn, currentRow: 0, trailLength: 3 });
+    }
+
+    // Draw the matrix
+    function drawMatrix() {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = "#0f0";
+      ctx.font = `${fontSize}px Courier New`;
+
+      // Draw matrix rain
+      drops.forEach((y, x) => {
+        const char = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+        ctx.fillText(char, x * fontSize, y * fontSize);
+
+        if (y * fontSize > canvas.height || Math.random() > 0.975) {
+          drops[x] = 0;
+        } else {
+          drops[x]++;
+        }
+      });
+
+      // Draw active patterns
+      drawPatterns();
+    }
+
+    // Draw active patterns
+    function drawPatterns() {
+      activePatterns.forEach((pattern, index) => {
+        const { shape, startColumn, currentRow, trailLength } = pattern;
+
+        // Draw the specific pattern for the first `trailLength` rows
+        shape.forEach((line, rowIndex) => {
+          const y = (currentRow + rowIndex) * fontSize;
+          if (y < canvas.height) {
+            line.split("").forEach((char, charIndex) => {
+              if (char !== " ") {
+                if (rowIndex < trailLength) {
+                  // Draw the pattern's character for the first `trailLength` rows
+                  ctx.fillText(char, (startColumn + charIndex) * fontSize, y);
+                } else {
+                  // Resume normal Matrix characters for the rest of the column
+                  const randomChar = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+                  ctx.fillText(randomChar, (startColumn + charIndex) * fontSize, y);
+                }
+              }
+            });
+          }
+        });
+
+        // Move the pattern down
+        pattern.currentRow++;
+
+        // Remove the pattern once it's off the screen
+        if ((currentRow + shape.length) * fontSize > canvas.height) {
+          activePatterns.splice(index, 1);
+        }
+      });
+
+      // Randomly add new patterns
+      if (Math.random() > 0.995 && activePatterns.length < 3) {
+        addPattern();
+      }
+    }
+
+    // Animate the matrix
+    setInterval(drawMatrix, 50);
+
+    // Adjust canvas on resize
+    window.addEventListener("resize", () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
+</body>
+</html>
