@@ -272,12 +272,6 @@ SOCIALACCOUNT_LOGIN_ON_GET = True  # Initiate the social login process as soon a
 
 
 
-
-
-
-
-
-
 ##########################
 ###### Debugging ########
 ##########################

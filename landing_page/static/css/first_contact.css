@@ -489,3 +489,33 @@
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
 }
+
+
+.language-buttons {
+    position: fixed;
+    top: 55px;
+    left: 10px;
+    z-index: 9999;
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    font-weight: bold;
+    line-height: 1.2;
+    margin: 1rem 2rem;
+    margin-bottom: 1rem;
+    /* Glow animation on the whole container */
+    animation: glow 3s ease-in-out infinite alternate;
+  }
+
+  .language-buttons .lang-btn {
+    background: linear-gradient(90deg, #ff4500, #ff8c00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration: none;
+    margin: 0 5px;
+    transition: transform 0.2s;
+  }
+
+  .language-buttons .lang-btn:hover {
+    transform: scale(1.1);
+  }
+

@@ -24,6 +24,11 @@ def index(request):
     return render(request, 'landing_page/index.html')  # Home Page
 
 
+def index_en(request):
+    return render(request, 'landing_page_en/index.html')  # Home Page
+
+
+
 def coming_soon(request):
     return render(request, 'landing_page/coming_soon.html')  # Home Page
 

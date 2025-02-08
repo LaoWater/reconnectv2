@@ -1,37 +1,34 @@
-<h2>Ediția 2 din Cursul Re-Connect</h2>
+<h2>2nd Edition of the Re-Connect Course</h2>
 
 <p>
-    <strong>Descoperă <span class="underline">Arta subtilă a Alchimiei Interioare</span></strong>, unde <strong>Corpul</strong> și <strong>Mintea</strong>
-    nu mai luptă unul împotriva celuilalt, ci lucrează împreună pentru a crea sănătate autentică și o
-    viață cu sens — <span class="underline">fără Suferință.</span>
+    <strong>Discover the <span class="underline">Subtle Art of Inner Alchemy</span></strong>, where <strong>Body</strong> and <strong>Mind</strong>
+    no longer battle each other, but work together to create authentic health and a life filled with meaning — <span class="underline">without Suffering.</span>
 </p>
 
 <p>
-    <br><span class="underline">Nu mai e vorba de metode forțate sau soluții pe termen scurt.</span><br>
-    Este vorba despre <strong>vindecare reală</strong>, care vine atunci când Mintea și Corpul devin, din nou, <em>Aliați</em>.
-    <br><strong>Cum se întâmplă asta?</strong> — <span class="underline">Redescoperind Adevărurile Absolute.</span><br><br>
+    <br><span class="underline">It’s no longer about forced methods or short-term solutions.</span><br>
+    It’s about <strong>genuine healing</strong> that occurs when the Mind and Body become, once again, <em>Allies</em>.
+    <br><strong>How does that happen?</strong> — <span class="underline">By Rediscovering the Absolute Truths.</span><br><br>
 </p>
 
-    <!-- Here Natural Truths media symbol -->
+<!-- Here Natural Truths media symbol -->
 <div class="symbols-page-wrapper">
   <div class="symbols-container">
       {% load static %}
-              <!-- Air - The Breath of Life -->
-        <div class="symbol air">
-            <div class="air-core">
-                <!-- Heartbeat video centered inside the air-core -->
-                <video class="heartbeat-video" autoplay loop muted playsinline>
-                    <source src="{% static 'images/heartbeat.mp4' %}" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-            <div class="airwave wave1"></div>
-            <div class="airwave wave2"></div>
-            <div class="airwave wave3"></div>
-            <div class="airwave wave4"></div>
-
-
-        </div>
+      <!-- Air - The Breath of Life -->
+      <div class="symbol air">
+          <div class="air-core">
+              <!-- Heartbeat video centered inside the air-core -->
+              <video class="heartbeat-video" autoplay loop muted playsinline>
+                  <source src="{% static 'images/heartbeat.mp4' %}" type="video/mp4">
+                  Your browser does not support the video tag.
+              </video>
+          </div>
+          <div class="airwave wave1"></div>
+          <div class="airwave wave2"></div>
+          <div class="airwave wave3"></div>
+          <div class="airwave wave4"></div>
+      </div>
 
       <!-- Food - Seed to Full Tree -->
       <div class="symbol food">
@@ -61,31 +58,29 @@
   </div>
 </div>
 
-
-
-
 <p>
-    <br><br>Nu e ceva voodoo, ci este întâlnirea măreției Medicinei și Științei moderne cu Învățăturile Antice.
+    <br><br>It’s not voodoo; it’s the convergence of the greatness of Medicine and Modern Science with Ancient Teachings.
 </p>
 
 <p>
-    <strong><br>Re-Connect V2.0</strong> — Mai mult decât o metodă, e drumul spre
-    <br><span class="underline"> <em>Legenda ta Personală</em></span>.
+    <strong><br>Re-Connect V2.0</strong> — More than just a method, it’s the path to
+    <br><span class="underline"><em>Your Personal Legend</em></span>.
 </p>
 
 <div class="newsletter-container">
-    <h2>Abonează-te la Newsletter-ul nostru</h2>
-    <p class="newsletter-info">*Nu trimitem multe mailuri, decât articole și noutăți relevante.</p>
-    <p class="newsletter-info">*Maxim 1 email/săptămână.</p>
+    <h2>Subscribe to Our Newsletter</h2>
+    <p class="newsletter-info">*We don’t send many emails — only relevant articles and updates.</p>
+    <p class="newsletter-info">*Maximum of 1 email per week.</p>
     <form id="newsletter-form">
          {% csrf_token %}
-        <label for="email">E-mail:</label>
-        <input type="email" id="email" name="email" placeholder="Introduceți e-mailul dvs." required>
-        <label for="phone">Telefon (Opțional):</label>
-        <input type="text" id="phone" name="phone" placeholder="Introduceți telefonul dvs.">
-        <button type="submit">Trimite</button>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        <label for="phone">Phone (Optional):</label>
+        <input type="text" id="phone" name="phone" placeholder="Enter your phone number">
+        <button type="submit">Submit</button>
     </form>
 </div>
+
 
 
 <script>

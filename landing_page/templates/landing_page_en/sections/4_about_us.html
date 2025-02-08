@@ -23,11 +23,12 @@
     </style>
 </head>
 
+
 <section id="about-us">
-    <!-- Page Title -->
-    <div class="page-title">
-        <h1>Despre Autori</h1>
-    </div>
+ <!-- Page Title -->
+<div class="page-title">
+    <h1>About the Authors</h1>
+</div>
 
 <!-- Image Section -->
 <div class="image-wrapper">
@@ -37,56 +38,48 @@
     </div>
 </div>
 
-    <!-- Text Content -->
-    <div class="text-container">
-        <div class="section">
-            <h2>Re-Connect este rezultatul a peste 15 ani de studiu</h2>
-            <p>
-                <strong><br>Re-Connect a fost născut din nevoia de a rezolva dureri aparent nerezolvabile, bazându-se pe
-                <em>ani de explorare</em> prin colțurile lumii.<br></strong>
-            </p>
-        </div>
-
-        <div class="section">
-            <h2>ISTORIA NOASTRĂ</h2>
-            <h3>Căutarea unui corp FIT</h3>
-            <p>
-                <strong>Am început cu dorința de a avea un corp sănătos și puternic, obținând certificări precum
-                <strong>PT, Let's Bands Level 1&2, TRX și Animal Flow</strong>.</strong>
-            </p>
-
-            <h3>Recuperarea afecțiunilor biomecanice</h3>
-            <p>
-                <strong>Ne-am dedicat recuperării biomecanice prin modulele <strong>Dimifitness Movement</strong>,
-                <em>Trigger Point</em>, linii fasciale, TRX și performanță.</strong>
-            </p>
-
-
-            <h3>Înțelegerea minții</h3>
-            <p>
-                <strong>Am aprofundat cunoștințele în <strong>antropologie, psihoanaliză, NLP</strong> și
-                <em>Theta Healing</em>, însă am întâmpinat o lacună care ne-a forțat să ne îndreptăm
-                către învățăturile Antice și Religii.</strong>
-            </p>
-
-
-
-            <h3>Vindecarea sistemelor principale</h3>
-            <p>
-                <strong>Am explorat certificări și metode precum <strong>Nutriție, Oxygen Advantage</strong> și medicina
-                pe bază de plante pentru a aborda afecțiunile sistemelor digestiv, respirator și emoțional,
-                realizând că adevăratul control al sănătății noastre nu este în mâinile altora. </strong>
-            </p>
-
-
-            <h3>Vindecarea sufletului & Dezvăluirea Adevărurilor Absolute</h3>
-            <p>
-                <strong>Am căutat răspunsuri în munți, la bătrâni și copii – adevărații maeștri ai vieții – în Asia,
-                în Buddhism, Zen, Hinduism și Creștinism. Dincolo de separare, privindu-le ca niște comori
-                    de înțelepciune, în toate găsim <strong>Secrete ale Vieții</strong>. </strong>
-            </p>
-        </div>
+<!-- Text Content -->
+<div class="text-container">
+    <div class="section">
+        <h2>Re-Connect is the Result of Over 15 Years of Study</h2>
+        <p>
+            <strong><br>Re-Connect was born from the need to solve seemingly unsolvable pains, based on
+            <em>years of exploration</em> across the corners of the world.<br></strong>
+        </p>
     </div>
+
+    <div class="section">
+        <h2>OUR HISTORY</h2>
+        <h3>The Pursuit of a Fit Body</h3>
+        <p>
+            <strong>We began with the desire to have a healthy and strong body, obtaining certifications such as
+            <strong>PT, Let's Bands Level 1 &amp; 2, TRX, and Animal Flow</strong>.</strong>
+        </p>
+
+        <h3>Rehabilitation of Biomechanical Issues</h3>
+        <p>
+            <strong>We dedicated ourselves to biomechanical rehabilitation through modules such as <strong>Dimifitness Movement</strong>,
+            <em>Trigger Point</em>, fascial lines, TRX, and performance training.</strong>
+        </p>
+
+        <h3>Understanding the Mind</h3>
+        <p>
+            <strong>We deepened our knowledge in <strong>anthropology, psychoanalysis, NLP</strong> and
+            <em>Theta Healing</em>, yet encountered a gap that compelled us to turn to Ancient Teachings and Religions.</strong>
+        </p>
+
+        <h3>Healing the Main Systems</h3>
+        <p>
+            <strong>We explored certifications and methods such as <strong>Nutrition, Oxygen Advantage</strong> and plant-based medicine to address issues in the digestive, respiratory, and emotional systems, realizing that true control over our health is not in the hands of others.</strong>
+        </p>
+
+        <h3>Healing the Soul &amp; Unveiling the Absolute Truths</h3>
+        <p>
+            <strong>We sought answers in the mountains, from elders and children – the true masters of life – in Asia, in Buddhism, Zen, Hinduism, and Christianity. Beyond separation, seeing them as treasures of wisdom, in all we discover the <strong>Secrets of Life</strong>.</strong>
+        </p>
+    </div>
+</div>
+
 
 <!-- Slideshow Section -->
 <div class="slideshow">
@@ -124,32 +117,6 @@
         </div>
     </div>
 </div>
-
-<!-- JavaScript -->
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const container = document.querySelector(".slideshow-container");
-        const slides = container.querySelectorAll(".slide");
-        const slideWidth = slides[0].offsetWidth; // Width of a single slide
-        let position = 0;
-
-        function loopSlides() {
-            position -= 1; // Adjust the speed of sliding
-            container.style.transform = `translateX(${position}px)`;
-
-            // When the first slide is completely out of view
-            if (Math.abs(position) >= slideWidth) {
-                position += slideWidth + 15; // Correct the position to prevent spiking
-                container.appendChild(container.firstElementChild); // Move first slide to the end
-                container.style.transform = `translateX(${position}px)`; // Maintain smooth flow
-            }
-
-            requestAnimationFrame(loopSlides); // Keep the animation running
-        }
-
-        loopSlides(); // Start the animation
-    });
-</script>
 
 <!-- Modals for each image -->
 <div id="modal-img1" class="modal">
@@ -194,3 +161,31 @@
     </div>
 </div>
 </section>
+
+
+
+<!-- JavaScript -->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const container = document.querySelector(".slideshow-container");
+        const slides = container.querySelectorAll(".slide");
+        const slideWidth = slides[0].offsetWidth; // Width of a single slide
+        let position = 0;
+
+        function loopSlides() {
+            position -= 1; // Adjust the speed of sliding
+            container.style.transform = `translateX(${position}px)`;
+
+            // When the first slide is completely out of view
+            if (Math.abs(position) >= slideWidth) {
+                position += slideWidth + 15; // Correct the position to prevent spiking
+                container.appendChild(container.firstElementChild); // Move first slide to the end
+                container.style.transform = `translateX(${position}px)`; // Maintain smooth flow
+            }
+
+            requestAnimationFrame(loopSlides); // Keep the animation running
+        }
+
+        loopSlides(); // Start the animation
+    });
+</script>

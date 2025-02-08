@@ -4,15 +4,17 @@ from . import views  # Current Directory
 
 urlpatterns = [
     # When someone visits the default route, run index function that is one of my views
-    path("", views.index, name="index"),  # Naming the URL pattern for easy reference
+    path("", views.index, name="index"),
 
-    path("coming_soon/", views.coming_soon, name="coming_soon"),  # Naming the URL pattern for easy reference
+    path("en/", views.index_en, name="index_en"),
 
-    path("contact/", views.contact, name="contact"),  # Naming the URL pattern for easy reference
+    path("coming_soon/", views.coming_soon, name="coming_soon"),
 
-    path('bibliography/', views.bibliography, name='bibliography'),  # New URL for the form submission
+    path("contact/", views.contact, name="contact"),
 
-    path('send-email/', views.send_email, name='send_email'),  # New URL for the form submission
+    path('bibliography/', views.bibliography, name='bibliography'),
+
+    path('send-email/', views.send_email, name='send_email'),  # form submission
 
     path('submit-newsletter', views.submit_newsletter, name='submit_newsletter'),
 

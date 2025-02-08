@@ -20,7 +20,6 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include("landing_page.urls")),  # Master URL - might connect to multiple URLs existing in app
-
     path("accounts/", include("allauth.urls")),  # Google Social Accounts setup
 
 ]
