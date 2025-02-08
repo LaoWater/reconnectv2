@@ -162,29 +162,33 @@
 
     </style>
 </head>
-<body>
-{% load static %}
-    <h1>TESTIMONIALE</h1>
-    <div class="testimonial-container">
-        <div class="testimonial">
-            <p class="click-to-enlarge">Click to enlarge</p>
-            <img src="{% static 'images/testimoniale1.png' %}" alt="Testimonial 1" class="enlargeable" data-src="{% static 'images/testimoniale1.png' %}">
-            <div class="caption">🌟 O experiență incredibilă care mi-a schimbat viața!</div>
-        </div>
-        <div class="testimonial">
-            <p class="click-to-enlarge">Click to enlarge</p>
-            <img src="{% static 'images/testimoniale2.png' %}" alt="Testimonial 2" class="enlargeable" data-src="{% static 'images/testimoniale2.png' %}">
-            <div class="caption">🌟 Recomand cu încredere tuturor celor care vor să se regăsească!</div>
-        </div>
-    </div>
 
-    <!-- Modal -->
-    <div class="modal" id="image-modal">
-        <button class="modal-close" id="close-modal">&times;</button>
-        <div class="modal-content">
-            <img src="" alt="Modal Image" id="modal-image">
-        </div>
+
+<body>
+
+{% load static %}
+<h1>TESTIMONIALS</h1>
+<div class="testimonial-container">
+    <div class="testimonial">
+        <p class="click-to-enlarge">Click to enlarge</p>
+        <img src="{% static 'images/testimoniale1.png' %}" alt="Testimonial 1" class="enlargeable" data-src="{% static 'images/testimoniale1.png' %}">
+        <div class="caption">🌟 An incredible experience that changed my life!</div>
     </div>
+    <div class="testimonial">
+        <p class="click-to-enlarge">Click to enlarge</p>
+        <img src="{% static 'images/testimoniale2.png' %}" alt="Testimonial 2" class="enlargeable" data-src="{% static 'images/testimoniale2.png' %}">
+        <div class="caption">🌟 I confidently recommend it to everyone looking to rediscover themselves!</div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="image-modal">
+    <button class="modal-close" id="close-modal">&times;</button>
+    <div class="modal-content">
+        <img src="" alt="Modal Image" id="modal-image">
+    </div>
+</div>
+
 
     <script>
         // JavaScript for Modal Functionality
@@ -209,6 +213,7 @@
             }
         });
     </script>
+
 </body>
 </html>
 
