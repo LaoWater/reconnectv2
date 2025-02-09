@@ -63,22 +63,22 @@
 <script>
 
 
+
 document.addEventListener("DOMContentLoaded", () => {
 
     // Check for mobile screen size (<768px)
     if (window.matchMedia("(max-width: 768px)").matches) {
         const loginBtn = document.getElementById('loginBtn');
         const nav = document.querySelector('nav');
+        const langButtons = document.querySelector('.language-buttons'); // Select the language buttons
         const nav_threshold = 1300;
 
         // Ensure the login button is hidden initially
         loginBtn.style.display = 'none';
 
-
         // Add scroll event listener to toggle button visibility
         document.body.addEventListener("scroll", () => {
             const scrollPosition = document.body.scrollTop; // Recalculate scroll position on each scroll event
-
 
             // Login button visibility logic
             if (scrollPosition >= 200 && scrollPosition <= 2300) {
@@ -90,6 +90,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 loginBtn.style.opacity = '0';
             }
 
+            // Language button visibility logic using "invisible" and "visible"
+            if (scrollPosition > 100) {
+                langButtons.classList.remove('visible');
+                langButtons.classList.add('invisible');
+            } else {
+                langButtons.classList.remove('invisible');
+                langButtons.classList.add('visible');
+            }
+
             // Nav bar visibility logic
             if (scrollPosition > nav_threshold) {
                 nav.classList.remove('visible');
@@ -99,8 +108,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 nav.classList.add('visible');
             }
         });
+    } // Mobile section end
 
-} // Mobile section end
 
 
 // Dynamically generate the Scroll-to-Top button

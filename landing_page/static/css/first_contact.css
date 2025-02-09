@@ -347,54 +347,6 @@
 
 
 
-/************************************************************
- * MOBILE SETUP
- ************************************************************/
-
-@media only screen and (max-width: 768px) {
-    .anvil-animation {
-        height: 105px; /* 70% of original height */
-    }
-
-    .anvil-container {
-        width: 210px; /* 70% of original width */
-        height: 105px; /* 70% of original height */
-        top: -13.5%; /* Adjust proportionally */
-        left: -0.7%; /* Adjust proportionally */
-    }
-
-    .anvil {
-        width: 105px; /* 70% of original width */
-        height: 42px; /* 70% of original height */
-        clip-path: polygon(0% 80%, 20% 80%, 30% 100%, 70% 100%, 80% 80%, 100% 80%, 90% 40%, 10% 40%);
-        box-shadow: 0 5.6px 14px rgba(0, 0, 0, 0.5); /* Adjust shadow size */
-    }
-
-    .hammer {
-        width: 42px; /* 70% of original width */
-        height: 14px; /* 70% of original height */
-        top: 33.3%; /* Adjust proportionally */
-        left: 77%; /* Same position */
-        transform: translateX(-50%);
-        box-shadow: 0 2.8px 7px rgba(0, 0, 0, 0.3); /* Adjust shadow size */
-    }
-
-    .hammer::after {
-        width: 7px; /* 70% of original width */
-        height: 45.5px; /* 70% of original height */
-        top: 14px; /* Adjust proportionally */
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    .sparks {
-        bottom: 35px; /* 70% of original bottom position */
-        left: 60%; /* Same position */
-        top: 75%; /* Adjust proportionally */
-    }
-}
-
-
 
 
 
@@ -518,4 +470,69 @@
   .language-buttons .lang-btn:hover {
     transform: scale(1.1);
   }
+
+
+
+
+/************************************************************
+ * MOBILE SETUP
+ ************************************************************/
+
+@media only screen and (max-width: 768px) {
+    .anvil-animation {
+        height: 105px; /* 70% of original height */
+    }
+
+    .anvil-container {
+        width: 210px; /* 70% of original width */
+        height: 105px; /* 70% of original height */
+        top: -13.5%; /* Adjust proportionally */
+        left: -0.7%; /* Adjust proportionally */
+    }
+
+    .anvil {
+        width: 105px; /* 70% of original width */
+        height: 42px; /* 70% of original height */
+        clip-path: polygon(0% 80%, 20% 80%, 30% 100%, 70% 100%, 80% 80%, 100% 80%, 90% 40%, 10% 40%);
+        box-shadow: 0 5.6px 14px rgba(0, 0, 0, 0.5); /* Adjust shadow size */
+    }
+
+    .hammer {
+        width: 42px; /* 70% of original width */
+        height: 14px; /* 70% of original height */
+        top: 33.3%; /* Adjust proportionally */
+        left: 77%; /* Same position */
+        transform: translateX(-50%);
+        box-shadow: 0 2.8px 7px rgba(0, 0, 0, 0.3); /* Adjust shadow size */
+    }
+
+    .hammer::after {
+        width: 7px; /* 70% of original width */
+        height: 45.5px; /* 70% of original height */
+        top: 14px; /* Adjust proportionally */
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .sparks {
+        bottom: 35px; /* 70% of original bottom position */
+        left: 60%; /* Same position */
+        top: 75%; /* Adjust proportionally */
+    }
+
+
+.language-buttons {
+    top: 37px;
+    left: 8px;
+    font-size: 1rem;
+    margin: 1rem 1rem;
+    margin-bottom: 1rem;
+  }
+
+
+  .language-buttons .lang-btn {
+    margin: 0 1px;
+  }
+
+}
 

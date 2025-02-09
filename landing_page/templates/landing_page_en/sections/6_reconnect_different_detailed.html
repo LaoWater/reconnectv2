@@ -119,6 +119,55 @@
     }
 }
 
+@media (min-width: 1024px) {  /* Adjust for larger screens */
+
+/* Override max-width for Page 6 ONLY */
+/* Override the parent section restriction */
+#page6 {
+    max-width: 100% !important;  /* Remove the 850px limit */
+    width: 100% !important;  /* Ensure it takes the full page */
+    margin: 0 auto;  /* Keep it centered */
+    padding: 0;  /* Optional: Adjust padding if needed */
+}
+
+/* Ensure the child section also follows */
+#page6 > section#page-6 {
+    max-width: 100% !important;
+    width: 90%;
+    margin: 0 auto;
+}
+
+
+    .text-container {
+        max-width: 100%; /* Full width for content */
+        width: 90%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center; /* Center align content */
+        flex-wrap: wrap; /* Ensures flexibility on different screen sizes */
+        gap: 20px; /* Space between sections */
+    }
+
+    #page6 .text-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap; /* Ensures items move to a new row if needed */
+        gap: 20px; /* Space between sections */
+    }
+
+    #page6 .section-different {
+        flex: 1 1 48%;  /* Makes sure two fit in a row */
+        max-width: 48%;
+    }
+
+    /* Force the third section to be on a new row */
+    #page6 .section-different:nth-of-type(3) {
+        flex: 1 1 50%; /* Forces full width */
+        max-width: 50%;
+    }
+
+}
+
 </style>
 
 <section id="page-6">
@@ -156,7 +205,7 @@
         </div>
 
     </div>
-
+    <br>
     {% load static %}
     <a class="buy-button" href="https://reconnectcourse.thinkific.com/courses/re-connect-v2" target="_blank">View Product Page</a>
 </section>

@@ -84,10 +84,10 @@ STATIC_URL = '/static/'  # Already present
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-oxq8+vn*7^wamua)%^=3zer^dlf3ttioh68rg)f+c0uwndjx5*'
+SECRET_KEY = env('DJANGO_SECRET_KEY')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-# If DEBUG is False, Django won’t serve static files, and you’ll need to configure a web server like Nginx or Apache for production.
+
+# SECURITY WARNING: don't run with debug turned on in production! For this project Gcloud App Engine handles it through .yaml setup.
 DEBUG = True
 
 
