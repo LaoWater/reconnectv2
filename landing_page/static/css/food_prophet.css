@@ -46,7 +46,7 @@ nav {
 }
 
 .nav-center {
-    margin-right: 3.33rem;
+    margin-right: 0rem;
 }
 
 
@@ -629,10 +629,6 @@ padding: 0.3rem 2rem;
    zoom: 0.73;
 }
 }
-
-
-
-
 
 
 /* Fine-Tuning */
