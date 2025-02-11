@@ -264,28 +264,42 @@ document.addEventListener('DOMContentLoaded', function () {
 />
 
     <!-- Navbar -->
-    <nav class="visible">
-        <div class="nav-center">
-        <a href="/en">Re-Connect V2</a>
-        <div class="dropdown">
-            <a href="#page1">Explore Our Projects</a>
-            <div class="dropdown-content">
-                <a href="/ylf">YLF</a>
-                <a href="/food-prophet">Food Prophet</a>
-                <a href="/coming_soon">Air Quality AI</a>
-                <a href="/coming_soon">Ending Pain</a>
-                <a href="/bibliography">Bibliography</a>
-            </div>
-        </div>
-        <a href="/contact" id="a2">Contact</a>
-        </div>
+<nav class="visible">
+  <!-- Mobile hamburger toggle (only shown under 768px) -->
+  <button class="hamburger" id="hamburger">
+    <span class="line line1"></span>
+    <span class="line line2"></span>
+    <span class="line line3"></span>
+  </button>
 
-            {% if user.is_authenticated %}
-        <span class="user-message">Welcome, {{ user.username|capfirst }}</span>
+  <!-- Wrap the nav content in a container that we can hide/show on mobile -->
+  <div class="nav-menu" id="navMenu">
+    <div class="nav-center">
+      <a href="/en">Re-Connect V2</a>
+      <div class="dropdown">
+        <a href="#page1">Explore Our Projects</a>
+        <div class="dropdown-content">
+          <a href="/ylf">YLF</a>
+          <a href="/food-prophet">Food Prophet</a>
+          <a href="/coming_soon">Air Quality AI</a>
+          <a href="/coming_soon">Ending Pain</a>
+          <a href="/bibliography">Bibliography</a>
+        </div>
+      </div>
+      <a href="/contact" id="a2">Contact</a>
+    </div>
+
+    {% if user.is_authenticated %}
+      <span class="user-message">Welcome, {{ user.username|capfirst }}</span>
     {% endif %}
-        <!-- User Login/Register Modal -->
     <button id="loginBtn" class="login-btn">Login</button>
-    </nav>
+  </div>
+
+  <!-- Container for our particle effect -->
+  <div id="particle-container"></div>
+</nav>
+
+
 
 
 {% load socialaccount %}
@@ -526,7 +540,7 @@ function openGoogleLogin(event) {
 
 
 
-<!-- Login&Register Forms & Exchanges-->
+<!-- Login&Register | Forms & Exchanges-->
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     // DOM Elements
@@ -767,5 +781,99 @@ registerForm.addEventListener('submit', (e) => {
 });
 </script>
 
+
+
+<!-- Mobile Nav Bar Rendering -->
+<script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+    const hamburger = document.getElementById("hamburger");
+
+  if (window.innerWidth > 768) {
+
+    hamburger.style.display = 'none';
+  }
+
+   if (window.innerWidth < 768) {
+    const hamburger = document.getElementById("hamburger");
+    const navMenu = document.getElementById("navMenu");
+    const particleContainer = document.getElementById("particle-container");
+    let menuOpen = false;
+
+    // Toggle the menu when clicking on the hamburger
+    hamburger.addEventListener("click", function (e) {
+      e.stopPropagation();
+      if (!menuOpen) {
+        openMenu();
+      }
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener("click", function (e) {
+      if (
+        menuOpen &&
+        !navMenu.contains(e.target) &&
+        e.target !== hamburger &&
+        !hamburger.contains(e.target)
+      ) {
+        closeMenu();
+      }
+    });
+
+    function openMenu() {
+      menuOpen = true;
+      hamburger.classList.add("hidden");
+      createParticles(hamburger, "explode", function () {
+        navMenu.classList.add("active");
+      });
+    }
+
+    function closeMenu() {
+      menuOpen = false;
+      navMenu.classList.remove("active");
+      createParticles(hamburger, "implode", function () {
+        hamburger.classList.remove("hidden");
+      });
+    }
+
+    function createParticles(element, animationType, callback) {
+      const rect = element.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+
+      for (let i = 0; i < 50; i++) {
+        const particle = document.createElement("div");
+        particle.classList.add("particle");
+        particle.style.left = centerX + "px";
+        particle.style.top = centerY + "px";
+
+        const angle = Math.random() * 2 * Math.PI;
+        const distance = Math.random() * 50 + 30;
+        const tx = Math.cos(angle) * distance;
+        const ty = Math.sin(angle) * distance;
+
+        particle.style.setProperty("--tx", tx + "px");
+        particle.style.setProperty("--ty", ty + "px");
+
+        if (animationType === "explode") {
+          particle.style.animation = "explode 0.6s forwards";
+        } else if (animationType === "implode") {
+          particle.style.animation = "implode 0.6s forwards";
+        }
+
+        particleContainer.appendChild(particle);
+
+        particle.addEventListener("animationend", function () {
+          particle.remove();
+        });
+      }
+
+      setTimeout(callback, 500);
+    }
+  }
+});
+
+
+</script>
 </body>
 </html>

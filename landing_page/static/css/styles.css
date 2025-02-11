@@ -345,6 +345,129 @@ canvas {
         margin-bottom: 1rem;
     }
 
+/***********/
+/* Nav Bar Mobile */
+
+          /* Style the entire nav bar */
+  .nav-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;  /* Adjust height to align properly */
+  }
+
+  /* Hamburger container */
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 44px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    z-index: 20;
+    padding: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  /* Hide the hamburger when the menu is active */
+  .hamburger.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* Hamburger lines (upside-down triangle) */
+/* Hamburger menu lines */
+  .hamburger .line {
+    height: 3px;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+
+    /* Mimic the golden-orange glow */
+    background: linear-gradient(90deg, #ff4500, #ff8c00);
+   box-shadow:
+      0 0 5px #f4c542;
+  }
+
+  .line1 { width: 42px; }
+  .line2 { width: 28px; }
+  .line3 { width: 14px; }
+
+  .line {
+    display: block;
+    margin: 3px auto;
+  }
+
+  /* The nav menu is initially hidden */
+  .nav-menu {
+    position: absolute;
+    width: 100%;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(5px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07); /* Optional */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    z-index: 10;
+  }
+
+  /* Show the nav menu when active */
+  .nav-menu.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* Particle effect container */
+  #particle-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 100;
+  }
+
+  /* Particle styles */
+  .particle {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: #000;
+    border-radius: 50%;
+    opacity: 1;
+  }
+
+  /* Keyframes for explosion (particles move outward and fade) */
+  @keyframes explode {
+    from { transform: translate(0, 0); opacity: 1; }
+    to { transform: translate(var(--tx), var(--ty)); opacity: 0; }
+  }
+
+  /* Keyframes for implosion (particles move inward and reappear) */
+  @keyframes implode {
+    from { transform: translate(var(--tx), var(--ty)); opacity: 0; }
+    to { transform: translate(0, 0); opacity: 1; }
+  }
+
+
+    .nav-center {
+        margin: 0 0.4rem;
+        font-size: 0.9rem;
+        padding-top: 3px;
+    }
         nav a {
         display: flex; /* Use flexbox for alignment */
     flex-direction: column; /* Stack text vertically */
@@ -356,9 +479,8 @@ canvas {
 
     }
 
-    .nav-center {
-    display: contents;
-    }
+/* Nav Bar End */
+
 
             .dropdown-content a {
             display: block;
