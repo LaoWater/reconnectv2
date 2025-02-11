@@ -452,6 +452,9 @@ function openGoogleLogin(event) {
 
 
 
+<!------------------------------------------------------->
+<!-- The Alchemy of Sounds - Music & Handling Volume -->
+<!------------------------------------------------------->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
         const audio = document.getElementById("background-music");
@@ -540,7 +543,10 @@ function openGoogleLogin(event) {
 
 
 
+<!------------------------------------------------------->
 <!-- Login&Register | Forms & Exchanges-->
+<!------------------------------------------------------->
+
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     // DOM Elements
@@ -782,20 +788,20 @@ registerForm.addEventListener('submit', (e) => {
 </script>
 
 
-
+<!------------------------------------------------------->
 <!-- Mobile Nav Bar Rendering -->
+<!------------------------------------------------------->
+
 <script>
 
-    document.addEventListener("DOMContentLoaded", function () {
-    const hamburger = document.getElementById("hamburger");
+   document.addEventListener("DOMContentLoaded", function () {
+  const hamburger = document.getElementById("hamburger");
 
   if (window.innerWidth > 768) {
-
-    hamburger.style.display = 'none';
+    hamburger.style.display = "none";
   }
 
-   if (window.innerWidth < 768) {
-    const hamburger = document.getElementById("hamburger");
+  if (window.innerWidth < 768) {
     const navMenu = document.getElementById("navMenu");
     const particleContainer = document.getElementById("particle-container");
     let menuOpen = false;
@@ -837,28 +843,41 @@ registerForm.addEventListener('submit', (e) => {
     }
 
     function createParticles(element, animationType, callback) {
+      // Get the hamburger center coordinates
       const rect = element.getBoundingClientRect();
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top + rect.height / 2;
 
-      for (let i = 0; i < 50; i++) {
+      // Get the navMenu rectangle dimensions to base our offsets on a rectangle
+      const navRect = navMenu.getBoundingClientRect();
+
+      // Increase the particle count for a denser effect
+      for (let i = 0; i < 120; i++) {
         const particle = document.createElement("div");
         particle.classList.add("particle");
+
+        // Position particle at the center of the hamburger
         particle.style.left = centerX + "px";
         particle.style.top = centerY + "px";
 
-        const angle = Math.random() * 2 * Math.PI;
-        const distance = Math.random() * 50 + 30;
-        const tx = Math.cos(angle) * distance;
-        const ty = Math.sin(angle) * distance;
+        // Instead of a circular offset, use a random offset within the navMenu rectangle
+        const tx = (Math.random() - 0.5) * navRect.width;
+        const ty = (Math.random() - 0.5) * navRect.height;
 
         particle.style.setProperty("--tx", tx + "px");
         particle.style.setProperty("--ty", ty + "px");
 
+        // Apply a color and glow effect similar to your text style
+        const colors = ["#ff4500", "#ff8c00", "rgba(255, 140, 0, 0.8)"];
+        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        particle.style.background = randomColor;
+        particle.style.boxShadow = `0 0 10px ${randomColor}, 0 0 20px ${randomColor}`;
+
+        // Use a slightly longer duration if needed and trigger the proper animation type
         if (animationType === "explode") {
-          particle.style.animation = "explode 0.6s forwards";
+          particle.style.animation = "explode 0.8s forwards";
         } else if (animationType === "implode") {
-          particle.style.animation = "implode 0.6s forwards";
+          particle.style.animation = "implode 0.8s forwards";
         }
 
         particleContainer.appendChild(particle);
@@ -868,12 +887,17 @@ registerForm.addEventListener('submit', (e) => {
         });
       }
 
-      setTimeout(callback, 500);
+      // Adjust callback timing so the navMenu (text) starts to appear mid-animation.
+      // For example, with a total duration of 0.8s, you could trigger at ~0.4s (mid) or ~0.53s (2/3).
+      setTimeout(callback, 400); // Adjust this value as needed
     }
   }
 });
 
 
 </script>
+
+
+
 </body>
 </html>

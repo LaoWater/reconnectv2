@@ -1242,6 +1242,7 @@ canvas {
 #loginBtn {
     position: absolute; /* Position the button relative to its closest positioned ancestor */
     right: 50px; /* Push it to the right edge of the navbar */
+    top: 10px;
     background: linear-gradient(145deg, #FF4500, #FF8C00); /* Fiery orange gradient */
     color: #FFD700; /* Golden text */
     font-family: 'Georgia', serif; /* Elegant font */
