@@ -1327,7 +1327,7 @@ canvas {
   opacity: 1; /* Fully visible */
   visibility: visible; /* Allow interaction */
   pointer-events: auto; /* Allow clicks */
-  transition: opacity 1.3s ease, visibility 1.3s ease; /* Smooth transition */
+  transition: opacity 1.5s ease, visibility 1.5s ease; /* Smooth transition */
 }
 
 
@@ -1589,9 +1589,110 @@ section#natural-truths {
   }
 
  #adevaruri-absolute-closing {
-    max-width: 1000px;
+    max-width: 750px;
     margin: 0 auto; /* centers the container */
     text-align: center;
   }
 
+}
+
+
+
+
+/* Slide In: Default animation for .custom-air-section and .custom-food-section */
+.slide-in {
+  animation: slideIn 0.5s forwards;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Slide Up: For #adevaruri-absolute */
+.slide-up {
+  animation: slideUp 1.5s forwards;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(150px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Slide From Right: For #adevaruri-absolute-movement */
+.slide-from-right {
+  animation: slideFromRight 1.5s forwards;
+}
+
+@keyframes slideFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Slide From Left: For #adevaruri-absolute-closing */
+.slide-from-left {
+  animation: slideFromLeft 1.5s forwards;
+}
+
+@keyframes slideFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+
+.custom-sections-container .symbol.air {
+  position: absolute;
+  top: 40%;
+  right: 44%;
+  transform: translateY(-10%);
+  opacity: 0.45;
+}
+
+.custom-sections-container .symbol.food {
+  position: absolute;
+  top: 30%;
+  right: 43%;
+  transform: translateY(-10%);
+  opacity: 0.37;
+}
+
+
+.section.movement .symbol.movement {
+  position: absolute;
+  top: 37%;
+  right: 45%;
+  transform: translateY(-20%);
+  opacity: 0.37;
+}
+
+
+.center-container {
+  position: absolute;
+  top: auto;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

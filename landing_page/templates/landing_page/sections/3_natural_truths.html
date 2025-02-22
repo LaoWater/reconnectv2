@@ -70,9 +70,27 @@
   <hr>
 <!-- New Container wrapping both sections -->
 <div class="custom-sections-container">
+          {% load static %}
+
 
   <!-- Air Section -->
   <div class="custom-air-section section 777air">
+
+          <div class="symbol air">
+            <div class="air-core">
+                <!-- Heartbeat video centered inside the air-core -->
+                <video class="heartbeat-video" autoplay loop muted playsinline>
+                    <source src="{% static 'images/heartbeat.mp4' %}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="airwave wave1"></div>
+            <div class="airwave wave2"></div>
+            <div class="airwave wave3"></div>
+            <div class="airwave wave4"></div>
+
+
+        </div>
 
     <h2><span class="underline">Aerul – Respirația este Viață.</span></h2>
     <p>
@@ -108,6 +126,27 @@
 
   <!-- Food Section -->
   <div class="custom-food-section section food">
+        <div class="food-symbol-wrapper">
+          <!-- Food - Seed to Full Tree -->
+          <div class="symbol food">
+              <div class="soil"></div>
+              <div class="seed"></div>
+              <div class="sprout"></div>
+              <div class="trunk"></div>
+              <!-- More branches for a fuller tree -->
+              <div class="branch-layer">
+                  <div class="branch branch-left"></div>
+                  <div class="branch branch-right"></div>
+              </div>
+              <div class="branch-layer layer2">
+                  <div class="branch branch-left-2"></div>
+                  <div class="branch branch-right-2"></div>
+              </div>
+              <!-- A full leafy canopy -->
+              <div class="leaf-canopy"></div>
+          </div>
+        </div>
+
     <h2><span class="underline">Mâncarea – Transformarea începe în interior.</span></h2>
     <p>
       <br>Mâncarea nu este doar combustibil – ea este
@@ -149,6 +188,7 @@
     <div class="section movement">
            <div id="adevaruri-absolute-movement">
 
+
         <h2><br><span class="underline">Mișcarea – Ritmul fundamental al universului.</span></h2>
         <p>
             <br>Mișcarea este mai mult decât exercițiu fizic – este <em>baza întregii creații</em>. De la rotația
@@ -178,16 +218,25 @@
             </li>
         </ul>
            </div>
+        <br>
     </div>
+
+<div class="center-container">
+  <!-- Movement - Cosmic Dance (as is, just scaled down) -->
+  <div class="symbol movement">
+      <div class="cosmic-center"></div>
+      <div class="spiral"></div>
+      <div class="orbit"></div>
+  </div>
+</div>
+
+
 
     <!-- Closing Statement -->
     <div class="closing-statement">
                    <div id="adevaruri-absolute-closing">
-        <h3><br></br>Aerul, Mâncarea și Mișcarea sunt cheia pentru transformarea Vieții tale.</h3>
-        <p>
-            Re-Connect îți oferă <strong>cunoștințe fundamentale</strong>, susținute de știință și dezgropate
-            din învățăturile Antice, <strong><span class="underline">pentru a Transforma:</span></strong>
-        </p>
+        <h3><br></br>Re-Connect îți oferă <strong>cunoștințe fundamentale</strong>, susținute de știință și dezgropate
+            din învățăturile Antice, <strong><span class="underline">pentru a Transforma:</span></strong></h3>
         <div class="section">
             <ul>
                 <li><strong>Suferința</strong> în <strong>Sănătate</strong></li>
@@ -197,9 +246,7 @@
                 <li>Viața dintr-o <strong>"Povară"</strong> într-un <strong>"Dar"</strong></li>
             </ul>
         </div>
-                   </div>
-
-        <p2>
+                          <p2>
               <lord-icon
     src="https://cdn.lordicon.com/rqqkvjqf.json"
     trigger="hover"
@@ -209,35 +256,105 @@
                  0 0 16px #1AFFFD,
                  0 0 32px #1AFFFD;">
   </lord-icon>
-            <br><strong>Devin-o propriul tău Alchemist.</strong>
+            <br><strong>Devin-o propriul tău Creator.</strong>
                 <!-- Crystal-like object, color override -->
 
         </p2>
+
+                   </div>
+
     </div>
 </section>
 
 <script>
 
     document.addEventListener('DOMContentLoaded', function() {
-  const airSection = document.querySelector('.custom-air-section');
-  const foodSection = document.querySelector('.custom-food-section');
+  // Define our elements along with their animation classes
+  const animatedElements = [
+    {
+      selector: '.custom-air-section',
+      inClass: 'slide-from-left',          // initial animation for entry
+      outClass: 'fade-out'          // fade out when out of viewport
+    },
+    {
+      selector: '.custom-food-section',
+      inClass: 'slide-from-right',
+      outClass: 'fade-out'
+    },
+    {
+      selector: '#adevaruri-absolute',
+      inClass: 'slide-from-left',          // appears by sliding up
+      outClass: 'fade-out'
+    },
+    {
+      selector: '#adevaruri-absolute-movement',
+      inClass: 'slide-from-right',  // slides in from right to left
+      outClass: 'fade-out'
+    },
+    {
+      selector: '#adevaruri-absolute-closing',
+      inClass: 'slide-from-left',   // slides in from left to right
+      outClass: 'fade-out'
+    }
+  ];
 
-  const options = {
-    threshold: 0.2 // Trigger when 20% of the element is visible
+  // Create a single IntersectionObserver for all elements with a 20% threshold.
+  const observerOptions = {
+    threshold: 0.2
   };
 
-  const observer = new IntersectionObserver((entries, observer) => {
+  const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
+      // Find the configuration for this element by matching its selector.
+      const config = animatedElements.find(item => entry.target.matches(item.selector));
+      if (!config) return;
+
       if (entry.isIntersecting) {
-        entry.target.classList.add('slide-in');
-        observer.unobserve(entry.target); // Stop observing once animated
+        // When at least 20% is visible, add the entry animation and remove fade-out.
+        entry.target.classList.add(config.inClass);
+        entry.target.classList.remove(config.outClass);
+      } else {
+        // When the element leaves the viewport, remove the entry animation and add fade-out.
+        entry.target.classList.remove(config.inClass);
+        entry.target.classList.add(config.outClass);
       }
     });
-  }, options);
+  }, observerOptions);
 
-  if (airSection) observer.observe(airSection);
-  if (foodSection) observer.observe(foodSection);
+  // Loop through our animated elements and start observing if they exist.
+  animatedElements.forEach(item => {
+    const el = document.querySelector(item.selector);
+    if (el) {
+      observer.observe(el);
+    }
+  });
+
+
+      const wrapper = document.querySelector('.food-symbol-wrapper');
+    if (window.innerWidth > 1024) {
+      wrapper.style.display = 'block';
+    } else {
+      wrapper.style.display = 'none';
+    }
 });
 
 
+</script>
+
+
+<script>
+  function checkWidth() {
+    const wrapper = document.querySelector('.food-symbol-wrapper');
+    if (window.innerWidth > 1024) {
+      wrapper.style.display = 'block';
+    } else {
+      wrapper.style.display = 'none';
+    }
+  }
+
+  // Run on initial load
+  checkWidth();
+
+  // Also update on window resize
+  window.addEventListener('resize', checkWidth);
 </script>

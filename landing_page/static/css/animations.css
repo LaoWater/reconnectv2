@@ -8,6 +8,8 @@
     gap: 6rem;
     padding: 1rem;
     flex-wrap: wrap;
+    transform: none !important;
+
 }
 
 .symbol {

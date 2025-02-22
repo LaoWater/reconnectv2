@@ -271,7 +271,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   pages.forEach((page) => {
     // Choose stagger value based on page id
-    let staggerValue = page.id === "page1" ? 0.13 : 0.33;
+    let staggerValue = page.id === "page1" ? 0.11 : 0.18;
 
     // Create a GSAP timeline for this page (paused by default)
     const tl = gsap.timeline({ paused: true });
