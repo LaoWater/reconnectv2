@@ -46,14 +46,16 @@
     height: 100px;
     text-align: center; /* Align content inside */
         transition: transform 2.5s ease-in-out; /* Smooth rotation */
+            transform: none !important;
+
 
 }
 
 
 /* Rotate all elements on hover */
 .mystical-symbol:hover {
-    animation: none; /* Temporarily stop animations on hover */
-    transform: rotate(360deg); /* Smooth rotation */
+    animation: none;
+    transform: rotate(360deg) !important;
 }
 
 /* Hover Effect: Rotate Smoothly */
@@ -261,7 +263,10 @@
     display: flex;
     justify-content: center;
     align-items: flex-end;
+    animation: fadeIn 0.8s ease-in-out forwards;
+
 }
+
 
 .anvil-container {
     position: relative;
@@ -455,7 +460,7 @@
     margin: 1rem 2rem;
     margin-bottom: 1rem;
     /* Glow animation on the whole container */
-    animation: glow 3s ease-in-out infinite alternate;
+    animation: glow 3s ease-in-out infinite alternate, fadeIn 1s ease-in-out forwards;
   }
 
   .language-buttons .lang-btn {

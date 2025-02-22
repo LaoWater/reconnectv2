@@ -28,7 +28,7 @@
 
     <p>
         <strong><br>Orice durere cronică ai avea</strong> — de la dureri de spate, nemulțumiri, lipsă de energie, lipsă de direcție, lipsa acelui "chef" de viață, dezorientare —
-        <strong><span class="underline">toate pot fi înțelese și vindecate.</span></strong>
+        <strong><span class="underline">toate pot fi înțelese și Vindecate.</span></strong>
     </p>
 
     <!-- Mystical Alchemy Symbol -->
@@ -262,6 +262,50 @@ window.addEventListener("load", () => {
 });
 
 </script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  // Select both #page1 and #page2
+  const pages = document.querySelectorAll("#page1, #page2");
+
+  pages.forEach((page) => {
+    // Create a GSAP timeline for this page (paused by default)
+    const tl = gsap.timeline({ paused: true });
+
+    // Animate each direct child element of the current page
+    tl.from(page.children, {
+      duration: 1.3,
+      opacity: 0,
+      scale: 0.1,
+      filter: "blur(8px)",
+      x: () => gsap.utils.random(-20, 20),
+      y: () => gsap.utils.random(-20, 20),
+      ease: "power2.out",
+      stagger: 0.13,
+      onComplete: function() {
+        // Remove the blur after the animation completes
+        gsap.set(page.children, { filter: "blur(0px)" });
+      }
+    });
+
+    // Use IntersectionObserver to trigger the animation when 25% of the section is visible
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.intersectionRatio >= 0.25) {
+          tl.play();
+        } else {
+          tl.reverse();
+        }
+      });
+    }, { threshold: [0, 0.25] });
+
+    observer.observe(page);
+  });
+});
+</script>
+
+
+
 
 
 <script src="{% static 'anvil_strike.js' %}"></script>

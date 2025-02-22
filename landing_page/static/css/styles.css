@@ -507,7 +507,7 @@ canvas {
 
 #natural-truths {
     width: 100%; /* Shrink margin space by increasing the width */
-    max-width: 800px; /* Cap the width for readability */
+   /* max-width: 800px; /* Cap the width for readability */
     padding: 1rem; /* Reduce padding to balance the space */
     margin: 0 auto; /* Center horizontally */
     text-align: center;
@@ -1489,5 +1489,109 @@ left: 0.88rem;
     width: 80% !important;
 }
 }
+
+
+
+
+
+/* Ensures that on smaller screens, they stack properly */
+@media (max-width: 768px) {
+    #natural-truths {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .custom-air-section.slide-in,
+    .custom-food-section.slide-in {
+        max-width: 100%; /* Full width when stacked */
+    }
+}
+
+
+
+@media (min-width: 1024px) {  /* Adjust for larger screens */
+
+
+
+/* Sections Animations */
+
+section#natural-truths {
+    position: relative;
+    min-height: 100vh;
+    padding: 2rem 2rem 4rem;
+    max-width: 1500px;
+    text-align: center;
+}
+
+/* Container styling for horizontal layout */
+.custom-sections-container {
+  display: flex;
+  max-width: 1500px; /* Adjust as needed */
+  margin: 0 auto;
+  overflow: hidden; /* Hide any overflow from the animations */
+}
+
+/* Base styling for each section */
+.custom-air-section,
+.custom-food-section {
+  flex: 1;
+  padding: 20px;
+  opacity: 0;
+  transform: translateX(-50px); /* Start off-screen to the left */
+  transition: all 0.6s ease-out;
+}
+
+/* Food section animation delay */
+.custom-food-section.slide-in {
+  transition-delay: 0.5s;
+}
+
+.custom-air-section.slide-in,
+.custom-food-section.slide-in {
+    width: 100%;
+    max-width: 700px; /* Limits each section width */
+    flex: 1; /* Allows them to share space evenly */
+    min-width: 300px; /* Ensures responsiveness */
+    text-align: center;
+      opacity: 1;
+  transform: translateX(0);
+}
+
+
+
+/* Override max-width for Page 6 ONLY */
+/* Override the parent section restriction */
+#page3 {
+    max-width: 85% !important;  /* Remove the 850px limit */
+    width: 90% !important;  /* Ensure it takes the full page */
+    margin: 0 auto;  /* Keep it centered */
+    padding: 0;  /* Optional: Adjust padding if needed */
+}
+
+/* Ensure the child section also follows */
+#page3 > section#page-3 {
+    max-width: 100% !important;
+    width: 90%;
+    margin: 0 auto;
+}
+
+ #adevaruri-absolute {
+    max-width: 800px;
+    margin: 0 auto; /* centers the container */
+    text-align: center;
+  }
+
+
+ #adevaruri-absolute-movement {
+    max-width: 900px;
+    margin: 0 auto; /* centers the container */
+    text-align: center;
+  }
+
+ #adevaruri-absolute-closing {
+    max-width: 1000px;
+    margin: 0 auto; /* centers the container */
+    text-align: center;
+  }
 
 }
