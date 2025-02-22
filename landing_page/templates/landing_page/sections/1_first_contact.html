@@ -263,16 +263,20 @@ window.addEventListener("load", () => {
 
 </script>
 
+
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   // Select both #page1 and #page2
   const pages = document.querySelectorAll("#page1, #page2");
 
   pages.forEach((page) => {
+    // Choose stagger value based on page id
+    let staggerValue = page.id === "page1" ? 0.13 : 0.33;
+
     // Create a GSAP timeline for this page (paused by default)
     const tl = gsap.timeline({ paused: true });
 
-    // Animate each direct child element of the current page
+    // Animate each direct child element of the page with the chosen stagger
     tl.from(page.children, {
       duration: 1.3,
       opacity: 0,
@@ -281,14 +285,14 @@ document.addEventListener("DOMContentLoaded", () => {
       x: () => gsap.utils.random(-20, 20),
       y: () => gsap.utils.random(-20, 20),
       ease: "power2.out",
-      stagger: 0.13,
+      stagger: staggerValue,
       onComplete: function() {
-        // Remove the blur after the animation completes
+        // Remove the blur after animation completes
         gsap.set(page.children, { filter: "blur(0px)" });
       }
     });
 
-    // Use IntersectionObserver to trigger the animation when 25% of the section is visible
+    // Use IntersectionObserver to trigger the animation when at least 25% of the page is visible
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.intersectionRatio >= 0.25) {
