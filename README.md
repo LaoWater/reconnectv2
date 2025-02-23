@@ -67,7 +67,7 @@
 
 ### The Secrets of Alchemy
 
-Our Online Course Landing Page, available in both Romanian and English versions, showcases a harmonious blend of self-crafted CSS and JavaScript animations. 
+Online Course Landing Page, available in both Romanian and English versions, showcases a harmonious blend of self-crafted CSS and JavaScript animations. 
 By leveraging modern libraries such as Animate.css and GSAP, we've tailored these animations to align seamlessly with the website's theme, providing users with an engaging and immersive experience.
 
 ---
@@ -119,7 +119,7 @@ This app has been **integrated** into the Web App's framework to align with **bu
 It uses a probabilistic digestion simulation model to visually represent archetype-based patterns on an interactive graph.
 
 ### Repository Link
-[![GitHub Repository](https://img.shields.io/badge/Repository-Visit-blue?logo=github)](https://github.com/LaoWater/LLM-Create-Process-Train)
+[![GitHub Repository](https://img.shields.io/badge/Repository-Visit-blue?logo=github)](https://github.com/LaoWater/The_Food_Prophet)
 
 ---
 
@@ -137,7 +137,7 @@ It uses a probabilistic digestion simulation model to visually represent archety
 The **Bibliography** section offers a curated collection of influential works that explore the intricate connections between the body, mind, and nature. This compilation serves as a resource for those seeking to deepen their understanding of holistic well-being and personal transformation.
 
 > [!NOTE]
-> The summaries are crafted from our personal experiences and reflections on each work.
+> The summaries are carefully crafted from personal experiences and reflections on each work.
 
 For a comprehensive list and detailed insights, please visit [Bibliography Page](https://reconnectv2.com/bibliography/).
 
