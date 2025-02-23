@@ -158,7 +158,7 @@ Set up the following environment variables:
 - `OPENAI_API_KEY`: Your OpenAI API key.
 - `SECRET_KEY_DB_EXPORT`: Secret key for fetching the database from cloud. 
 - `EMAIL_HOST_USER`: Email address for Django's email exchange.
-- `EMAIL_HOST_PASSWORD`: Password for the above email address.
+- `EMAIL_HOST_PASSWORD`: Password for Django's email exchange.
 - `GOOGLE_CLIENT_SECRET`: Google Login OAuth Credentials
 - `GOOGLE_CLIENT_ID`: Google Login OAuth Credentials
 
