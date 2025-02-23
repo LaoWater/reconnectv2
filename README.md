@@ -166,6 +166,8 @@ Set up the following environment variables:
 
 With the environment variables configured, you're ready to proceed with local development.
 
+---
+
 **3. Deployment Requirements**
 
 The current architecture deploys the app on Google Cloud App Engine, utilizes Firebase for storing user model data, and includes an internal pipeline for synchronizing databases. 
