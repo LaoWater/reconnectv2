@@ -599,7 +599,7 @@ canvas {
 
 #about-us {
     width: 100%;
-    max-width: 700px;
+    max-width: 1000px;
     padding: 0rem;
     margin: 0 auto;
     text-align: center;
@@ -671,44 +671,85 @@ canvas {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-/******* Slideshow Styling *******/
 
+/* Outer container with neon glow */
 .slideshow {
-    max-width: 600px; /* Constrain the visible area */
-    overflow: hidden; /* Hide slides outside the view */
-    margin: 0 auto; /* Center the slideshow */
+    position: relative;
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 4px;             /* space so the glow doesn't overlap content */
+    background: #000;         /* optional background behind the slides */
+    border-radius: 5px;
+    overflow: visible;        /* let the glow extend beyond the edges */
 }
 
+/* Animated neon border as a pseudo-element on the outer container */
+.slideshow::before {
+    content: "";
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border-radius: 8px;       /* slightly larger than .slideshow's radius */
+    background: linear-gradient(
+        45deg,
+        #1AFFFD, #1AFFFD 25%,
+        transparent 25%, transparent 50%,
+        #1AFFFD 50%, #1AFFFD 75%,
+        transparent 75%, transparent
+    );
+    background-size: 400% 400%;
+    filter: blur(8px);
+    z-index: -1;
+    animation: neonFlow 27s linear infinite;
+}
+
+@keyframes neonFlow {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 400% 400%;
+    }
+}
+
+/* Inner wrapper that clips the slides */
+.slideshow-inner {
+    position: relative;
+    overflow: hidden;         /* hides images that slide beyond edges */
+    border-radius: inherit;   /* match the outer container’s radius */
+    /* The slideshow JS can still move .slideshow-container around. */
+}
+
+/* The existing slideshow container and slides */
 .slideshow-container {
     display: flex;
-    gap: 1rem; /* No gap for seamless sliding */
+    gap: 1rem;
     position: relative;
+    /* no overflow rule here; .slideshow-inner handles clipping */
+}
+
+.slide {
+    flex: 0 0 auto;
 }
 
 .slide img {
-    width: 150px; /* Each slide matches the max-width */
+    width: 150px;
     height: auto;
     border-radius: 5px;
 }
 
-.slide {
-    flex: 0 0 150px; /* Each slide's width matches the container */
-    display: inline-block;
-}
-
-
 .slide:hover img {
-    transform: scale(1.05); /* Slight zoom effect on hover */
+    transform: scale(1.05);
 }
 
-/******* Responsive Design *******/
-
+/* Responsive (adjust as needed) */
 @media (max-width: 768px) {
     .slide img {
-        width: 150px; /* Smaller images for smaller screens */
+        width: 150px;
     }
 }
-
 
 /******* Modal (Lightbox) *******/
 
@@ -1559,7 +1600,7 @@ section#natural-truths {
 
 
 
-/* Override max-width for Page 6 ONLY */
+/* Override max-width for Pages ONLY */
 /* Override the parent section restriction */
 #page3 {
     max-width: 85% !important;  /* Remove the 850px limit */
@@ -1596,6 +1637,21 @@ section#natural-truths {
 
 }
 
+
+/* Override the parent section restriction */
+#page4 {
+    max-width: 85% !important;  /* Remove the 850px limit */
+    width: 90% !important;  /* Ensure it takes the full page */
+    margin: 0 auto;  /* Keep it centered */
+    padding: 0;  /* Optional: Adjust padding if needed */
+}
+
+/* Ensure the child section also follows */
+#page4 > section#page-4 {
+    max-width: 100% !important;
+    width: 90%;
+    margin: 0 auto;
+}
 
 
 

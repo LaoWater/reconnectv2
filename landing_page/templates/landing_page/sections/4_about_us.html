@@ -4,6 +4,7 @@
 
 <link rel="stylesheet" href="/static/css/styles.css">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdn.lordicon.com/lordicon.js"></script>
 
     <style>
 
@@ -20,13 +21,111 @@
     letter-spacing: 1px;     /* Add slight spacing for better readability */
 }
 
+/* Alchemy Container for Interactive Cards */
+    .alchemy-container {
+      width: 1000px;
+      max-width: 100%;
+      margin: 0 auto;
+      position: relative;
+      padding: 20px;
+    }
+    /* Flex container for rows */
+    .card-row {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+    /* Flip card styles */
+    .flip-card {
+      background-color: transparent;
+      width: 280px;
+      height: 380px;
+      perspective: 1000px;
+      margin: 10px;
+      cursor: pointer;
+    }
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+      border-radius: 10px;
+    }
+    .flip-card.flipped .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+
+
+    .flip-card-front, .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      border-radius: 10px;
+      overflow: hidden;
+      text-align: center;
+      /* Using the provided background, padding, border-radius, and animation */
+      background: linear-gradient(135deg, #1c1c1c, #2a2a2a);
+      padding: 20px;
+      box-shadow: 0 0 15px rgba(255, 140, 0, 0.6);
+    }
+
+       /* Flex centering for the front face */
+    .flip-card-front {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .flip-card-front h3 {
+      margin-bottom: 10px;
+      color: #FFD700; /* Gold-yellow accent */
+    }
+    .flip-card-front p {
+      font-size: 0.9rem;
+      margin: 0.1rem 0rem 1rem;
+    }
+    /* Back face: Displaying original detailed text */
+    .flip-card-back {
+      transform: rotateY(180deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .flip-card-back p,
+    .flip-card-back strong,
+    .flip-card-back em {
+      font-size: 0.9rem;
+      margin: 0.1rem 0rem 1rem;
+    }
+    /* When flipped, adjust the box-shadow to a teal blue tone */
+    .flip-card.flipped .flip-card-front,
+    .flip-card.flipped .flip-card-back {
+      box-shadow: 0 0 15px rgba(64, 224, 208, 0.6);
+      animation: none;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 1024px) {
+      .alchemy-container {
+        width: 90%;
+      }
+      .flip-card {
+        width: 45%;
+        height: 300px;
+      }
+    }
+
     </style>
 </head>
 
 <section id="about-us">
     <!-- Page Title -->
     <div class="page-title">
-        <h1>Despre Autori</h1>
+        <h1><br>Despre Autori</h1>
     </div>
 
 <!-- Image Section -->
@@ -36,60 +135,125 @@
         <img class="image2" src="{% static 'images/authors2.jpg' %}" alt="Authors2" />
     </div>
 </div>
-
     <!-- Text Content -->
     <div class="text-container">
-        <div class="section">
-            <h2>Re-Connect este rezultatul a peste 15 ani de studiu</h2>
-            <p>
+                <p>
                 <strong><br>Re-Connect a fost născut din nevoia de a rezolva dureri aparent nerezolvabile, bazându-se pe
                 <em>ani de explorare</em> prin colțurile lumii.<br></strong>
             </p>
-        </div>
-
-        <div class="section">
-            <h2>ISTORIA NOASTRĂ</h2>
-            <h3>Căutarea unui corp FIT</h3>
-            <p>
-                <strong>Am început cu dorința de a avea un corp sănătos și puternic, obținând certificări precum
-                <strong>PT, Let's Bands Level 1&2, TRX și Animal Flow</strong>.</strong>
-            </p>
-
-            <h3>Recuperarea afecțiunilor biomecanice</h3>
-            <p>
-                <strong>Ne-am dedicat recuperării biomecanice prin modulele <strong>Dimifitness Movement</strong>,
-                <em>Trigger Point</em>, linii fasciale, TRX și performanță.</strong>
-            </p>
-
-
-            <h3>Înțelegerea minții</h3>
-            <p>
-                <strong>Am aprofundat cunoștințele în <strong>antropologie, psihoanaliză, NLP</strong> și
-                <em>Theta Healing</em>, însă am întâmpinat o lacună care ne-a forțat să ne îndreptăm
-                către învățăturile Antice și Religii.</strong>
-            </p>
-
-
-
-            <h3>Vindecarea sistemelor principale</h3>
-            <p>
-                <strong>Am explorat certificări și metode precum <strong>Nutriție, Oxygen Advantage</strong> și medicina
-                pe bază de plante pentru a aborda afecțiunile sistemelor digestiv, respirator și emoțional,
-                realizând că adevăratul control al sănătății noastre nu este în mâinile altora. </strong>
-            </p>
-
-
-            <h3>Vindecarea sufletului & Dezvăluirea Adevărurilor Absolute</h3>
-            <p>
-                <strong>Am căutat răspunsuri în munți, la bătrâni și copii – adevărații maeștri ai vieții – în Asia,
-                în Buddhism, Zen, Hinduism și Creștinism. Dincolo de separare, privindu-le ca niște comori
-                    de înțelepciune, în toate găsim <strong>Secrete ale Vieții</strong>. </strong>
-            </p>
-        </div>
     </div>
+
+      <!-- ISTORIA NOASTRĂ section with interactive flipping cards -->
+      <div class="section">
+        <h2>ISTORIA NOASTRĂ</h2>
+        <div class="alchemy-container">
+          <!-- Top Row: 2 Cards -->
+          <div class="card-row">
+            <!-- Card 1: Căutarea unui corp FIT -->
+            <div class="flip-card" onclick="this.classList.toggle('flipped')">
+              <div class="flip-card-inner">
+                <!-- Front: Subtitle -->
+                <div class="flip-card-front">
+                      <!-- Tapping Icon at Top Left -->
+  <lord-icon
+    src="https://cdn.lordicon.com/wjyqkiew.json"
+    trigger="loop"
+    delay="1500"
+    state="in-reveal"
+    colors="primary:#66d7ee,secondary:#ffffff"
+    style="width:40px; height:40px; position:absolute; top:10px; left:10px;">
+  </lord-icon>
+                  <h3>Căutarea unui corp FIT</h3>
+                </div>
+                <!-- Back: Original text -->
+                <div class="flip-card-back">
+                  <p>
+                    <strong>Am început cu dorința de a avea un corp sănătos și puternic, obținând certificări precum
+                    <strong>PT, Let's Bands Level 1&2, TRX și Animal Flow</strong>.</strong>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- Card 2: Recuperarea afecțiunilor biomecanice -->
+            <div class="flip-card" onclick="this.classList.toggle('flipped')">
+              <div class="flip-card-inner">
+                <!-- Front: Subtitle -->
+                <div class="flip-card-front">
+                  <h3>Recuperarea afecțiunilor biomecanice</h3>
+                </div>
+                <!-- Back: Original text -->
+                <div class="flip-card-back">
+                  <p>
+                    <strong>Ne-am dedicat recuperării biomecanice prin modulele <strong>Dimifitness Movement</strong>,
+                    <em>Trigger Point</em>, linii fasciale, TRX și performanță.</strong>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Bottom Row: 3 Cards -->
+          <div class="card-row">
+            <!-- Card 3: Înțelegerea minții -->
+            <div class="flip-card" onclick="this.classList.toggle('flipped')">
+              <div class="flip-card-inner">
+                <!-- Front: Subtitle -->
+                <div class="flip-card-front">
+                  <h3>Înțelegerea minții</h3>
+                </div>
+                <!-- Back: Original text -->
+                <div class="flip-card-back">
+                  <p>
+                    <strong>Am aprofundat cunoștințele în <strong>antropologie, psihoanaliză, NLP</strong> și
+                    <em>Theta Healing</em>, însă am întâmpinat o lacună care ne-a forțat să ne îndreptăm
+                    către învățăturile Antice și Religii.</strong>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- Card 4: Vindecarea sistemelor principale -->
+            <div class="flip-card" onclick="this.classList.toggle('flipped')">
+              <div class="flip-card-inner">
+                <!-- Front: Subtitle -->
+                <div class="flip-card-front">
+                  <h3>Vindecarea sistemelor principale</h3>
+                </div>
+                <!-- Back: Original text -->
+                <div class="flip-card-back">
+                  <p>
+                    <strong>Am explorat certificări și metode precum <strong>Nutriție, Oxygen Advantage</strong> și medicina
+                    pe bază de plante pentru a aborda afecțiunile sistemelor digestiv, respirator și emoțional,
+                    realizând că adevăratul control al sănătății noastre nu este în mâinile altora.</strong>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- Card 5: Vindecarea sufletului & Dezvăluirea Adevărurilor Absolute -->
+            <div class="flip-card" onclick="this.classList.toggle('flipped')">
+              <div class="flip-card-inner">
+                <!-- Front: Subtitle -->
+                <div class="flip-card-front">
+                  <h3>Vindecarea sufletului &amp; Dezvăluirea Adevărurilor Absolute</h3>
+                </div>
+                <!-- Back: Original text -->
+                <div class="flip-card-back">
+                  <p>
+                    <strong>Am căutat răspunsuri în munți, la bătrâni și copii – adevărații maeștri ai vieții – în Asia,
+                    în Buddhism, Zen, Hinduism și Creștinism. Dincolo de separare, privindu-le ca niște comori
+                    de înțelepciune, în toate găsim <strong>Secrete ale Vieții</strong>.</strong>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- End of alchemy-container -->
+      </div>
+
+
 
 <!-- Slideshow Section -->
 <div class="slideshow">
+    <!-- Neon border is on .slideshow via a pseudo-element -->
+    <div class="slideshow-inner">
     <div class="slideshow-container">
         <!-- Each slide is a link to its modal -->
         <div class="slide">
@@ -123,6 +287,7 @@
             </a>
         </div>
     </div>
+        </div>
 </div>
 
 <!-- JavaScript -->
@@ -193,4 +358,15 @@
         <img src="{% static 'images/before_after6.png' %}" alt="Before and After 6 - Enlarged">
     </div>
 </div>
+
+
+
 </section>
+
+
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery and Bootstrap Bundle (includes Popper) -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+  <!-- Additional JS for advanced interactivity (if needed) -->
