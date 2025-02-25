@@ -334,7 +334,7 @@ canvas {
     font-size: 1.05rem;
     }
 
-    }
+
     section {
         padding: 1.3rem 0.4rem;
         min-height: 75vh;
@@ -363,6 +363,8 @@ canvas {
     margin-bottom: 1rem;
 
     }
+
+
 
 
 /***********/
@@ -876,8 +878,9 @@ canvas {
 
 .buy-button {
     display: inline-block;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-family: 'Poppins', sans-serif;
+    font-weight: bold; /* Make the text bold */
     color: white;
     text-decoration: none;
     background: rgba(0, 123, 255, 0.8); /* Neon blue with transparency */
@@ -1702,7 +1705,8 @@ section#natural-truths {
 }
 
 .custom-page5-isolation.slide-in,
-.custom-page5-reason-isolation.slide-in {
+.custom-page5-reason-isolation.slide-in
+{
     width: 100%;
     max-width: 700px; /* Limits each section width */
     flex: 1; /* Allows them to share space evenly */
@@ -1712,10 +1716,18 @@ section#natural-truths {
   transform: translateX(0);
 }
 
+
     .text-container p {
         font-size: 0.83rem;
     }
 
+.custom-page5-fail,
+.custom-page5-isolation,
+.custom-page5-reason-isolation,
+.custom-page5-reintegration,
+.custom-page5-conclusion {
+  will-change: transform, opacity;
+}
 
 
 
@@ -1729,10 +1741,21 @@ section#natural-truths {
   max-width: 800px; /* Adjust as needed */
 }
 
-
-
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* Override the parent section restriction */
@@ -1792,7 +1815,7 @@ section#natural-truths {
 @keyframes slideFromRight {
   from {
     opacity: 0;
-    transform: translateX(100px);
+    transform: translateX(200px);
   }
   to {
     opacity: 1;

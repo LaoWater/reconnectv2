@@ -39,7 +39,7 @@
         </div>
 
         <!-- Section 4: Reintegrarea – Arta Vieții -->
-        <div class="custom-page5-reintegration">
+<div class="custom-page5-reintegration" data-animation="slide-from-left">
             <p>Dar fragmentarea este utilă doar pentru explorare.<br><span class="underline">Măreția nu vine prin Separare, ci prin Integrare</span>.</p>
             <hr>
             <h2><br>Reintegrarea – Arta Vieții</h2>
@@ -72,21 +72,24 @@
     <span class="separarea">separarea</span>
 
     <!-- SVG “brush stroke” strictly under the title -->
-    <svg class="title-curve" viewBox="0 0 100 30" preserveAspectRatio="none">
-      <!--
-           Path starts at right (near “separarea”) and curves left (toward “Integrarea”).
-           Adjust coordinates as needed to refine the shape/arc.
-      -->
+    <svg class="title-curve" viewBox="0 0 100 63" preserveAspectRatio="none">
+      <!-- Curved stroke -->
       <path
-        d="M 95,5 C 75,25 25,25 5,5"
+        d="M 95,20 C 75,45 25,45 5,20"
         stroke="#18E0D8"
         stroke-width="2"
         fill="none"
         stroke-linecap="round"
         stroke-linejoin="round"
+        opacity="0.5"
       />
+      <!-- Complete arrow (both diagonal strokes) -->
+      <line x1="5" y1="20" x2="10" y2="15" stroke="#18E0D8" stroke-width="1.5" opacity="0.5"/>
+      <line x1="5" y1="20" x2="10" y2="25" stroke="#18E0D8" stroke-width="1.5" opacity="0.5"/>
     </svg>
   </h3>
+
+
   <p>
     Separarea sistemelor care ar trebui să funcționeze împreună — Minte, Corp și Suflet — a devenit o normă. Dar fiziologia, psihologia, emoțiile și mișcarea nu sunt compartimente izolate.<br><br>
     Ele sunt mai degrabă ca niște râuri care se varsă împreună într-un fluviu mai mare.
@@ -142,14 +145,14 @@
     z-index: 1;
   }
 
-/* Position the SVG so it overlays just beneath the text */
+/* Positions the SVG much lower under the title */
 .title-curve {
   position: absolute;
   width: 100%;
-  height: 30px;
+  height: 50px;
   left: 0;
-  bottom: -6px; /* adjust this to place the stroke closer/farther from text */
-  pointer-events: none; /* ignore clicks */
+  bottom: -33px; /* Moves it much lower */
+  pointer-events: none; /* Allows clicks to pass through */
 }
 </style>
 
@@ -157,41 +160,61 @@
 
 <!-- Animating Sections -->
 <script>
-
-    document.addEventListener('DOMContentLoaded', function() {
-  // Define our elements and the animation class to apply
+document.addEventListener('DOMContentLoaded', function () {
+  // Define elements with entry and exit animation classes
   const animatedElements = [
-    { selector: '.custom-page5-fail', inClass: 'slide-in' },
-    { selector: '.custom-page5-isolation', inClass: 'slide-in' },
-    { selector: '.custom-page5-reason-isolation', inClass: 'slide-in' },
-    { selector: '.custom-page5-reintegration', inClass: 'slide-in' },
-    { selector: '.custom-page5-conclusion', inClass: 'slide-in' }
+    {
+      selector: '.custom-page5-fail',
+      inClass: 'slide-in',
+      outClass: 'fade-out'
+    },
+    {
+      selector: '.custom-page5-isolation',
+      inClass: 'slide-in',
+      outClass: 'fade-out'
+    },
+    {
+      selector: '.custom-page5-reason-isolation',
+      inClass: 'slide-in',
+      outClass: 'fade-out'
+    },
+    {
+      selector: '.custom-page5-reintegration',
+      inClass: 'slide-from-left',  // Slide from left
+      outClass: 'fade-out'
+    },
+    {
+      selector: '.custom-page5-conclusion',
+      inClass: 'slide-from-right',  // Slide from right
+      outClass: 'fade-out'
+    }
   ];
 
-  // IntersectionObserver options (20% threshold)
+  // IntersectionObserver options (15% threshold for visibility)
   const observerOptions = {
-    threshold: 0.2
+    threshold: 0.15
   };
 
   // Create a single observer for all elements
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      // When at least 20% of the element is visible, add the inClass (slide-in).
-      // Remove the class when it's less than 20% visible.
+      // Find the configuration for this element
+      const config = animatedElements.find(item => entry.target.matches(item.selector));
+      if (!config) return;
+
       if (entry.isIntersecting) {
-        entry.target.classList.add('slide-in');
+        entry.target.classList.add(config.inClass);
+        entry.target.classList.remove(config.outClass);
       } else {
-        entry.target.classList.remove('slide-in');
+        entry.target.classList.remove(config.inClass);
+        entry.target.classList.add(config.outClass);
       }
     });
   }, observerOptions);
 
-  // Loop through each configured selector and observe all matching elements
+  // Observe each element in the list
   animatedElements.forEach(item => {
-    const elements = document.querySelectorAll(item.selector);
-    elements.forEach(el => {
-      observer.observe(el);
-    });
+    document.querySelectorAll(item.selector).forEach(el => observer.observe(el));
   });
 });
 

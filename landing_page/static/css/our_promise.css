@@ -1,0 +1,176 @@
+
+/******************************/
+/* Video Section Styling      */
+/******************************/
+
+.video-section {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    margin: 60px auto; /* Create spacing that blends naturally */
+    padding: 20px;
+    border-radius: 15px;
+    background: rgba(0, 0, 0, 0.5); /* Adds a slight transparency around the video */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 165, 0, 0.2);
+}
+
+.background-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    filter: brightness(0.8) contrast(1.2); /* Slightly adjust brightness for better blending */
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.9));
+    z-index: 2;
+    opacity: 0.9;
+}
+
+.video-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ffa500;
+    text-align: center;
+    z-index: 3;
+}
+
+.video-text h2 {
+    font-size: 1.3rem;
+    color: #ffa500;
+    text-shadow: 0 0 10px #ffa500, 0 0 20px #ff7700;
+    margin-bottom: 200px;
+}
+
+.video-text p {
+    font-size: 1rem;
+    color: #fff;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    line-height: 1.6;
+    margin-top: 100px;
+
+}
+
+
+.promise-section h3 {
+    font-size: 1.13rem;
+    font-family: 'Cinzel', serif;
+    background: linear-gradient(90deg, #ff4500, #ff8c00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0rem;
+    text-shadow: 0 0 15px rgba(255,140,0,0.8), 0 0 30px rgba(255,69,0,0.5);
+    font-weight: bold;       /* Enhance visibility */
+    letter-spacing: 1px;     /* Add slight spacing for better readability */
+}
+
+
+.promise-section p {
+    font-size: 0.85rem;
+    font-family: 'Poppins', serif;
+    color: #FFF;
+    margin-bottom: 0rem;
+    text-shadow:
+        0 0 1px #FFD700;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+
+ .philosopher-stone {
+      width: 77px;
+      height: 77px;
+      fill: none;             /* No fill, only border (stroke) */
+      stroke: #1afffd;        /* Neon aqua stroke color */
+      stroke-width: 3.5px;      /* Make the stroke visible */
+      stroke-linejoin: round; /* Smooth corners */
+      animation: pulse-glow 12s ease-in-out infinite;
+      /* For older browsers, prefix the animation if needed */
+    }
+
+
+    @keyframes pulse-glow {
+      0% {
+        transform: rotate(0deg) scale(1);
+        filter: drop-shadow(0 0 15px #1afffd);
+        stroke: #1afffd;
+      }
+      20% {
+        transform: rotate(90deg) scale(0.9);
+        filter: drop-shadow(0 0 22px #1afffd);
+        stroke: #FAFF00;  /* Gold stroke halfway through */
+      }
+
+      44% {
+        transform: rotate(180deg) scale(0.8);
+        filter: drop-shadow(0 0 33px #FAFF00);
+        stroke: #1afffd;
+      }
+
+      70% {
+        transform: rotate(270deg) scale(1.05);
+        filter: drop-shadow(0 0 22px #FAFF00);
+        stroke: #1afffd;
+      }
+
+      85% {
+        transform: rotate(180deg) scale(0.7);
+        filter: drop-shadow(0 0 90px #1afffd);
+        stroke: #FAFF00;
+      }
+      100% {
+        transform: rotate(0deg) scale(1);
+        filter: drop-shadow(0 0 10px #1afffd);
+        stroke: #1afffd;
+      }
+    }
+
+        .philosopher-stone:hover {
+  animation: none; /* Speed up the glow on hover */
+  transform: scale(1); /* Slight zoom-in and spin */
+  filter: drop-shadow(0 0 55px #FAFF00); /* Intense glow */
+}
+
+
+        /******************************/
+/* Some Final Responsive Design Adjustments */
+/******************************/
+
+@media (max-width: 768px) {
+
+        .promise-section h3 {
+    font-size: 17px;
+    font-family: 'Cinzel', serif;
+    background: linear-gradient(90deg, #ff4500, #ff8c00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0rem;
+    text-shadow: 0 0 15px rgba(255,140,0,0.8), 0 0 30px rgba(255,69,0,0.5);
+    font-weight: bold;       /* Enhance visibility */
+    letter-spacing: 1px;     /* Add slight spacing for better readability */
+}
+
+
+.promise-section p {
+    font-size: 0.75rem;
+    font-family: 'Poppins', serif;
+    color: #FFF;
+    margin-bottom: 0rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+        text-shadow: none;
+}
+        }
