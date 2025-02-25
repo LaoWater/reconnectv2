@@ -320,17 +320,21 @@ canvas {
     }
 
     h1 {
-        font-size: 1.7em; /* Scale down main titles */
+        font-size: 1.59em; /* Scale down main titles */
         margin-bottom: 0rem;
         margin-top: 0rem;
     }
 
     h2 {
-        font-size: 1.5rem; /* Adjust subheadings */
+        font-size: 1.41rem; /* Adjust subheadings */
         margin-bottom: 1rem;
     }
 
+    .closing-statement h3 {
+    font-size: 1.05rem;
+    }
 
+    }
     section {
         padding: 1.3rem 0.4rem;
         min-height: 75vh;
@@ -344,6 +348,22 @@ canvas {
         font-size: 1.8rem; /* Scale page titles */
         margin-bottom: 1rem;
     }
+
+    .custom-page5-isolation p,
+    .custom-page5-reason-isolation p,
+    .custom-page5-conclusion p,
+     .custom-page5-reintegration p {
+    font-size: 0.75rem;
+    }
+    .custom-page5-isolation h3,
+    .custom-page5-reason-isolation h3,
+    .custom-page5-conclusion h3,
+     .custom-page5-reintegration h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+
+    }
+
 
 /***********/
 /* Nav Bar Mobile */
@@ -1635,6 +1655,83 @@ section#natural-truths {
     text-align: center;
   }
 
+
+
+
+
+/* Override the parent section restriction */
+#page5 {
+    max-width: 88% !important;  /* Remove the 850px limit */
+    width: 90% !important;  /* Ensure it takes the full page */
+    margin: 0 auto;  /* Keep it centered */
+    padding: 0;  /* Optional: Adjust padding if needed */
+}
+
+/* Ensure the child section also follows */
+#page5 > section#page-5 {
+    max-width: 100% !important;
+    width: 90%;
+    margin: 0 auto;
+}
+
+
+/* Container styling for horizontal layout */
+.custom-page5-fail {
+  display: flex;
+  max-width: 800px; /* Adjust as needed */
+  margin: 0 auto;
+  overflow: hidden; /* Hide any overflow from the animations */
+}
+
+
+
+
+/* Base styling for each section */
+.custom-page5-isolation,
+.custom-page5-reason-isolation {
+  flex: 1;
+  padding: 20px;
+  opacity: 0;
+  transform: translateX(-50px); /* Start off-screen to the left */
+  transition: all 0.6s ease-out;
+}
+
+/* Food section animation delay */
+.custom-page5-reason-isolation.slide-in {
+  transition-delay: 0.5s;
+}
+
+.custom-page5-isolation.slide-in,
+.custom-page5-reason-isolation.slide-in {
+    width: 100%;
+    max-width: 700px; /* Limits each section width */
+    flex: 1; /* Allows them to share space evenly */
+    min-width: 300px; /* Ensures responsiveness */
+    text-align: center;
+      opacity: 1;
+  transform: translateX(0);
+}
+
+    .text-container p {
+        font-size: 0.83rem;
+    }
+
+
+
+
+/* Container styling for horizontal layout */
+.custom-page5-reintegration {
+  max-width: 900px; /* Adjust as needed */
+}
+
+/* Container styling for horizontal layout */
+.custom-page5-conclusion {
+  max-width: 800px; /* Adjust as needed */
+}
+
+
+
+
 }
 
 
@@ -1752,3 +1849,13 @@ section#natural-truths {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+
+    .custom-page5-isolation p,
+    .custom-page5-reason-isolation p {
+    font-size: 0.75rem;
+    }
+    .custom-page5-isolation h3,
+    .custom-page5-reason-isolation h3 {
+    font-size: 1.2rem;
+    }
