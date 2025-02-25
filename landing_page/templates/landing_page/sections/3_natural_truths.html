@@ -65,8 +65,9 @@
     <strong>uitate în era modernă</strong>, sunt acum
     <span class="underline">Redescoperite de știință, reconfirmând ceea ce înțelepții știau și practicau deja.</span>
   </p>
-</div>
+ </div>
     </div>
+
   <hr>
 <!-- New Container wrapping both sections -->
 <div class="custom-sections-container">
@@ -268,74 +269,60 @@
 
 <script>
 
-    document.addEventListener('DOMContentLoaded', function() {
-  // Define our elements along with their animation classes
+    document.addEventListener('DOMContentLoaded', function () {
   const animatedElements = [
-    {
-      selector: '.custom-air-section',
-      inClass: 'slide-from-left',          // initial animation for entry
-      outClass: 'fade-out'          // fade out when out of viewport
-    },
-    {
-      selector: '.custom-food-section',
-      inClass: 'slide-from-right',
-      outClass: 'fade-out'
-    },
-    {
-      selector: '#adevaruri-absolute',
-      inClass: 'slide-from-left',          // appears by sliding up
-      outClass: 'fade-out'
-    },
-    {
-      selector: '#adevaruri-absolute-movement',
-      inClass: 'slide-from-right',  // slides in from right to left
-      outClass: 'fade-out'
-    },
-    {
-      selector: '#adevaruri-absolute-closing',
-      inClass: 'slide-from-left',   // slides in from left to right
-      outClass: 'fade-out'
-    }
+    { selector: '.custom-air-section', inClass: 'slide-from-left', outClass: 'fade-out' },
+    { selector: '.custom-food-section', inClass: 'slide-from-right', outClass: 'fade-out' },
+    { selector: '#adevaruri-absolute', inClass: 'slide-from-left', outClass: 'fade-out' },
+    { selector: '#adevaruri-absolute-movement', inClass: 'slide-from-right', outClass: 'fade-out' },
+    { selector: '#adevaruri-absolute-closing', inClass: 'slide-from-left', outClass: 'fade-out' }
   ];
 
-  // Create a single IntersectionObserver for all elements with a 20% threshold.
-  const observerOptions = {
-    threshold: 0.2
-  };
+  const elementsState = new Map();
 
+  // Two thresholds for hysteresis
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      // Find the configuration for this element by matching its selector.
       const config = animatedElements.find(item => entry.target.matches(item.selector));
       if (!config) return;
 
-      if (entry.isIntersecting) {
-        // When at least 20% is visible, add the entry animation and remove fade-out.
+      let state = elementsState.get(entry.target);
+      if (!state) {
+        state = { isVisible: false };
+        elementsState.set(entry.target, state);
+      }
+
+      const ratio = entry.intersectionRatio;
+
+      if (!state.isVisible && ratio >= 0.2) {
+        // Element becomes visible (show)
         entry.target.classList.add(config.inClass);
         entry.target.classList.remove(config.outClass);
-      } else {
-        // When the element leaves the viewport, remove the entry animation and add fade-out.
+        state.isVisible = true;
+      } else if (state.isVisible && ratio <= 0.1) {
+        // Element becomes hidden (hide)
         entry.target.classList.remove(config.inClass);
         entry.target.classList.add(config.outClass);
+        state.isVisible = false;
       }
+      // No change if ratio is between 0.1 and 0.2 to avoid flickering
     });
-  }, observerOptions);
-
-  // Loop through our animated elements and start observing if they exist.
-  animatedElements.forEach(item => {
-    const el = document.querySelector(item.selector);
-    if (el) {
-      observer.observe(el);
-    }
+  }, {
+    threshold: [0.1, 0.2]  // multiple thresholds for hysteresis effect
   });
 
+  animatedElements.forEach(item => {
+    const el = document.querySelector(item.selector);
+    if (el) observer.observe(el);
+  });
 
-      const wrapper = document.querySelector('.food-symbol-wrapper');
-    if (window.innerWidth > 1024) {
-      wrapper.style.display = 'block';
-    } else {
-      wrapper.style.display = 'none';
-    }
+  // Responsive behavior for wrapper
+  const wrapper = document.querySelector('.food-symbol-wrapper');
+  const setWrapperDisplay = () => {
+    wrapper.style.display = window.innerWidth > 1024 ? 'block' : 'none';
+  };
+  setWrapperDisplay();
+  window.addEventListener('resize', setWrapperDisplay);
 });
 
 

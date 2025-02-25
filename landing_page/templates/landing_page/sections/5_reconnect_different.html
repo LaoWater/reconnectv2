@@ -190,31 +190,40 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   ];
 
-  // IntersectionObserver options (15% threshold for visibility)
-  const observerOptions = {
-    threshold: 0.15
-  };
+   const elementsState = new Map();
 
-  // Create a single observer for all elements
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      // Find the configuration for this element
       const config = animatedElements.find(item => entry.target.matches(item.selector));
       if (!config) return;
 
-      if (entry.isIntersecting) {
+      let state = elementsState.get(entry.target);
+      if (!state) {
+        state = { isVisible: false };
+        elementsState.set(entry.target, state);
+      }
+
+      const ratio = entry.intersectionRatio;
+
+      if (!state.isVisible && ratio >= 0.2) {
         entry.target.classList.add(config.inClass);
         entry.target.classList.remove(config.outClass);
-      } else {
+        state.isVisible = true;
+      } else if (state.isVisible && ratio <= 0.1) {
         entry.target.classList.remove(config.inClass);
         entry.target.classList.add(config.outClass);
+        state.isVisible = false;
       }
+      // Do nothing between 0.1 and 0.2 thresholds
     });
-  }, observerOptions);
+  }, { threshold: [0.1, 0.2] });
 
-  // Observe each element in the list
   animatedElements.forEach(item => {
-    document.querySelectorAll(item.selector).forEach(el => observer.observe(el));
+    const elements = document.querySelectorAll(item.selector);
+    elements.forEach(el => {
+      elementsState.set(el, { isVisible: false });
+      observer.observe(el);
+    });
   });
 });
 
