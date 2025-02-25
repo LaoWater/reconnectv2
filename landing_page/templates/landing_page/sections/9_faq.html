@@ -52,7 +52,7 @@
         }
 
         .faq-content.expanded {
-            max-height: 700px;
+            max-height: 1500px;
             padding: 15px 20px;
         }
 
@@ -261,24 +261,35 @@
     }
 }
 
-
-        .buy-buttons-container {
+.buy-buttons-container {
+    position: relative;
+    width: 300px; /* Expand the container */
+    height: 150px; /* Increase height for better positioning */
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 20px; /* Space between buttons */
+    left: 33%;
 }
 
+/* Old Price Button - Smaller & Positioned at Top-Left */
 .old-price {
+    position: absolute;
+    top: -6px;
+    margin-left: -19rem;
+    transform: scale(0.8);
     background-color: #ccc;
     color: #333;
-    position: relative;
+    font-weight: bold;
+    pointer-events: none;
 }
 
+/* Strikethrough Effect */
 .strikethrough {
     position: relative;
     display: inline-block;
     color: red;
+    font-weight: bold;
 }
 
 .strikethrough::after {
@@ -419,12 +430,12 @@
 <div class="buy-buttons-container">
     <!-- Original Price (Strikethrough) -->
     <a class="buy-button old-price" href="https://reconnectcourse.thinkific.com/courses/re-connect-v2" target="_blank">
-        Cumpără <span class="strikethrough">800 LEI</span>
+        Preț <span class="strikethrough">800 LEI</span>
     </a>
 
     <!-- Discounted Price (Highlighted) -->
     <a class="buy-button new-price" href="https://reconnectcourse.thinkific.com/courses/re-connect-v2" target="_blank">
-        Cumpără <span class="discounted-price">377 LEI</span>
+        Cumpără acum la <span class="discounted-price">377 LEI</span>
     </a>
 </div>
 
