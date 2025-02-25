@@ -91,65 +91,6 @@
             z-index: -1;
         }
 
-        /* Responsive Fixes for Mobile */
-        @media (max-width: 768px) {
-        .faq-container {
-            width: 95%;
-            margin: 20px auto;
-            padding: 10px;
-        }
-
-        .faq-title {
-            font-size: 1rem; /* Smaller font for smaller screens */
-            padding: 10px 15px;
-        }
-
-        .faq-content p {
-            font-size: 0.75rem; /* Slightly smaller text for readability */
-            line-height: 2.1; /* Adjusted spacing for mobile */
-            text-align: left;
-        }
-
-        .faq-icon {
-            font-size: 1rem;
-        }
-             /* Fix for glowing border on smaller screens */
-        .faq-container::before {
-            display: none; /* Hides the glowing border on mobile to avoid layout issues */
-        }
-
-        a.whatsapp-link {
-            color: #ff4500 !important; /* Red-gold color for all states */
-            font-weight: bold;
-            text-decoration: none; /* Removes underline */
-            transition: color 0.3s, text-shadow 0.3s; /* Smooth transition for hover effects */
-        }
-
-        a.whatsapp-link:visited {
-            color: #ff4500 !important; /* Ensures visited links are red-gold */
-        }
-
-        a.whatsapp-link:hover {
-            color: #ffd700 !important; /* Gold color on hover */
-            text-shadow: 0 0 5px #ffd700, 0 0 10px #ff4500; /* Glowing effect */
-        }
-
-        a.whatsapp-link:active {
-            color: #ff7700 !important; /* Slightly darker red-gold on active click */
-        }
-
-        /* Reset all browser link styles for this link */
-
-        a.whatsapp-link:link,
-        a.whatsapp-link:visited,
-        a.whatsapp-link:hover,
-        a.whatsapp-link:active {
-        text-decoration: none !important; /* No underline */
-        color: inherit !important; /* Ensures custom color is applied */
-    }
-
-    }
-
 
 
 .whatsapp-link {
@@ -314,6 +255,75 @@
     animation: pulse 1.5s infinite alternate;
 }
 
+
+
+
+        /* Responsive Fixes for Mobile */
+        @media (max-width: 768px) {
+        .faq-container {
+            width: 95%;
+            margin: 20px auto;
+            padding: 10px;
+        }
+
+        .faq-title {
+            font-size: 1rem; /* Smaller font for smaller screens */
+            padding: 10px 15px;
+        }
+
+        .faq-content p {
+            font-size: 0.75rem; /* Slightly smaller text for readability */
+            line-height: 2.1; /* Adjusted spacing for mobile */
+            text-align: left;
+        }
+
+        .faq-icon {
+            font-size: 1rem;
+        }
+             /* Fix for glowing border on smaller screens */
+        .faq-container::before {
+            display: none; /* Hides the glowing border on mobile to avoid layout issues */
+        }
+
+        a.whatsapp-link {
+            color: #ff4500 !important; /* Red-gold color for all states */
+            font-weight: bold;
+            text-decoration: none; /* Removes underline */
+            transition: color 0.3s, text-shadow 0.3s; /* Smooth transition for hover effects */
+        }
+
+        a.whatsapp-link:visited {
+            color: #ff4500 !important; /* Ensures visited links are red-gold */
+        }
+
+        a.whatsapp-link:hover {
+            color: #ffd700 !important; /* Gold color on hover */
+            text-shadow: 0 0 5px #ffd700, 0 0 10px #ff4500; /* Glowing effect */
+        }
+
+        a.whatsapp-link:active {
+            color: #ff7700 !important; /* Slightly darker red-gold on active click */
+        }
+
+        /* Reset all browser link styles for this link */
+
+        a.whatsapp-link:link,
+        a.whatsapp-link:visited,
+        a.whatsapp-link:hover,
+        a.whatsapp-link:active {
+        text-decoration: none !important; /* No underline */
+        color: inherit !important; /* Ensures custom color is applied */
+    }
+
+    .buy-buttons-container
+    {
+    left: 9.3%;
+    }
+    .old-price {
+    margin-left: -12rem;
+    }
+
+    }
 
 
 

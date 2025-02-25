@@ -21,6 +21,8 @@
     letter-spacing: 1px;     /* Add slight spacing for better readability */
 }
 
+
+
 /* Alchemy Container for Interactive Cards */
     .alchemy-container {
       width: 1000px;
@@ -83,6 +85,7 @@
     .flip-card-front h3 {
       margin-bottom: 10px;
       color: #FFD700; /* Gold-yellow accent */
+      z-index: 999;
     }
     .flip-card-front p {
       font-size: 0.9rem;
@@ -108,15 +111,33 @@
       animation: none;
     }
 
+.card-bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.3;
+  z-index: 99;
+  border-radius: 10px;
+}
+
+
     /* Responsive adjustments */
     @media (max-width: 1024px) {
       .alchemy-container {
         width: 90%;
       }
       .flip-card {
-        width: 45%;
+        width: 100%;
         height: 300px;
       }
+    .card-row
+    {
+    display: inline;
+    }
+
     }
 
     </style>
@@ -157,6 +178,8 @@
               <div class="flip-card-inner">
                 <!-- Front: Subtitle -->
                 <div class="flip-card-front">
+                          <img class="card-bg-image" src="{% static 'images/gustherii.jpg' %}" alt="Background Image">
+
                       <!-- Tapping Icon at Top Left -->
   <lord-icon
     src="https://cdn.lordicon.com/wjyqkiew.json"
@@ -168,6 +191,7 @@
   </lord-icon>
                   <h3>Căutarea unui corp FIT</h3>
                 </div>
+
                 <!-- Back: Original text -->
                 <div class="flip-card-back">
                   <p>
@@ -184,6 +208,7 @@
               <div class="flip-card-inner">
                 <!-- Front: Subtitle -->
                 <div class="flip-card-front">
+                    <img class="card-bg-image" src="{% static 'images/recovery.jpg' %}" alt="Background Image">
                   <h3>Recuperarea afecțiunilor biomecanice</h3>
                 </div>
                 <!-- Back: Original text -->
@@ -203,6 +228,7 @@
               <div class="flip-card-inner">
                 <!-- Front: Subtitle -->
                 <div class="flip-card-front">
+                    <img class="card-bg-image" src="{% static 'images/the_mind.jpg' %}" alt="Background Image">
                   <h3>Înțelegerea minții</h3>
                 </div>
                 <!-- Back: Original text -->
@@ -220,6 +246,7 @@
               <div class="flip-card-inner">
                 <!-- Front: Subtitle -->
                 <div class="flip-card-front">
+                    <img class="card-bg-image" src="{% static 'images/main_systems.jpg' %}" alt="Background Image">
                   <h3>Vindecarea sistemelor principale</h3>
                 </div>
                 <!-- Back: Original text -->
@@ -237,6 +264,7 @@
               <div class="flip-card-inner">
                 <!-- Front: Subtitle -->
                 <div class="flip-card-front">
+                    <img class="card-bg-image" src="{% static 'images/the_soul.jpg' %}" alt="Background Image">
                   <h3>Vindecarea sufletului &amp; Dezvăluirea Adevărurilor Absolute</h3>
                 </div>
                 <!-- Back: Original text -->
