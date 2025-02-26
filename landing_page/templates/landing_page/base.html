@@ -178,17 +178,18 @@
 <!-- Canvas for Effects -->
 <canvas id="background"></canvas>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
+<!-- THREE.JS used for sparks animation - most complex one, careful with Mobile Rendering as it is very computational expensive -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js" defer></script>
 
-<!-- Google tag & Analytics Script (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0BH19MJ8ZP"></script>
-<script>
+<!-- Google tag & Analytics Script (gtag.js) - Defering scripts for better 1st page load-->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0BH19MJ8ZP" defer></script>
+<script defer>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-0BH19MJ8ZP');
 </script>
+
 
 
 
