@@ -1,0 +1,36 @@
+
+.closing-statement h3 {
+    font-size: 1.2rem;
+    font-family: 'Cinzel', serif;
+    background: linear-gradient(90deg, #ff4500, #ff8c00);
+        -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 10px rgba(255,140,0,0.8);
+    text-shadow: 0 0 15px rgba(255,140,0,0.8), 0 0 30px rgba(255,69,0,0.5);
+    font-weight: bold;       /* Enhance visibility */
+    letter-spacing: 1px;     /* Add slight spacing for better readability */
+}
+
+
+.closing-statement p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.closing-statement p2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.93rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+      /* Overwrite global inheritance for the .page-title p tag */
+      .page-title p {
+         font-family: 'Poppins', sans-serif !important;
+         font-size: 1rem !important;
+         margin-bottom: 1rem;
+         text-align: center;
+         line-height: 1.5;
+      }

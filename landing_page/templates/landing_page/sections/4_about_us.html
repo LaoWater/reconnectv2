@@ -1,411 +1,258 @@
 {% load static %}
 
 <head>
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <link rel="stylesheet" href="/static/css/about_us.css">
 
-<link rel="stylesheet" href="/static/css/styles.css">
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
-<script src="https://cdn.lordicon.com/lordicon.js"></script>
-
-    <style>
-
-        /* Subtitles (H3) */
-.section h3 {
-    font-size: 1rem;
-    font-family: 'Cinzel', serif;
-    background: linear-gradient(90deg, #ff4500, #ff8c00);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 0rem;
-    text-shadow: 0 0 15px rgba(255,140,0,0.8), 0 0 30px rgba(255,69,0,0.5);
-    font-weight: bold;       /* Enhance visibility */
-    letter-spacing: 1px;     /* Add slight spacing for better readability */
-}
-
-
-
-/* Alchemy Container for Interactive Cards */
-    .alchemy-container {
-      width: 1000px;
-      max-width: 100%;
-      margin: 0 auto;
-      position: relative;
-      padding: 20px;
-    }
-    /* Flex container for rows */
-    .card-row {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 30px;
-      gap: 33px;
-    }
-    /* Flip card styles */
-    .flip-card {
-      background-color: transparent;
-      width: 280px;
-      height: 380px;
-      perspective: 1000px;
-      margin: 10px;
-      cursor: pointer;
-    }
-    .flip-card-inner {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      transition: transform 0.8s;
-      transform-style: preserve-3d;
-      border-radius: 10px;
-    }
-    .flip-card.flipped .flip-card-inner {
-      transform: rotateY(180deg);
-    }
-
-
-    .flip-card-front, .flip-card-back {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      -webkit-backface-visibility: hidden;
-      backface-visibility: hidden;
-      border-radius: 10px;
-      overflow: hidden;
-      text-align: center;
-      /* Using the provided background, padding, border-radius, and animation */
-      background: linear-gradient(135deg, #1c1c1c, #2a2a2a);
-      padding: 20px;
-      box-shadow: 0 0 15px rgba(255, 140, 0, 0.6);
-    }
-
-       /* Flex centering for the front face */
-    .flip-card-front {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .flip-card-front h3 {
-      margin-bottom: 10px;
-      color: #FFD700; /* Gold-yellow accent */
-      z-index: 999;
-    }
-    .flip-card-front p {
-      font-size: 0.9rem;
-      margin: 0.1rem 0rem 1rem;
-    }
-    /* Back face: Displaying original detailed text */
-    .flip-card-back {
-      transform: rotateY(180deg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .flip-card-back p,
-    .flip-card-back strong,
-    .flip-card-back em {
-      font-size: 0.9rem;
-      margin: 0.1rem 0rem 1rem;
-    }
-    /* When flipped, adjust the box-shadow to a teal blue tone */
-    .flip-card.flipped .flip-card-front,
-    .flip-card.flipped .flip-card-back {
-      box-shadow: 0 0 15px rgba(64, 224, 208, 0.6);
-      animation: none;
-    }
-
-.card-bg-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.3;
-  z-index: 99;
-  border-radius: 10px;
-}
-
-
-    /* Responsive adjustments */
-    @media (max-width: 1024px) {
-      .alchemy-container {
-        width: 90%;
-      }
-      .flip-card {
-        width: 100%;
-        height: 300px;
-      }
-    .card-row
-    {
-    display: inline;
-    gap: 0px;
-    }
-
-.flip-card.flipped .flip-card-front h3 {
-  visibility: hidden;
-}
-
-    }
-
-    </style>
+  <!-- External Scripts & Libraries  -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap"
+    rel="stylesheet"
+  >
+  <script src="https://cdn.lordicon.com/lordicon.js"></script>
 </head>
 
 <section id="about-us">
-    <!-- Page Title -->
-    <div class="page-title">
-        <h1><br>Despre Autori</h1>
-    </div>
+  <!-- Page Title -->
+  <div class="page-title">
+    <h1><br>Despre Autori</h1>
+  </div>
 
-<!-- Image Section -->
-<div class="image-wrapper">
+  <!-- Image Section -->
+  <div class="image-wrapper">
     <div class="image-container">
-        <img class="image1" src="{% static 'images/authors.jpg' %}" alt="Authors" />
-        <img class="image2" src="{% static 'images/authors2.jpg' %}" alt="Authors2" />
+      <img class="image1" src="{% static 'images/authors.jpg' %}" alt="Authors" />
+      <img class="image2" src="{% static 'images/authors2.jpg' %}" alt="Authors2" />
     </div>
-</div>
-    <!-- Text Content -->
-    <div class="text-container">
-                <p>
-                <strong><br>Re-Connect a fost născut din nevoia de a rezolva dureri aparent nerezolvabile, bazându-se pe
-                <em>ani de explorare</em> prin colțurile lumii.<br></strong>
-            </p>
-    </div>
+  </div>
 
-      <!-- ISTORIA NOASTRĂ section with interactive flipping cards -->
-      <div class="section">
-        <h2>ISTORIA NOASTRĂ</h2>
-        <div class="alchemy-container">
-          <!-- Top Row: 2 Cards -->
-          <div class="card-row">
+  <!-- Text Content -->
+  <div class="text-container">
+    <p>
+      <strong><br>Re-Connect a fost născut din nevoia de a rezolva dureri aparent
+      nerezolvabile, bazându-se pe <em>ani de explorare</em> prin colțurile lumii.<br></strong>
+    </p>
+  </div>
 
+  <!-- ISTORIA NOASTRĂ section with interactive flipping cards -->
+  <div class="section">
+    <h2>ISTORIA NOASTRĂ</h2>
+    <div class="alchemy-container">
+      <!-- Top Row: 2 Cards -->
+      <div class="card-row">
 
+        <!-- Card 1: Căutarea unui corp FIT -->
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+          <div class="flip-card-inner">
+            <!-- Front: Subtitle -->
+            <div class="flip-card-front">
+              <img class="card-bg-image" src="{% static 'images/gustherii.jpg' %}" alt="Background Image">
 
-            <!-- Card 1: Căutarea unui corp FIT -->
-            <div class="flip-card" onclick="this.classList.toggle('flipped')">
-              <div class="flip-card-inner">
-                <!-- Front: Subtitle -->
-                <div class="flip-card-front">
-                          <img class="card-bg-image" src="{% static 'images/gustherii.jpg' %}" alt="Background Image">
-
-                      <!-- Tapping Icon at Top Left -->
-  <lord-icon
-    src="https://cdn.lordicon.com/wjyqkiew.json"
-    trigger="loop"
-    delay="1500"
-    state="in-reveal"
-    colors="primary:#66d7ee,secondary:#ffffff"
-    style="width:40px; height:40px; position:absolute; top:10px; left:10px; z-index: 99;">
-  </lord-icon>
-                  <h3>Căutarea unui corp FIT</h3>
-                </div>
-
-                <!-- Back: Original text -->
-                <div class="flip-card-back">
-                  <p>
-                    <strong>Am început cu dorința de a avea un corp sănătos și puternic, obținând certificări precum
-                    <strong>PT, Let's Bands Level 1&2, TRX și Animal Flow</strong>.</strong>
-                  </p>
-                </div>
-              </div>
+              <!-- Tapping Icon at Top Left -->
+              <lord-icon
+                src="https://cdn.lordicon.com/wjyqkiew.json"
+                trigger="loop"
+                delay="1500"
+                state="in-reveal"
+                colors="primary:#66d7ee,secondary:#ffffff"
+                style="width:40px; height:40px; position:absolute; top:10px; left:10px; z-index: 99;"
+              >
+              </lord-icon>
+              <h3>Căutarea unui corp FIT</h3>
             </div>
-
-
-            <!-- Card 2: Recuperarea afecțiunilor biomecanice -->
-            <div class="flip-card" onclick="this.classList.toggle('flipped')">
-              <div class="flip-card-inner">
-                <!-- Front: Subtitle -->
-                <div class="flip-card-front">
-                    <img class="card-bg-image" src="{% static 'images/recovery.jpg' %}" alt="Background Image">
-                  <h3>Recuperarea afecțiunilor biomecanice</h3>
-                </div>
-                <!-- Back: Original text -->
-                <div class="flip-card-back">
-                  <p>
-                    <strong>Ne-am dedicat recuperării biomecanice prin modulele <strong>Dimifitness Movement</strong>,
-                    <em>Trigger Point</em>, linii fasciale, TRX și performanță.</strong>
-                  </p>
-                </div>
-              </div>
+            <!-- Back: Original text -->
+            <div class="flip-card-back">
+              <p>
+                <strong>Am început cu dorința de a avea un corp sănătos și puternic, obținând
+                certificări precum <strong>PT, Let's Bands Level 1&2, TRX și Animal Flow</strong>.</strong>
+              </p>
             </div>
           </div>
-          <!-- Bottom Row: 3 Cards -->
-          <div class="card-row">
-            <!-- Card 3: Înțelegerea minții -->
-            <div class="flip-card" onclick="this.classList.toggle('flipped')">
-              <div class="flip-card-inner">
-                <!-- Front: Subtitle -->
-                <div class="flip-card-front">
-                    <img class="card-bg-image" src="{% static 'images/the_mind.jpg' %}" alt="Background Image">
-                  <h3>Înțelegerea minții</h3>
-                </div>
-                <!-- Back: Original text -->
-                <div class="flip-card-back">
-                  <p>
-                    <strong>Am aprofundat cunoștințele în <strong>antropologie, psihoanaliză, NLP</strong> și
-                    <em>Theta Healing</em>, însă am întâmpinat o lacună care ne-a forțat să ne îndreptăm
-                    către învățăturile Antice și Religii.</strong>
-                  </p>
-                </div>
-              </div>
+        </div>
+
+        <!-- Card 2: Recuperarea afecțiunilor biomecanice -->
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+          <div class="flip-card-inner">
+            <!-- Front: Subtitle -->
+            <div class="flip-card-front">
+              <img class="card-bg-image" src="{% static 'images/recovery.jpg' %}" alt="Background Image">
+              <h3>Recuperarea afecțiunilor biomecanice</h3>
             </div>
-            <!-- Card 4: Vindecarea sistemelor principale -->
-            <div class="flip-card" onclick="this.classList.toggle('flipped')">
-              <div class="flip-card-inner">
-                <!-- Front: Subtitle -->
-                <div class="flip-card-front">
-                    <img class="card-bg-image" src="{% static 'images/main_systems.jpg' %}" alt="Background Image">
-                  <h3>Vindecarea sistemelor principale</h3>
-                </div>
-                <!-- Back: Original text -->
-                <div class="flip-card-back">
-                  <p>
-                    <strong>Am explorat certificări și metode precum <strong>Nutriție, Oxygen Advantage</strong> și medicina
-                    pe bază de plante pentru a aborda afecțiunile sistemelor digestiv, respirator și emoțional,
-                    realizând că adevăratul control al sănătății noastre nu este în mâinile altora.</strong>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <!-- Card 5: Vindecarea sufletului & Dezvăluirea Adevărurilor Absolute -->
-            <div class="flip-card" onclick="this.classList.toggle('flipped')">
-              <div class="flip-card-inner">
-                <!-- Front: Subtitle -->
-                <div class="flip-card-front">
-                    <img class="card-bg-image" src="{% static 'images/the_soul.jpg' %}" alt="Background Image">
-                  <h3>Vindecarea sufletului &amp; Dezvăluirea Adevărurilor Absolute</h3>
-                </div>
-                <!-- Back: Original text -->
-                <div class="flip-card-back">
-                  <p>
-                    <strong>Am căutat răspunsuri în munți, la bătrâni și copii – adevărații maeștri ai vieții – în Asia,
-                    în Buddhism, Zen, Hinduism și Creștinism. Dincolo de separare, privindu-le ca niște comori
-                    de înțelepciune, în toate găsim <strong>Secrete ale Vieții</strong>.</strong>
-                  </p>
-                </div>
-              </div>
+            <!-- Back: Original text -->
+            <div class="flip-card-back">
+              <p>
+                <strong>Ne-am dedicat recuperării biomecanice prin modulele
+                <strong>Dimifitness Movement</strong>, <em>Trigger Point</em>, linii fasciale,
+                TRX și performanță.</strong>
+              </p>
             </div>
           </div>
-        </div> <!-- End of alchemy-container -->
+        </div>
+
       </div>
 
+      <!-- Bottom Row: 3 Cards -->
+      <div class="card-row">
+        <!-- Card 3: Înțelegerea minții -->
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+          <div class="flip-card-inner">
+            <!-- Front: Subtitle -->
+            <div class="flip-card-front">
+              <img class="card-bg-image" src="{% static 'images/the_mind.jpg' %}" alt="Background Image">
+              <h3>Înțelegerea minții</h3>
+            </div>
+            <!-- Back: Original text -->
+            <div class="flip-card-back">
+              <p>
+                <strong>Am aprofundat cunoștințele în <strong>antropologie, psihoanaliză, NLP</strong> și
+                <em>Theta Healing</em>, însă am întâmpinat o lacună care ne-a forțat să ne îndreptăm
+                către învățăturile Antice și Religii.</strong>
+              </p>
+            </div>
+          </div>
+        </div>
 
+        <!-- Card 4: Vindecarea sistemelor principale -->
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+          <div class="flip-card-inner">
+            <!-- Front: Subtitle -->
+            <div class="flip-card-front">
+              <img class="card-bg-image" src="{% static 'images/main_systems.jpg' %}" alt="Background Image">
+              <h3>Vindecarea sistemelor principale</h3>
+            </div>
+            <!-- Back: Original text -->
+            <div class="flip-card-back">
+              <p>
+                <strong>Am explorat certificări și metode precum
+                <strong>Nutriție, Oxygen Advantage</strong> și medicina pe bază de plante pentru a
+                aborda afecțiunile sistemelor digestiv, respirator și emoțional, realizând că
+                adevăratul control al sănătății noastre nu este în mâinile altora.</strong>
+              </p>
+            </div>
+          </div>
+        </div>
 
-<!-- Slideshow Section -->
-<div class="slideshow">
+        <!-- Card 5: Vindecarea sufletului & Dezvăluirea Adevărurilor Absolute -->
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+          <div class="flip-card-inner">
+            <!-- Front: Subtitle -->
+            <div class="flip-card-front">
+              <img class="card-bg-image" src="{% static 'images/the_soul.jpg' %}" alt="Background Image">
+              <h3>Vindecarea sufletului &amp; Dezvăluirea Adevărurilor Absolute</h3>
+            </div>
+            <!-- Back: Original text -->
+            <div class="flip-card-back">
+              <p>
+                <strong>Am căutat răspunsuri în munți, la bătrâni și copii – adevărații maeștri ai
+                vieții – în Asia, în Buddhism, Zen, Hinduism și Creștinism. Dincolo de separare,
+                privindu-le ca niște comori de înțelepciune, în toate găsim
+                <strong>Secrete ale Vieții</strong>.</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div> <!-- End of card-row -->
+    </div> <!-- End of alchemy-container -->
+  </div> <!-- End of section -->
+
+  <!----------------------------------->
+  <!------- Slideshow Section --------->
+  <!----------------------------------->
+  <div class="slideshow">
     <!-- Neon border is on .slideshow via a pseudo-element -->
     <div class="slideshow-inner">
-    <div class="slideshow-container">
+      <div class="slideshow-container">
         <!-- Each slide is a link to its modal -->
         <div class="slide">
-            <a href="#modal-img1">
-                <img src="{% static 'images/before_after1.png' %}" alt="Before and After 1">
-            </a>
+          <a href="#modal-img1">
+            <img src="{% static 'images/before_after1.png' %}" alt="Before and After 1">
+          </a>
         </div>
         <div class="slide">
-            <a href="#modal-img2">
-                <img src="{% static 'images/before_after2.png' %}" alt="Before and After 2">
-            </a>
+          <a href="#modal-img2">
+            <img src="{% static 'images/before_after2.png' %}" alt="Before and After 2">
+          </a>
         </div>
         <div class="slide">
-            <a href="#modal-img3">
-                <img src="{% static 'images/before_after3.png' %}" alt="Before and After 3">
-            </a>
+          <a href="#modal-img3">
+            <img src="{% static 'images/before_after3.png' %}" alt="Before and After 3">
+          </a>
         </div>
         <div class="slide">
-            <a href="#modal-img4">
-                <img src="{% static 'images/before_after4.png' %}" alt="Before and After 4">
-            </a>
+          <a href="#modal-img4">
+            <img src="{% static 'images/before_after4.png' %}" alt="Before and After 4">
+          </a>
         </div>
         <div class="slide">
-            <a href="#modal-img5">
-                <img src="{% static 'images/before_after5.png' %}" alt="Before and After 5">
-            </a>
+          <a href="#modal-img5">
+            <img src="{% static 'images/before_after5.png' %}" alt="Before and After 5">
+          </a>
         </div>
         <div class="slide">
-            <a href="#modal-img6">
-                <img src="{% static 'images/before_after6.png' %}" alt="Before and After 6">
-            </a>
+          <a href="#modal-img6">
+            <img src="{% static 'images/before_after6.png' %}" alt="Before and After 6">
+          </a>
         </div>
+      </div>
     </div>
-        </div>
-</div>
+  </div>
 
-<!-- JavaScript -->
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const container = document.querySelector(".slideshow-container");
-        const slides = container.querySelectorAll(".slide");
-        const slideWidth = slides[0].offsetWidth; // Width of a single slide
-        let position = 0;
-
-        function loopSlides() {
-            position -= 1; // Adjust the speed of sliding
-            container.style.transform = `translateX(${position}px)`;
-
-            // When the first slide is completely out of view
-            if (Math.abs(position) >= slideWidth) {
-                position += slideWidth + 15; // Correct the position to prevent spiking
-                container.appendChild(container.firstElementChild); // Move first slide to the end
-                container.style.transform = `translateX(${position}px)`; // Maintain smooth flow
-            }
-
-            requestAnimationFrame(loopSlides); // Keep the animation running
-        }
-
-        loopSlides(); // Start the animation
-    });
-</script>
-
-<!-- Modals for each image -->
-<div id="modal-img1" class="modal">
+  <!-- Modals for each image -->
+  <div id="modal-img1" class="modal">
     <div class="modal-content">
-        <a href="#" class="close">&times;</a>
-        <img src="{% static 'images/before_after1.png' %}" alt="Before and After 1 - Enlarged">
+      <a href="#" class="close">&times;</a>
+      <img src="{% static 'images/before_after1.png' %}" alt="Before and After 1 - Enlarged">
     </div>
-</div>
+  </div>
 
-<div id="modal-img2" class="modal">
+  <div id="modal-img2" class="modal">
     <div class="modal-content">
-        <a href="#" class="close">&times;</a>
-        <img src="{% static 'images/before_after2.png' %}" alt="Before and After 2 - Enlarged">
+      <a href="#" class="close">&times;</a>
+      <img src="{% static 'images/before_after2.png' %}" alt="Before and After 2 - Enlarged">
     </div>
-</div>
+  </div>
 
-<div id="modal-img3" class="modal">
+  <div id="modal-img3" class="modal">
     <div class="modal-content">
-        <a href="#" class="close">&times;</a>
-        <img src="{% static 'images/before_after3.png' %}" alt="Before and After 3 - Enlarged">
+      <a href="#" class="close">&times;</a>
+      <img src="{% static 'images/before_after3.png' %}" alt="Before and After 3 - Enlarged">
     </div>
-</div>
+  </div>
 
-<div id="modal-img4" class="modal">
+  <div id="modal-img4" class="modal">
     <div class="modal-content">
-        <a href="#" class="close">&times;</a>
-        <img src="{% static 'images/before_after4.png' %}" alt="Before and After 4 - Enlarged">
+      <a href="#" class="close">&times;</a>
+      <img src="{% static 'images/before_after4.png' %}" alt="Before and After 4 - Enlarged">
     </div>
-</div>
+  </div>
 
-<div id="modal-img5" class="modal">
+  <div id="modal-img5" class="modal">
     <div class="modal-content">
-        <a href="#" class="close">&times;</a>
-        <img src="{% static 'images/before_after5.png' %}" alt="Before and After 5 - Enlarged">
+      <a href="#" class="close">&times;</a>
+      <img src="{% static 'images/before_after5.png' %}" alt="Before and After 5 - Enlarged">
     </div>
-</div>
+  </div>
 
-<div id="modal-img6" class="modal">
+  <div id="modal-img6" class="modal">
     <div class="modal-content">
-        <a href="#" class="close">&times;</a>
-        <img src="{% static 'images/before_after6.png' %}" alt="Before and After 6 - Enlarged">
+      <a href="#" class="close">&times;</a>
+      <img src="{% static 'images/before_after6.png' %}" alt="Before and After 6 - Enlarged">
     </div>
-</div>
-
-
+  </div>
 
 </section>
 
 
+<!----------------------------------->
+<!-------- Page 4 HTML end  --------->
+<!----------------------------------->
 
-  <!-- Optional JavaScript -->
-  <!-- jQuery and Bootstrap Bundle (includes Popper) -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-  <!-- Additional JS for advanced interactivity (if needed) -->
+
+<!-- Scroll Back up to Top  -->
+<script src="{% static 'slideshow_animations.js' %}"></script>
+
+<!-- External Scripts & Libraries  -->
+<!-- jQuery and Bootstrap Bundle (includes Popper) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+<!-- Additional JS for advanced interactivity (if needed) -->
