@@ -1,0 +1,44 @@
+
+    .custom-list {
+        list-style: none !important;
+        padding: 0;
+         margin-top: 5px; /* Adds spacing for the quote */
+    }
+
+    .custom-list li {
+        margin-bottom: 10px;
+    font-size: 0.8rem !important;
+    }
+
+    .custom-list i {
+         color: #5DADE2; /* Light blue color */
+        margin-right: 10px;
+            transition: color 0.3s ease; /* Smooth color transition for hover */
+
+    }
+
+    .custom-list i:hover {
+    color: #D35400; /* Red-gold hover color */
+}
+
+    .custom-list strong {
+    text-decoration: underline; /* Adds underline to subtitles */
+}
+
+
+  /* Title container: position relative so the SVG can be absolutely positioned */
+  .concluzie-title {
+    position: relative;
+    display: inline-block;
+    z-index: 1;
+  }
+
+/* Positions the SVG much lower under the title */
+.title-curve {
+  position: absolute;
+  width: 100%;
+  height: 50px;
+  left: 0;
+  bottom: -33px; /* Moves it much lower */
+  pointer-events: none; /* Allows clicks to pass through */
+}
