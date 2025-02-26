@@ -95,6 +95,7 @@
     .flip-card-back em {
       font-size: 0.9rem;
       margin: 0.1rem 0rem 1rem;
+      z-index: 999;
     }
     /* When flipped, adjust the box-shadow to a teal blue tone */
     .flip-card.flipped .flip-card-front,

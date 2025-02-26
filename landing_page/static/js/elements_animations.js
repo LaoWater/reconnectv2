@@ -39,6 +39,14 @@ document.addEventListener('DOMContentLoaded', function () {
     { selector: '#adevaruri-absolute-closing',     inClass: 'slide-from-left',  outClass: 'fade-out' }
   ];
 
+   // Before we begin the observer script, set all elements to opacity: 0 to prevent un-pleasant flickering when showing first time, especially on Mobile
+  animatedElements.forEach(({ selector }) => {
+    document.querySelectorAll(selector).forEach(element => {
+      element.style.opacity = 0;
+    });
+  });
+
+
   const elementsState = new Map();
 
   // Single IntersectionObserver instance for all elements
@@ -94,14 +102,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-    //
+//
   // 2) GSAP Animations for #page1, #page2, #page7
   //
-  const pages = document.querySelectorAll("#page1, #page2, #page7");
+    const pages = document.querySelectorAll("#page1, #page2, #page7");
 
-  pages.forEach((page) => {
-    // Choose stagger value based on page id (both given as 0.11, but you can adjust per need)
-    let staggerValue = page.id === "page1" ? 0.11 : 0.11;
+    pages.forEach((page) => {
+      // Choose stagger value based on page id
+      let staggerValue;
+
+      if (page.id === "page1") {
+        staggerValue = 0.11;
+      } else if (page.id === "page7") {
+        staggerValue = 0.15; // example custom value for page7
+      } else {
+        // default for other pages (e.g., #page2)
+        staggerValue = 0.15;
+      }
 
     // Create a GSAP timeline for this page (paused by default)
     const tl = gsap.timeline({ paused: true });
@@ -125,13 +142,13 @@ document.addEventListener('DOMContentLoaded', function () {
     // Use a separate IntersectionObserver to trigger GSAP animations
     const observerGSAP = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.intersectionRatio >= 0.25) {
+        if (entry.intersectionRatio >= 0.13) {
           tl.play();
         } else {
           tl.reverse();
         }
       });
-    }, { threshold: [0, 0.25] });
+    }, { threshold: [0, 0.13] });
 
     observerGSAP.observe(page);
   });
