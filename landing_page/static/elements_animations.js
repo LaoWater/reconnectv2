@@ -140,6 +140,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function checkWidth() {
     const wrapper = document.querySelector('.food-symbol-wrapper');
+    if (!wrapper) {
+      // If .food-symbol-wrapper doesn't exist, stop or handle it gracefully
+      return;
+    }
+
     if (window.innerWidth > 1024) {
       wrapper.style.display = 'block';
     } else {
@@ -147,8 +152,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  // Run on initial load
+  // Call it initially
   checkWidth();
 
-  // Also update on window resize
+  // Also handle window resize if desired
   window.addEventListener('resize', checkWidth);
