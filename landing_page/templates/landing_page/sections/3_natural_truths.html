@@ -268,19 +268,48 @@
 </section>
 
 <script>
-
-    document.addEventListener('DOMContentLoaded', function () {
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  // Combine the animation configs from both scripts
   const animatedElements = [
-    { selector: '.custom-air-section', inClass: 'slide-from-left', outClass: 'fade-out' },
-    { selector: '.custom-food-section', inClass: 'slide-from-right', outClass: 'fade-out' },
-    { selector: '#adevaruri-absolute', inClass: 'slide-from-left', outClass: 'fade-out' },
-    { selector: '#adevaruri-absolute-movement', inClass: 'slide-from-right', outClass: 'fade-out' },
-    { selector: '#adevaruri-absolute-closing', inClass: 'slide-from-left', outClass: 'fade-out' }
+    // --- From Script 1 ---
+    {
+      selector: '.custom-page5-fail',
+      inClass: 'slide-in',
+      outClass: 'fade-out'
+    },
+    {
+      selector: '.custom-page5-isolation',
+      inClass: 'slide-in',
+      outClass: 'fade-out'
+    },
+    {
+      selector: '.custom-page5-reason-isolation',
+      inClass: 'slide-in',
+      outClass: 'fade-out'
+    },
+    {
+      selector: '.custom-page5-reintegration',
+      inClass: 'slide-from-left',
+      outClass: 'fade-out'
+    },
+    {
+      selector: '.custom-page5-conclusion',
+      inClass: 'slide-from-right',
+      outClass: 'fade-out'
+    },
+
+    // --- From Script 2 ---
+    { selector: '.custom-air-section',             inClass: 'slide-from-left',  outClass: 'fade-out' },
+    { selector: '.custom-food-section',            inClass: 'slide-from-right', outClass: 'fade-out' },
+    { selector: '#adevaruri-absolute',             inClass: 'slide-from-left',  outClass: 'fade-out' },
+    { selector: '#adevaruri-absolute-movement',    inClass: 'slide-from-right', outClass: 'fade-out' },
+    { selector: '#adevaruri-absolute-closing',     inClass: 'slide-from-left',  outClass: 'fade-out' }
   ];
 
   const elementsState = new Map();
 
-  // Two thresholds for hysteresis
+  // Single IntersectionObserver instance for all elements
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       const config = animatedElements.find(item => entry.target.matches(item.selector));
@@ -294,37 +323,42 @@
 
       const ratio = entry.intersectionRatio;
 
+      // Show element if ratio >= 0.2 and it's not already visible
       if (!state.isVisible && ratio >= 0.2) {
-        // Element becomes visible (show)
         entry.target.classList.add(config.inClass);
         entry.target.classList.remove(config.outClass);
         state.isVisible = true;
-      } else if (state.isVisible && ratio <= 0.1) {
-        // Element becomes hidden (hide)
+      }
+      // Hide element if ratio <= 0.1 and it's currently visible
+      else if (state.isVisible && ratio <= 0.1) {
         entry.target.classList.remove(config.inClass);
         entry.target.classList.add(config.outClass);
         state.isVisible = false;
       }
-      // No change if ratio is between 0.1 and 0.2 to avoid flickering
+      // Do nothing between these thresholds to avoid flickering
     });
-  }, {
-    threshold: [0.1, 0.2]  // multiple thresholds for hysteresis effect
-  });
+  }, { threshold: [0.1, 0.2] });
 
+  // Observe each selector in the combined list
   animatedElements.forEach(item => {
-    const el = document.querySelector(item.selector);
-    if (el) observer.observe(el);
+    const elements = document.querySelectorAll(item.selector);
+    elements.forEach(el => {
+      elementsState.set(el, { isVisible: false });
+      observer.observe(el);
+    });
   });
 
-  // Responsive behavior for wrapper
+  // Responsive behavior for .food-symbol-wrapper from Script 2
   const wrapper = document.querySelector('.food-symbol-wrapper');
-  const setWrapperDisplay = () => {
-    wrapper.style.display = window.innerWidth > 1024 ? 'block' : 'none';
-  };
-  setWrapperDisplay();
-  window.addEventListener('resize', setWrapperDisplay);
+  if (wrapper) {
+    const setWrapperDisplay = () => {
+      wrapper.style.display = window.innerWidth > 1024 ? 'block' : 'none';
+    };
+    setWrapperDisplay();
+    window.addEventListener('resize', setWrapperDisplay);
+  }
 });
-
+</script>
 
 </script>
 
