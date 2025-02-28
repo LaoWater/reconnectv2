@@ -41,8 +41,12 @@
 ---
 
 ### Key Features
+
 1. **Cost-Effective Hosting**  
-   - Designed to help start-ups **host a full web application** with **minimal cost** while maintaining great performance.
+   - Our platform empowers start-ups to deploy full-featured web applications at minimal cost without sacrificing performance. It leverages free-to-use APIs that automatically scale as your user base grows.
+> [!NOTE]
+> Benefit from auto-scaling services such as Google App Engine and Firestore Database, which dynamically adjust to your application's demands.
+
 
 2. **Performance-Oriented Architecture**  
    - Combines **SQLite database exchange and syncing** with **Google and environment secrets** for secure data handling.  
