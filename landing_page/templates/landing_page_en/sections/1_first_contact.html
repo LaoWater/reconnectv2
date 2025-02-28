@@ -7,35 +7,40 @@
   <a href="/" class="lang-btn">RO</a>
 </div>
 
+
 <div class="anvil-animation">
-    <div class="anvil-container">
-        <div class="hammer"></div>
-        <div class="anvil"></div>
-        <div class="sparks"></div>
+        <div class="anvil-container">
+            <div class="hammer"></div>
+            <div class="anvil"></div>
+            <div class="sparks"></div>
+        </div>
     </div>
-</div>
 
-<h1>The Secrets Of Alchemy</h1>
-<p><br></br>
-    Just once is enough to Transform <strong><span class="underline">Suffering into Health</span>, and you will feel that the supposed transformation of metal into gold pales in comparison to this experience.</strong>
-</p>
 
-<p><em><br>That relaxation after an injury, that deep breath after a strong virus, that calm digestive system after imbalances</em> —
-    <strong><span class="underline">are more valuable than any Myth about Gold.</span></strong>
-</p>
+    <h1>Re-Connect – The Art Life</h1>
 
-<!-- Mystical Alchemy Symbol -->
-<div class="mystical-symbol">
-    <div class="triangle"></div>
-    <div class="radiation"></div>
-</div>
+    <p>
+        <br>Discover how to completely transform your life and health,<br>
+        gaining energy, zest for life, and vitality – <u>without stress</u>.
+    </p>
 
-<div class="hover-text">Breath In</div>
-<div class="hover-text2">Breath Out</div>
+    <p>
+        <strong><br>Any chronic pain you might have</strong> — from back pain, discontent, lack of energy, lack of direction, the absence of that "spark" for life, disorientation —
+        <strong><span class="underline">all can be understood and healed.</span></strong>
+    </p>
 
-<p><strong><br>Whatever chronic pain you may have </strong> — from back pain, dissatisfaction, lack of energy, lack of direction, that lack of "zest" for life, disorientation —
-    <strong><span class="underline">all can be understood and healed.</span></strong>
-</p>
+    <!-- Mystical Alchemy Symbol -->
+    <div class="mystical-symbol">
+        <div class="radiation"></div>
+        <div class="triangle"></div>
+    </div>
+
+    <div class="hover-text">Breath In</div>
+    <div class="hover-text2">Breath Out</div>
+
+
+    <p><br><br>A path towards a Strong and Fit Body, a Calm and Wise Mind, <u>Without Effort.</u> </p>
+
 
 <!-- Embedded YouTube Section -->
 <div class="video-container">
@@ -51,207 +56,25 @@
     <h3 class="video-subtitle">🎥 Watch the Latest Re-Connect Webinar</h3>
 </div>
 
+
 <!-- Scroll Indicator -->
 <div class="scroll-indicator">▼ Scroll ▼</div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
+<!----------------------------------->
+<!-------- Page 1 HTML end  --------->
+<!----------------------------------->
 
-<script>
+<!-- Scroll Back up to Top  -->
+<script src="{% static 'js/page1_specific_scripts.js' %}"></script>
 
-document.addEventListener("DOMContentLoaded", () => {
+<!-- Animating page elements - for all pages using selectors and Observer -->
+<script src="{% static 'js/elements_animations.js' %}"></script>
 
-    // Check for mobile screen size (<768px)
-    if (window.matchMedia("(max-width: 768px)").matches) {
-        const loginBtn = document.getElementById('loginBtn');
-        const nav = document.querySelector('nav');
-        const langButtons = document.querySelector('.language-buttons'); // Select the language buttons
-        const nav_threshold = 1300;
-
-        // Ensure the login button is hidden initially
-        loginBtn.style.display = 'none';
-
-        // Add scroll event listener to toggle button visibility
-        document.body.addEventListener("scroll", () => {
-            const scrollPosition = document.body.scrollTop; // Recalculate scroll position on each scroll event
-
-            // Login button visibility logic
-            if (scrollPosition >= 200 && scrollPosition <= 2300) {
-                loginBtn.style.display = 'block';
-                setTimeout(() => {
-                    loginBtn.style.opacity = '1'; // Fade in
-                }, 0);
-            } else {
-                loginBtn.style.opacity = '0';
-            }
-
-            // Language button visibility logic using "invisible" and "visible"
-            if (scrollPosition > 100) {
-                langButtons.classList.remove('visible');
-                langButtons.classList.add('invisible');
-            } else {
-                langButtons.classList.remove('invisible');
-                langButtons.classList.add('visible');
-            }
-
-            // Nav bar visibility logic
-            if (scrollPosition > nav_threshold) {
-                nav.classList.remove('visible');
-                nav.classList.add('invisible');
-            } else {
-                nav.classList.remove('invisible');
-                nav.classList.add('visible');
-            }
-        });
-    } // Mobile section end
+<!-- JS for self-made animations - Anvil Strike -->
+<script src="{% static 'js/anvil_strike.js' %}"></script>
 
 
 
-
-// Dynamically generate the Scroll-to-Top button
-    const scrollToTopBtn = document.createElement("div");
-    scrollToTopBtn.id = "scrollToTop";
-    scrollToTopBtn.innerHTML = `
-        <div class="line line-1"></div>
-        <div class="line line-2"></div>
-    `;
-    document.body.appendChild(scrollToTopBtn); // Append to body
-
-
-    let cumulativeScrollUp = 0;
-    let lastScrollPosition = window.scrollY || 0;
-    let isAutoScrolling = false; // Add a flag to detect automatic scrolling
-
-// Scroll-Up functionality
-// Add scroll event listener to toggle button visibility
-    document.body.addEventListener("scroll", () => {
-            const scrollPosition = document.body.scrollTop; // Recalculate scroll position on each scroll event
-            console.log(`Scroll To Top: `, scrollToTopBtn)
-            if (scrollPosition == 0) {
-                // Hide button after if manual scrolling reaches top
-                scrollToTopBtn.classList.add("hide");
-                scrollToTopBtn.classList.remove("show");
-                isAutoScrolling = false;
-                return;
-            }
-
-            if (isAutoScrolling) {
-                return; // Ignore scroll events during automatic scrolling
-            }
-
-            // Check scroll direction and accumulate upward scroll
-            if (scrollPosition < lastScrollPosition) {
-                const scrollDelta = lastScrollPosition - scrollPosition;
-                cumulativeScrollUp += scrollDelta;
-            } else {
-                cumulativeScrollUp = 0; // Reset if scrolling down
-                isAutoScrolling = false; // Reset mechanism
-            }
-
-            lastScrollPosition = scrollPosition; // Update last scroll position
-
-            // Show button if cumulative upward scroll exceeds 300px
-            if (cumulativeScrollUp > 200) {
-                scrollToTopBtn.classList.remove("hide");
-                scrollToTopBtn.classList.add("show");
-            } else {
-                scrollToTopBtn.classList.add("hide");
-                scrollToTopBtn.classList.remove("show");
-            }
-});
-
-        // Scroll-to-Top button click
-        scrollToTopBtn.addEventListener('click', () => {
-            const start = document.body.scrollTop || document.documentElement.scrollTop;
-            const duration = 500; // Total duration of scroll animation (in ms)
-            const startTime = performance.now();
-
-            isAutoScrolling = true; // Set the flag to true during automatic scrolling
-
-            const smoothScroll = (currentTime) => {
-                const elapsedTime = currentTime - startTime;
-                const progress = Math.min(elapsedTime / duration, 1); // Ensure progress doesn't exceed 1
-                const ease = 1 - Math.pow(1 - progress, 3); // Ease-out cubic
-
-                const newScrollTop = start * (1 - ease);
-                document.body.scrollTop = newScrollTop; // For most browsers
-                document.documentElement.scrollTop = newScrollTop; // For WebKit-based browsers (Chrome, Safari)
-
-                if (progress < 1) {
-                    requestAnimationFrame(smoothScroll); // Continue animation
-                } else {
-                    // Hide button after scrolling finishes
-                    scrollToTopBtn.classList.add("hide");
-                    scrollToTopBtn.classList.remove("show");
-
-                    // Reset last scroll variables after scrolling to top
-                    lastScrollPosition = 0;
-                    cumulativeScrollUp = 0;
-
-                }
-            };
-
-            requestAnimationFrame(smoothScroll); // Start the animation
-
-        });
-
-
-});
-
-
-
-    <!-- Debugging & Exploring Scroll behavior -->
-
-    document.querySelectorAll('*').forEach((el) => {
-    const style = getComputedStyle(el);
-    if (style.overflowY === 'scroll' || style.overflowY === 'auto') {
-        console.log('Scrollable Element:', el);
-    }
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-    // Add scroll event listener for the <body> element
-    document.body.addEventListener("scroll", () => {
-        console.log("Body scroll event triggered. Scroll Top:", document.body.scrollTop);
-    });
-
-    // Add scroll event listener for the <html> element
-    document.documentElement.addEventListener("scroll", () => {
-        console.log("HTML scroll event triggered. Scroll Top:", document.documentElement.scrollTop);
-    });
-
-    // Add scroll event listener for the window to observe window.scrollY
-    window.addEventListener("scroll", () => {
-        console.log("Window scroll event triggered. Scroll Y:", window.scrollY);
-    });
-});
-
-
-document.addEventListener("DOMContentLoaded", () => {
-    console.log("Scroll Y:", window.scrollY);
-    console.log("Inner Width:", window.innerWidth);
-    console.log("Inner Height:", window.innerHeight);
-    console.log("Document Body Offset Height:", document.body.offsetHeight);
-
-   // Add scroll event listener to print the current scroll position
-    document.addEventListener('scroll', () => {
-        console.log('Scroll event triggered. Scroll Y:', window.scrollY);
-    });
-
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-
-window.addEventListener("load", () => {
- console.log("Using Load Listener: \nScroll Y:");
-    console.log("Scroll Y:", window.scrollY);
-    console.log("Inner Width:", window.innerWidth);
-    console.log("Inner Height:", window.innerHeight);
-    console.log("Document Body Offset Height:", document.body.offsetHeight);
-});
-});
-
-</script>
-
-
-<script src="{% static 'anvil_strike.js' %}"></script>
+<!-- External Scripts & Libraries  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>

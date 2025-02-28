@@ -1,212 +1,44 @@
-<style>
-    /* Fade-in animation */
-    @keyframes fadeInEffect {
-        from {
-            opacity: 0;
-            transform: translateY(20px); /* Start slightly below */
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0); /* Reset to normal position */
-        }
-    }
-
-    .section-different {
-        background-color: rgba(0, 0, 0, 0.2); /* Highly transparent background */
-        border: 2px solid rgba(255, 140, 0, 0.2); /* Subtle neon border */
-        border-radius: 15px;
-        padding: 25px;
-        margin: 20px auto;
-        width: 100%;
-        color: #ffffff;
-        text-align: center;
-        font-size: 0.95rem; /* Smaller font size */
-        position: relative; /* Ensure the title stays in view */
-        box-shadow: 0 0 20px rgba(255, 69, 0, 0.3); /* Faint glow initially */
-        transition: all 0.4s ease-in-out;
-        opacity: 0; /* Initially invisible */
-        animation: fadeInEffect 1.5s ease-in-out forwards; /* Fade-in effect */
-    }
-
-    .section-different h5 {
-        background: linear-gradient(90deg, #ff4500, #ff8c00);
-        font-family: 'Cinzel'; sans-serif;
-        font-size: 1.2rem; /* Slightly smaller title */
-
-        margin-bottom: 15px;
-        z-index: 10; /* Ensure the title is in front */
-        position: relative;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 10px rgba(255,140,0,0.8);
-    text-shadow: 0 0 15px rgba(255,140,0,0.8), 0 0 30px rgba(255,69,0,0.5);
-    }
-
-    .section-different:hover {
-        background-color: rgba(0, 0, 0, 0.8); /* Fully visible on hover */
-        border-color: rgba(255, 140, 0, 1); /* Bright neon border */
-        box-shadow: 0 0 20px rgba(255, 140, 0, 0.8), 0 0 40px rgba(255, 69, 0, 0.6); /* Intense glow on hover */
-        transform: translateY(-5px); /* Slight lift */
-    }
-
-
-    .section-different h5 span.underline:after {
-        content: '';
-        width: 0%;
-        height: 4px;
-        background-color: #5DADE2;
-        bottom: -5px;
-        margin-left: 50%; /* Moves the underline to start around the middle */
-        border-radius: 2px;
-        transition: width 0.5s ease-in-out;
-        position: relative;
-        display: block; /* Makes the underline appear on a new line */
-
-    }
-
-        /* First underline animation: from 0% to 50% */
-        .section-different:nth-of-type(1) h5 span.underline:after {
-            left: -50%;
-        }
-
-        .section-different:nth-of-type(1):hover h5 span.underline:after {
-            width: 50%;
-        }
-
-        /* Second underline animation: from 50% to 100% */
-        .section-different:nth-of-type(2) h5 span.underline:after {
-            left: 0%;
-        }
-
-        .section-different:nth-of-type(2):hover h5 span.underline:after {
-            width: 50%;
-        }
-
-        /* Last underline animation: from 0% to 100% */
-        .section-different:nth-of-type(3) h5 span.underline:after {
-            left: -50%;
-        }
-
-        .section-different:nth-of-type(3):hover h5 span.underline:after {
-            width: 100%;
-        }
-
-
-
-
-    .section-different p {
-        font-size: 0.85rem;
-        line-height: 1.6;
-        margin-bottom: 15px;
-        color: #ffffff;
-        z-index: 10; /* Ensure text is in front */
-        position: relative;
-    }
-
-    .section-different p strong {
-        color: #ff8c00; /* Red-gold highlight */
-        font-weight: bold;
-        text-shadow: 0 0 10px rgba(255, 140, 0, 0.8),
-            0 0 15px rgba(255, 140, 0, 0.8), 0 0 30px rgba(255, 69, 0, 0.5);
-    }
-
-
-    @media (max-width: 768px) {
-    .section-different p {
-        font-size: 85%;
-        margin-bottom: 8px;
-        margin: 1rem 0rem;
-    }
-}
-
-@media (min-width: 1024px) {  /* Adjust for larger screens */
-
-/* Override max-width for Page 6 ONLY */
-/* Override the parent section restriction */
-#page6 {
-    max-width: 100% !important;  /* Remove the 850px limit */
-    width: 100% !important;  /* Ensure it takes the full page */
-    margin: 0 auto;  /* Keep it centered */
-    padding: 0;  /* Optional: Adjust padding if needed */
-}
-
-/* Ensure the child section also follows */
-#page6 > section#page-6 {
-    max-width: 100% !important;
-    width: 90%;
-    margin: 0 auto;
-}
-
-
-    .text-container {
-        max-width: 100%; /* Full width for content */
-        width: 90%;
-        margin: 0 auto;
-        display: flex;
-        justify-content: center; /* Center align content */
-        flex-wrap: wrap; /* Ensures flexibility on different screen sizes */
-        gap: 20px; /* Space between sections */
-    }
-
-    #page6 .text-container {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap; /* Ensures items move to a new row if needed */
-        gap: 20px; /* Space between sections */
-    }
-
-    #page6 .section-different {
-        flex: 1 1 48%;  /* Makes sure two fit in a row */
-        max-width: 48%;
-    }
-
-    /* Force the third section to be on a new row */
-    #page6 .section-different:nth-of-type(3) {
-        flex: 1 1 50%; /* Forces full width */
-        max-width: 50%;
-    }
-
-}
-
-</style>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/reconnect_different_detailed.css' %}">
 
 <section id="page-6">
-    <!-- Page Title -->
-    <div class="page-title">
-        <h1>Why is Re-Connect Different?</h1>
-    </div>
-
-    <div class="text-container">
-
-        <div class="section-different">
-            <h5><br><span class="underline">1. Effortless Method</span></h5>
-            <p><br>In Eastern teachings, there is the concept of calming the Breath or simply observing as it calms on its own.</p>
-            <p>It has been observed that from a <strong>peaceful Soul</strong>, a <strong>clear Mind</strong>, and a <strong>healthy Body</strong>, the breath will naturally calm itself without being forced.</p>
-            <p>Thus, "Calming the Breath" becomes an intimate and holistic path to the healing and integration of the three systems, rather than a series of timed breaths.</p>
-            <p>Similarly, we discovered that the other two <strong>Absolute Truths</strong> – Food and Movement – will also unfold naturally, without any "Effort".</p>
-            <p>At no point in this course will you be forced to exercise, eat in a prescribed manner, or do anything other than what you truly feel like doing.</p>
+        <!-- Page Title -->
+        <div class="page-title">
+            <h1><br>Why is Re-Connect Different?</h1>
         </div>
 
-        <div class="section-different">
-            <h5><br><span class="underline">2. A Deep Understanding of the Body and Mind</span></h5>
-            <p><br>In many traditional methods, "steps to follow" are provided without offering the necessary context to understand why those steps work.</p>
-            <p><strong>Re-Connect</strong> changes this perspective, emphasizing a deep understanding of the entire System.</p>
-            <p>Understanding comes not from theory, but from <strong>direct experience.</strong></p>
-            <p>You will learn to listen to your own Body and Mind, in sync with the environment in which they exist.</p>
-            <p>This understanding becomes an <strong>ever-adapting inner guide</strong>, not an external recipe.</p>
+        <div class="text-container">
+
+            <div class="section-different">
+                <h5><br><span class="underline">1. The Effortless Method</span></h5>
+                <p><br>In Eastern teachings, there is the concept of calming the Breath or observing it calm on its own.</p>
+                <p>It has been observed that from a <strong>peaceful Soul</strong>, a <strong>clear Mind</strong>, and a <strong>healthy Body</strong> – the breath will calm itself, without being forced.</p>
+                <p>Thus, "Calming the Breath" becomes an intimate and holistic journey toward healing and connecting the three systems, rather than a series of timed breaths.</p>
+                <p>Similarly, I have realized that the other two <strong>Absolute Truths</strong> – Food and Movement – will unfold naturally, without "Effort".</p>
+                <p>At no point in this course will you have to force yourself to exercise, eat in a specific way, or do anything other than what you feel like doing.</p>
+            </div>
+
+            <div class="section-different">
+                <h5><br><span class="underline">2. Deep Understanding of the Body and Mind</span></h5>
+                <p><br>In many traditional methods, "steps to follow" are provided without offering the necessary context to understand why those steps work.</p>
+                <p><strong>Re-Connect</strong> changes this perspective, emphasizing a deep understanding of the entire System.</p>
+                <p>Understanding does not come from theory, but from <strong>direct Experience.</strong></p>
+                <p>You will learn to listen to your own Body and Mind, in sync with the environment in which they exist.</p>
+                <p>This understanding becomes an <strong>Internally Adaptive Guide</strong>, not an external recipe.</p>
+            </div>
+
+            <div class="section-different">
+                <h5><br><span class="underline">3. No Separation</span></h5>
+                <p><br>Any method or tool we approach in Re-Connect always remains anchored in the entire System.</p>
+                <p>We will not work with a <strong>'Body separate from Mind'</strong>.</p>
+                <p>We will not force anything.</p>
+                <p>We shed <strong>Light</strong> on the unknown, and then observe the Change as it happens on its own.</p>
+            </div>
+
         </div>
+    </section>
 
-        <div class="section-different">
-            <h5><br><span class="underline">3. No Separation</span></h5>
-            <p><br>Any method or tool we employ in Re-Connect is always anchored in the complete System.</p>
-            <p>We do not work with a <strong>"Body separate from the Mind"</strong> approach.</p>
-            <p>We will not force anything.</p>
-            <p>We bring <strong>Light</strong> to the unknown, and then watch as Change unfolds naturally.</p>
-        </div>
 
-    </div>
-    <br>
-    {% load static %}
-    <a class="buy-button" href="https://reconnectcourse.thinkific.com/courses/re-connect-v2" target="_blank">View Product Page</a>
-</section>
-
+<!----------------------------------->
+<!-------- Page 6 HTML end  --------->
+<!----------------------------------->
