@@ -65,7 +65,7 @@
 
 ## I. Online Course Landing Page
 
-### The Secrets of Alchemy
+### Art of Life
 
 Online Course Landing Page, available in both Romanian and English versions, showcases a harmonious blend of self-crafted CSS and JavaScript animations. 
 By leveraging modern libraries such as Animate.css and GSAP, we've tailored these animations to align seamlessly with the website's theme, providing users with an engaging and immersive experience.
