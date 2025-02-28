@@ -15,6 +15,8 @@
 {% load static %}
 <!-- Load Loading Screen Script first -->
 <script src="{% static 'js/alchemy_of_sounds_and_loading_screen.js' %}"></script>
+<!-- Base scripts like: Google Login, Forms, Nav Bar rendering, etc -->
+<script src="{% static 'js/base_scripts.js' %}"></script>
 <link rel="stylesheet" href="{% static 'css/base.css' %}">
 <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 <link rel="stylesheet" href="{% static 'css/animations.css' %}">
@@ -82,6 +84,11 @@
 
 
 {% load socialaccount %}
+<script>
+    // Set a global variable with the dynamically generated Google login URL
+    // This must be in HTML for Django Template engin to pick up SoclaAccounts module.
+    var googleLoginUrl = "{% provider_login_url 'google' %}";
+</script>
 <div class="custom-modal">
     <div id="loginModal" class="modal hidden">
         <div class="modal-content">
@@ -155,10 +162,6 @@
 <!-------- Base Page HTML end  --------->
 <!----------------------------------->
 
-
-
-<!-- Base scripts like: Google Login, Forms, Nav Bar rendering, etc -->
-<script src="{% static 'js/base_scripts.js' %}"></script>
 
 <!-- The Alchemy of Sounds - Music & Handling Volume -->
 <script src="{% static 'js/page1_specific_scripts.js' %}"></script>

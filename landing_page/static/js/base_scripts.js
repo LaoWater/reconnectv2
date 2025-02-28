@@ -251,71 +251,66 @@ registerForm.addEventListener('submit', (e) => {
 <!------------------------------------------------------->
 
 
+// Function to handle the Google login process
 function openGoogleLogin(event) {
-    event.preventDefault();
+  event.preventDefault();
 
-    // Open Google login in a new tab
-    const googleLoginUrl = "{% provider_login_url 'google' %}";
-    let loginWindow = window.open(googleLoginUrl, "_blank", "width=500,height=600");
+  // Open Google login in a new tab
+  var loginWindow = window.open(googleLoginUrl, "_blank", "width=500,height=600");
 
-    // Update and show the loading screen
-    const loadingScreen = document.getElementById("loading-screen");
-    const loadingText = loadingScreen.querySelector("p");
-    const overlay = document.getElementById("loading-overlay");
-    loadingText.textContent = "Logging in with Google...";
-    loadingScreen.style.display = "flex";
-    overlay.style.display = "block"; // Show the grey background overlay
+  // Update and show the loading screen
+  var loadingScreen = document.getElementById("loading-screen");
+  var loadingText = loadingScreen.querySelector("p");
+  var overlay = document.getElementById("loading-overlay");
+  loadingText.textContent = "Logging in with Google...";
+  loadingScreen.style.display = "flex";
+  overlay.style.display = "block";
 
-    // Polling for login status and tracking the window
-    let pollingAttempts = 0;
-    const maxPollingAttempts = 20; // Wait for up to 60 seconds
+  // Polling for login status on the server
+  var pollingAttempts = 0;
+  var maxPollingAttempts = 20; // approximately 20 seconds
 
+  console.log(loginWindow);
 
+  function pollLoginStatus() {
     console.log(loginWindow);
-
-    const pollLoginStatus = () => {
-
-           // Check login status on our server
-           console.log(loginWindow);
-           fetch('/ajax/check-login/') // Use your existing endpoint
-                .then(response => response.json())
-
-                .then(data => {
-                    if (data.logged_in) {
-                        // Login successful
-                        loadingText.textContent = `Welcome, ${data.username.charAt(0).toUpperCase() + data.username.slice(1)}! Redirecting...`;
-                        setTimeout(() => {
-                            loadingScreen.style.display = "none";
-                            overlay.style.display = "none";
-                            window.location.reload(); // Refresh to update logged-in state
-                        }, 1000);
-                    }
-                })
-                .catch(() => {
-                    // Handle unexpected errors
-                    loadingText.textContent = "An error occurred. Please try again.";
-                    setTimeout(() => {
-                        loadingScreen.style.display = "none";
-                        overlay.style.display = "none";
-                    }, 2000);
-                });
-        };
-
-    // Start polling every second
-    const loginCheck = setInterval(() => {
-        pollLoginStatus();
-
-        // Timeout logic if the login takes too long
-        pollingAttempts++;
-        if (pollingAttempts >= maxPollingAttempts) {
-            clearInterval(loginCheck);
-            loadingText.textContent = "Login timed out. Please try again.";
-            setTimeout(() => {
-                loadingScreen.style.display = "none";
-                overlay.style.display = "none";
-            }, 2000);
+    fetch('/ajax/check-login/')
+      .then(function(response) { return response.json(); })
+      .then(function(data) {
+        if (data.logged_in) {
+          loadingText.textContent = "Welcome, " +
+            (data.username.charAt(0).toUpperCase() + data.username.slice(1)) +
+            "! Redirecting...";
+          setTimeout(function() {
+            loadingScreen.style.display = "none";
+            overlay.style.display = "none";
+            window.location.reload(); // Refresh to update logged-in state
+          }, 1000);
         }
-    }, 1000);
+      })
+      .catch(function() {
+        // Handle unexpected errors
+        loadingText.textContent = "An error occurred. Please try again.";
+        setTimeout(function() {
+          loadingScreen.style.display = "none";
+          overlay.style.display = "none";
+        }, 2000);
+      });
+  }
+
+  // Start polling every second
+  var loginCheck = setInterval(function() {
+    pollLoginStatus();
+    pollingAttempts++;
+    if (pollingAttempts >= maxPollingAttempts) {
+      clearInterval(loginCheck);
+      loadingText.textContent = "Login timed out. Please try again.";
+      setTimeout(function() {
+        loadingScreen.style.display = "none";
+        overlay.style.display = "none";
+      }, 2000);
+    }
+  }, 1000);
 }
 
 
