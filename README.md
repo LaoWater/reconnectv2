@@ -78,7 +78,7 @@ By leveraging modern libraries such as Animate.css and GSAP, we've tailored thes
 Starting point: **Stand-Alone Python trained Large Language Model** [Project YLF](https://github.com/LaoWater/LLM-Create-Process-Train).  
 
 ### Explore the full project on
-[![GitHub Repository](https://img.shields.io/badge/Repository-Visit-blue?logo=github)](https://github.com/LaoWater/LLM-Create-Process-Train)
+[![GitHub Repository](https://img.shields.io/badge/Repository-Visit-blue?logo=github)](https://github.com/LaoWater/Project-YLF.git)
 
 This app has been **integrated** into the Web App's framework to align with **business needs and context**.
 
