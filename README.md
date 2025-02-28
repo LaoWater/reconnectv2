@@ -142,6 +142,7 @@ The **Bibliography** section offers a curated collection of influential works th
 For a comprehensive list and detailed insights, please visit [Bibliography Page](https://reconnectv2.com/bibliography/).
 
 ---
+---
 
 ## **Installation and Deployment Guide**
 
