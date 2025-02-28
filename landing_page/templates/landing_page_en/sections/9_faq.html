@@ -1,297 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAQ - Întrebări Frecvente</title>
-    <style>
-
-        .faq-container {
-            font-family: 'Poppins', sans-serif;
-            width: 90%;
-            max-width: 800px;
-            margin: 40px auto;
-            border-radius: 15px;
-            background: rgba(0, 0, 0, 0.7);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 165, 0, 0.3);
-            overflow: hidden;
-        }
-
-        .faq {
-            border-bottom: 1px solid rgba(255, 165, 0, 0.2);
-        }
-
-        .faq:last-child {
-            border-bottom: none;
-        }
-
-        .faq-title {
-            background: linear-gradient(90deg, #1e1e1e, #ff5500);
-            color: #fff;
-            font-weight: bold;
-            padding: 15px 20px;
-            cursor: pointer;
-            font-size: 1.2rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            transition: background 0.5s, transform 0.3s;
-            text-shadow: 0 0 5px #ffa500, 0 0 10px #ff7700;
-        }
-
-        .faq-title:hover {
-            background: linear-gradient(90deg, #ff7700, #ff4500);
-            transform: scale(1.02);
-        }
-
-        .faq-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.6s ease, padding 0.6s ease;
-            padding: 0 20px;
-        }
-
-        .faq-content.expanded {
-            max-height: 700px;
-            padding: 15px 20px;
-        }
-
-        .faq-content p {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1rem;
-            line-height: 2;
-            color: #ddd;
-            text-align: left;
-            margin: 10px 0; /* Additional spacing between paragraphs */
-        }
-
-        .faq-icon {
-            font-size: 1.5rem;
-            color: #ffa500;
-            text-shadow: 0 0 5px #ffa500, 0 0 10px #ff5500;
-            transition: transform 0.3s;
-        }
-
-        .faq-icon.rotated {
-            transform: rotate(45deg);
-        }
-
-        /* Glowing border around the FAQ container */
-        .faq-container::before {
-            content: '';
-            position: absolute;
-            top: 180px;  /* Glowing border around the FAQ container */
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%;
-            height: 58%;
-            border-radius: 15px;
-            border: 2px solid rgba(255, 165, 0, 0.4);
-            box-shadow: 0 0 20px rgba(255, 165, 0, 0.3), 0 0 30px rgba(255, 165, 0, 0.2);
-            z-index: -1;
-        }
-
-        /* Responsive Fixes for Mobile */
-        @media (max-width: 768px) {
-        .faq-container {
-            width: 95%;
-            margin: 20px auto;
-            padding: 10px;
-        }
-
-        .faq-title {
-            font-size: 1rem; /* Smaller font for smaller screens */
-            padding: 10px 15px;
-        }
-
-        .faq-content p {
-            font-size: 0.75rem; /* Slightly smaller text for readability */
-            line-height: 2.1; /* Adjusted spacing for mobile */
-            text-align: left;
-        }
-
-        .faq-icon {
-            font-size: 1rem;
-        }
-             /* Fix for glowing border on smaller screens */
-        .faq-container::before {
-            display: none; /* Hides the glowing border on mobile to avoid layout issues */
-        }
-
-        a.whatsapp-link {
-            color: #ff4500 !important; /* Red-gold color for all states */
-            font-weight: bold;
-            text-decoration: none; /* Removes underline */
-            transition: color 0.3s, text-shadow 0.3s; /* Smooth transition for hover effects */
-        }
-
-        a.whatsapp-link:visited {
-            color: #ff4500 !important; /* Ensures visited links are red-gold */
-        }
-
-        a.whatsapp-link:hover {
-            color: #ffd700 !important; /* Gold color on hover */
-            text-shadow: 0 0 5px #ffd700, 0 0 10px #ff4500; /* Glowing effect */
-        }
-
-        a.whatsapp-link:active {
-            color: #ff7700 !important; /* Slightly darker red-gold on active click */
-        }
-
-        /* Reset all browser link styles for this link */
-
-        a.whatsapp-link:link,
-        a.whatsapp-link:visited,
-        a.whatsapp-link:hover,
-        a.whatsapp-link:active {
-        text-decoration: none !important; /* No underline */
-        color: inherit !important; /* Ensures custom color is applied */
-    }
-
-    }
-
-
-
-.whatsapp-link {
-  display: inline-block;
-  color: #25D366; /* WhatsApp Green */
-  font-weight: bold;
-  text-decoration: none;
-  border: 2px solid #25D366;
-  padding: 6px 12px;
-  border-radius: 5px; /* Rounded corners */
-  transition: all 0.3s ease; /* Smooth effect */
-
-}
-
-.whatsapp-link:hover {
-  background-color: #25D366; /* Green background on hover */
-  color: #fff; /* White text */
-  box-shadow: 0 0 10px #25D366; /* Glow effect */
-}
-
-
-
-        /* Footer Styling */
-#footer {
-    position: relative; /* Fix the footer at the bottom of the viewport */
-    bottom: 0; /* Align it with the bottom */
-    left: 0; /* Start from the left edge */
-    right: 0; /* Stretch to the right edge */
-    top: 244px;
-    background: linear-gradient(
-        180deg,
-        rgba(255, 69, 0, 0.2) 0%,    /* Subtle neon glow at the top */
-        rgba(20, 30, 40, 0.95) 20%, /* Darker and semi-transparent */
-        rgba(10, 20, 30, 1) 50%,    /* Solid dark center */
-        rgba(20, 30, 40, 0.8) 80%,  /* Gradual dissipation */
-        rgba(20, 30, 40, 0.3) 100%  /* Transparent fade at the bottom */
-    );
-    color: #ecf0f1;
-    padding: 20px 0px;
-    font-family: 'Poppins', sans-serif;
-    text-align: center;
-    width: 100%; /* Ensure full-width */
-    z-index: 1000; /* Ensure it appears on top of content */
-    box-shadow: 0px 0px 35px 10px rgba(255, 57, 0, 0.3); /* Extended outer glow effect */
-
-}
-
-.footer-content {
-    display: flex;
-    flex-direction: column; /* Stack items vertically */
-    justify-content: center; /* Center the items vertically */
-    align-items: center; /* Center the items horizontally */
-    flex-wrap: nowrap; /* Prevent wrapping since items are now stacked */
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0px 0px; /* Adjusted padding for a balanced layout */
-
-}
-
-
-.footer-section {
-    margin: 10px 0;
-}
-
-.footer-link {
-    color: #ecf0f1;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: bold;
-    transition: color 0.3s ease;
-}
-
-.footer-link:hover {
-    color: #f39c12;
-}
-
-.social-icons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-.social-icon img {
-    width: 22px;
-    height: 22px;
-    transition: transform 0.3s ease, filter 0.3s ease;
-}
-
-.social-icon img:hover {
-    transform: scale(1.2);
-    filter: brightness(1.2);
-}
-
-.end-of-site p {
-    font-family: 'Cinzel', sans-serif;
-    font-size: 14px;
-    color: #bdc3c7;
-    margin-top: 20px;
-}
-
-@media (max-width: 768px) {
-    .footer-content {
-        flex-direction: column;
-    }
-
-    .social-icons {
-        margin-top: 20px;
-    }
-}
-
-
-
-    </style>
-</head>
-
-
 {% load static %}
+<link rel="stylesheet" href="{% static 'css/faq.css' %}">
+
+
+<title>FAQ - Frequently Asked Questions</title>
+
 <h1><br><br></h1>
-<lord-icon
-    src="https://cdn.lordicon.com/dflgefov.json"
-    trigger="loop"
-    colors="primary:#1AFFFD,secondary:#FAFF00"
-    style="width:60px; height:60px; transform: translateY(16px);">
-</lord-icon>
+      <lord-icon src="https://cdn.lordicon.com/dflgefov.json" trigger="loop" colors="primary:#1AFFFD  d,secondary:#FAFF00" style="width:60px; height:60px; transform: translateY(16px);"></lord-icon>
 <h1>Frequently Asked Questions</h1>
 
 <div class="faq-container">
     <div class="faq">
         <div class="faq-title">
-            <span>1. How do I know it's 100% right for me?</span>
+            <span>1. How do I know 100% that it’s right for me?</span>
             <span class="faq-icon">+</span>
         </div>
         <div class="faq-content">
             <p>
                 <i class="fa-solid fa-square-check" style="color: #1AFFFD; margin-right: 8px;"></i><strong>You've tried countless methods.</strong><br>
-                <i class="fa-solid fa-square-check" style="color: #1AFFFD; margin-right: 8px;"></i><strong>You've invested energy, time, money, and effort into this process, yet nothing has worked.</strong> On the contrary, they only brought stress.<br>
-                <i class="fa-solid fa-square-check" style="color: #1AFFFD; margin-right: 8px;"></i><strong>You have a physical or mental condition that deeply affects your quality of life.</strong><br>
-                <i class="fa-solid fa-square-check" style="color: #1AFFFD; margin-right: 8px;"></i>Disc herniations or other ailments, emotional eating, an unfit body, lack of energy and motivation, lack of direction/purpose in life, deep fears of failure/death.<br>
-                <i class="fa-solid fa-square-check" style="color: #1AFFFD; margin-right: 8px;"></i><strong>You don't know how to fix it.</strong> In an era of abundant information, nothing seems to make sense or work for you.<br>
+                <i class="fa-solid fa-square-check" style="color: #1AFFFD; margin-right: 8px;"></i><strong>You've invested energy, time, money, and effort into this process, yet nothing has been resolved.</strong> On the contrary, they have only brought stress.<br>
+                <i class="fa-solid fa-square-check" style="color: #1AFFFD; margin-right: 8px;"></i><strong>You suffer from a physical or mental issue that profoundly affects your quality of life.</strong><br>
+                <i class="fa-solid fa-square-check" style="color: #1AFFFD; margin-right: 8px;"></i><strong>You don’t know how to fix it.</strong> In an era of massive information, nothing seems to make sense or work for you.<br>
+                <i class="fa-solid fa-square-check" style="color: #1AFFFD; margin-right: 8px;"></i>Disc hernias or other conditions, emotional eating, an unfit body, lack of energy and motivation, lack of direction/purpose in life, deep fears of failure/death.<br>
                 <i class="fa-solid fa-square-check" style="color: #1AFFFD; margin-right: 8px;"></i><strong>You want to be in control of your own body and mind.</strong><br>
-                Control the suffering, not be a victim of it.<br>
-                <i class="fa-solid fa-square-check" style="color: #1AFFFD; margin-right: 8px;"></i><strong>Truly understand it so you can genuinely solve it.</strong>
+                In control of your suffering, not a victim of it.<br>
             </p>
         </div>
     </div>
@@ -304,7 +35,7 @@
             <p>
                 <i class="fa-solid fa-square-check" style="color: #1AFFFD; margin-right: 8px;"></i><strong>Approximately 3 months, but it can extend up to a year.</strong><br>
                 <br><i class="fa-solid fa-sync fa-lg" style="font-size: 18px; color: #1AFFFD; margin-right: 8px;"></i>However, at some point, the question loses its meaning.<br>
-                <strong>Because the project is your lifelong journey that you walk every day, not an external product that takes you from point A to B.</strong>
+                <strong>Because the project is your personal journey in life that you embark on every day, not an external product that takes you from point A to B.</strong>
             </p>
         </div>
     </div>
@@ -316,86 +47,90 @@
         <div class="faq-content">
             <p>
                 <i class="fa-solid fa-square-check" style="color: #1AFFFD; margin-right: 8px;"></i><strong>The price is 377 lei.</strong><br>
-                <i class="fa-solid fa-square-check" style="color: #1AFFFD; margin-right: 8px;"></i><strong><span class="underline">In the first 30 days, we offer a 100% money-back guarantee, no questions asked.</span></strong><br>
-                <i class="fa-solid fa-square-check" style="color: #1AFFFD; margin-right: 8px;"></i>Our goal of helping you takes precedence over money.
+                <i class="fa-solid fa-square-check" style="color: #1AFFFD; margin-right: 8px;"></i><strong><span class="underline">For the first 30 days, we offer a 100% money-back guarantee, no questions asked.</span></strong><br>
+                <i class="fa-solid fa-square-check" style="color: #1AFFFD; margin-right: 8px;"></i>The goal of helping you takes precedence over money.
             </p>
         </div>
     </div>
     <div class="faq">
         <div class="faq-title">
-            <span>4. I have additional questions.</span>
+            <span>4. I have other questions.</span>
             <span class="faq-icon">+</span>
         </div>
-        <div class="faq-content">
-            <p>
-                <i class="fa-solid fa-envelope" style="color:#1AFFFD; margin-right: 8px;"></i><strong>Feel free to write to us.</strong>
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <a href="https://wa.me/40740476485" target="_blank" class="whatsapp-link">
-                    <i class="fa-solid fa-phone neon-icon" style="color: #1AFFFD; font-size: 20px; margin-right: 8px;"></i>
-                    Or contact us on WhatsApp (click)
-                </a>
-            </p>
-        </div>
+    <div class="faq-content">
+        <p>
+            <i class="fa-solid fa-envelope" style="color:#1AFFFD; margin-right: 8px;"></i><strong>Write to us without hesitation.</strong>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://wa.me/40740476485" target="_blank" class="whatsapp-link"><i class="fa-solid fa-phone neon-icon"
+               style="color: #1AFFFD; font-size: 20px; margin-right: 8px;"></i>Or contact us on WhatsApp (click)</a>
+        </p>
+    </div>
+
     </div>
 </div>
 
 
 
-
-
-    <script>
-        document.querySelectorAll('.faq-title').forEach(title => {
-            title.addEventListener('click', () => {
-                const content = title.nextElementSibling;
-                const icon = title.querySelector('.faq-icon');
-
-                // Toggle content expansion
-                content.classList.toggle('expanded');
-
-                // Toggle icon rotation
-                icon.classList.toggle('rotated');
-            });
-        });
-    </script>
-
-
-
-
-
-
-
 {% load static %}
-<a class="buy-button" href="https://reconnectcourse.thinkific.com/courses/re-connect-v2" target="_blank">Buy</a>
+<div class="buy-buttons-container">
+    <!-- Original Price (Strikethrough) -->
+    <a class="buy-button old-price" href="https://reconnectcourse.thinkific.com/courses/re-connect-v2" target="_blank">
+        Price <span class="strikethrough">800 LEI</span>
+    </a>
+
+    <!-- Discounted Price (Highlighted) -->
+    <a class="buy-button new-price" href="https://reconnectcourse.thinkific.com/courses/re-connect-v2" target="_blank">
+        Buy now for <span class="discounted-price">377 LEI</span>
+    </a>
+</div>
 
 
-    <footer id="footer">
-        <div class="footer-content">
+<footer id="footer">
+    <div class="footer-content">
 
-            <!-- Social Media Icons -->
-            <div class="footer-section social-icons">
-                <a href="https://www.instagram.com/reconnect.course" target="_blank" class="social-icon instagram">
-                    <img src="{% static 'images/instagram_icon.png' %}" alt="Instagram">
-                </a>
-                <a href="https://www.facebook.com/Reconnect.Course" target="_blank" class="social-icon facebook">
-                    <img src="{% static 'images/facebook_icon.png' %}" alt="Facebook">
-                </a>
-                <a href="https://www.youtube.com/@Laowater" target="_blank" class="social-icon youtube">
-                    <img src="{% static 'images/youtube_icon.png' %}" alt="YouTube">
-                </a>
-                <a href="https://www.tiktok.com/@reconnect.course" target="_blank" class="social-icon tiktok">
-                    <img src="{% static 'images/tiktok_icon.png' %}" alt="TikTok">
-                </a>
-            </div>
-
-            <!-- Copyright Information -->
-            <div class="footer-section end-of-site">
-                <p>Re-Connect © 2024 All Rights Reserved</p>
-            </div>
+        <!-- Social Media Icons -->
+        <div class="footer-section social-icons">
+            <a href="https://www.instagram.com/reconnect.course" target="_blank" class="social-icon instagram">
+                <img src="{% static 'images/instagram_icon.png' %}" alt="Instagram">
+            </a>
+            <a href="https://www.facebook.com/Reconnect.Course" target="_blank" class="social-icon facebook">
+                <img src="{% static 'images/facebook_icon.png' %}" alt="Facebook">
+            </a>
+            <a href="https://www.youtube.com/@re-connect./featured" target="_blank" class="social-icon youtube">
+                <img src="{% static 'images/youtube_icon.png' %}" alt="YouTube">
+            </a>
+            <a href="https://www.tiktok.com/@reconnect.course" target="_blank" class="social-icon tiktok">
+                <img src="{% static 'images/tiktok_icon.png' %}" alt="TikTok">
+            </a>
         </div>
-    </footer>
+
+        <!-- Copyright Information -->
+        <div class="footer-section end-of-site">
+            <p>Re-Connect © 2024 All Rights Reserved</p>
+        </div>
+    </div>
+</footer>
 
 
 
+<!----------------------------------->
+<!-------- Page 9 HTML end  --------->
+<!----------------------------------->
 
-</body>
-</html>
+
+
+<!-- JS for FAQ container animation & expanding -->
+<script>
+    document.querySelectorAll('.faq-title').forEach(title => {
+        title.addEventListener('click', () => {
+            const content = title.nextElementSibling;
+            const icon = title.querySelector('.faq-icon');
+
+            // Toggle content expansion
+            content.classList.toggle('expanded');
+
+            // Toggle icon rotation
+            icon.classList.toggle('rotated');
+        });
+    });
+</script>

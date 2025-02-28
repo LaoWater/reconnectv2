@@ -1,220 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Testimoniale</title>
-    <style>
-        body {
-            background-color: #121212; /* Dark background for better neon visibility */
-            color: #fff;
-            margin: 0;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        h1 {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 2.5rem;
-            color: #f4c542;
-            text-shadow: 0 0 5px #f4c542, 0 0 10px #f4c542, 0 0 20px #ff9900, 0 0 30px #ff9900;
-        }
-
-        .testimonial-container {
-            width: 90%;
-            max-width: 800px;
-            margin: 20px auto;
-            text-align: center;
-        }
-
-        .testimonial {
-            position: relative;
-            overflow: hidden;
-            margin: 20px 0;
-            border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .testimonial img {
-            width: 100%;
-            display: block;
-            transition: transform 0.5s ease;
-            cursor: pointer;
-        }
-
-        .testimonial:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 20px rgba(255, 153, 0, 0.7);
-        }
-
-        .testimonial:hover img {
-            transform: scale(1.05);
-        }
-
-        .caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 10px 20px;
-            background: rgba(0, 0, 0, 0.7);
-            color: #fff;
-            font-size: 1.2rem;
-            text-align: left;
-            transition: opacity 0.3s ease;
-            opacity: 0;
-        }
-
-        .testimonial:hover .caption {
-            opacity: 1;
-        }
-
-        .click-to-enlarge {
-            font-size: 1rem;
-            color: #f4c542; /* Soft yellow for the neon base */
-            margin-bottom: 5px;
-            text-shadow: 0 0 5px #f4c542, 0 0 10px #ff9900, 0 0 20px #ff9900;
-        }
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/testimonials.css' %}">
 
 
+<title>Testimonials</title>
 
-        .modal-content img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.6);
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 2rem;
-            color: #fff;
-            cursor: pointer;
-            background: transparent;
-            border: none;
-            text-shadow: 0 0 10px #f4c542, 0 0 20px #ff9900;
-        }
-
-        .modal-close:hover {
-            color: #ff9900;
-            text-shadow: 0 0 15px #ff9900, 0 0 25px #ff4500;
-        }
-
-
-/******************************/
-/* Some Final Responsive Design Adjustments */
-/******************************/
-
-@media (max-width: 768px) {
-    /* Global font scaling */
-    html, body {
-        font-size: 95%;
-    }
-
-    /* Text adjustments */
-    p {
-        font-size: 1rem; /* Scale down paragraphs */
-        margin: 0.3rem 0.5rem; /* Decrease horizontal margins */
-    }
-
-    h1 {
-        font-size: 1.9rem; /* Scale down main titles */
-        margin-bottom: 0rem;
-        margin-top: 0rem;
-    }
-
-    h2 {
-        font-size: 1.6rem; /* Adjust subheadings */
-        margin-bottom: 1rem;
-    }
-
-
-    section {
-        padding: 2rem 0.58rem; /* Adjust padding for narrower screens */
-    }
-
-
-    .text-container {
-        padding: 0 0.4rem; /* Reduce container padding */
-    }
-
-    .page-title h1 {
-        font-size: 1.8rem; /* Scale page titles */
-        margin-bottom: 1rem;
-    }
-
-        nav a {
-        display: flex; /* Use flexbox for alignment */
-    flex-direction: column; /* Stack text vertically */
-    justify-content: center; /* Center vertically */
-    align-items: center; /* Center horizontally */
-    text-align: center; /* Align multi-line text horizontally */
-        margin: 0 0.4rem;
-        font-size: 0.9rem;
-
-    }
-
-
-}
-
-    </style>
 </head>
 
-
 <body>
-
 {% load static %}
-<h1>TESTIMONIALS</h1>
-<div class="testimonial-container">
-    <div class="testimonial">
-        <p class="click-to-enlarge">Click to enlarge</p>
-        <img src="{% static 'images/testimoniale1.png' %}" alt="Testimonial 1" class="enlargeable" data-src="{% static 'images/testimoniale1.png' %}">
-        <div class="caption">🌟 An incredible experience that changed my life!</div>
+    <h1>TESTIMONIALS</h1>
+    <div class="testimonial-container">
+        <div class="testimonial">
+            <p class="click-to-enlarge">Click to enlarge</p>
+            <img src="{% static 'images/testimoniale1.png' %}" alt="Testimonial 1" class="enlargeable" data-src="{% static 'images/testimoniale1.png' %}">
+            <div class="caption">🌟 An incredible experience that changed my life!</div>
+        </div>
+        <div class="testimonial">
+            <p class="click-to-enlarge">Click to enlarge</p>
+            <img src="{% static 'images/testimoniale2.png' %}" alt="Testimonial 2" class="enlargeable" data-src="{% static 'images/testimoniale2.png' %}">
+            <div class="caption">🌟 I confidently recommend it to everyone who wants to rediscover themselves!</div>
+        </div>
     </div>
-    <div class="testimonial">
-        <p class="click-to-enlarge">Click to enlarge</p>
-        <img src="{% static 'images/testimoniale2.png' %}" alt="Testimonial 2" class="enlargeable" data-src="{% static 'images/testimoniale2.png' %}">
-        <div class="caption">🌟 I confidently recommend it to everyone looking to rediscover themselves!</div>
+
+    <!-- Modal -->
+    <div class="modal" id="image-modal">
+        <button class="modal-close" id="close-modal">&times;</button>
+        <div class="modal-content">
+            <img src="" alt="Modal Image" id="modal-image">
+        </div>
     </div>
-</div>
-
-<!-- Modal -->
-<div class="modal" id="image-modal">
-    <button class="modal-close" id="close-modal">&times;</button>
-    <div class="modal-content">
-        <img src="" alt="Modal Image" id="modal-image">
-    </div>
-</div>
-
-
-    <script>
-        // JavaScript for Modal Functionality
-        document.querySelectorAll('.enlargeable').forEach(img => {
-            img.addEventListener('click', () => {
-                const modal = document.getElementById('image-modal');
-                const modalImage = document.getElementById('modal-image');
-                modalImage.src = img.getAttribute('data-src');
-                modal.style.display = 'flex';
-            });
-        });
-
-        document.getElementById('close-modal').addEventListener('click', () => {
-            const modal = document.getElementById('image-modal');
-            modal.style.display = 'none';
-        });
-
-        // Close modal when clicking outside the image
-        document.getElementById('image-modal').addEventListener('click', (e) => {
-            if (e.target === e.currentTarget) {
-                e.currentTarget.style.display = 'none';
-            }
-        });
-    </script>
-
-</body>
-</html>
 
 <div class="scroll-indicator">▼ Scroll ▼</div>
+
+
+<!----------------------------------->
+<!-------- Page 8 HTML end  --------->
+<!----------------------------------->
+
+
+<!-- JS For enlarging testimonials Images -->
+<script>
+    // JavaScript for Modal Functionality
+    document.querySelectorAll('.enlargeable').forEach(img => {
+        img.addEventListener('click', () => {
+            const modal = document.getElementById('image-modal');
+            const modalImage = document.getElementById('modal-image');
+            modalImage.src = img.getAttribute('data-src');
+            modal.style.display = 'flex';
+        });
+    });
+
+    document.getElementById('close-modal').addEventListener('click', () => {
+        const modal = document.getElementById('image-modal');
+        modal.style.display = 'none';
+    });
+
+    // Close modal when clicking outside the image
+    document.getElementById('image-modal').addEventListener('click', (e) => {
+        if (e.target === e.currentTarget) {
+            e.currentTarget.style.display = 'none';
+        }
+    });
+</script>
