@@ -61,7 +61,7 @@
 ---
 
 ### Visit the Website
-[![Visit Re-Connect V2](https://img.shields.io/badge/Website-Re--ConnectV2-blue?style=for-the-badge&logo=react)](https://reconnectv2.com)
+[![Visit Re-Connect V2](https://img.shields.io/badge/Website-Re--ConnectV2-blue?style=for-the-badge&logo=react)](https://reconnectv2.com/en/)
 
 ---
 
