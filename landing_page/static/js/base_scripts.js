@@ -421,3 +421,40 @@ const hamburger = document.getElementById("hamburger");
     }
   }
 });
+
+
+
+
+<!------------------------------------------------------->
+<!-- Youtube API script embedding video -->
+<!------------------------------------------------------->
+//
+//
+//  // Load the YouTube API asynchronously
+//  var tag = document.createElement('script');
+//  tag.src = "https://www.youtube.com/iframe_api";
+//  var firstScriptTag = document.getElementsByTagName('script')[0];
+//  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+//
+//  // Create YouTube player when API is ready
+//  var player;
+//  function onYouTubeIframeAPIReady() {
+//    player = new YT.Player('youtube-player', {
+//      // Replace VIDEO_ID with your actual YouTube video ID
+//      videoId: '2R_24vlUXVo',
+//      playerVars: {
+//        'rel': 0,
+//        'showinfo': 0,
+//        'modestbranding': 1,
+//        'origin': window.location.origin
+//      },
+//      events: {
+//        'onReady': onPlayerReady
+//      }
+//    });
+//  }
+//
+//  function onPlayerReady(event) {
+//    // Player is ready
+//    console.log('YouTube player is ready');
+//  }

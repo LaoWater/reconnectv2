@@ -42,3 +42,29 @@
   bottom: -33px; /* Moves it much lower */
   pointer-events: none; /* Allows clicks to pass through */
 }
+
+
+
+
+  .course-presentation {
+    padding: 4rem 0;
+    background-color: #f8f9fa;
+  }
+
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+   .video-wrapper {
+    margin-bottom: 2.5rem;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+  }
+
+  .cta-container {
+    text-align: center;
+    margin-top: 2rem;
+  }
