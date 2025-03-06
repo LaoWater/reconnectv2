@@ -364,7 +364,7 @@
 /* Scroll-to-Top Button */
 #scrollToTop {
     position: fixed;
-    bottom: 20px;
+    bottom: 40px;
     left: 20px;
     width: 60px; /* Circular button size */
     height: 60px;

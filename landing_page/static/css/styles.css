@@ -3,7 +3,7 @@
 /* Audio Controls */
 #audio-controls {
     position: fixed;
-    bottom: 20px;
+    bottom: 40px;
     right: 20px;
     z-index: 10;
     display: flex;
@@ -199,7 +199,7 @@ h2 {
 h3 {
     font-family: 'Cinzel', serif;
     font-size: 1.5rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.8rem;
     background: linear-gradient(90deg, #ff4500, #ff8c00);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
