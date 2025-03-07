@@ -85,6 +85,76 @@
 </div>
 
 
+<!------------->
+<!-- YLF FAQ -->
+<!------------->
+<div class="ylf-faq">
+  <lord-icon src="https://cdn.lordicon.com/dflgefov.json" trigger="loop" colors="primary:#1AFFFD  d,secondary:#FAFF00" style="width:55px; height:55px; transform: translateY(16px);"></lord-icon>
+  <h3>Mai ai alte Curiozități?</h3>
+  <p>Explorează Inteligența Artificială Re-Connect:</p>
+  <div class="p2-container">
+    <p2>*Disponibil doar în engleză momentan</p2>
+  </div>
+</div>
+<!-- YLF Preview -->
+ <div class="ylf-widget">
+    <div class="ylf-background"></div>
+    <div id="particles-js"></div>
+
+    <div class="ylf-content">
+      <div>
+        <div class="ylf-header">
+          <div class="ylf-logo">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="url(#gradient)" stroke-width="2"/>
+              <path d="M12 16V12M12 8H12.01" stroke="url(#gradient)" stroke-width="2" stroke-linecap="round"/>
+              <defs>
+                <linearGradient id="gradient" x1="2" y1="12" x2="22" y2="12" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#ff4500"/>
+                  <stop offset="1" stop-color="#ff8c00"/>
+                </linearGradient>
+              </defs>
+            </svg>
+            YLF-1
+          </div>
+          <div class="ylf-tagline">Expanding horizons through Re-Connect teachings</div>
+        </div>
+
+        <div class="ylf-description">
+          Your AI companion trained on Re-Connect principles to aid, advise, and guide you towards new perspectives and deeper understanding.
+        </div>
+      </div>
+
+    <div class="ylf-interaction">
+        <div class="ylf-input-container">
+            <textarea class="ylf-input" placeholder="Ask YLF something..." id="ylf-prompt" rows="1"></textarea>
+            <button class="ylf-button" id="ylf-submit">
+                Ask
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22 2L11 13M22 2L15 22L11 13M11 13L2 9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+
+      <div class="ylf-footer">
+        <a href="/ylf" class="ylf-cta">
+          Explore YLF
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="#ff4500" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <div class="ylf-pills">
+          <div class="ylf-pill">Guidance</div>
+          <div class="ylf-pill">Wisdom</div>
+          <div class="ylf-pill">Discovery</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 <footer id="footer">
     <div class="footer-content">
 
@@ -120,17 +190,5 @@
 
 
 <!-- JS for FAQ container animation & expanding -->
-<script>
-    document.querySelectorAll('.faq-title').forEach(title => {
-        title.addEventListener('click', () => {
-            const content = title.nextElementSibling;
-            const icon = title.querySelector('.faq-icon');
-
-            // Toggle content expansion
-            content.classList.toggle('expanded');
-
-            // Toggle icon rotation
-            icon.classList.toggle('rotated');
-        });
-    });
-</script>
+<!-- And YLF-FAQ questions iterating loop -->
+<script src="{% static 'js/faq_scripts.js' %}"></script>
