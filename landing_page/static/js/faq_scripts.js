@@ -1,13 +1,18 @@
 
 document.addEventListener('DOMContentLoaded', function() {
   const inputField = document.getElementById('ylf-prompt');
-  const questions = [
-    "What is the meaning of life?",
-    "How can I learn JavaScript?",
-    "What's the best way to stay productive?",
-    "What are the benefits of meditation?",
-    "How do I cook a perfect steak?"
-  ];
+    const questions = [
+      "How can I optimize my breathing for stress relief?",
+      "What natural exercises boost my energy?",
+      "How do I improve my posture naturally?",
+      "Can holistic practices ease chronic pain?",
+      "What are simple movements for overall wellness?",
+      "How does mindful breathing improve sleep?",
+      "What routines help reconnect mind and body?",
+      "How can ancient methods enhance modern fitness?",
+      "What dietary tips support vitality?",
+      "How do I integrate mind, body, and movement?"
+    ];
 
   // Function to type text one character at a time
   function typeWriter(text, index, callback) {
