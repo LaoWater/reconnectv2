@@ -116,6 +116,22 @@
   border-radius: 10px;
 }
 
+/* Increase image opacity on hover */
+.flip-card:hover .card-bg-image {
+  opacity: 0.37;
+}
+
+/* Increase box-shadow on the front face when hovering over the card */
+.flip-card:hover .flip-card-front {
+  box-shadow: 0 0 25px rgba(255, 140, 0, 0.6);
+}
+
+/* Make colors slightly stronger on hover by increasing brightness and saturation */
+.flip-card:hover .flip-card-front,
+.flip-card:hover .flip-card-back {
+  filter: brightness(1.1) saturate(1.17);
+}
+
 
     /* Responsive adjustments */
     @media (max-width: 1024px) {
