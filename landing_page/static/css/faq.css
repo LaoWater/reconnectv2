@@ -525,6 +525,21 @@
       font-weight: 500;
     }
 
+  .ylf-faq .p2-container {
+    font-size: 10px; /* Adjust font size as needed */
+    text-align: right; /* Aligns text to the right */
+    /* Alternatively, you can use float: right; */
+  }
+
+        .ylf-faq h3 {
+    margin-bottom: 0.3rem; /* Adjust as needed */
+        margin-top: 0.2rem; /* Adjust as needed */
+  }
+      .ylf-faq p {
+    margin-bottom: 0px; /* Adjust as needed */
+  }
+
+
     @media (max-width: 600px) {
       .ylf-widget {
         min-height: 400px;

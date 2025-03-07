@@ -5,7 +5,7 @@
 
 .video-section {
     position: relative;
-    width: 100%;
+    width: 85%;
     height: 400px;
     overflow: hidden;
     margin: 60px auto; /* Create spacing that blends naturally */
