@@ -34,3 +34,12 @@
          text-align: center;
          line-height: 1.5;
       }
+
+
+
+/* Responsive font size fix */
+@media only screen and (max-width: 768px) {
+  .adevaruri-subtext p {
+    font-size: 0.85rem !important;
+  }
+}

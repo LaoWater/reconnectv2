@@ -420,23 +420,31 @@
       padding: 10px;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
     }
+.ylf-input-container {
+    display: inline-flex;
+    flex-direction: row;
+    width: 100%;
+    max-width: 600px;
+    position: relative;
+}
 
-    .ylf-input-container {
-      display: flex;
-      margin-bottom: 15px;
-    }
+.ylf-input {
+    width: 100%;
+    min-height: 50px; /* Default height */
+    max-height: 200px; /* Maximum height before scrolling */
+    border: none;
+    background: rgba(240, 240, 240, 0.7);
+    border-radius: 10px;
+    padding: 12px 15px;
+    font-size: 16px;
+    color: #333;
+    outline: none;
+    resize: none; /* Prevent manual resizing */
+    overflow-y: auto; /* Enable scrolling if needed */
+    line-height: 1.5;
+    transition: height 0.2s ease-in-out;
+}
 
-    .ylf-input {
-      flex: 1;
-      border: none;
-      background: rgba(240, 240, 240, 0.7);
-      border-radius: 10px;
-      padding: 12px 15px;
-      font-size: 16px;
-      color: #333;
-      outline: none;
-      transition: all 0.3s ease;
-    }
 
     .ylf-input:focus {
       box-shadow: 0 0 0 2px rgba(26, 255, 253, 0.6);
@@ -552,7 +560,12 @@
       }
 
       .ylf-description {
-        font-size: 16px;
+        font-size: 14.4px;
+      }
+
+      .ylf-tagline {
+        font-size: 14.4px;
+        margin-bottom: 10px;
       }
 
       .ylf-input-container {
@@ -575,4 +588,20 @@
         margin-top: 10px;
         flex-wrap: wrap;
       }
+
+      .ylf-faq {
+      top: 3rem;
+      }
+
+      .ylf-widget {
+      top: 5rem;
+
+      }
+     .ylf-faq {
+     min-height: 140px;
+     }
+
+    #footer {
+    top: 13rem;
+    }
     }
