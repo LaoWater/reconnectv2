@@ -114,10 +114,10 @@ document.addEventListener('DOMContentLoaded', function () {
       if (page.id === "page1") {
         staggerValue = 0.11;
       } else if (page.id === "page7") {
-        staggerValue = 0.15; // example custom value for page7
+        staggerValue = 0.11; // example custom value for page7
       } else {
         // default for other pages (e.g., #page2)
-        staggerValue = 0.15;
+        staggerValue = 0.11;
       }
 
     // Create a GSAP timeline for this page (paused by default)
