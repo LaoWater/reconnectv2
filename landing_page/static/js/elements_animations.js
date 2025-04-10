@@ -101,57 +101,58 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-
 //
-  // 2) GSAP Animations for #page1, #page2, #page7
-  //
-    const pages = document.querySelectorAll("#page1, #page2, #page7");
-
-    pages.forEach((page) => {
-      // Choose stagger value based on page id
-      let staggerValue;
-
-      if (page.id === "page1") {
-        staggerValue = 0.11;
-      } else if (page.id === "page7") {
-        staggerValue = 0.11; // example custom value for page7
-      } else {
-        // default for other pages (e.g., #page2)
-        staggerValue = 0.11;
-      }
-
-    // Create a GSAP timeline for this page (paused by default)
-    const tl = gsap.timeline({ paused: true });
-
-    // Animate each direct child element
-    tl.from(page.children, {
-      duration: 1.3,
-      opacity: 0,
-      scale: 0.1,
-      filter: "blur(8px)",
-      x: () => gsap.utils.random(-20, 20),
-      y: () => gsap.utils.random(-20, 20),
-      ease: "power2.out",
-      stagger: staggerValue,
-      onComplete: function() {
-        // Remove the blur after animation completes
-        gsap.set(page.children, { filter: "blur(0px)" });
-      }
-    });
-
-    // Use a separate IntersectionObserver to trigger GSAP animations
-    const observerGSAP = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.intersectionRatio >= 0.13) {
-          tl.play();
-        } else {
-          tl.reverse();
-        }
-      });
-    }, { threshold: [0, 0.13] });
-
-    observerGSAP.observe(page);
-  });
+////
+//  // 2) GSAP Animations for #page1, #page2, #page7 -
+//  // DISABLED for now due to laggy-feel
+//  //
+//    const pages = document.querySelectorAll("#page1, #page2, #page7");
+//
+//    pages.forEach((page) => {
+//      // Choose stagger value based on page id
+//      let staggerValue;
+//
+//      if (page.id === "page1") {
+//        staggerValue = 0.11;
+//      } else if (page.id === "page7") {
+//        staggerValue = 0.11; // example custom value for page7
+//      } else {
+//        // default for other pages (e.g., #page2)
+//        staggerValue = 0.11;
+//      }
+//
+//    // Create a GSAP timeline for this page (paused by default)
+//    const tl = gsap.timeline({ paused: true });
+//
+//    // Animate each direct child element
+//    tl.from(page.children, {
+//      duration: 1.3,
+//      opacity: 0,
+//      scale: 0.1,
+//      filter: "blur(8px)",
+//      x: () => gsap.utils.random(-20, 20),
+//      y: () => gsap.utils.random(-20, 20),
+//      ease: "power2.out",
+//      stagger: staggerValue,
+//      onComplete: function() {
+//        // Remove the blur after animation completes
+//        gsap.set(page.children, { filter: "blur(0px)" });
+//      }
+//    });
+//
+//    // Use a separate IntersectionObserver to trigger GSAP animations
+//    const observerGSAP = new IntersectionObserver((entries) => {
+//      entries.forEach(entry => {
+//        if (entry.intersectionRatio >= 0.13) {
+//          tl.play();
+//        } else {
+//          tl.reverse();
+//        }
+//      });
+//    }, { threshold: [0, 0.13] });
+//
+//    observerGSAP.observe(page);
+//  });
 });
 
 
