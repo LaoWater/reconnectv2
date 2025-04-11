@@ -62,6 +62,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     loopQuestions();
+
+
 });
 
 
@@ -79,3 +81,39 @@ document.querySelectorAll('.faq-title').forEach(title => {
         icon.classList.toggle('rotated');
     });
 });
+
+
+// CountDown script
+function startCountdown() {
+    // Target: April 18, 2025 @ 5:42 AM
+    const anchorDate = new Date('2025-04-19T02:42:00Z'); // Use UTC to avoid timezone weirdness
+    const now = new Date();
+    let remainingSeconds = Math.floor((anchorDate.getTime() - now.getTime()) / 1000);
+
+    function updateCountdown() {
+        if (remainingSeconds <= 0) {
+            document.querySelector(".countdown").innerHTML = "EXPIRED";
+            clearInterval(timer);
+            return;
+        }
+
+        const days = Math.floor(remainingSeconds / (60 * 60 * 24));
+        const hours = Math.floor((remainingSeconds % (60 * 60 * 24)) / (60 * 60));
+        const minutes = Math.floor((remainingSeconds % (60 * 60)) / 60);
+        const seconds = remainingSeconds % 60;
+
+        document.getElementById("days").innerHTML = days.toString().padStart(2, '0');
+        document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
+        document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
+        document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
+
+        remainingSeconds--;
+    }
+
+    updateCountdown(); // Run once immediately
+    const timer = setInterval(updateCountdown, 1000); // Tick every second
+}
+
+// Start countdown when page loads
+window.addEventListener('load', startCountdown);
+

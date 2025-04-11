@@ -605,3 +605,51 @@
     top: 13rem;
     }
     }
+
+
+/* Countdown Timer */
+.countdown-container {
+    background: #1a1a1a;
+    padding: 1rem;
+    border-radius: 12px;
+    text-align: center;
+    margin: 2rem auto;
+    max-width: 600px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.countdown-container h3 {
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.countdown {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.time-block {
+    background: #262626;
+    padding: 1rem;
+    border-radius: 8px;
+    min-width: 80px;
+}
+
+.number {
+    color: #4f46e5;
+    font-family: 'Space Mono', monospace;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.label {
+    color: #a1a1aa;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
