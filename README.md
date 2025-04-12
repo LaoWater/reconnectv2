@@ -60,7 +60,7 @@ Re-Connect V2 is a web application developed from an empty Django template, inte
 **Conclusion:**
 Re-Connect V2 exemplifies the comprehensive integration of knowledge acquired from both CS50W and CS50AI (previous taken course). 
 By developing and hosting a functional startup website, this project addresses real-world needs and demonstrates practical application of the skills learned.
-DoDoLiNo
+
 
 ---
 ---
