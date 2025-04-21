@@ -86,7 +86,7 @@ document.querySelectorAll('.faq-title').forEach(title => {
 // CountDown script
 function startCountdown() {
     // Target: April 18, 2025 @ 5:42 AM
-    const anchorDate = new Date('2025-04-19T02:42:00Z'); // Use UTC to avoid timezone weirdness
+    const anchorDate = new Date('2025-05-05T02:42:00Z'); // Use UTC to avoid timezone weirdness
     const now = new Date();
     let remainingSeconds = Math.floor((anchorDate.getTime() - now.getTime()) / 1000);
 
