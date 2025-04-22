@@ -41,30 +41,6 @@
 ---
 ---
 
-## **Distinctiveness and Complexity**
-
-Re-Connect V2 is a web application developed from an empty Django template, integrating various tools and techniques covered in CS50W, along with additional advanced functionalities. The project addresses specific challenges encountered in professional settings, incorporating several features not previously explored in CS50W problem sets, thereby distinguishing itself through increased complexity and functionality.
-
-**Key Features:**
-
-- **Multi-Technology Integration:** Combines Javascript & HTML & React for the front-end, Python-based machine learning scripts, and Django for the back-end.
-
-- **Cost-Effective Architecture:** Designed to enable startups to host a full web application with minimal costs, employing strategies like secure SQLite database exchanges and synchronization using Google and environment secrets.
-
-- **Online Course Landing Page:** Includes a bilingual (Romanian and English) online course landing page featuring custom CSS and JavaScript animations, enhancing user engagement and experience.
-
-- **Machine Learning Integration:** Incorporates Python-based machine learning scripts, offering advanced functionalities such as data analysis and predictive features. 
-
-- **Mobile Responsiveness:** Utilizes CSS and Tailwind to ensure the application is mobile-responsive, providing a seamless experience across devices.
-
-**Conclusion:**
-Re-Connect V2 exemplifies the comprehensive integration of knowledge acquired from both CS50W and CS50AI (previous taken course). 
-By developing and hosting a functional startup website, this project addresses real-world needs and demonstrates practical application of the skills learned.
-
-
----
----
-
 ### Key Features
 
 1. **Cost-Effective Hosting**  
