@@ -24,7 +24,8 @@
     object-fit: cover;
     transform: translate(-50%, -50%);
     z-index: 1;
-    filter: brightness(0.8) contrast(1.2); /* Slightly adjust brightness for better blending */
+/* May 2025 - The Jedi Returns in Solitude to Dagobah - Becoming Faceless */
+    filter: brightness(0.33) contrast(1.2); /* Slightly adjust brightness for better blending */
 }
 
 .video-overlay {

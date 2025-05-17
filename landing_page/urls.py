@@ -4,7 +4,9 @@ from . import views  # Current Directory
 
 urlpatterns = [
     # When someone visits the default route, run index function that is one of my views
-    path("", views.index, name="index"),
+    path("", views.index_en, name="index_en"),
+
+    path("ro/", views.index, name="index"),
 
     path("en/", views.index_en, name="index_en"),
 
