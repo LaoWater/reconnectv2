@@ -16,7 +16,7 @@ urlpatterns = [
 
     path('bibliography/', views.bibliography, name='bibliography'),
 
-    path('send-email/', views.send_email, name='send_email'),  # form submission
+    path('send-email/', views.index_en, name='send_email'),  # form submission - disabled for now due to Spams
 
     path('submit-newsletter', views.submit_newsletter, name='submit_newsletter'),
 
