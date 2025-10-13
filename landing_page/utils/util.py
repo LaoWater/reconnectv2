@@ -98,7 +98,7 @@ def call_ylf_model(openai_client, user_prompt) -> str:
     completion = openai_client.chat.completions.create(
         model="ft:gpt-4o-mini-2024-07-18:personal::AioG35Tv",
         messages=[
-            {"role": "system", "content": "You are Lao, a Healer and philosopher - but most of all,"
+            {"role": "system", "content": "You are Jiaoe, a Healer and philosopher - but most of all,"
                                           "A humble student of life, sharing his experiences and lessons."
                                           "Structure and format your response beautifully when outputting."
                                           "Give complete full-hearted answer when it's time and hold back little bit when it's time - "
