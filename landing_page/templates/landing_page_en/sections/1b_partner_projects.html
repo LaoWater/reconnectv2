@@ -1,0 +1,127 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/partner_projects.css' %}">
+
+<div class="partner-projects">
+    <div class="partner-projects__inner">
+
+        <div class="partner-projects__heading">
+            <h2 class="partner-projects__title">Partner Projects</h2>
+            <p class="partner-projects__intro">
+                Projects walking the same path — built by overlapping hands, under the same compass.
+            </p>
+        </div>
+
+        <div class="partner-carousel"
+             role="region"
+             aria-roledescription="carousel"
+             aria-label="Partner projects">
+
+            <div class="partner-carousel__viewport">
+                <div class="partner-carousel__track">
+
+                    {# ---- Card 1: Terapie Acasă (lead — carries the active CTA) ---- #}
+                    <article class="partner-card" data-card="therapy">
+                        <a class="partner-card__link"
+                           href="https://terapie-acasa.ro/"
+                           target="_blank" rel="noopener noreferrer"
+                           aria-label="Visit Terapie Acasă — Romanian mental-health platform"></a>
+
+                        <div class="partner-card__logo-frame">
+                            <img class="partner-card__logo"
+                                 src="{% static 'images/partner_projects/therapy-access-logo.png' %}"
+                                 alt="Terapie Acasă"
+                                 loading="lazy" decoding="async">
+                        </div>
+                        <h3 class="partner-card__name">Terapie Acasă</h3>
+                        <p class="partner-card__description">
+                            A Romanian mental-health platform connecting people with 300+ certified therapists. In production since 2024.
+                        </p>
+                        <div class="partner-card__cta">
+                            <p class="partner-card__cta-line">
+                                Use code
+                                <span class="partner-card__cta-code"
+                                      role="button"
+                                      tabindex="0"
+                                      aria-label="Copy promo code RECONNECT">RECONNECT</span>
+                                for your first session — on us.
+                            </p>
+                        </div>
+                    </article>
+
+                    {# ---- Card 2: TAP ---- #}
+                    <article class="partner-card" data-card="tap">
+                        <a class="partner-card__link"
+                           href="https://www.tap-device.com/"
+                           target="_blank" rel="noopener noreferrer"
+                           aria-label="Visit TAP — wooden Bluetooth bracelet for engineers supervising AI agents"></a>
+
+                        <div class="partner-card__logo-frame">
+                            <img class="partner-card__logo partner-card__logo--cover"
+                                 src="{% static 'images/partner_projects/tap-presentation.png' %}"
+                                 alt="TAP — wooden Bluetooth bracelet"
+                                 loading="lazy" decoding="async">
+                        </div>
+                        <h3 class="partner-card__name">TAP — Command at Rest</h3>
+                        <p class="partner-card__description">
+                            A wooden Bluetooth bracelet for engineers supervising AI agents. Step away from the keyboard; let the wrist do the approving.
+                        </p>
+                    </article>
+
+                    {# ---- Card 3: Creator's Multiverse (description is a placeholder pending Lao's final one-liner) ---- #}
+                    <article class="partner-card" data-card="creators-multiverse">
+                        <a class="partner-card__link"
+                           href="https://creators-multiverse.com/"
+                           target="_blank" rel="noopener noreferrer"
+                           aria-label="Visit Creator's Multiverse"></a>
+
+                        <div class="partner-card__logo-frame">
+                            <img class="partner-card__logo"
+                                 src="{% static 'images/partner_projects/creators-multiverse-logo.png' %}"
+                                 alt="Creator's Multiverse"
+                                 loading="lazy" decoding="async">
+                        </div>
+                        <h3 class="partner-card__name">Creator's Multiverse</h3>
+                        <p class="partner-card__description">
+                            A home for creators to grow a presence across every channel without losing the thread of who they are.
+                        </p>
+                    </article>
+
+                    {# ---- Card 4: BodyOS (launching soon) ---- #}
+                    {# Description is a placeholder pending Lao's final one-liner. #}
+                    <article class="partner-card" data-card="bodyos">
+                        <a class="partner-card__link"
+                           href="https://bodyox.ey.r.appspot.com/"
+                           target="_blank" rel="noopener noreferrer"
+                           aria-label="Visit BodyOS — operating system for the body (launching soon)"></a>
+
+                        <span class="partner-card__status">Launching soon</span>
+                        <div class="partner-card__logo-frame">
+                            <img class="partner-card__logo"
+                                 src="{% static 'images/partner_projects/bodyos-logo.png' %}"
+                                 alt="BodyOS"
+                                 loading="lazy" decoding="async">
+                        </div>
+                        <h3 class="partner-card__name">BodyOS</h3>
+                        <p class="partner-card__description">
+                            An operating system for the body — biomechanics, movement, and tension surfaced at the level of fascia and joint.
+                        </p>
+                    </article>
+
+                </div>
+            </div>
+
+            <div class="partner-carousel__controls">
+                <button type="button"
+                        class="partner-carousel__arrow partner-carousel__arrow--prev"
+                        aria-label="Previous project">‹ Prev</button>
+                <div class="partner-carousel__dots" role="tablist" aria-label="Partner project slides"></div>
+                <button type="button"
+                        class="partner-carousel__arrow partner-carousel__arrow--next"
+                        aria-label="Next project">Next ›</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/partner_projects.js' %}"></script>

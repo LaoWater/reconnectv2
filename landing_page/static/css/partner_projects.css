@@ -1,0 +1,408 @@
+/* Partner Projects — sibling-project carousel sitting between sections 1 and 2.
+   Voice inherits the host (Re-Connect): dark cosmic surface, cyan/gold accents,
+   Poppins (body) + Cinzel (display). Restraint, not chrome.
+
+   Motion is gated by the runtime capability layer in base.html:
+   - html[data-motion="lite"]  → no transitions, no auto-advance (JS reads this too)
+   - prefers-reduced-motion    → same, via @media below
+*/
+
+.partner-projects {
+    position: relative;
+    width: 100%;
+    padding: var(--space-6, 64px) 0 var(--space-5, 40px);
+    color: #e6f4f3;
+}
+
+.partner-projects__inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 var(--space-4, 24px);
+}
+
+.partner-projects__heading {
+    text-align: center;
+    margin-bottom: var(--space-2, 8px);
+}
+
+.partner-projects__title {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: clamp(1.6rem, 2.4vw, 2.2rem);
+    letter-spacing: 0.02em;
+    color: #ffffff;
+    margin: 0;
+}
+
+.partner-projects__intro {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    color: rgba(230, 244, 243, 0.72);
+    margin: var(--space-2, 8px) auto var(--space-5, 40px);
+    max-width: 640px;
+    text-align: center;
+    font-style: italic;
+}
+
+/* ---------- carousel viewport + track ---------- */
+
+.partner-carousel {
+    position: relative;
+    margin: 0 auto;
+}
+
+.partner-carousel__viewport {
+    overflow: hidden;
+    position: relative;
+    /* Padding here creates the off-screen peek of neighbors at desktop. */
+    padding: var(--space-3, 16px) 0;
+}
+
+.partner-carousel__track {
+    display: flex;
+    gap: var(--space-4, 24px);
+    will-change: transform;
+    transition: transform 600ms var(--ease-soft, cubic-bezier(0.22, 1, 0.36, 1));
+}
+
+.partner-carousel__track.is-snapping {
+    transition: none;
+}
+
+/* ---------- card ---------- */
+
+.partner-card {
+    position: relative;
+    flex: 0 0 auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    color: inherit;
+    background: linear-gradient(140deg, rgba(45, 52, 54, 0.55), rgba(34, 47, 62, 0.42));
+    border: 1px solid rgba(26, 255, 253, 0.14);
+    border-radius: 14px;
+    padding: var(--space-3, 16px) var(--space-4, 24px) var(--space-4, 24px);
+    transition:
+        opacity 500ms var(--ease-soft, ease),
+        border-color 300ms var(--ease-soft, ease),
+        transform 500ms var(--ease-soft, ease);
+    opacity: 0.32;
+    transform: scale(0.96);
+}
+
+/* Whole-card link overlay: the card is the link's hit target. The card body
+   stays below this overlay in z-order, so clicks anywhere on a card route to
+   the link. The CTA code element opts back in with z-index above the overlay. */
+.partner-card__link {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: inherit;
+    text-decoration: none;
+    color: transparent;
+}
+
+.partner-card__link:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(26, 255, 253, 0.45) inset;
+    border-radius: inherit;
+}
+
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+    .partner-card {
+        background: linear-gradient(140deg, rgba(45, 52, 54, 0.42), rgba(34, 47, 62, 0.32));
+        -webkit-backdrop-filter: blur(10px) saturate(120%);
+        backdrop-filter: blur(10px) saturate(120%);
+    }
+}
+
+/* The 1 or 2 active cards are full opacity; the rest dim back. JS toggles this. */
+.partner-card.is-active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.partner-card:hover,
+.partner-card:has(.partner-card__link:focus-visible) {
+    border-color: rgba(26, 255, 253, 0.48);
+}
+
+.partner-card__logo-frame {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 132px;
+    margin-bottom: var(--space-2, 8px);
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.partner-card__logo {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* Presentation-style hero images (e.g. tap-presentation.png) fill the frame
+   edge-to-edge instead of sitting as a small centered logo. */
+.partner-card__logo--cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Text fallback when the logo file is missing — set the project name in
+   the display typeface, matching the spec's missing-asset rule. */
+.partner-card__logo-fallback {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 1.4rem;
+    letter-spacing: 0.04em;
+    color: rgba(255, 255, 255, 0.92);
+    text-align: center;
+}
+
+.partner-card__name {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: #ffffff;
+    margin: 0 0 6px;
+    text-align: center;
+}
+
+.partner-card__description {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.92rem;
+    line-height: 1.45;
+    color: rgba(230, 244, 243, 0.84);
+    margin: 0 0 var(--space-2, 8px);
+    text-align: center;
+    flex-grow: 1;
+}
+
+/* ---------- status pill (BodyOS "Launching soon") ---------- */
+
+.partner-card__status {
+    display: inline-block;
+    align-self: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(250, 255, 0, 0.86);
+    border: 1px solid rgba(250, 255, 0, 0.32);
+    border-radius: 999px;
+    padding: 3px 10px;
+    margin: 0 auto var(--space-2, 8px);
+}
+
+/* ---------- partner mark (Kinetomed on BodyOS) ---------- */
+
+.partner-card__partner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    margin-top: var(--space-2, 8px);
+    padding-top: var(--space-3, 16px);
+    border-top: 1px solid rgba(26, 255, 253, 0.12);
+}
+
+.partner-card__partner-label {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(230, 244, 243, 0.56);
+}
+
+.partner-card__partner-mark {
+    font-family: 'Cinzel', serif;
+    font-size: 0.96rem;
+    color: rgba(255, 255, 255, 0.86);
+    letter-spacing: 0.04em;
+}
+
+.partner-card__partner-logo {
+    max-height: 32px;
+    max-width: 140px;
+    object-fit: contain;
+}
+
+/* ---------- CTA pill (Therapy card discount code) ---------- */
+
+.partner-card__cta {
+    text-align: center;
+    margin-top: var(--space-2, 8px);
+}
+
+.partner-card__cta-line {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.92rem;
+    color: rgba(230, 244, 243, 0.82);
+    margin: 0;
+}
+
+.partner-card__cta-code {
+    /* Sits above .partner-card__link so its own clicks are not captured by
+       the card-wide navigation overlay. */
+    position: relative;
+    z-index: 2;
+    display: inline-block;
+    font-family: 'Source Code Pro', 'Courier New', monospace;
+    font-size: 0.94rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #1AFFFD;
+    background: rgba(26, 255, 253, 0.08);
+    border: 1px solid rgba(26, 255, 253, 0.32);
+    border-radius: 4px;
+    padding: 2px 8px;
+    margin: 0 4px;
+    cursor: copy;
+    transition: background 200ms var(--ease-soft, ease);
+}
+
+.partner-card__cta-code:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(26, 255, 253, 0.5);
+}
+
+.partner-card__cta-code:hover {
+    background: rgba(26, 255, 253, 0.16);
+}
+
+.partner-card__cta-code.is-copied {
+    background: rgba(250, 255, 0, 0.16);
+    border-color: rgba(250, 255, 0, 0.42);
+    color: #FAFF00;
+}
+
+/* ---------- controls (prev/next + dots) ---------- */
+
+.partner-carousel__controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3, 16px);
+    margin-top: var(--space-4, 24px);
+}
+
+.partner-carousel__arrow {
+    background: transparent;
+    border: none;
+    color: rgba(230, 244, 243, 0.62);
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 8px 4px;
+    cursor: pointer;
+    transition: color 200ms var(--ease-soft, ease);
+}
+
+.partner-carousel__arrow:hover,
+.partner-carousel__arrow:focus-visible {
+    color: #1AFFFD;
+    outline: none;
+}
+
+.partner-carousel__arrow:focus-visible {
+    text-shadow: 0 0 8px rgba(26, 255, 253, 0.5);
+}
+
+.partner-carousel__dots {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.partner-carousel__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1px solid rgba(230, 244, 243, 0.36);
+    padding: 0;
+    cursor: pointer;
+    transition:
+        background 200ms var(--ease-soft, ease),
+        border-color 200ms var(--ease-soft, ease),
+        transform 200ms var(--ease-soft, ease);
+}
+
+.partner-carousel__dot:hover,
+.partner-carousel__dot:focus-visible {
+    border-color: rgba(26, 255, 253, 0.72);
+    outline: none;
+}
+
+.partner-carousel__dot.is-current {
+    background: #1AFFFD;
+    border-color: #1AFFFD;
+    transform: scale(1.15);
+}
+
+/* ---------- responsive ----------
+   ≥ 1280: 2 cards visible, neighbors peek at edges
+   768–1279: 1 card, full width
+   < 768: 1 card, generous padding
+*/
+
+@media (min-width: 1280px) {
+    .partner-carousel__viewport {
+        /* Small side padding lets a slim edge of neighbors hint at the loop
+           without stealing width from the active pair. */
+        padding-left: 2.5%;
+        padding-right: 2.5%;
+    }
+    .partner-card {
+        width: calc((100% - 24px) / 2);
+    }
+}
+
+@media (max-width: 1279px) {
+    .partner-card {
+        width: 100%;
+    }
+}
+
+@media (max-width: 767px) {
+    .partner-projects {
+        padding: var(--space-5, 40px) 0;
+    }
+    .partner-projects__inner {
+        padding: 0 var(--space-3, 16px);
+    }
+    .partner-card {
+        padding: var(--space-3, 16px) var(--space-3, 16px);
+    }
+    .partner-card__logo-frame {
+        height: 108px;
+    }
+    .partner-carousel__arrow {
+        font-size: 0.75rem;
+    }
+}
+
+/* ---------- motion gates ----------
+   The base.html capability layer sets html[data-motion="lite"] for mobile,
+   prefers-reduced-motion, save-data, and low-end devices. In all those cases
+   we keep the carousel structurally working but remove all transitions and
+   let JS skip the auto-advance.
+*/
+
+html[data-motion="lite"] .partner-carousel__track,
+html[data-motion="lite"] .partner-card {
+    transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .partner-carousel__track,
+    .partner-card,
+    .partner-carousel__dot,
+    .partner-card__cta-code {
+        transition: none;
+    }
+}

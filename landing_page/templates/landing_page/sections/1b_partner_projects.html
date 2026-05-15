@@ -1,0 +1,127 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/partner_projects.css' %}">
+
+<div class="partner-projects">
+    <div class="partner-projects__inner">
+
+        <div class="partner-projects__heading">
+            <h2 class="partner-projects__title">Proiecte Partener</h2>
+            <p class="partner-projects__intro">
+                Proiecte care merg pe același drum — construite de mâini ce se suprapun, sub aceeași busolă.
+            </p>
+        </div>
+
+        <div class="partner-carousel"
+             role="region"
+             aria-roledescription="carousel"
+             aria-label="Proiecte partener">
+
+            <div class="partner-carousel__viewport">
+                <div class="partner-carousel__track">
+
+                    {# ---- Cardul 1: Terapie Acasă (deschide — are CTA-ul activ) ---- #}
+                    <article class="partner-card" data-card="therapy">
+                        <a class="partner-card__link"
+                           href="https://terapie-acasa.ro/"
+                           target="_blank" rel="noopener noreferrer"
+                           aria-label="Vizitează Terapie Acasă — platformă românească de sănătate mintală"></a>
+
+                        <div class="partner-card__logo-frame">
+                            <img class="partner-card__logo"
+                                 src="{% static 'images/partner_projects/therapy-access-logo.png' %}"
+                                 alt="Terapie Acasă"
+                                 loading="lazy" decoding="async">
+                        </div>
+                        <h3 class="partner-card__name">Terapie Acasă</h3>
+                        <p class="partner-card__description">
+                            Platformă românească de sănătate mintală care conectează oameni cu peste 300 de terapeuți certificați. În producție din 2024.
+                        </p>
+                        <div class="partner-card__cta">
+                            <p class="partner-card__cta-line">
+                                Folosește codul
+                                <span class="partner-card__cta-code"
+                                      role="button"
+                                      tabindex="0"
+                                      aria-label="Copiază codul RECONNECT">RECONNECT</span>
+                                pentru prima ta ședință — din partea noastră.
+                            </p>
+                        </div>
+                    </article>
+
+                    {# ---- Cardul 2: TAP ---- #}
+                    <article class="partner-card" data-card="tap">
+                        <a class="partner-card__link"
+                           href="https://www.tap-device.com/"
+                           target="_blank" rel="noopener noreferrer"
+                           aria-label="Vizitează TAP — brățară Bluetooth din lemn pentru ingineri care supraveghează agenți AI"></a>
+
+                        <div class="partner-card__logo-frame">
+                            <img class="partner-card__logo partner-card__logo--cover"
+                                 src="{% static 'images/partner_projects/tap-presentation.png' %}"
+                                 alt="TAP — brățară Bluetooth din lemn"
+                                 loading="lazy" decoding="async">
+                        </div>
+                        <h3 class="partner-card__name">TAP — Command at Rest</h3>
+                        <p class="partner-card__description">
+                            O brățară Bluetooth din lemn pentru inginerii care supraveghează agenți AI. Ridică mâna de pe tastatură; lasă încheietura să aprobe.
+                        </p>
+                    </article>
+
+                    {# ---- Cardul 3: Creator's Multiverse (descriere placeholder, în așteptarea variantei finale de la Lao) ---- #}
+                    <article class="partner-card" data-card="creators-multiverse">
+                        <a class="partner-card__link"
+                           href="https://creators-multiverse.com/"
+                           target="_blank" rel="noopener noreferrer"
+                           aria-label="Vizitează Creator's Multiverse"></a>
+
+                        <div class="partner-card__logo-frame">
+                            <img class="partner-card__logo"
+                                 src="{% static 'images/partner_projects/creators-multiverse-logo.png' %}"
+                                 alt="Creator's Multiverse"
+                                 loading="lazy" decoding="async">
+                        </div>
+                        <h3 class="partner-card__name">Creator's Multiverse</h3>
+                        <p class="partner-card__description">
+                            Un cămin pentru creatori, unde își pot crește prezența pe orice canal fără să piardă firul cine sunt.
+                        </p>
+                    </article>
+
+                    {# ---- Cardul 4: BodyOS (în curând) ---- #}
+                    {# Descriere placeholder, în așteptarea variantei finale de la Lao. #}
+                    <article class="partner-card" data-card="bodyos">
+                        <a class="partner-card__link"
+                           href="https://bodyox.ey.r.appspot.com/"
+                           target="_blank" rel="noopener noreferrer"
+                           aria-label="Vizitează BodyOS — sistem de operare pentru corp (în curând)"></a>
+
+                        <span class="partner-card__status">În curând</span>
+                        <div class="partner-card__logo-frame">
+                            <img class="partner-card__logo"
+                                 src="{% static 'images/partner_projects/bodyos-logo.png' %}"
+                                 alt="BodyOS"
+                                 loading="lazy" decoding="async">
+                        </div>
+                        <h3 class="partner-card__name">BodyOS</h3>
+                        <p class="partner-card__description">
+                            Un sistem de operare pentru corp — biomecanică, mișcare și tensiune dezvăluite la nivelul fasciei și al articulației.
+                        </p>
+                    </article>
+
+                </div>
+            </div>
+
+            <div class="partner-carousel__controls">
+                <button type="button"
+                        class="partner-carousel__arrow partner-carousel__arrow--prev"
+                        aria-label="Proiectul anterior">‹ Anterior</button>
+                <div class="partner-carousel__dots" role="tablist" aria-label="Slide-uri proiecte partener"></div>
+                <button type="button"
+                        class="partner-carousel__arrow partner-carousel__arrow--next"
+                        aria-label="Proiectul următor">Următor ›</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/partner_projects.js' %}"></script>
