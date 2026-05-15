@@ -33,7 +33,8 @@
     <div class="video-section">
 
         <div class="video-overlay"></div>
-        <video autoplay muted loop playsinline class="background-video">
+        <video autoplay muted loop playsinline class="background-video"
+               preload="metadata" poster="{% static 'images/posters/move_water.jpg' %}">
             <source src="{% static 'images/move_water.mp4' %}" type="video/mp4">
             Your browser does not support the video tag.
         </video>

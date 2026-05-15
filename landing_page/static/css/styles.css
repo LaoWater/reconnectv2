@@ -110,11 +110,12 @@ html, body {
     overflow-x: hidden;
     overflow-y: scroll;
     font-family: 'Poppins', sans-serif;
-    background: #000;
+    /* Near-black with a cool charcoal floor. The ember layers add warmth
+       selectively instead of turning the whole viewport orange. */
+    background: #050708;
     color: #fff;
     scroll-behavior: smooth;
-    transition: background 0.5s ease-in-out; /* Smooth transition for background changes */
-
+    transition: background 0.5s ease-in-out;
 }
 
 nav {
@@ -171,7 +172,9 @@ nav a:hover {
 
 h1 {
     font-family: 'Cinzel', serif;
-    font-size: 3rem;
+    /* Fluid: 1.8rem on a 360px phone, scales up to the original 3rem on wide screens.
+       Cinzel loses character below ~1.6rem, so the lower bound is the floor. */
+    font-size: clamp(1.8rem, 4vw + 0.6rem, 3rem);
     line-height: 1.2;
     margin-bottom: 1rem;
     background: linear-gradient(90deg, #ff4500, #ff8c00);
@@ -185,7 +188,7 @@ h1 {
 
 h2 {
     font-family: 'Cinzel', serif;
-    font-size: 2rem;
+    font-size: clamp(1.4rem, 2.4vw + 0.6rem, 2rem);
     margin-bottom: 1.5rem;
     background: linear-gradient(90deg, #ff4500, #ff8c00);
     -webkit-background-clip: text;
@@ -198,7 +201,7 @@ h2 {
 
 h3 {
     font-family: 'Cinzel', serif;
-    font-size: 1.5rem;
+    font-size: clamp(1.15rem, 1.4vw + 0.6rem, 1.5rem);
     margin-bottom: 0.8rem;
     background: linear-gradient(90deg, #ff4500, #ff8c00);
     -webkit-background-clip: text;

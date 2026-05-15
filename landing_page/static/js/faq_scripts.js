@@ -83,8 +83,12 @@ document.querySelectorAll('.faq-title').forEach(title => {
 });
 
 
-// CountDown script
+// CountDown script — currently dormant. The countdown markup was removed from
+// 9_faq.html when the course went free-forever (no scarcity narrative). Guard
+// against missing DOM nodes so reintroducing the markup later just works.
 function startCountdown() {
+    if (!document.getElementById("days")) return;
+
     // Target: April 18, 2025 @ 5:42 AM
     const anchorDate = new Date('2025-05-05T02:42:00Z'); // Use UTC to avoid timezone weirdness
     const now = new Date();

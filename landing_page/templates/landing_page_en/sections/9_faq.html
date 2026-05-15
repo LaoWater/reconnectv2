@@ -1,5 +1,5 @@
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/faq.css' %}">
+<link rel="stylesheet" href="{% static 'css/faq.css' %}?v=20260515-price-strike">
 
 
 <title>FAQ - Frequently Asked Questions</title>
@@ -41,13 +41,13 @@
     </div>
     <div class="faq">
         <div class="faq-title">
-            <span>3. How much does it cost?</span>
+            <span>3. Is it truly free?</span>
             <span class="faq-icon">+</span>
         </div>
         <div class="faq-content">
             <p>
-                <i class="fa-solid fa-square-check" style="color: #1AFFFD; margin-right: 8px;"></i><strong>The price is 377 lei.</strong><br>
-                <i class="fa-solid fa-square-check" style="color: #1AFFFD; margin-right: 8px;"></i><strong><span class="underline">For the first 30 days, we offer a 100% money-back guarantee, no questions asked.</span></strong><br>
+                <i class="fa-solid fa-square-check" style="color: #1AFFFD; margin-right: 8px;"></i><strong>The course is free, forever.</strong><br>
+                <i class="fa-solid fa-hand-holding-heart" style="color: #1AFFFD; margin-right: 8px;"></i><em>At the end of the course, if you feel called, you may contribute via donation — entirely optional.</em><br>
                 <i class="fa-solid fa-square-check" style="color: #1AFFFD; margin-right: 8px;"></i>The goal of helping you takes precedence over money.
             </p>
         </div>
@@ -73,14 +73,12 @@
 
 {% load static %}
 <div class="buy-buttons-container">
-    <!-- Original Price (Strikethrough) -->
-    <a class="buy-button old-price" href="https://reconnectcourse.thinkific.com/courses/re-connect-v2" target="_blank">
-        Price <span class="strikethrough">800 LEI</span>
-    </a>
-
-    <!-- Discounted Price (Highlighted) -->
-    <a class="buy-button new-price" href="https://reconnectcourse.thinkific.com/courses/re-connect-v2" target="_blank">
-        Buy now for <span class="discounted-price">377 LEI</span>
+    <div class="price-display">
+        <span class="old-price">400 LEI</span>
+        <span class="free-forever">FREE FOREVER</span>
+    </div>
+    <a href="https://reconnectcourse.thinkific.com/courses/re-connect-v2" target="_blank" class="buy-button">
+        Access the Course — Free
     </a>
 </div>
 
@@ -161,16 +159,16 @@
         <!-- Social Media Icons -->
         <div class="footer-section social-icons">
             <a href="https://www.instagram.com/reconnect.course" target="_blank" class="social-icon instagram">
-                <img src="{% static 'images/instagram_icon.png' %}" alt="Instagram">
+                <img src="{% static 'images/instagram_icon.png' %}" alt="Instagram" loading="lazy" decoding="async">
             </a>
             <a href="https://www.facebook.com/Reconnect.Course" target="_blank" class="social-icon facebook">
-                <img src="{% static 'images/facebook_icon.png' %}" alt="Facebook">
+                <img src="{% static 'images/facebook_icon.png' %}" alt="Facebook" loading="lazy" decoding="async">
             </a>
             <a href="https://www.youtube.com/@re-connect./featured" target="_blank" class="social-icon youtube">
-                <img src="{% static 'images/youtube_icon.png' %}" alt="YouTube">
+                <img src="{% static 'images/youtube_icon.png' %}" alt="YouTube" loading="lazy" decoding="async">
             </a>
             <a href="https://www.tiktok.com/@reconnect.course" target="_blank" class="social-icon tiktok">
-                <img src="{% static 'images/tiktok_icon.png' %}" alt="TikTok">
+                <img src="{% static 'images/tiktok_icon.png' %}" alt="TikTok" loading="lazy" decoding="async">
             </a>
         </div>
 

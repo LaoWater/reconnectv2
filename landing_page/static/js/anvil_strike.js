@@ -2,11 +2,23 @@
 const hammer = document.querySelector(".hammer");
 const sparksContainer = document.querySelector(".sparks");
 
+// Capability hooks (set by base.html before this script loads). Fallbacks are
+// generous so the script still works on pages that didn't define window.RC.
+const _rcHeavyOk = !window.RC || window.RC.heavyOk;
+const _rcNarrow  = !!(window.RC && window.RC.narrow);
+const _sparkBurst = _rcNarrow ? 12 : 40; // fewer sparks per strike on small screens
+
 let isPageActive = true; // Tracks whether the page is active
 
-// Function to check and update the page visibility state
+// Function to check and update the page visibility state. Also pause/resume
+// the global GSAP timeline so the anvil's residual tweens don't burn cycles
+// while the tab is backgrounded.
 function handleVisibilityChange() {
     isPageActive = !document.hidden; // `true` if the page is active
+    if (typeof gsap !== 'undefined' && gsap.globalTimeline) {
+        if (document.hidden) gsap.globalTimeline.pause();
+        else gsap.globalTimeline.resume();
+    }
 }
 
 // Add event listener to detect page visibility changes
@@ -90,11 +102,20 @@ function hammerStrike() {
 
         });
 
-    // Generate multiple sparks during the strike
-    for (let i = 0; i < 40; i++) {
-        setTimeout(() => generateSpark(), i * 20); // Higher density of sparks
+    // Generate multiple sparks during the strike (fewer on small screens to
+    // keep DOM creation cost under 250 nodes/sec on the mobile timeline).
+    for (let i = 0; i < _sparkBurst; i++) {
+        setTimeout(() => generateSpark(), i * 20);
     }
 }
 
-// Trigger the hammer strike and spark animations every 3 seconds
-setInterval(hammerStrike, 3000);
+// On desktops with full motion capacity, run the eternal 3-second forge.
+// On mobile / reduced-motion / save-data, fire one poetic strike on load
+// and a second on tap — the metaphor survives, the engine doesn't burn.
+if (_rcHeavyOk) {
+    setInterval(hammerStrike, 3000);
+} else if (hammer) {
+    setTimeout(hammerStrike, 1200);
+    hammer.style.cursor = 'pointer';
+    hammer.addEventListener('click', hammerStrike);
+}

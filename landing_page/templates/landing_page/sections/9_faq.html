@@ -1,5 +1,5 @@
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/faq.css' %}">
+<link rel="stylesheet" href="{% static 'css/faq.css' %}?v=20260515-price-strike">
 
 
 <title>FAQ - Întrebări Frecvente</title>
@@ -41,13 +41,13 @@
     </div>
     <div class="faq">
         <div class="faq-title">
-            <span>3. Cât costă?</span>
+            <span>3. Este cu adevărat gratuit?</span>
             <span class="faq-icon">+</span>
         </div>
         <div class="faq-content">
             <p>
-                <i class="fa-solid fa-square-check" style="color: #1AFFFD; margin-right: 8px;"></i><strong>Prețul este de 377 lei.</strong><br>
-                <i class="fa-solid fa-square-check" style="color: #1AFFFD; margin-right: 8px;"></i><strong><span class="underline">În primele 30 de zile oferim banii înapoi 100%, fără să ai vreun motiv.</span></strong><br>
+                <i class="fa-solid fa-square-check" style="color: #1AFFFD; margin-right: 8px;"></i><strong>Cursul este gratuit pentru totdeauna.</strong><br>
+                <i class="fa-solid fa-hand-holding-heart" style="color: #1AFFFD; margin-right: 8px;"></i><em>La finalul cursului, dacă simți, există posibilitatea să contribui printr-o donație — complet opțional.</em><br>
                 <i class="fa-solid fa-square-check" style="color: #1AFFFD; margin-right: 8px;"></i>Scopul de a te ajuta primează în fața banilor.
             </p>
         </div>
@@ -73,42 +73,14 @@
 
 {% load static %}
 <div class="buy-buttons-container">
-    <!-- Original Price (Strikethrough) -->
-    <a class="buy-button old-price" href="https://reconnectcourse.thinkific.com/courses/re-connect-v2" target="_blank">
-        Preț vechi <span class="strikethrough">800 LEI</span>
-    </a>
-
-    <!-- Discounted Price (Highlighted) -->
-    <a class="buy-button new-price" href="https://reconnectcourse.thinkific.com/courses/re-connect-v2" target="_blank">
+    <div class="price-display">
+        <span class="old-price">400 LEI</span>
+        <span class="free-forever">GRATUIT PENTRU TOTDEAUNA</span>
+    </div>
+    <a href="https://reconnectcourse.thinkific.com/courses/re-connect-v2" target="_blank" class="buy-button">
         Accesează Cursul Gratuit
     </a>
 </div>
-
-<!------------->
-<!-- Countdown Timer -->
-<!------------->
-<div class="countdown-container">
-    <h3>Limited Time Offer</h3>
-    <div class="countdown">
-        <div class="time-block">
-            <div class="number" id="days">07</div>
-            <div class="label">Days</div>
-        </div>
-        <div class="time-block">
-            <div class="number" id="hours">00</div>
-            <div class="label">Hours</div>
-        </div>
-        <div class="time-block">
-            <div class="number" id="minutes">00</div>
-            <div class="label">Minutes</div>
-        </div>
-        <div class="time-block">
-            <div class="number" id="seconds">00</div>
-            <div class="label">Seconds</div>
-        </div>
-    </div>
-</div>
-
 
 <!------------->
 <!-- YLF FAQ -->
@@ -187,16 +159,16 @@
         <!-- Social Media Icons -->
         <div class="footer-section social-icons">
             <a href="https://www.instagram.com/reconnect.course" target="_blank" class="social-icon instagram">
-                <img src="{% static 'images/instagram_icon.png' %}" alt="Instagram">
+                <img src="{% static 'images/instagram_icon.png' %}" alt="Instagram" loading="lazy" decoding="async">
             </a>
             <a href="https://www.facebook.com/Reconnect.Course" target="_blank" class="social-icon facebook">
-                <img src="{% static 'images/facebook_icon.png' %}" alt="Facebook">
+                <img src="{% static 'images/facebook_icon.png' %}" alt="Facebook" loading="lazy" decoding="async">
             </a>
             <a href="https://www.youtube.com/@re-connect./featured" target="_blank" class="social-icon youtube">
-                <img src="{% static 'images/youtube_icon.png' %}" alt="YouTube">
+                <img src="{% static 'images/youtube_icon.png' %}" alt="YouTube" loading="lazy" decoding="async">
             </a>
             <a href="https://www.tiktok.com/@reconnect.course" target="_blank" class="social-icon tiktok">
-                <img src="{% static 'images/tiktok_icon.png' %}" alt="TikTok">
+                <img src="{% static 'images/tiktok_icon.png' %}" alt="TikTok" loading="lazy" decoding="async">
             </a>
         </div>
 

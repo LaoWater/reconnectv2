@@ -458,3 +458,30 @@ const hamburger = document.getElementById("hamburger");
 //    // Player is ready
 //    console.log('YouTube player is ready');
 //  }
+
+
+
+
+<!------------------------------------------------------->
+<!-- Video lite mode — pause autoplay on mobile / reduced motion -->
+<!------------------------------------------------------->
+//
+//  On lite-motion devices (mobile, prefers-reduced-motion, save-data) we keep
+//  the poster frame and skip the autoplay. The markup still says `autoplay`
+//  for desktop; this just intercepts on the small/quiet devices. Desktop is
+//  untouched. Posters live in static/images/posters/<name>.jpg.
+
+document.addEventListener('DOMContentLoaded', function () {
+    var heavyOk = !window.RC || window.RC.heavyOk;
+    if (heavyOk) return;
+
+    var videos = document.querySelectorAll('video');
+    for (var i = 0; i < videos.length; i++) {
+        var v = videos[i];
+        try {
+            v.removeAttribute('autoplay');
+            v.setAttribute('preload', 'none');
+            v.pause();
+        } catch (e) { /* ignore — some videos may already be paused */ }
+    }
+});

@@ -469,3 +469,113 @@
     0% { transform: rotate(0deg); }
     100% { transform: rotate(-360deg); }
 }
+
+/* ------------------------------------------------------------------
+ * Motion gating (added 2026-05)
+ *
+ * The base.html capability layer sets html[data-motion="lite"] when
+ * the device is narrow, low-power, save-data, or the user prefers
+ * reduced motion. We stop the perpetual breathing / wave / food / orbit
+ * animations there to spare the engine. The keyframes above are
+ * intentionally left untouched — gating, not gutting.
+ * ------------------------------------------------------------------ */
+html[data-motion="lite"] .air-core,
+html[data-motion="lite"] .airwave,
+html[data-motion="lite"] .symbol.food,
+html[data-motion="lite"] .symbol.food .seed,
+html[data-motion="lite"] .symbol.food .sprout,
+html[data-motion="lite"] .symbol.food .trunk,
+html[data-motion="lite"] .symbol.movement,
+html[data-motion="lite"] .symbol.movement .spiral,
+html[data-motion="lite"] .symbol.movement .orbit,
+html[data-motion="lite"] .mystical-symbol {
+    animation: none !important;
+}
+
+/* Honor the OS-level motion preference everywhere as a backstop. */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+
+/* ------------------------------------------------------------------
+ * Ambient warmth — TWO layers of glow that paint on every device,
+ * including mobile / lite-motion where the heavy sparks scene is
+ * gated off. The page should never feel like a pitch-black void;
+ * even with zero JS running, these layers carry the fire palette.
+ *
+ *   body::before  →  large ember hearth at the bottom of the viewport
+ *   body::after   →  warm candle light from the top-right corner
+ *
+ * Both sit at z-index 0 (above body background, below content/canvas).
+ * Animated breathing on full-motion; static on lite to spare cycles.
+ * ------------------------------------------------------------------ */
+
+/* The hearth — restrained warmth rising from the bottom of every page. */
+body::before {
+    content: "";
+    position: fixed;
+    left: 50%;
+    bottom: -25vh;
+    width: 160vw;
+    height: 95vh;
+    transform: translateX(-50%);
+    background:
+        radial-gradient(ellipse 60% 70% at center,
+            rgba(255, 112, 38, 0.24) 0%,
+            rgba(255, 78, 24, 0.13) 30%,
+            rgba(190, 48, 8, 0.05) 58%,
+            transparent 78%);
+    pointer-events: none;
+    z-index: 0;
+    animation: emberBreath 9s ease-in-out infinite alternate;
+    mix-blend-mode: screen;
+}
+
+/* The candle — softer warm light from the top-right corner, gives the
+   page asymmetry instead of a symmetric blob from the bottom. */
+body::after {
+    content: "";
+    position: fixed;
+    top: -20vh;
+    right: -20vw;
+    width: 70vw;
+    height: 70vh;
+    background:
+        radial-gradient(circle at center,
+            rgba(80, 155, 175, 0.14) 0%,
+            rgba(255, 128, 46, 0.07) 42%,
+            transparent 65%);
+    pointer-events: none;
+    z-index: 0;
+    animation: candleFlicker 14s ease-in-out infinite alternate;
+    mix-blend-mode: screen;
+}
+
+@keyframes emberBreath {
+    0%   { opacity: 0.55; transform: translateX(-50%) scale(0.96); }
+    100% { opacity: 0.72; transform: translateX(-50%) scale(1.04); }
+}
+
+@keyframes candleFlicker {
+    0%   { opacity: 0.42; transform: scale(0.97); }
+    50%  { opacity: 0.58; transform: scale(1.03); }
+    100% { opacity: 0.48; transform: scale(1.00); }
+}
+
+/* Lite-motion devices keep the glow, drop the pulse. */
+html[data-motion="lite"] body::before {
+    animation: none;
+    opacity: 0.62;
+}
+html[data-motion="lite"] body::after {
+    animation: none;
+    opacity: 0.48;
+}

@@ -1,8 +1,13 @@
 // Scene setup variables
 let scene, camera, renderer, smallSparks, largeSparks;
+let sparksRafId = null; // current requestAnimationFrame handle, for pause/resume
 
 // Total spark count and proportions
-const sparkCount = 20000; // Total number of sparks
+// Capability layer (window.RC) decides density. On low-end machines we drop
+// from 20K to 3K particles. The base.html template already prevents sparks.js
+// from loading at all on mobile / reduced-motion / save-data devices.
+const _rcLow = (typeof window !== 'undefined' && window.RC && window.RC.lowEnd);
+const sparkCount = _rcLow ? 3000 : 20000;
 const smallSparkCount = Math.floor(sparkCount * 0.7); // 70% small sparks (static layer)
 const largeSparkCount = sparkCount - smallSparkCount; // 30% large sparks (dynamic layer)
 
@@ -115,8 +120,11 @@ function initSparks() {
     largeSparks = new THREE.Points(largeSparkGeo, largeSparkMaterial);
     scene.add(largeSparks);
 
-    // Renderer setup
+    // Renderer setup. Cap pixel ratio — at 3x retina the backbuffer is 9x area
+    // and decimates frame budget on integrated GPUs. 1.5 keeps it sharp without
+    // shipping a 27 megapixel canvas to a phone-sized screen.
     renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, _rcLow ? 1.5 : 2));
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
 
@@ -128,13 +136,19 @@ function initSparks() {
 
 
 function animateSparks() {
+    // Skip work when the tab is backgrounded — RAF already throttles in most
+    // browsers but updating buffers + drawing is wasted heat regardless.
+    if (document.hidden) {
+        sparksRafId = requestAnimationFrame(animateSparks);
+        return;
+    }
     // Update small and large sparks
     updateSmallSparks(smallSparks, smallPhases, ySpeedSmall, 0.3); // Small sparks remain slow
     updateLargeSparks(largeSparks, largePhases, ySpeedLarge, 0.3); // Large sparks rise with trails
 
     // Render the scene
     renderer.render(scene, camera);
-    requestAnimationFrame(animateSparks); // Loop animation
+    sparksRafId = requestAnimationFrame(animateSparks); // Loop animation
 }
 
 function updateSmallSparks(sparks, phases, speed, fadeSpeed) {
@@ -317,7 +331,12 @@ window.addEventListener('resize', () => {
     }
 });
 
-// Initialize the sparks on DOM content loaded
-document.addEventListener('DOMContentLoaded', () => {
+// Initialize the sparks. If the DOM is already parsed (which will be the case
+// when sparks.js is dynamically injected after three.js loads), call directly;
+// otherwise wait for DOMContentLoaded. This handles both the historical static
+// <script> tag and the new conditional injector in base.html.
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSparks);
+} else {
     initSparks();
-});
+}

@@ -11,7 +11,7 @@
   <title>React Page - Food Prophet</title>
   <link rel="stylesheet" href="{{ react_assets.css }}">
   <meta name="csrf-token" content="{{ csrf_token }}">
-    <link rel="stylesheet" href="{% static 'css/food_prophet.css' %}">
+    <link rel="stylesheet" href="{% static 'css/food_prophet.css' %}?v=20260514-scroll">
 
   {% csrf_token %}
 
@@ -137,7 +137,8 @@
     <div class="hover-item">
       <p class="visualize"><i>Visualize</i></p>
       <div class="hover-video left">
-        <video autoplay muted loop playsinline>
+        <video autoplay muted loop playsinline
+               preload="metadata" poster="{% static 'images/posters/visualize.jpg' %}">
           <source src="{% static 'images/visualize.mp4' %}" type="video/mp4">
           Your browser does not support the video tag.
         </video>
@@ -146,7 +147,8 @@
     <div class="hover-item">
       <p class="simulate"><i>Simulate</i></p>
       <div class="hover-video">
-        <video autoplay muted loop playsinline>
+        <video autoplay muted loop playsinline
+               preload="metadata" poster="{% static 'images/posters/simulate.jpg' %}">
           <source src="{% static 'images/simulate.mp4' %}" type="video/mp4">
           Your browser does not support the video tag.
         </video>
@@ -155,7 +157,8 @@
     <div class="hover-item">
       <p class="transform"><i>Transform</i></p>
       <div class="hover-video right">
-        <video autoplay muted loop playsinline>
+        <video autoplay muted loop playsinline
+               preload="metadata" poster="{% static 'images/posters/transform.jpg' %}">
           <source src="{% static 'images/transform.mp4' %}" type="video/mp4">
           Your browser does not support the video tag.
         </video>
@@ -171,10 +174,9 @@
   </div>
 
   <!-- React App Mount Point - Entry Point -->
-  <div id="root" class="invisible"></div>
-  <script src="{{ react_assets.js }}"></script>
+  <div id="root" class="invisible" data-react-src="{{ react_assets.js }}"></div>
   <!-- Re-load CSS so it over-writes incoming app -->
-  <link rel="stylesheet" href="{% static 'css/food_prophet.css' %}">
+  <link rel="stylesheet" href="{% static 'css/food_prophet.css' %}?v=20260514-scroll">
 
 
 <script>
@@ -313,7 +315,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Ensure page always loads at the top
     window.scrollTo(0, 0);
 
-    const mobile_norm = 2.15; // Normalization factor for mobile
     let lastScrollTop = 0; // To detect changes
 
     // Utility function to detect mobile devices
@@ -327,9 +328,9 @@ document.addEventListener('DOMContentLoaded', () => {
     );
 
     // Elements to manage
-    const contentWrapper = document.querySelector('.content-wrapper');
     const nav = document.querySelector('nav');
     const reactApp = document.getElementById('root');
+    let reactAppLoaded = false;
 
     // Adjust Login button for specific page and Mobile Env
     const loginBtn = document.getElementById('loginBtn');
@@ -342,9 +343,34 @@ document.addEventListener('DOMContentLoaded', () => {
     loginBtn.style.opacity = '1';
 
 
-    if (!contentWrapper || !nav || !reactApp || !loginBtn) {
+    if (!nav || !reactApp || !loginBtn) {
         console.error('Required elements not found!');
         return;
+    }
+
+    function loadReactApp() {
+        if (reactAppLoaded) {
+            return;
+        }
+
+        const reactSrc = reactApp.dataset.reactSrc;
+        if (!reactSrc) {
+            console.error('React bundle path not found in asset manifest.');
+            return;
+        }
+
+        reactAppLoaded = true;
+        const reactScript = document.createElement('script');
+        reactScript.src = reactSrc;
+        reactScript.async = false;
+        reactScript.onload = () => {
+            reactApp.classList.add('loaded');
+        };
+        reactScript.onerror = () => {
+            reactAppLoaded = false;
+            console.error(`Failed to load React bundle: ${reactSrc}`);
+        };
+        document.body.appendChild(reactScript);
     }
 
 
@@ -402,11 +428,10 @@ let isZoomedIn = false;
         if (scrollTop !== lastScrollTop) {
             lastScrollTop = scrollTop;
 
-            const normalizationFactor = isMobile() ? mobile_norm : 1;
-            const contentWrapperTop = contentWrapper.getBoundingClientRect().top + window.scrollY;
-            const threshold = contentWrapperTop + 677 * normalizationFactor;
+            const viewportFactor = isMobile() ? 0.85 : 0.65;
+            const threshold = Math.max(0, reactApp.offsetTop - window.innerHeight * viewportFactor);
 
-            // console.log(`scrollTop: ${scrollTop}, threshold: ${threshold}, normalizationFactor: ${normalizationFactor}`);
+            // console.log(`scrollTop: ${scrollTop}, threshold: ${threshold}`);
 
             // Hide navbar and show React app if scrolled past the threshold
             // Past threshold - apply zoom effect to properly render React app
@@ -423,6 +448,7 @@ let isZoomedIn = false;
             }
             reactApp.classList.remove('invisible');
             reactApp.classList.add('visible');
+            loadReactApp();
             smoothZoom(document.body, 1, 0.73, 500); // Zoom in smoothly over 500ms
         } else if (lastScrollTop <= threshold && isZoomedIn) {
             // Trigger zoom out only if currently zoomed in

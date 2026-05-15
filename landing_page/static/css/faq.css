@@ -607,6 +607,68 @@
     }
 
 
+/* ------------------------------------------------------------------
+ * Free-Forever pricing block — replaces the old strikethrough +
+ * discounted-price button pair. The course is free; the strike-through
+ * "400 LEI" is kept purely as visual anchor for what it used to cost.
+ * ------------------------------------------------------------------ */
+.price-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+/* Override the legacy button-flavoured .old-price rules inside the
+   price-display context — here it's a plain inline span, not a button. */
+.price-display .old-price {
+    position: relative;
+    display: inline-block;
+    margin: 0;
+    transform: none;
+    background: none;
+    pointer-events: auto;
+    font-size: 1.4rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: bold;
+    line-height: 1.1;
+}
+
+.price-display .old-price::after {
+    content: "";
+    position: absolute;
+    left: -0.22em;
+    right: -0.22em;
+    top: 50%;
+    height: 3px;
+    background: #ff1717;
+    border-radius: 999px;
+    transform: translateY(-50%) rotate(-7deg);
+    box-shadow: 0 0 8px rgba(255, 23, 23, 0.65);
+    pointer-events: none;
+}
+
+.price-display .free-forever {
+    position: relative;
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.6rem, 3vw + 0.6rem, 2.6rem);
+    font-weight: bold;
+    background: linear-gradient(90deg, #ff4500, #ffd700);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    text-shadow: 0 0 12px rgba(255, 140, 0, 0.4);
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+.price-display .free-forever::before,
+.price-display .free-forever::after {
+    content: none;
+}
+
 /* Countdown Timer */
 .countdown-container {
     background: #1a1a1a;

@@ -6,6 +6,33 @@ box-sizing: border-box;
 }
 
 
+/* ------------------------------------------------------------------
+ * Design tokens (added 2026-05). Single source of truth for breakpoints,
+ * spacing rhythm, and easing vocabulary. Use these progressively when
+ * touching CSS — no mass-rewrite. The existing scattered breakpoints
+ * (480 / 600 / 768 / 1024) will normalize toward --bp-* over time.
+ * ------------------------------------------------------------------ */
+:root {
+    /* Breakpoints (used by JS / docs; CSS still uses @media (max-width:Xpx)) */
+    --bp-sm: 480px;
+    --bp-md: 768px;
+    --bp-lg: 1024px;
+    --bp-xl: 1280px;
+
+    /* Spacing rhythm — 4-tier doubling, rounded to multiples of 4. */
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 16px;
+    --space-4: 24px;
+    --space-5: 40px;
+    --space-6: 64px;
+
+    /* Easing vocabulary. Apply progressively where transitions already live. */
+    --ease-soft:  cubic-bezier(0.22, 1, 0.36, 1);   /* hover, fade-in, soft entrances */
+    --ease-anvil: cubic-bezier(0.4, 0, 0.2, 1);     /* strikes, pulses, decisive motion */
+}
+
+
 /* Dropdown Styling */
 .dropdown {
 position: relative;
@@ -56,9 +83,23 @@ animation: fadeIn 0.3s ease-in-out forwards;
 font-size: 1rem;
 display: block;
 color: white;
-padding: 0px 15px;
+/* 44px tap target: 12px top/bottom on top of the natural line-height clears
+   the WCAG/iOS minimum without changing the visual rhythm on desktop. */
+padding: 12px 15px;
 text-decoration: none;
-transition: all 0.3s ease;
+min-height: 44px;
+transition: all 0.3s var(--ease-soft, ease);
+}
+
+/* Refined glass: when the browser supports backdrop-filter, lower the
+   dropdown background opacity so the blur is visible through it.
+   Older browsers fall back to the existing opaque gradient. */
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+    .dropdown-content {
+        background: linear-gradient(120deg, rgba(45, 52, 54, 0.72), rgba(34, 47, 62, 0.62));
+        -webkit-backdrop-filter: blur(12px) saturate(140%);
+        backdrop-filter: blur(12px) saturate(140%);
+    }
 }
 
 .dropdown-content a:hover {
@@ -140,5 +181,32 @@ margin-top: 20px; /* Add space between image and text */
 font-size: 1.2em;
 color: white;
 animation: fadeInOut 2s ease-in-out infinite;
+}
+
+
+/* ------------------------------------------------------------------
+ * Navbar touch targets (added 2026-05).
+ * Phones need a 44px minimum tappable area. The hamburger and the
+ * mute button were sized for cursor precision; on touch they're
+ * frustrating. Apply min-height/min-width without changing the
+ * visual appearance on desktop (where margin/padding already cover it).
+ * ------------------------------------------------------------------ */
+.hamburger,
+#mute-btn,
+#loginBtn,
+.login-btn {
+    min-height: 44px;
+    min-width: 44px;
+}
+
+/* Keyboard focus rings — quiet on mouse use, visible on tab/keyboard.
+   currentColor keeps it in palette wherever the rule lands. */
+:focus:not(:focus-visible) {
+    outline: none;
+}
+:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+    border-radius: 4px;
 }
 

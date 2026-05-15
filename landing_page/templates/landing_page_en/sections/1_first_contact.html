@@ -1,5 +1,5 @@
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/first_contact.css' %}">
+<link rel="stylesheet" href="{% static 'css/first_contact.css' %}?v=20260514-landing-video-balanced">
 
 <!-- Language Buttons -->
 <div class="language-buttons" style="text-align: center; margin: 20px 0;">
@@ -41,21 +41,28 @@
     <p><br><br>An <u>Effortless</u>  path towards a Calm and Wise Mind in a Strong and Fit Body.</p>
 
 
-<!-- Embedded YouTube Section -->
-<!--  May 2025 - The Jedi Returns in Solitude to Dagobah - Becoming Faceless - -->
-
-<!--<div class="video-container">-->
-<!--    <iframe-->
-<!--        width="100%"-->
-<!--        height="315"-->
-<!--        src="https://www.youtube.com/embed/KDi793OZNyo?start=5176"-->
-<!--        title="Watch the Latest Re-Connect Webinar"-->
-<!--        frameborder="0"-->
-<!--        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"-->
-<!--        allowfullscreen>-->
-<!--    </iframe>-->
-<!--    <h3 class="video-subtitle">🎥 Watch the Latest Re-Connect Webinar</h3>-->
-<!--</div>-->
+<!-- Webinar thumbnail (click to open on YouTube). The embed shows Error 153
+     because this video has playback restrictions disabling iframe embedding;
+     the thumbnail pattern works for any video regardless of embed permissions
+     and is far lighter than loading the YouTube player at first paint. -->
+<div class="video-container">
+    <a href="https://www.youtube.com/watch?v=KDi793OZNyo&t=5176s"
+       target="_blank" rel="noopener"
+       class="youtube-thumbnail"
+       aria-label="Watch the Latest Re-Connect Webinar on YouTube">
+        <img src="https://i.ytimg.com/vi/KDi793OZNyo/maxresdefault.jpg"
+             alt="Re-Connect Webinar"
+             loading="lazy" decoding="async">
+        <span class="play-button" aria-hidden="true">
+            <svg viewBox="0 0 68 48" xmlns="http://www.w3.org/2000/svg">
+                <path class="yt-play-bg"
+                      d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,0.13,34,0,34,0S12.21,0.13,6.9,1.55C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z"/>
+                <path d="M 45,24 27,14 27,34" fill="#fff"/>
+            </svg>
+        </span>
+    </a>
+    <h3 class="video-subtitle">🎥 Watch the Latest Re-Connect Webinar</h3>
+</div>
 
 
 <!-- Scroll Indicator -->

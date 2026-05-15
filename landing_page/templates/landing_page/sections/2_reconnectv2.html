@@ -20,7 +20,8 @@
         <div class="symbol air">
             <div class="air-core">
                 <!-- Heartbeat video centered inside the air-core -->
-                <video class="heartbeat-video" autoplay loop muted playsinline>
+                <video class="heartbeat-video" autoplay loop muted playsinline
+                       preload="metadata" poster="{% static 'images/posters/heartbeat.jpg' %}">
                     <source src="{% static 'images/heartbeat.mp4' %}" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>

@@ -8,6 +8,27 @@
 <meta name="csrf-token" content="{{ csrf_token }}">
 <title>{% block title %}Re-Connect – Arta Vieții Sănătoase{% endblock %}</title>
 
+<!-- Capability layer: decides at runtime whether the engine can carry full motion.
+     Sets window.RC and tags <html data-motion="full|lite">. Must run before any
+     other script so sparks.js / anvil_strike.js / CSS gating can read it. -->
+<script>
+(function(){
+  var reducedMotion = false;
+  try { reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches; } catch(e){}
+  var narrow = window.innerWidth < 768;
+  var saveData = !!(navigator.connection && navigator.connection.saveData);
+  var lowEnd = (navigator.hardwareConcurrency || 8) <= 4;
+  window.RC = {
+    reducedMotion: reducedMotion,
+    narrow: narrow,
+    saveData: saveData,
+    lowEnd: lowEnd,
+    get heavyOk(){ return !this.reducedMotion && !this.narrow && !this.saveData; }
+  };
+  document.documentElement.dataset.motion = window.RC.heavyOk ? 'full' : 'lite';
+})();
+</script>
+
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Cinzel:wght@700&display=swap" rel="stylesheet">
 
@@ -169,9 +190,22 @@
 <!-- Load TikTok Pixel script from external file -->
 <script src="{% static 'js/tiktokPixel.js' %}"></script>
 
-<!-- Load sparks only on certain pages, as it's very computational and specifically-themed.  -->
+<!-- Load sparks only on certain pages (computationally heavy) AND only when the device can carry it.
+     The capability layer in <head> sets data-motion=lite for mobile / reduced-motion / save-data,
+     in which case neither sparks.js nor THREE.js are loaded at all — saves ~110KB + the RAF loop. -->
 {% if request.path != '/contact/' and request.path != '/ylf/' and request.path != '/bibliography/' and request.path != '/food-prophet/' %}
-<script src="{% static 'js/sparks.js' %}"></script>
+<script>
+  if (document.documentElement.dataset.motion === 'full') {
+    var threeTag = document.createElement('script');
+    threeTag.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js';
+    threeTag.onload = function(){
+      var sparksTag = document.createElement('script');
+      sparksTag.src = "{% static 'js/sparks.js' %}";
+      document.body.appendChild(sparksTag);
+    };
+    document.head.appendChild(threeTag);
+  }
+</script>
 {% endif %}
 
 
@@ -180,9 +214,6 @@
 <!-- External Scripts & Libraries  -->
 <!-- Canvas for Effects -->
 <canvas id="background"></canvas>
-
-<!-- THREE.JS used for sparks animation - most complex one, careful with Mobile Rendering as it is very computational expensive -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js" defer></script>
 
 <!-- Google tag & Analytics Script (gtag.js) - Defering scripts for better 1st page load-->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0BH19MJ8ZP" defer></script>

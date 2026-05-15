@@ -1,26 +1,129 @@
 
+#page1 {
+    isolation: isolate;
+    max-width: min(980px, calc(100vw - 2rem));
+    padding-top: clamp(5.5rem, 9vh, 7rem);
+}
+
+#page1::before,
+#page1::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    z-index: -1;
+}
+
+#page1::before {
+    inset: -6rem max(-30vw, -24rem) -3rem;
+    background:
+        radial-gradient(circle at 50% 18%, rgba(255, 134, 44, 0.10), transparent 25rem),
+        radial-gradient(circle at 16% 36%, rgba(255, 80, 24, 0.11), transparent 16rem),
+        radial-gradient(circle at 84% 48%, rgba(67, 154, 175, 0.12), transparent 20rem),
+        linear-gradient(180deg, rgba(8, 16, 20, 0.26), rgba(6, 5, 5, 0.78));
+    filter: saturate(1.05);
+}
+
+#page1::after {
+    inset: -2rem max(-25vw, -18rem) 0;
+    background-image:
+        radial-gradient(circle, rgba(255, 164, 72, 0.62) 0 1px, transparent 1.8px),
+        radial-gradient(circle, rgba(84, 178, 195, 0.36) 0 1.2px, transparent 2.2px);
+    background-size: 86px 96px, 132px 146px;
+    background-position: 12px 20px, 58px 70px;
+    opacity: 0.18;
+    mix-blend-mode: screen;
+    animation: emberFieldDrift 14s linear infinite;
+}
+
+@keyframes emberFieldDrift {
+    from { transform: translate3d(0, 0, 0); }
+    to { transform: translate3d(0, -32px, 0); }
+}
+
     /* Existing styles for video container */
     .video-container {
-        margin: 40px 0;
+        width: min(100%, 620px);
+        margin: clamp(20px, 3vh, 34px) auto 18px;
         text-align: center;
-        background: #1a1a1a;
-        padding: 20px;
+        background: linear-gradient(145deg, rgba(14, 16, 17, 0.90), rgba(8, 7, 7, 0.76));
+        padding: clamp(10px, 1.5vw, 16px);
+        border: 1px solid rgba(255, 122, 45, 0.14);
         border-radius: 10px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 0 18px rgba(255, 88, 25, 0.10), 0 10px 30px rgba(0, 0, 0, 0.42);
         color: #fff;
     }
 
     .video-container iframe {
-        border-radius: 10px;
+        display: block;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+        max-height: min(54vh, 349px);
+        border-radius: 8px;
         border: none;
-        margin-bottom: 15px;
+        margin: 0 auto 12px;
+        background: #050505;
     }
 
+    /* Click-to-YouTube thumbnail (replaces the iframe — see 1_first_contact.html).
+       Same visual frame as the old iframe, with a hover lift and a YouTube
+       play button overlay. Opens the video on YouTube.com in a new tab. */
+    .youtube-thumbnail {
+        display: block;
+        position: relative;
+        width: 100%;
+        max-width: 100%;
+        aspect-ratio: 16 / 9;
+        margin: 0 auto 12px;
+        border-radius: 8px;
+        overflow: hidden;
+        cursor: pointer;
+        box-shadow: 0 0 14px rgba(255, 100, 30, 0.14), 0 5px 15px rgba(0, 0, 0, 0.4);
+        transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+                    box-shadow 0.4s ease;
+    }
+    .youtube-thumbnail:hover,
+    .youtube-thumbnail:focus-visible {
+        transform: scale(1.01);
+        box-shadow: 0 0 24px rgba(255, 100, 30, 0.28), 0 8px 22px rgba(0, 0, 0, 0.5);
+    }
+    .youtube-thumbnail img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(0.86) contrast(1.03) saturate(0.9);
+        background: #1a1a1a;
+    }
+    .youtube-thumbnail .play-button {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: clamp(58px, 9vw, 78px);
+        height: auto;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        filter: drop-shadow(0 0 16px rgba(0, 0, 0, 0.6));
+        transition: transform 0.3s ease;
+    }
+    .youtube-thumbnail .play-button svg { width: 100%; height: 100%; }
+    .youtube-thumbnail .yt-play-bg {
+        fill: #212121;
+        fill-opacity: 0.82;
+        transition: fill 0.3s ease, fill-opacity 0.3s ease;
+    }
+    .youtube-thumbnail:hover .yt-play-bg,
+    .youtube-thumbnail:focus-visible .yt-play-bg {
+        fill: #ff0000;
+        fill-opacity: 1;
+    }
+    .youtube-thumbnail:hover .play-button { transform: translate(-50%, -50%) scale(1.06); }
+
     .video-subtitle {
-        margin-top: 10px;
-        font-size: 16px;
+        margin-top: 4px;
+        font-size: clamp(0.9rem, 1.4vw, 1rem);
         font-weight: 600;
-        color: #ffc107;
+        color: #e6b867;
         font-family: 'Poppins', sans-serif;
     }
 
@@ -393,7 +496,9 @@
     background: rgba(255, 60, 60, 1); /* Glowing red lines */
     height: 4px;
     border-radius: 2px; /* Smooth edges */
-    box-shadow: 0 0 5px rgba(255, 60, 60, 0.8); /* Burning glow */
+    /* drop-shadow instead of box-shadow: the burning glow is animated every
+       frame; drop-shadow rides the compositor and stays off the paint pipeline. */
+    filter: drop-shadow(0 0 4px rgba(255, 60, 60, 0.8));
     animation: burn 1.5s linear infinite; /* Continuous glow effect */
     transform-origin: center center;
 }
@@ -426,13 +531,14 @@
     100% { width: 30px; } /* Fully drawn right slash */
 }
 
-/* Burning Effect Animation */
+/* Burning Effect Animation. filter:drop-shadow stays on the compositor —
+   the older box-shadow form forced a full repaint of the button every frame. */
 @keyframes burn {
     0%, 100% {
-        box-shadow: 0 0 5px rgba(255, 60, 60, 0.4);
+        filter: drop-shadow(0 0 4px rgba(255, 60, 60, 0.4));
     }
     50% {
-        box-shadow: 0 0 15px rgba(255, 60, 60, 1);
+        filter: drop-shadow(0 0 12px rgba(255, 60, 60, 1));
     }
 }
 
@@ -540,4 +646,3 @@
   }
 
 }
-

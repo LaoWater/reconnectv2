@@ -9,6 +9,7 @@
 html
 {
      background: none;
+     overflow-y: auto;
 }
 
 
@@ -52,8 +53,9 @@ nav {
 
 body {
      color: black;
-      overflow-y: hidden; /* Enable vertical scrolling */
-      min-height: max-content;
+      overflow-x: hidden;
+      overflow-y: auto;
+      min-height: 100vh;
       position: relative;
     background: #000;
     transition: background 0.5s ease-in-out; /* Smooth transition for background changes */
@@ -276,6 +278,21 @@ hr {
   visibility: visible ; /* Allow interaction */
   pointer-events: auto; /* Allow clicks */
   transition: opacity 0.5s ease, visibility 0.5s ease; /* Smooth transition */
+}
+
+#root {
+  display: block;
+  min-height: 150vh;
+}
+
+#root.loaded {
+  min-height: auto;
+}
+
+#root.visible .AppContainer {
+  min-height: auto;
+  overflow: visible;
+  padding-bottom: 6rem;
 }
 
 
