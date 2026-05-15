@@ -14,7 +14,12 @@
 }
 
 #page1::before {
-    inset: -6rem max(-30vw, -24rem) -3rem;
+    top: -6rem;
+    right: auto;
+    bottom: -3rem;
+    left: 50%;
+    width: 100vw;
+    margin-left: -50vw;
     background:
         radial-gradient(circle at 50% 18%, rgba(255, 134, 44, 0.10), transparent 25rem),
         radial-gradient(circle at 16% 36%, rgba(255, 80, 24, 0.11), transparent 16rem),
@@ -24,7 +29,12 @@
 }
 
 #page1::after {
-    inset: -2rem max(-25vw, -18rem) 0;
+    top: -2rem;
+    right: auto;
+    bottom: 0;
+    left: 50%;
+    width: 100vw;
+    margin-left: -50vw;
     background-image:
         radial-gradient(circle, rgba(255, 164, 72, 0.62) 0 1px, transparent 1.8px),
         radial-gradient(circle, rgba(84, 178, 195, 0.36) 0 1.2px, transparent 2.2px);
