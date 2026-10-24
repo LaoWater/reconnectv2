@@ -26,10 +26,14 @@
     object-fit: cover;
     transform: translate(-50%, -50%);
     z-index: 1;
-    filter: saturate(0.9) brightness(0.95);
+    /* The footage is personal: keep it a whisper. Only a soft shape moving,
+       like something seen through water, should come through. */
+    opacity: 0.16;
+    filter: blur(10px) grayscale(0.7) brightness(1.4);
+    transform: translate(-50%, -50%) scale(1.08); /* hide the blurred edges */
 }
 
-/* A gentle river-colored shade so the words stay readable over the water */
+/* Deep river water over the faint footage, so the words read clearly */
 .video-overlay {
     position: absolute;
     top: 0;
@@ -37,7 +41,8 @@
     width: 100%;
     height: 100%;
     background:
-        linear-gradient(180deg, rgba(29, 85, 96, 0.55) 0%, rgba(29, 85, 96, 0.15) 45%, rgba(31, 44, 36, 0.6) 100%);
+        radial-gradient(ellipse 70% 60% at 50% 45%, rgba(42, 115, 128, 0.25), transparent 70%),
+        linear-gradient(180deg, rgba(29, 85, 96, 0.35) 0%, rgba(29, 85, 96, 0) 50%, rgba(31, 44, 36, 0.45) 100%);
     z-index: 2;
     opacity: 1;
 }

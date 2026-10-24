@@ -230,6 +230,15 @@
     pointer-events: none;
 }
 
+/* Replaces the struck-through old price: the teaching was never ours to sell */
+.price-display .price-note {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.02rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.01em;
+}
+
 .price-display .free-forever {
     position: relative;
     font-family: var(--font-serif);
