@@ -1,169 +1,153 @@
 
-    /* Fade-in animation */
-    @keyframes fadeInEffect {
-        from {
-            opacity: 0;
-            transform: translateY(20px); /* Start slightly below */
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0); /* Reset to normal position */
-        }
+/* Why Re-Connect is different — three cards (dawn redesign) */
+
+@keyframes fadeInEffect {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
     }
-
-    .section-different {
-        background-color: rgba(0, 0, 0, 0.2); /* Highly transparent background */
-        border: 2px solid rgba(255, 140, 0, 0.2); /* Subtle neon border */
-        border-radius: 15px;
-        padding: 25px;
-        margin: 20px auto;
-        width: 100%;
-        color: #ffffff;
-        text-align: center;
-        font-size: 0.95rem; /* Smaller font size */
-        position: relative; /* Ensure the title stays in view */
-        box-shadow: 0 0 20px rgba(255, 69, 0, 0.3); /* Faint glow initially */
-        transition: all 0.4s ease-in-out;
-        opacity: 0; /* Initially invisible */
-        animation: fadeInEffect 1.5s ease-in-out forwards; /* Fade-in effect */
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
+}
 
-    .section-different h5 {
-        background: linear-gradient(90deg, #ff4500, #ff8c00);
-        font-family: 'Cinzel'; sans-serif;
-        font-size: 1.2rem; /* Slightly smaller title */
+.section-different {
+    background-color: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: clamp(22px, 3vw, 34px);
+    margin: 20px auto;
+    width: 100%;
+    color: var(--ink-soft);
+    text-align: left;
+    font-size: 1rem;
+    position: relative;
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.4s var(--ease-soft), box-shadow 0.4s ease, border-color 0.4s ease;
+    opacity: 0;
+    animation: fadeInEffect 1.5s ease-in-out forwards;
+}
 
-        margin-bottom: 15px;
-        z-index: 10; /* Ensure the title is in front */
-        position: relative;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 10px rgba(255,140,0,0.8);
-    text-shadow: 0 0 15px rgba(255,140,0,0.8), 0 0 30px rgba(255,69,0,0.5);
-    }
+/* A small numbered seal in the corner of each card */
+.section-different::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: clamp(22px, 3vw, 34px);
+    width: 44px;
+    height: 4px;
+    border-radius: 0 0 4px 4px;
+    background: var(--moss);
+}
+.section-different:nth-of-type(2)::before { background: var(--river); }
+.section-different:nth-of-type(3)::before { background: var(--clay); }
 
-    .section-different:hover {
-        background-color: rgba(0, 0, 0, 0.8); /* Fully visible on hover */
-        border-color: rgba(255, 140, 0, 1); /* Bright neon border */
-        box-shadow: 0 0 20px rgba(255, 140, 0, 0.8), 0 0 40px rgba(255, 69, 0, 0.6); /* Intense glow on hover */
-        transform: translateY(-5px); /* Slight lift */
-    }
+.section-different h5 {
+    font-family: var(--font-serif);
+    font-size: clamp(1.2rem, 0.8vw + 0.95rem, 1.45rem);
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--ink);
+    margin: 6px 0 16px;
+    z-index: 10;
+    position: relative;
+}
 
+.section-different:hover {
+    border-color: #CFC2AA;
+    box-shadow: var(--shadow-lift);
+    transform: translateY(-4px);
+}
 
-    .section-different h5 span.underline:after {
-        content: '';
-        width: 0%;
-        height: 4px;
-        background-color: #64ECF2;
-        bottom: -5px;
-        margin-left: 50%; /* Moves the underline to start around the middle */
-        border-radius: 2px;
-        transition: width 0.5s ease-in-out;
-        position: relative;
-        display: block; /* Makes the underline appear on a new line */
+.section-different h5 span.underline {
+    text-decoration: none;
+    background: none;
+    padding: 0;
+}
 
-    }
+.section-different h5 span.underline:after {
+    content: '';
+    width: 0%;
+    height: 3px;
+    background-color: var(--wheat);
+    bottom: -5px;
+    border-radius: 2px;
+    transition: width 0.6s var(--ease-soft);
+    position: relative;
+    display: block;
+}
 
-        /* First underline animation: from 0% to 50% */
-        .section-different:nth-of-type(1) h5 span.underline:after {
-            left: -50%;
-        }
+.section-different:hover h5 span.underline:after {
+    width: 64px;
+}
 
-        .section-different:nth-of-type(1):hover h5 span.underline:after {
-            width: 50%;
-        }
+.section-different p {
+    font-size: 1.02rem;
+    line-height: 1.7;
+    margin: 0 0 14px;
+    max-width: none;
+    color: var(--ink-soft);
+    z-index: 10;
+    position: relative;
+}
 
-        /* Second underline animation: from 50% to 100% */
-        .section-different:nth-of-type(2) h5 span.underline:after {
-            left: 0%;
-        }
+.section-different p strong {
+    color: var(--moss-deep);
+    font-weight: 600;
+    text-shadow: none;
+}
 
-        .section-different:nth-of-type(2):hover h5 span.underline:after {
-            width: 50%;
-        }
-
-        /* Last underline animation: from 0% to 100% */
-        .section-different:nth-of-type(3) h5 span.underline:after {
-            left: -50%;
-        }
-
-        .section-different:nth-of-type(3):hover h5 span.underline:after {
-            width: 100%;
-        }
-
-
-
-
+@media (max-width: 768px) {
     .section-different p {
-        font-size: 0.85rem;
-        line-height: 1.6;
-        margin-bottom: 15px;
-        color: #ffffff;
-        z-index: 10; /* Ensure text is in front */
-        position: relative;
-    }
-
-    .section-different p strong {
-        color: #ff8c00; /* Red-gold highlight */
-        font-weight: bold;
-        text-shadow: 0 0 10px rgba(255, 140, 0, 0.8),
-            0 0 15px rgba(255, 140, 0, 0.8), 0 0 30px rgba(255, 69, 0, 0.5);
-    }
-
-
-    @media (max-width: 768px) {
-    .section-different p {
-        font-size: 85%;
-        margin-bottom: 8px;
-        margin: 1rem 0rem;
+        font-size: 1rem;
+        margin: 0 0 12px;
     }
 }
 
-@media (min-width: 1024px) {  /* Adjust for larger screens */
+@media (min-width: 1024px) {
 
-/* Override max-width for Page 6 ONLY */
-/* Override the parent section restriction */
-#page6 {
-    max-width: 100% !important;  /* Remove the 850px limit */
-    width: 100% !important;  /* Ensure it takes the full page */
-    margin: 0 auto;  /* Keep it centered */
-    padding: 0;  /* Optional: Adjust padding if needed */
-}
+    /* Page 6 runs full width so the cards can sit two by two */
+    #page6 {
+        max-width: 100% !important;
+        width: 100% !important;
+        margin: 0 auto;
+        padding: 2rem 0 4rem;
+    }
 
-/* Ensure the child section also follows */
-#page6 > section#page-6 {
-    max-width: 100% !important;
-    width: 90%;
-    margin: 0 auto;
-}
-
+    #page6 > section#page-6 {
+        max-width: 100% !important;
+        width: 90%;
+        margin: 0 auto;
+    }
 
     .text-container {
-        max-width: 100%; /* Full width for content */
+        max-width: 100%;
         width: 90%;
         margin: 0 auto;
         display: flex;
-        justify-content: center; /* Center align content */
-        flex-wrap: wrap; /* Ensures flexibility on different screen sizes */
-        gap: 20px; /* Space between sections */
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 24px;
     }
 
     #page6 .text-container {
         display: flex;
         justify-content: center;
-        flex-wrap: wrap; /* Ensures items move to a new row if needed */
-        gap: 20px; /* Space between sections */
+        flex-wrap: wrap;
+        gap: 24px;
+        max-width: 1120px;
     }
 
     #page6 .section-different {
-        flex: 1 1 48%;  /* Makes sure two fit in a row */
+        flex: 1 1 46%;
         max-width: 48%;
+        margin: 0;
     }
 
-    /* Force the third section to be on a new row */
+    /* The third card sits centered on its own row */
     #page6 .section-different:nth-of-type(3) {
-        flex: 1 1 50%; /* Forces full width */
-        max-width: 50%;
+        flex: 1 1 60%;
+        max-width: 64%;
     }
-
 }

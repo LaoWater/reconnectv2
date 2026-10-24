@@ -12,27 +12,28 @@
 }
 
 #audio-controls button {
-    background: #444;
-    color: #fff;
-    border: none;
+    background: var(--surface);
+    color: var(--moss-deep);
+    border: 1px solid var(--line);
     border-radius: 50%;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     width: 50px;
     height: 50px;
     cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    transition: background 0.3s ease;
+    box-shadow: var(--shadow-soft);
+    transition: background 0.3s ease, transform 0.3s var(--ease-soft);
 }
 
 #audio-controls button:hover {
-    background: #555;
+    background: var(--moss-soft);
+    transform: translateY(-2px);
 }
 
 #volume-slider {
     width: 100px;
     height: 5px;
     appearance: none;
-    background: #888;
+    background: var(--line);
     border-radius: 5px;
     outline: none;
     opacity: 0;
@@ -45,7 +46,7 @@
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background: #FFA500;
+    background: var(--moss);
     cursor: pointer;
     appearance: none;
 }
@@ -54,7 +55,7 @@
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background: #FFA500;
+    background: var(--moss);
     cursor: pointer;
 }
 
@@ -69,10 +70,10 @@
     #audio-controls {
         bottom: 5px;
         right: 5px;
-        background: rgba(0, 0, 0, 0.5); /* Slight overlay for mobile */
+        background: transparent;
         border-radius: 10px;
         padding: 5px;
-        opacity: 0.7; /* Make the entire audio controls slightly transparent */
+        opacity: 0.9;
 
     }
 
@@ -100,8 +101,22 @@
 }
 
 
+/* Emphasis as a soft highlighter stroke, like a pencil mark in a well-read book */
 .underline {
-    text-decoration: underline;
+    text-decoration: none;
+    background-image: linear-gradient(transparent 60%, rgba(242, 198, 107, 0.42) 60%, rgba(242, 198, 107, 0.42) 92%, transparent 92%);
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    padding: 0 0.08em;
+}
+
+::selection {
+    background: var(--wheat-soft);
+    color: var(--ink);
+}
+
+a {
+    color: var(--river);
 }
 
 html, body {
@@ -109,11 +124,11 @@ html, body {
     height: 100%;
     overflow-x: hidden;
     overflow-y: scroll;
-    font-family: 'Poppins', sans-serif;
-    /* Near-black with a cool charcoal floor. The ember layers add warmth
-       selectively instead of turning the whole viewport orange. */
-    background: #050708;
-    color: #fff;
+    font-family: var(--font-sans);
+    /* Linen paper. The dawn layers in animations.css add the light. */
+    background: var(--paper);
+    color: var(--ink-soft);
+    -webkit-font-smoothing: antialiased;
     scroll-behavior: smooth;
     transition: background 0.5s ease-in-out;
 }
@@ -129,26 +144,25 @@ nav {
     justify-content: center;
     align-items: center;
     z-index: 1000;
-    background: rgba(0,0,0,0.4);
-    backdrop-filter: blur(5px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.07); /* Optional */
+    background: rgba(247, 242, 231, 0.78);
+    -webkit-backdrop-filter: blur(12px) saturate(140%);
+    backdrop-filter: blur(12px) saturate(140%);
+    border-bottom: 1px solid rgba(221, 210, 191, 0.7);
 
         /* Animation */
     animation: fadeIn 0.5s ease-in-out;
 }
 
 nav a {
-    font-family: 'Cinzel', serif;
-    font-size: 1.2rem;
+    font-family: var(--font-serif);
+    font-size: 1.12rem;
     margin: 1rem 2rem;
-    font-weight: bold;
+    font-weight: 500;
     line-height: 1.2;
     margin-bottom: 1rem;
-    background: linear-gradient(90deg, #ff4500, #ff8c00);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 15px rgba(255,140,0,0.8), 0 0 30px rgba(255,69,0,0.5);
-    animation: glow 3s ease-in-out infinite alternate;
+    color: var(--ink);
+    text-decoration: none;
+    transition: color 0.3s ease;
 
     justify-content: center;
     align-items: center;
@@ -165,66 +179,63 @@ nav a {
 
 
 nav a:hover {
-    animation-play-state: paused;
-    text-shadow: 0 0 20px rgba(255,255,255,0.8), 0 0 30px rgba(255,255,255,0.5);
-    transform: scale(1.1); /* Slightly enlarge the link on hover */
-    transition: transform 0.3s ease, text-shadow 0.3s ease;
+    color: var(--moss);
 }
 
 
-h1 {
-    font-family: 'Cinzel', serif;
-    /* Fluid: 1.8rem on a 360px phone, scales up to the original 3rem on wide screens.
-       Cinzel loses character below ~1.6rem, so the lower bound is the floor. */
-    font-size: clamp(1.8rem, 4vw + 0.6rem, 3rem);
-    line-height: 1.2;
-    margin-bottom: 1rem;
-    background: linear-gradient(90deg, #ff4500, #ff8c00);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 15px rgba(255,140,0,0.8), 0 0 30px rgba(255,69,0,0.5);
-    animation: glow 2s ease-in-out infinite alternate !important;
-    display: inline-block; /* Ensures consistent rendering */
+/* Headings: Fraunces, soil-dark, no glow. The soft optical size keeps
+   large titles warm instead of monumental. */
+h1, h2, h3 {
+    font-family: var(--font-serif);
+    font-optical-sizing: auto;
+    font-variation-settings: "SOFT" 60, "WONK" 0;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+}
 
+h1 {
+    font-size: clamp(2.1rem, 4.2vw + 0.8rem, 3.6rem);
+    font-weight: 500;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    color: var(--ink);
+    display: inline-block; /* Ensures consistent rendering */
 }
 
 h2 {
-    font-family: 'Cinzel', serif;
-    font-size: clamp(1.4rem, 2.4vw + 0.6rem, 2rem);
-    margin-bottom: 1.5rem;
-    background: linear-gradient(90deg, #ff4500, #ff8c00);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 10px rgba(255,140,0,0.8);
-    text-shadow: 0 0 15px rgba(255,140,0,0.8), 0 0 30px rgba(255,69,0,0.5);
-    animation: glow 2s ease-in-out infinite alternate !important;
+    font-size: clamp(1.5rem, 2.4vw + 0.7rem, 2.3rem);
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: 1.25rem;
+    color: var(--moss-deep);
 }
-
 
 h3 {
-    font-family: 'Cinzel', serif;
-    font-size: clamp(1.15rem, 1.4vw + 0.6rem, 1.5rem);
+    font-size: clamp(1.15rem, 1.2vw + 0.7rem, 1.45rem);
+    font-weight: 600;
+    line-height: 1.3;
     margin-bottom: 0.8rem;
-    background: linear-gradient(90deg, #ff4500, #ff8c00);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 10px rgba(255,140,0,0.8);
-    text-shadow: 0 0 15px rgba(255,140,0,0.8), 0 0 30px rgba(255,69,0,0.5);
-    animation: glow 2s ease-in-out infinite alternate !important;
+    color: var(--ink);
 }
 
-
-
+h1 em, h2 em, h3 em {
+    font-style: italic;
+    color: var(--clay);
+}
 
 p {
-    font-size: 1.2rem;
-    font-family: 'Poppins', serif;
+    font-size: 1.15rem;
+    font-family: var(--font-sans);
+    margin: 0.1rem auto 1rem;
+    max-width: 68ch;
+    line-height: 1.75;
+    font-weight: 400;
+    text-wrap: pretty;
+}
 
-    margin: 0.1rem 2rem 1rem;
-    line-height: 1.7;
-    opacity: 0.95;
-    font-weight: bold;
-
+p strong, p b {
+    color: var(--ink);
+    font-weight: 600;
 }
 
 
@@ -232,12 +243,22 @@ section {
     position: relative;
     min-height: 100vh;
     padding: 2rem 2rem 4rem;
-    max-width: 950px;
+    max-width: 1040px;
     margin: 0 auto;
     z-index: 2;
     text-align: center;
-
 }
+
+/* Full-bleed color bands behind the centered sections, without changing
+   their width: the box-shadow paints sideways, clip-path trims it. */
+#page2, #page4, #page6, #page9 {
+    box-shadow: 0 0 0 100vmax var(--band, transparent);
+    clip-path: inset(0 -100vmax);
+}
+#page2 { --band: var(--paper-sage); background: var(--paper-sage); }
+#page4 { --band: var(--paper-deep); background: var(--paper-deep); }
+#page6 { --band: var(--paper-sage); background: var(--paper-sage); }
+#page9 { --band: var(--paper-deep); background: var(--paper-deep); }
 
 .video-background {
     position: fixed;
@@ -252,7 +273,7 @@ section {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(0.25) contrast(1.2);
+    filter: brightness(1.05) saturate(0.85);
 }
 
 canvas {
@@ -279,8 +300,8 @@ canvas {
 }
 
 @keyframes glow {
-    0% { text-shadow: 0 0 10px #ff4500; }
-    100% { text-shadow: 0 0 20px #ff8c00; }
+    0% { opacity: 1; }
+    100% { opacity: 1; }
 }
 
 .scroll-indicator {
@@ -289,7 +310,7 @@ canvas {
     left: 50%;
     transform: translateX(-50%);
     font-size: 1rem;
-    color: #ff9c00;
+    color: var(--ink-faint);
     animation: bounce 2s infinite;
 }
 @keyframes bounce {
@@ -299,14 +320,8 @@ canvas {
 
 /* Triangle color pulse */
 @keyframes colorPulse {
-    0%, 100% {
-        border-bottom-color: #ffaa00; /* Reddish gold */
-        filter: drop-shadow(0 0 20px rgba(255, 119, 51, 0.9));
-    }
-    50% {
-        border-bottom-color: #40e0d0; /* Light Blue */
-        filter: drop-shadow(0 0 30px rgba(0, 212, 255, 0.8)); /* More transparent blue */
-    }
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.85; }
 }
 
 /******************************/
@@ -415,10 +430,7 @@ canvas {
     border-radius: 2px;
     transition: all 0.3s ease;
 
-    /* Mimic the golden-orange glow */
-    background: linear-gradient(90deg, #ff4500, #ff8c00);
-   box-shadow:
-      0 0 5px #f4c542;
+    background: var(--moss-deep);
   }
 
   .line1 { width: 42px; }
@@ -434,9 +446,10 @@ canvas {
   .nav-menu {
     position: absolute;
     width: 100%;
-    background: rgba(0,0,0,0.4);
-    backdrop-filter: blur(5px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.07); /* Optional */
+    background: rgba(247, 242, 231, 0.94);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -472,7 +485,7 @@ canvas {
     position: absolute;
     width: 5px;
     height: 5px;
-    background: #000;
+    background: var(--moss);
     border-radius: 50%;
     opacity: 1;
   }
@@ -511,7 +524,7 @@ canvas {
 
             .dropdown-content a {
             display: block;
-            color: white;
+            color: var(--ink-soft);
             font-size: 0.93em; /* Smaller font size */
             padding: 0.57em 0.44em;
             text-decoration: none;
@@ -543,15 +556,12 @@ canvas {
 /******* Typography *******/
 
 .page-title h1 {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #FFD700; /* Maintain bold title */
     margin-bottom: 1rem;
 }
 
 .page-title p {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.1rem;
+    font-family: var(--font-sans);
+    font-size: 1.15rem;
     margin-bottom: 1.5rem;
 }
 
@@ -560,16 +570,15 @@ canvas {
 }
 
 .section h2 {
-    font-size: 1.5rem;
-    font-weight: bold;
+    font-size: clamp(1.3rem, 1.4vw + 0.8rem, 1.7rem);
     margin-bottom: 1rem;
 }
 
 .section p {
-    font-family: 'Poppins', sans-serif;
-    font-size: 0.85 rem;
+    font-family: var(--font-sans);
+    font-size: 1.05rem;
     margin-bottom: 1rem;
-    color: #fff
+    color: var(--ink-soft);
 }
 
 .section ul {
@@ -580,11 +589,15 @@ canvas {
 }
 
 .section ul li {
-    font-family: 'Poppins', sans-serif;
-    font-size: 0.8rem;
+    font-family: var(--font-sans);
+    font-size: 1rem;
     margin-bottom: 0.5rem;
     text-align: left; /* Aligns text with the bullet */
-    font-weight: bold;
+    color: var(--ink-soft);
+}
+
+.section ul li::marker {
+    color: var(--moss);
 }
 
 /******* Responsive Design *******/
@@ -600,7 +613,7 @@ canvas {
     }
 
     .section p {
-        font-size: 0.9rem; /* Adjust font size for smaller screens */
+        font-size: 1rem;
     }
 }
 
@@ -615,7 +628,7 @@ canvas {
     }
 
     .section p {
-        font-size: 0.83rem; /* Reduce paragraph font for small screens */
+        font-size: 0.98rem;
     }
 }
 
@@ -630,48 +643,36 @@ canvas {
     padding: 0rem;
     margin: 0 auto;
     text-align: center;
-    color: #fff;
+    color: var(--ink-soft);
 }
 
 /******* Typography *******/
 
-/* Title (H1) */
 .page-title h1 {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #FFA500; /* Orange color */
-    margin-top: 1rem;   /* Space before title */
-    margin-bottom: 1.21rem;   /* No space after title */
-    text-shadow: none;  /* No neon */
+    margin-top: 1rem;
+    margin-bottom: 1.2rem;
 }
 
-/* Section Titles (H2) */
 .section h2 {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #FFA500;
-    margin-top: 1rem;   /* Space before title */
-    margin-bottom: 0;   /* No space after title */
-    text-shadow: 0 0 7px #FFA500;
+    color: var(--moss-deep);
+    margin-top: 1rem;
+    margin-bottom: 0.6rem;
 }
 
-/* Subtitles (H3) */
 .section h3 {
-    font-size: 1.047rem;
-    font-family: 'Cinzel', serif;
-    font-weight: bold;
-    color: #FFA500; /* Same color as main title, no neon */
-    margin-top: 1rem;   /* Space before subtitle */
-    margin-bottom: 0;   /* No space after subtitle */
-    text-shadow: 0 0 7px #FFA500;
+    font-family: var(--font-serif);
+    font-size: clamp(1.1rem, 0.8vw + 0.85rem, 1.3rem);
+    font-weight: 600;
+    color: var(--ink);
+    margin-top: 1rem;
+    margin-bottom: 0.4rem;
 }
 
-/* Paragraphs */
 .section p {
-    font-family: 'Poppins', sans-serif;
-    font-size: 0.83rem;
-    margin-bottom: 0.3rem;
-    color: #fff; /* Softer white for text */
+    font-family: var(--font-sans);
+    font-size: 1.05rem;
+    margin-bottom: 0.6rem;
+    color: var(--ink-soft);
 }
 
 
@@ -694,20 +695,22 @@ canvas {
 .image-container img {
     width: 100%;
     height: auto;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-soft);
 }
 
 
-/* Outer container with neon glow */
+/* Slideshow frame */
 .slideshow {
     position: relative;
     max-width: 650px;
     margin: 0 auto;
-    padding: 4px;             /* space so the glow doesn't overlap content */
-    background: #000;         /* optional background behind the slides */
-    border-radius: 5px;
-    overflow: visible;        /* let the glow extend beyond the edges */
+    padding: 6px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-soft);
+    overflow: visible;
 }
 
 /* Animated neon border as a pseudo-element on the outer container */
@@ -719,17 +722,9 @@ canvas {
     right: -4px;
     bottom: -4px;
     border-radius: 8px;       /* slightly larger than .slideshow's radius */
-    background: linear-gradient(
-        45deg,
-        #1AFFFD, #1AFFFD 25%,
-        transparent 25%, transparent 50%,
-        #1AFFFD 50%, #1AFFFD 75%,
-        transparent 75%, transparent
-    );
-    background-size: 400% 400%;
-    filter: blur(8px);
+    background: none;
     z-index: -1;
-    animation: neonFlow 27s linear infinite;
+    display: none;
 }
 
 @keyframes neonFlow {
@@ -788,7 +783,7 @@ canvas {
     width: 100vw;
     height: 100vh;
     display: none;
-    background: rgba(0,0,0,0.8);
+    background: rgba(43, 38, 33, 0.72);
     justify-content: center;
     align-items: center;
     z-index: 9999;
@@ -817,7 +812,7 @@ canvas {
     right: 0;
     text-decoration: none;
     font-size: 2rem;
-    color: #fff;
+    color: var(--night-ink);
     background: transparent;
     padding: 0 15px;
     cursor: pointer;
@@ -836,7 +831,7 @@ canvas {
     }
 
     .section p {
-        font-size: 0.9rem;
+        font-size: 1rem;
     }
 
 
@@ -854,7 +849,7 @@ canvas {
     }
 
     .section p {
-        font-size: 0.85rem;
+        font-size: 0.98rem;
     }
 
     .image-container {
@@ -872,9 +867,10 @@ canvas {
 /* Post-Processing / Fine-tuning */
 /* Make all list item text bold */
 .text-container ul li {
-    font-family: 'Poppins', sans-serif;
-    font-weight: bold;
-    font-size: 1rem;
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 1.05rem;
+    color: var(--ink-soft);
 }
 
 
@@ -883,22 +879,22 @@ canvas {
 
 .buy-button {
     display: inline-block;
-    font-size: 1rem;
-    font-family: 'Poppins', sans-serif;
-    font-weight: bold; /* Make the text bold */
-    color: white;
+    font-size: 1.05rem;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    color: #fff;
     text-decoration: none;
-    background: rgba(0, 123, 255, 0.8); /* Neon blue with transparency */
-    padding: 0.8rem 2rem;
-    border-radius: 25px; /* Rounded corners */
-    box-shadow: 0 0 10px rgba(0, 123, 255, 0.8), 0 0 20px rgba(0, 123, 255, 0.6);
-    transition: background 0.3s ease, transform 0.3s ease;
+    background: var(--clay);
+    padding: 0.85rem 2.1rem;
+    border-radius: 999px;
+    box-shadow: 0 8px 20px -8px rgba(180, 85, 46, 0.55);
+    transition: background 0.3s ease, transform 0.3s var(--ease-soft), box-shadow 0.3s ease;
 }
 
 .buy-button:hover {
-    background: rgba(0, 123, 255, 1); /* Solid neon blue on hover */
-    transform: scale(1.05); /* Slight zoom effect */
-    box-shadow: 0 0 15px rgba(0, 123, 255, 1), 0 0 30px rgba(0, 123, 255, 0.8);
+    background: var(--clay-deep);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 26px -10px rgba(142, 62, 29, 0.6);
 }
 
 
@@ -922,20 +918,19 @@ canvas {
     max-width: 400px;
     aspect-ratio: 1 / 1; /* Maintain equal aspect ratio for balanced visuals */
     overflow: hidden;
-    border-radius: 20px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, rgba(26, 255, 253, 0.3), rgba(255, 69, 0, 0.3));
+    background: var(--paper-deep);
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .image-container:hover {
-    box-shadow: 0 0 40px rgba(26, 255, 253, 0.6), 0 0 20px rgba(255, 69, 0, 0.6);
-    transform: scale(1.02);
-    transition: all 0.4s ease-in-out;
-    border: 4px solid rgba(255, 69, 0, 0.8); /* Red Border with subtle gold hint */
+    box-shadow: var(--shadow-lift);
+    transform: translateY(-3px);
+    transition: all 0.4s var(--ease-soft);
 }
 
 /* Image 1 (Default) */
@@ -981,10 +976,8 @@ canvas {
     width: 100%;
     height: 100%;
     border-radius: 20px;
-    border: 4px solid transparent;
-    background: linear-gradient(90deg, rgba(26, 255, 253, 1), rgba(255, 69, 0, 1), rgba(26, 255, 253, 1));
-    background-size: 300% 300%;
-    animation: border-animate 5s linear infinite;
+    border: 1px solid var(--line);
+    background: none;
     z-index: 0;
 }
 
@@ -996,8 +989,7 @@ canvas {
     width: calc(100% - 16px);
     height: calc(100% - 16px);
     border-radius: 20px;
-    border: 2px solid rgba(26, 255, 253, 0.6);
-    box-shadow: 0 0 15px rgba(26, 255, 253, 0.5);
+    border: 1px solid rgba(255, 252, 246, 0.6);
     z-index: 2;
 }
 
@@ -1017,10 +1009,10 @@ canvas {
 /* Neon Glow Effect */
 @keyframes glow-img {
     0% {
-        box-shadow: 0 0 15px rgba(26, 255, 253, 0.8), 0 0 30px rgba(255, 69, 0, 0.8); /* Blue-Red Glow */
+        box-shadow: 0 0 15px rgba(62, 106, 71, 0.15), 0 0 30px rgba(62, 106, 71, 0.1); /* Blue-Red Glow */
     }
     100% {
-        box-shadow: 0 0 30px rgba(26, 255, 253, 0.8), 0 0 60px rgba(255, 69, 0, 0.8); /* Brighter Glow */
+        box-shadow: 0 0 30px rgba(62, 106, 71, 0.15), 0 0 60px rgba(62, 106, 71, 0.1); /* Brighter Glow */
     }
 }
 
@@ -1055,29 +1047,28 @@ canvas {
 /* News-letter CSS */
 
 .newsletter-container {
-    background: linear-gradient(135deg, #1c1c1c, #2a2a2a);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(255, 140, 0, 0.6);
-    max-width: 600px; /* Increased width */
+    background: var(--surface);
+    padding: clamp(20px, 3vw, 32px);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+    max-width: 560px;
     margin: 20px auto;
-    margin-top: 2rem;
+    margin-top: 2.5rem;
     text-align: center;
-    animation: glow-newsletter 2s infinite alternate;
 }
 
 
 .newsletter-container h2 {
-    font-size: 1.35rem; /* Slightly larger font for emphasis */
-    color: #ff8c00;
+    font-size: 1.5rem;
+    color: var(--moss-deep);
     margin-bottom: 10px;
-    text-transform: uppercase;
 }
 
 .newsletter-info {
-    font-size: 0.9rem;
-    color: #f5f5f5;
-    margin: 2px 0;
+    font-size: 0.95rem;
+    color: var(--ink-faint);
+    margin: 2px auto;
 }
 
 #newsletter-form {
@@ -1086,65 +1077,66 @@ canvas {
 
 #newsletter-form label {
     display: block;
-    font-size: 0.9rem;
-    color: #f5f5f5;
-    margin-bottom: 5px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 6px;
     text-align: left;
 }
 
 #newsletter-form input {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 0.7px solid #333;
-    border-radius: 4px;
-    background: #2c2c2c;
-    color: #fff;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
+    padding: 12px 14px;
+    margin-bottom: 14px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 1rem;
+    font-family: var(--font-sans);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 #newsletter-form input:focus {
-    border-color: #ffa500;
+    border-color: var(--moss);
     outline: none;
-    box-shadow: 0 0 5px rgba(255, 140, 0, 0.8);
+    box-shadow: 0 0 0 3px var(--moss-soft);
 }
 
 #newsletter-form input::placeholder {
-    color: #aaa;
+    color: var(--ink-faint);
 }
 
 #newsletter-form button {
-    background: linear-gradient(135deg, #ff4500, #ffd700); /* Red-gold gradient */
+    background: var(--clay);
     color: #fff;
     border: none;
-    padding: 10px 16px;
+    padding: 12px 28px;
     font-size: 1rem;
-    font-family: 'Poppins', sans-serif;
-    font-weight: bold;
+    font-family: var(--font-sans);
+    font-weight: 600;
     cursor: pointer;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-    animation: pulse-newsletter 1.5s infinite;
+    border-radius: 999px;
+    transition: background 0.3s ease, transform 0.3s var(--ease-soft);
 }
 
 #newsletter-form button:hover {
-    background: linear-gradient(135deg, #e63900, #ffcc00); /* Deeper red-gold on hover */
-    box-shadow: 0 0 10px rgba(255, 165, 0, 1);
+    background: var(--clay-deep);
+    transform: translateY(-1px);
 }
 
 @keyframes pulse-newsletter {
     0% {
         transform: scale(1);
-        box-shadow: 0 0 5px rgba(255, 140, 0, 0.8);
+        box-shadow: 0 0 5px rgba(62, 106, 71, 0.15);
     }
     50% {
         transform: scale(1.01);
-        box-shadow: 0 0 7px rgba(255, 140, 0, 1);
+        box-shadow: 0 0 7px rgba(62, 106, 71, 0.2);
     }
     100% {
         transform: scale(1);
-        box-shadow: 0 0 5px rgba(255, 140, 0, 0.8);
+        box-shadow: 0 0 5px rgba(62, 106, 71, 0.15);
     }
 }
 
@@ -1152,10 +1144,10 @@ canvas {
 
 @keyframes glow-newsletter {
     from {
-        box-shadow: 0 0 10px rgba(255, 140, 0, 0.4);
+        box-shadow: 0 0 10px rgba(62, 106, 71, 0.1);
     }
     to {
-        box-shadow: 0 0 20px rgba(255, 140, 0, 0.8);
+        box-shadow: 0 0 20px rgba(62, 106, 71, 0.15);
     }
 }
 
@@ -1178,31 +1170,31 @@ canvas {
     width: 50%;
     height: auto;
     max-width: 450px;
-    background: rgba(10, 10, 10, 0.9);
-    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.7);
-    border: 0px solid #FF4500;
-    border-radius: 15px;
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    border-radius: var(--radius-lg);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
     padding: 3px;
-    color: #FFD700;
-    font-family: 'Poppins', serif;
+    color: var(--ink);
+    font-family: var(--font-sans);
 }
 
 .custom-modal .modal-content {
-    background: linear-gradient(145deg, #1a1a1a, #000); /* Smooth black gradient background */
-    padding: 25px; /* Increased padding for better spacing */
-    border-radius: 15px; /* More rounded corners for a premium feel */
-    width: 90%; /* Responsive width */
-    max-width: 450px; /* Limit width for large screens */
-    text-align: center;
+    background: var(--surface);
+    padding: 28px;
+    border-radius: var(--radius-lg);
+    width: 100%;
+    max-width: 450px;
+    text-align: left;
     position: relative;
-    border: 2px solid #FFD700; /* Golden border for a luxury touch */
-    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.8); /* Strong shadow for depth */
-    color: #FFD700; /* Golden text color for contrast */
-    font-family: 'Poppins', serif; /* Elegant, alchemy-themed font */
+    border: 1px solid var(--line);
+    box-shadow: 0 30px 80px -20px rgba(43, 38, 33, 0.45);
+    color: var(--ink);
+    font-family: var(--font-sans);
 }
 
 
@@ -1214,32 +1206,39 @@ canvas {
     right: 15px;
     cursor: pointer;
     font-size: 24px;
-    color: #FFD700; /* Golden color for close button */
-    font-weight: bold;
+    color: var(--ink-faint);
+    font-weight: 400;
 }
 
 /* Tabs styling */
 .custom-modal .tabs {
     display: flex;
-    justify-content: space-around;
-    margin-bottom: 20px;
+    justify-content: center;
+    gap: 6px;
+    margin: 6px 0 20px;
+    padding: 4px;
+    background: var(--paper-deep);
+    border-radius: 999px;
 }
 
 .custom-modal .tab-btn {
+    flex: 1;
     cursor: pointer;
-    padding: 10px 20px;
+    padding: 9px 18px;
     border: none;
-    background: rgba(255, 69, 0, 0.8); /* Fiery orange background */
-    color: #FFD700; /* Golden text */
-    font-weight: bold;
+    background: transparent;
+    color: var(--ink-soft);
+    font-family: var(--font-sans);
+    font-weight: 600;
     font-size: 14px;
-    border-radius: 8px;
-    transition: background 0.3s ease;
+    border-radius: 999px;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 .custom-modal .tab-btn.active {
-    background: rgba(255, 69, 0, 1); /* Highlighted fiery orange */
-    color: black;
+    background: var(--surface);
+    color: var(--ink);
+    box-shadow: 0 1px 3px rgba(43, 38, 33, 0.12);
 }
 
 /* Form styling */
@@ -1254,26 +1253,30 @@ canvas {
 
 .custom-modal label {
     display: block;
-    margin: 10px 0 5px;
+    margin: 12px 0 6px;
     font-size: 14px;
-    font-weight: bold;
+    font-weight: 600;
+    color: var(--ink);
 }
 
 .custom-modal input[type="text"],
 .custom-modal input[type="email"],
 .custom-modal input[type="password"] {
     width: 100%;
-    padding: 10px;
-    border: 2px solid #FF4500; /* Fiery orange */
-    border-radius: 8px;
-    background: #000; /* Black input background */
-    color: #FFD700; /* Golden text */
-    font-size: 14px;
+    padding: 11px 14px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 15px;
+    font-family: var(--font-sans);
     outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .custom-modal input:focus {
-    border-color: #FFD700; /* Highlighted border on focus */
+    border-color: var(--moss);
+    box-shadow: 0 0 0 3px var(--moss-soft);
 }
 
 /* Submit button */
@@ -1282,18 +1285,18 @@ canvas {
     padding: 10px;
     margin-top: 1.5rem;
     border: none;
-    background: rgba(255, 69, 0, 0.8); /* Fiery orange */
-    color: #FFD700; /* Golden text */
-    font-weight: bold;
+    background: var(--clay);
+    color: #fff;
+    font-family: var(--font-sans);
+    font-weight: 600;
     font-size: 16px;
-    border-radius: 8px;
+    border-radius: 999px;
     cursor: pointer;
     transition: background 0.3s ease;
 }
 
 .custom-modal .form-btn:hover {
-    background: rgba(255, 69, 0, 1); /* Highlighted fiery orange */
-    color: black;
+    background: var(--clay-deep);
 }
 
 /* Modal fade-in animation */
@@ -1311,34 +1314,29 @@ canvas {
 #loginBtn {
     position: absolute; /* Position the button relative to its closest positioned ancestor */
     right: 50px; /* Push it to the right edge of the navbar */
-    top: 10px;
-    background: linear-gradient(145deg, #FF4500, #FF8C00); /* Fiery orange gradient */
-    color: #FFD700; /* Golden text */
-    font-family: 'Georgia', serif; /* Elegant font */
-    font-size: 16px; /* Slightly larger text */
-    font-weight: bold; /* Bold text for emphasis */
-    padding: 10px 20px; /* Comfortable padding */
-    border-radius: 10px; /* Smooth rounded corners */
-    cursor: pointer; /* Pointer cursor on hover */
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
-    transition: all 0.3s ease; /* Smooth transition for hover effects */
-    animation: colorPulse 6s ease-in-out infinite;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 15px;
+    font-weight: 600;
+    padding: 8px 20px;
+    border: 1px solid var(--ink);
+    border-radius: 999px;
+    cursor: pointer;
+    box-shadow: none;
+    transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
-/* Hover effect */
 #loginBtn:hover {
-    background: linear-gradient(145deg, #FF8C00, #FF4500); /* Reverse gradient */
-    color: black; /* Contrast text color */
-    border-color: black; /* Black border for contrast */
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.8); /* Stronger shadow */
+    background: var(--ink);
+    color: var(--paper);
 }
 
-/* Focus effect */
-#loginBtn:focus {
-    outline: none; /* Remove default focus outline */
-    background: linear-gradient(145deg, #FFD700, #FFA500); /* Golden highlight */
-    color: black;
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.9); /* Intense shadow */
+#loginBtn:focus-visible {
+    outline: 3px solid var(--moss-soft);
+    outline-offset: 2px;
 }
 
 
@@ -1360,13 +1358,15 @@ canvas {
 }
 
 .fade-message.success {
-    background-color: #4caf50;
-    color: white;
+    background-color: var(--moss);
+    color: #fff;
+    box-shadow: var(--shadow-soft);
 }
 
 .fade-message.error {
-    background-color: #f44336;
-    color: white;
+    background-color: var(--clay-deep);
+    color: #fff;
+    box-shadow: var(--shadow-soft);
 }
 
 @keyframes fade-in {
@@ -1415,9 +1415,10 @@ canvas {
 hr {
     border: none;
     height: 1px;
-    background: #add8e6;
-    opacity: 0.5;
-    margin: 20px 0;
+    background: var(--line);
+    opacity: 1;
+    margin: 28px auto;
+    max-width: 640px;
 }
 /* Google Button */
 
@@ -1425,37 +1426,33 @@ hr {
   position: relative;
   margin: 15px 0; /* Adds 15px space above and below */
   font-size: 16px;
-  font-weight: bold;
-  color: #6c757d; /* Neutral gray for a subtle look */
+  font-weight: 600;
+  text-align: center;
+  color: var(--ink-faint);
 }
 
 .google-btn {
   display: flex;
   align-items: center;
   justify-content: center; /* Centers both the icon and the text */
-  background-color: #4285f4; /* Google blue */
-  color: white;
+  background-color: var(--surface);
+  color: var(--ink);
   text-decoration: none;
-  padding: 10px 20px;
-  border-radius: 20px;
-  font-size: 16px;
-  font-weight: bold;
+  padding: 11px 20px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 600;
   transition: all 0.3s ease;
   margin-top: 10px;
-  border: 2px solid transparent; /* Initial transparent border */
-
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--line);
+  box-shadow: none;
   position: relative;
 }
 
-/* On hover: Add layout effect with a border */
 .google-btn:hover {
-  color: white;
-
-  background-color: #357ae8; /* Darker blue for hover */
-  box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.15);
-  transform: translateY(-2px);
-  border: 2px solid #e0e0e0; /* Subtle white-gray border */
+  color: var(--ink);
+  background-color: var(--paper-deep);
+  transform: translateY(-1px);
 }
 
 /* Google Icon */
@@ -1486,10 +1483,10 @@ hr {
     top: 50%;
     transform: translateY(-50%);
     font-size: 14px;
-    color: #fff;
-    background-color: rgba(0, 128, 0, 0.8);
-    padding: 5px 10px;
-    border-radius: 5px;
+    color: var(--moss-deep);
+    background-color: var(--moss-soft);
+    padding: 5px 12px;
+    border-radius: 999px;
 }
 
 
@@ -1504,7 +1501,10 @@ hr {
     position: absolute;
     top: 50px;
     right: 10px;
-    font-size: 10px; /* Slightly larger text */
+    transform: none;
+    font-size: 12px;
+    padding: 6px 14px;
+    background: var(--surface);
     opacity: 0; /* Initial state */
     transition: opacity 3s ease; /* Smooth fade effect */
 }
@@ -1723,7 +1723,7 @@ section#natural-truths {
 
 
     .text-container p {
-        font-size: 0.83rem;
+        font-size: 1.02rem;
     }
 
 .custom-page5-fail,
@@ -1887,3 +1887,18 @@ section#natural-truths {
     .custom-page5-reason-isolation h3 {
     font-size: 1.2rem;
     }
+
+/* Mobile nav (dawn redesign): the desktop 5rem gap made the three links wrap
+   onto three lines each on a phone. Keep them on one line, in the sans face. */
+@media (max-width: 768px) {
+    .nav-center {
+        gap: 0.75rem;
+        justify-content: space-evenly;
+    }
+    nav a {
+        font-family: var(--font-sans);
+        font-weight: 600;
+        font-size: 0.95rem;
+        white-space: nowrap;
+    }
+}

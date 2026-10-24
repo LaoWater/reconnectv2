@@ -8,31 +8,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coming Soon</title>
     <style>
+        /* Coming soon — Dawn (2026-10): a quiet card on linen paper,
+           footer mirrors the site's night band (see faq.css #footer). */
         .coming-soon-container {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 80vh; /* Adjust height */
+            min-height: 80vh; /* Adjust height */
+            padding: 96px 16px 48px;
             text-align: center;
         }
 
         .coming-soon-content {
-            max-width: 700px;
-            padding: 2em;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-            border-radius: 10px;
+            width: 100%;
+            max-width: 620px;
+            padding: 48px 40px 40px;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            box-shadow: var(--shadow-soft);
+            border-radius: var(--radius-lg);
         }
 
         .coming-soon-content h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            font-size: clamp(2.1rem, 3vw + 1rem, 2.8rem);
+            margin-bottom: 0.5rem;
+            color: var(--ink);
         }
 
         .coming-soon-content p {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             margin-bottom: 1rem;
-            margin-top: 2rem;
+            margin-top: 1.5rem;
+            color: var(--ink-soft);
         }
 
         .back-home {
@@ -40,48 +48,52 @@
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
-            margin-top: 4rem;
+            margin-top: 2.5rem;
             text-decoration: none;
         }
 
         .back-home img {
-            width: 100px;
-            height: 100px;
+            width: 96px;
+            height: 96px;
             margin-right: 0rem;
+            border-radius: 50%;
+            box-shadow: var(--shadow-soft);
+            transition: transform 0.3s var(--ease-soft), box-shadow 0.3s var(--ease-soft);
         }
 
         .back-home:hover {
-            text-decoration: underline;
+            text-decoration: none;
+        }
+        .back-home:hover img {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lift);
+        }
+        .back-home:focus-visible img {
+            box-shadow: 0 0 0 3px var(--moss-soft), var(--shadow-soft);
         }
 
 
 
-        /* Footer Styling */
+        /* Footer Styling — the one dark band, a forest at night */
 #footer {
     margin-top: auto; /* Push the footer to the bottom */
-    background: linear-gradient(
-        180deg,
-        rgba(255, 69, 0, 0.2) 0%,    /* Subtle neon glow at the top */
-        rgba(20, 30, 40, 0.95) 20%, /* Darker and semi-transparent */
-        rgba(10, 20, 30, 1) 50%,    /* Solid dark center */
-        rgba(20, 30, 40, 0.8) 80%,  /* Gradual dissipation */
-        rgba(20, 30, 40, 0.3) 100%  /* Transparent fade at the bottom */
-    );
-    color: #ecf0f1;
-    padding: 20px 0px;
-    font-family: 'Arial', sans-serif;
+    background: var(--night);
+    color: var(--night-ink);
+    padding: 40px 0 28px;
+    font-family: var(--font-sans);
     text-align: center;
     width: 100%; /* Ensure full-width */
 }
 
 .footer-content {
     display: flex;
-    justify-content: space-around; /* Spread items evenly */
-    align-items: flex-start; /* Align items at the top */
-    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 50px 0px; /* Adjusted padding for a balanced layout */
+    padding: 0;
 }
 
 
@@ -91,56 +103,61 @@
 }
 
 .footer-link {
-    color: #ecf0f1;
+    color: var(--night-ink);
     text-decoration: none;
     font-size: 16px;
-    font-weight: bold;
+    font-weight: 600;
     transition: color 0.3s ease;
 }
 
 .footer-link:hover {
-    color: #f39c12;
+    color: var(--sun);
 }
 
 .social-icons {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 14px;
+}
+
+.social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(243, 237, 224, 0.08);
+    border: 1px solid rgba(243, 237, 224, 0.14);
+    transition: background 0.3s ease, transform 0.3s var(--ease-soft);
+}
+
+.social-icon:hover {
+    background: rgba(243, 237, 224, 0.16);
+    transform: translateY(-2px);
 }
 
 .social-icon img {
-    width: 40px;
-    height: 40px;
-    transition: transform 0.3s ease, filter 0.3s ease;
-}
-
-.social-icon img:hover {
-    transform: scale(1.1);
-    filter: brightness(1.2);
+    width: 20px;
+    height: 20px;
 }
 
 .end-of-site p {
+    font-family: var(--font-serif);
+    font-style: italic;
     font-size: 14px;
-    color: #bdc3c7;
-    margin-top: 20px;
+    color: rgba(243, 237, 224, 0.6);
+    margin-top: 16px;
 }
 
 @media (max-width: 768px) {
-    .footer-content {
-        flex-direction: row;
-            padding: 0px 0px
+    .coming-soon-content {
+        padding: 36px 20px 30px;
     }
 
     .social-icons {
-        margin-top: 20px;
+        margin-top: 8px;
     }
-
-
-.social-icon img {
-    width: 25px;
-    height: 25px;
-}
-
 }
 
     </style>

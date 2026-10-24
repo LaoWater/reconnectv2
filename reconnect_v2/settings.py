@@ -14,6 +14,8 @@ import environ
 CSRF_TRUSTED_ORIGINS = [
     'https://reconnectv2.com',
     'https://www.reconnectv2.com',
+    'https://reconnect-course.com',
+    'https://www.reconnect-course.com',
     'http://192.168.0.196:8000',
     'http://127.0.0.1:8000/',
 

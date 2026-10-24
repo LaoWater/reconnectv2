@@ -30,6 +30,42 @@ box-sizing: border-box;
     /* Easing vocabulary. Apply progressively where transitions already live. */
     --ease-soft:  cubic-bezier(0.22, 1, 0.36, 1);   /* hover, fade-in, soft entrances */
     --ease-anvil: cubic-bezier(0.4, 0, 0.2, 1);     /* strikes, pulses, decisive motion */
+
+    /* ---- Dawn palette (2026-10 redesign) ----------------------------
+     * A field at first light: linen paper, soil-dark ink, moss, river,
+     * clay and a little wheat. Every color on the site should come from here. */
+    --paper:        #F7F2E7;   /* page */
+    --paper-deep:   #EFE5D0;   /* wheat band */
+    --paper-sage:   #E5ECE1;   /* meadow band */
+    --surface:      #FFFCF6;   /* cards */
+    --ink:          #2B2621;   /* soil — headings, strong text */
+    --ink-soft:     #574F45;   /* body text */
+    --ink-faint:    #8A8073;   /* captions */
+    --line:         #DDD2BF;   /* hairlines, borders */
+
+    --moss:         #3E6A47;
+    --moss-deep:    #2A4A32;
+    --moss-soft:    #D7E4D3;
+    --river:        #2A7380;
+    --river-deep:   #1D5560;
+    --river-soft:   #D2E6E7;
+    --clay:         #B4552E;   /* the one warm call to action */
+    --clay-deep:    #8E3E1D;
+    --clay-soft:    #F4DCCB;
+    --wheat:        #C9973A;
+    --wheat-soft:   #F4E5C2;
+    --sun:          #F2C66B;
+
+    --night:        #1F2C24;   /* forest at night — the one dark band */
+    --night-ink:    #F3EDE0;
+
+    --font-serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+    --font-sans:  'Source Sans 3', 'Segoe UI', system-ui, -apple-system, sans-serif;
+
+    --radius:    14px;
+    --radius-lg: 24px;
+    --shadow-soft: 0 1px 2px rgba(43, 38, 33, 0.05), 0 10px 30px -12px rgba(43, 38, 33, 0.18);
+    --shadow-lift: 0 2px 4px rgba(43, 38, 33, 0.06), 0 22px 44px -18px rgba(43, 38, 33, 0.28);
 }
 
 
@@ -54,7 +90,7 @@ transition: transform 0.3s ease, text-shadow 0.3s ease;
 .dropdown-button {
 background-color: transparent;
 border: none;
-color: white;
+color: var(--ink);
 font-size: 1.2rem;
 cursor: pointer;
 font-weight: bold;
@@ -62,7 +98,7 @@ transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .dropdown-button:hover {
-color: #90ee90;
+color: var(--moss);
 transform: scale(1.1);
 }
 
@@ -71,18 +107,21 @@ display: none;
 position: absolute;
 top: 35px;
 left: 0;
-background: linear-gradient(120deg, rgba(45, 52, 54, 0.95), rgba(34, 47, 62, 0.88));
-min-width: 200px;
-border-radius: 8px;
-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+background: var(--surface);
+min-width: 220px;
+border: 1px solid var(--line);
+border-radius: var(--radius);
+box-shadow: var(--shadow-lift);
 overflow: hidden;
+padding: 6px;
 animation: fadeIn 0.3s ease-in-out forwards;
 }
 
 .dropdown-content a {
 font-size: 1rem;
 display: block;
-color: white;
+color: var(--ink-soft);
+border-radius: 10px;
 /* 44px tap target: 12px top/bottom on top of the natural line-height clears
    the WCAG/iOS minimum without changing the visual rhythm on desktop. */
 padding: 12px 15px;
@@ -96,16 +135,33 @@ transition: all 0.3s var(--ease-soft, ease);
    Older browsers fall back to the existing opaque gradient. */
 @supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
     .dropdown-content {
-        background: linear-gradient(120deg, rgba(45, 52, 54, 0.72), rgba(34, 47, 62, 0.62));
-        -webkit-backdrop-filter: blur(12px) saturate(140%);
-        backdrop-filter: blur(12px) saturate(140%);
+        background: rgba(255, 252, 246, 0.86);
+        -webkit-backdrop-filter: blur(14px) saturate(140%);
+        backdrop-filter: blur(14px) saturate(140%);
     }
 }
 
 .dropdown-content a:hover {
-color: #90ee90;
-padding-left: 2px;
-box-shadow: 0 0 8px rgba(34, 47, 62, 0.3); /* Neon glow effect */
+color: var(--moss-deep);
+background: var(--moss-soft);
+}
+
+/* Desktop: line the dropdown trigger up with the other nav links
+   (its margin used to collapse and lift it ~16px above them). */
+@media (min-width: 769px) {
+    .nav-center {
+        align-items: center;
+    }
+    .dropdown {
+        padding: 1rem 0;
+    }
+    .dropdown > a {
+        display: block;
+        margin: 0 2rem;
+    }
+    .dropdown-content {
+        top: 100%;
+    }
 }
 
 /* Show Dropdown on Hover */
@@ -131,7 +187,7 @@ top: 0;
 left: 0;
 width: 100%;
 height: 100%;
-background-color: rgba(0, 0, 0, 0.4); /* Slight grey effect */
+background-color: rgba(247, 242, 231, 0.6); /* Soft linen veil */
 z-index: 9998; /* Below the loading screen but above everything else */
 display: none; /* Initially hidden */
 }
@@ -142,13 +198,13 @@ top: 0;
 left: 0;
 width: 100%;
 height: 100%;
-background-color: rgba(51, 51, 51, 0.2); /* Increased transparency */
+background-color: var(--paper);
 display: flex;
 flex-direction: column; /* Align items vertically */
 justify-content: center;
 align-items: center;
 z-index: 99991;
-font-family: 'Poppins', sans-serif;
+font-family: var(--font-serif);
 }
 
 #loading-screen img {
@@ -179,7 +235,8 @@ to {
 #loading-screen p {
 margin-top: 20px; /* Add space between image and text */
 font-size: 1.2em;
-color: white;
+font-style: italic;
+color: var(--moss);
 animation: fadeInOut 2s ease-in-out infinite;
 }
 

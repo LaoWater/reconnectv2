@@ -42,102 +42,139 @@
 </div>
 
 <style>
+/* Contact — Dawn (2026-10): a letter card on linen paper.
+   Rules are scoped to .contact-container so the global nav / login modal keep their own styles. */
 body {
-    background: linear-gradient(120deg, rgba(20, 30, 40, 0.9), rgba(35, 50, 65, 0.9)); /* Darker background with transparency */
-    color: #ecf0f1;
-    font-family: 'Arial', sans-serif;
+    background: var(--paper);
+    color: var(--ink-soft);
+    font-family: var(--font-sans);
     text-align: center;
     padding: 0px;
 }
 
     .contact-container {
-        max-width: 800px;
+        max-width: 640px;
         margin: 0 auto;
-        padding-top: 80px;
+        padding: 96px 16px 72px;
         position: relative;
     }
 
-    .form-section {
-        background-color: rgba(255, 255, 255, 0.1);
-        padding: 30px;
-        border-radius: 12px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-        margin-top: 25px;
+    .contact-container .form-section {
+        background-color: var(--surface);
+        padding: 36px 40px 40px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-soft);
+        margin-top: 8px;
     }
 
-    .logo-animation {
-        margin-bottom: 20px;
+    .contact-container .logo-animation {
+        margin-bottom: 8px;
     }
 
-    .logo {
-        max-width: 150px;
-        animation: fadeInOut 8.7s infinite;
+    .contact-container .logo {
+        max-width: 120px;
+        border-radius: 50%;
+        box-shadow: var(--shadow-soft);
+        animation: fadeInOut 8.7s ease-in-out infinite;
     }
 
     @keyframes fadeInOut {
         0%, 100% {
-            opacity: 0;
+            opacity: 0.55;
         }
         50% {
             opacity: 1;
         }
     }
+    @media (prefers-reduced-motion: reduce) {
+        .contact-container .logo { animation: none; }
+    }
+    html[data-motion="lite"] .contact-container .logo { animation: none; }
 
-    .contact-form {
-        margin-top: 20px;
+    .contact-container .contact-form {
+        margin-top: 24px;
     }
 
-    .form-group {
-        margin-bottom: 15px;
+    .contact-container .form-group {
+        margin-bottom: 18px;
         text-align: left;
     }
 
-    label {
-        font-size: 14px;
-        font-weight: bold;
+    .contact-container label {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--ink);
     }
 
-    input[type="text"],
-    input[type="email"],
-    textarea {
+    .contact-container input[type="text"],
+    .contact-container input[type="email"],
+    .contact-container textarea {
         width: 100%;
-        padding: 10px;
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        border-radius: 5px;
-        background-color: rgba(255, 255, 255, 0.2);
-        color: #ecf0f1;
+        padding: 12px 14px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background-color: var(--surface);
+        color: var(--ink);
+        font-family: var(--font-sans);
+        font-size: 1rem;
+        line-height: 1.5;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
-    input::placeholder, textarea::placeholder {
-        color: #bdc3c7;
+    .contact-container textarea {
+        resize: vertical;
+        min-height: 140px;
     }
 
-    button[type="submit"] {
+    .contact-container input[type="text"]:focus,
+    .contact-container input[type="email"]:focus,
+    .contact-container textarea:focus {
+        outline: none;
+        border-color: var(--moss);
+        box-shadow: 0 0 0 3px var(--moss-soft);
+    }
+
+    .contact-container input::placeholder,
+    .contact-container textarea::placeholder {
+        color: var(--ink-faint);
+    }
+
+    .contact-container button[type="submit"] {
         width: 100%;
-        padding: 10px;
-        background: linear-gradient(120deg, #3498db, #2980b9);
-        color: white;
-        font-size: 16px;
-        font-weight: bold;
+        margin-top: 6px;
+        padding: 13px 20px;
+        background: var(--clay);
+        color: #fff;
+        font-family: var(--font-sans);
+        font-size: 1.05rem;
+        font-weight: 600;
         border: none;
-        border-radius: 5px;
+        border-radius: 999px;
         cursor: pointer;
-        transition: background 0.3s;
+        transition: background-color 0.25s var(--ease-soft), transform 0.25s var(--ease-soft);
     }
 
-    button[type="submit"]:hover {
-        background: linear-gradient(120deg, #2980b9, #3498db);
+    .contact-container button[type="submit"]:hover {
+        background: var(--clay-deep);
+    }
+    .contact-container button[type="submit"]:focus-visible {
+        outline: none;
+        box-shadow: 0 0 0 3px var(--clay-soft);
     }
 
-    h1 {
+    .contact-container h1 {
         margin-bottom: 10px;
-        font-size: 36px;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        font-size: clamp(2rem, 3vw + 1rem, 2.8rem);
+        color: var(--ink);
     }
 
-    p {
-        font-size: 18px;
-        margin-bottom: 20px;
+    .contact-container p {
+        font-size: 1.08rem;
+        margin-bottom: 8px;
+        color: var(--ink-soft);
     }
 
 
@@ -151,39 +188,30 @@ body {
     }
 
     .contact-container {
-        max-width: 90%; /* Use percentage width for responsiveness */
-        padding-top: 40px; /* Adjust padding as needed */
+        max-width: 100%;
+        padding: 72px 16px 48px;
     }
 
     .dropdown-content a {
         font-size: 0.83em;
     }
-    .form-section {
-        padding: 20px;
-        margin-top: 15px;
+    .contact-container .form-section {
+        padding: 24px 18px 26px;
+        margin-top: 8px;
     }
 
-    .logo {
-        margin-top: 1.5rem;
-        margin-right: 0.35rem;
-        max-width: 107px; /* Adjust logo size */
+    .contact-container .logo {
+        margin-top: 1rem;
+        max-width: 92px; /* Adjust logo size */
     }
 
-    h1 {
-        font-size: 28px;
+    .contact-container h1 {
+        font-size: 2rem;
     }
 
-    p {
-        font-size: 16px;
-    }
-
-    input[type="text"],
-    input[type="email"],
-    textarea,
-    button[type="submit"] {
-        width: 90%; /* Use percentage width for form elements */
-        margin-left: auto;
-        margin-right: auto;
+    .contact-container p {
+        font-size: 1rem;
+        margin: 0 0 8px;
     }
 
 #loginBtn {

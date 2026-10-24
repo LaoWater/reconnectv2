@@ -767,7 +767,7 @@ function showCustomPrompt(initialValue, callback) {
   overlay.style.left = '0';
   overlay.style.width = '100%';
   overlay.style.height = '100%';
-  overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
+  overlay.style.backgroundColor = 'rgba(43, 38, 33, 0.35)';
   overlay.style.display = 'flex';
   overlay.style.justifyContent = 'center';
   overlay.style.alignItems = 'center';
@@ -776,10 +776,10 @@ function showCustomPrompt(initialValue, callback) {
 
   // Create the modal container
   const modal = document.createElement('div');
-  modal.style.backgroundColor = '#ffffff';
+  modal.style.backgroundColor = '#FFFCF6';
   modal.style.padding = '25px';
-  modal.style.borderRadius = '12px';
-  modal.style.boxShadow = '0 8px 20px rgba(0, 0, 0, 0.3)';
+  modal.style.borderRadius = '24px';
+  modal.style.boxShadow = '0 30px 80px -20px rgba(43, 38, 33, 0.45)';
   modal.style.width = '350px';
   modal.style.textAlign = 'center';
   modal.style.animation = 'fadeIn 0.4s ease';
@@ -795,9 +795,9 @@ function showCustomPrompt(initialValue, callback) {
   const title = document.createElement('p');
   title.innerText = 'Rename Conversation';
   title.style.marginBottom = '20px';
-  title.style.fontFamily = `'Poppins', sans-serif`;
+  title.style.fontFamily = `'Fraunces', Georgia, serif`;
   title.style.fontSize = '20px';
-  title.style.color = '#333';
+  title.style.color = '#2B2621';
 
   // Create the input
   const input = document.createElement('input');
@@ -805,20 +805,20 @@ function showCustomPrompt(initialValue, callback) {
   input.value = initialValue || '';
   input.style.width = '100%';
   input.style.padding = '10px';
-  input.style.border = '1px solid #ccc';
-  input.style.borderRadius = '8px';
+  input.style.border = '1px solid #DDD2BF';
+  input.style.borderRadius = '12px';
   input.style.marginBottom = '20px';
   input.style.fontSize = '14px';
-  input.style.fontFamily = `'Poppins', sans-serif`;
+  input.style.fontFamily = `'Source Sans 3', sans-serif`;
   input.style.outline = 'none';
   input.style.transition = 'border-color 0.2s ease';
 
   // Input hover and focus styles
   input.addEventListener('focus', () => {
-    input.style.borderColor = '#4CAF50';
+    input.style.borderColor = '#3E6A47';
   });
   input.addEventListener('blur', () => {
-    input.style.borderColor = '#ccc';
+    input.style.borderColor = '#DDD2BF';
   });
 
   // Create the buttons container
@@ -832,19 +832,19 @@ function showCustomPrompt(initialValue, callback) {
   okButton.innerText = 'Save';
   okButton.style.flex = '1';
   okButton.style.padding = '10px 15px';
-  okButton.style.backgroundColor = '#388E3C';
+  okButton.style.backgroundColor = '#B4552E';
   okButton.style.color = '#ffffff';
   okButton.style.border = 'none';
-  okButton.style.borderRadius = '8px';
+  okButton.style.borderRadius = '999px';
   okButton.style.cursor = 'pointer';
-  okButton.style.fontFamily = `'Poppins', sans-serif`;
+  okButton.style.fontFamily = `'Source Sans 3', sans-serif`;
   okButton.style.transition = 'background-color 0.2s ease';
 
   okButton.addEventListener('mouseover', () => {
-    okButton.style.backgroundColor = '#45a049';
+    okButton.style.backgroundColor = '#8E3E1D';
   });
   okButton.addEventListener('mouseout', () => {
-    okButton.style.backgroundColor = '#4CAF50';
+    okButton.style.backgroundColor = '#B4552E';
   });
 
   okButton.addEventListener('click', () => {
@@ -857,19 +857,19 @@ function showCustomPrompt(initialValue, callback) {
   cancelButton.innerText = 'Cancel';
   cancelButton.style.flex = '1';
   cancelButton.style.padding = '10px 15px';
-  cancelButton.style.backgroundColor = '#D32F2F';
-  cancelButton.style.color = '#ffffff';
-  cancelButton.style.border = 'none';
-  cancelButton.style.borderRadius = '8px';
+  cancelButton.style.backgroundColor = 'transparent';
+  cancelButton.style.color = '#2B2621';
+  cancelButton.style.border = '1px solid #DDD2BF';
+  cancelButton.style.borderRadius = '999px';
   cancelButton.style.cursor = 'pointer';
-  cancelButton.style.fontFamily = `'Poppins', sans-serif`;
+  cancelButton.style.fontFamily = `'Source Sans 3', sans-serif`;
   cancelButton.style.transition = 'background-color 0.2s ease';
 
   cancelButton.addEventListener('mouseover', () => {
-    cancelButton.style.backgroundColor = '#d7372f';
+    cancelButton.style.backgroundColor = '#D7E4D3';
   });
   cancelButton.addEventListener('mouseout', () => {
-    cancelButton.style.backgroundColor = '#f44336';
+    cancelButton.style.backgroundColor = 'transparent';
   });
 
   cancelButton.addEventListener('click', () => {

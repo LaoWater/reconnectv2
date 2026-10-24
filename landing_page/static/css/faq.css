@@ -1,229 +1,179 @@
+/* ==========================================================================
+   FAQ, the free-forever card, the YLF teaser and the footer (dawn redesign)
+   ========================================================================== */
 
-        .faq-container {
-            font-family: 'Poppins', sans-serif;
-            width: 90%;
-            max-width: 800px;
-            margin: 40px auto;
-            border-radius: 15px;
-            background: rgba(0, 0, 0, 0.7);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 165, 0, 0.3);
-            overflow: hidden;
-        }
+/* ----- FAQ accordion ------------------------------------------------------- */
 
-        .faq {
-            border-bottom: 1px solid rgba(255, 165, 0, 0.2);
-        }
-
-        .faq:last-child {
-            border-bottom: none;
-        }
-
-        .faq-title {
-            background: linear-gradient(90deg, #1e1e1e, #ff5500);
-            color: #fff;
-            font-weight: bold;
-            padding: 15px 20px;
-            cursor: pointer;
-            font-size: 1.2rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            transition: background 0.5s, transform 0.3s;
-            text-shadow: 0 0 5px #ffa500, 0 0 10px #ff7700;
-        }
-
-        .faq-title:hover {
-            background: linear-gradient(90deg, #ff7700, #ff4500);
-            transform: scale(1.02);
-        }
-
-        .faq-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.6s ease, padding 0.6s ease;
-            padding: 0 20px;
-        }
-
-        .faq-content.expanded {
-            max-height: 1500px;
-            padding: 15px 20px;
-        }
-
-        .faq-content p {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1rem;
-            line-height: 2;
-            color: #ddd;
-            text-align: left;
-            margin: 10px 0; /* Additional spacing between paragraphs */
-        }
-
-        .faq-icon {
-            font-size: 1.5rem;
-            color: #ffa500;
-            text-shadow: 0 0 5px #ffa500, 0 0 10px #ff5500;
-            transition: transform 0.3s;
-        }
-
-        .faq-icon.rotated {
-            transform: rotate(45deg);
-        }
-
-        /* Glowing border around the FAQ container */
-        .faq-container::before {
-            content: '';
-            position: absolute;
-            top: 180px;  /* Glowing border around the FAQ container */
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%;
-            height: 45%;
-            border-radius: 15px;
-            border: 2px solid rgba(255, 165, 0, 0.4);
-            box-shadow: 0 0 20px rgba(255, 165, 0, 0.3), 0 0 30px rgba(255, 165, 0, 0.2);
-            z-index: -1;
-        }
-
-
-
-.whatsapp-link {
-  display: inline-block;
-  color: #25D366; /* WhatsApp Green */
-  font-weight: bold;
-  text-decoration: none;
-  border: 2px solid #25D366;
-  padding: 6px 12px;
-  border-radius: 5px; /* Rounded corners */
-  transition: all 0.3s ease; /* Smooth effect */
-  margin-left: 73px;
-
+.faq-container {
+    font-family: var(--font-sans);
+    width: 90%;
+    max-width: 800px;
+    margin: 40px auto;
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-soft);
+    overflow: hidden;
+    text-align: left;
 }
 
-.whatsapp-link:hover {
-  background-color: #25D366; /* Green background on hover */
-  color: #fff; /* White text */
-  box-shadow: 0 0 10px #25D366; /* Glow effect */
+.faq {
+    border-bottom: 1px solid var(--line);
 }
 
-
-
-        /* Footer Styling */
-#footer {
-    position: relative; /* Fix the footer at the bottom of the viewport */
-    bottom: 0; /* Align it with the bottom */
-    left: 0; /* Start from the left edge */
-    right: 0; /* Stretch to the right edge */
-    top: 19.5rem;
-    background: linear-gradient(
-        180deg,
-        rgba(255, 69, 0, 0.2) 0%,    /* Subtle neon glow at the top */
-        rgba(20, 30, 40, 0.95) 20%, /* Darker and semi-transparent */
-        rgba(10, 20, 30, 1) 50%,    /* Solid dark center */
-        rgba(20, 30, 40, 0.8) 80%,  /* Gradual dissipation */
-        rgba(20, 30, 40, 0.3) 100%  /* Transparent fade at the bottom */
-    );
-    color: #ecf0f1;
-    padding: 20px 0px;
-    font-family: 'Poppins', sans-serif;
-    text-align: center;
-    width: 100%; /* Ensure full-width */
-    z-index: 1000; /* Ensure it appears on top of content */
-    box-shadow: 0px 0px 35px 10px rgba(255, 57, 0, 0.3); /* Extended outer glow effect */
-
+.faq:last-child {
+    border-bottom: none;
 }
 
-.footer-content {
+.faq-title {
+    background: transparent;
+    color: var(--ink);
+    font-family: var(--font-serif);
+    font-weight: 500;
+    padding: 20px 24px;
+    cursor: pointer;
+    font-size: 1.2rem;
     display: flex;
-    flex-direction: column; /* Stack items vertically */
-    justify-content: center; /* Center the items vertically */
-    align-items: center; /* Center the items horizontally */
-    flex-wrap: nowrap; /* Prevent wrapping since items are now stacked */
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0px 0px; /* Adjusted padding for a balanced layout */
-
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
+.faq-title:hover {
+    background: var(--paper);
+    color: var(--moss-deep);
+}
 
-.footer-section {
+.faq-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.6s ease, padding 0.6s ease;
+    padding: 0 24px;
+    background: var(--paper);
+}
+
+.faq-content.expanded {
+    max-height: 1500px;
+    padding: 6px 24px 20px;
+}
+
+.faq-content p {
+    font-family: var(--font-sans);
+    font-size: 1.04rem;
+    line-height: 1.9;
+    color: var(--ink-soft);
+    text-align: left;
+    max-width: none;
     margin: 10px 0;
 }
 
-.footer-link {
-    color: #ecf0f1;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: bold;
-    transition: color 0.3s ease;
+.faq-content p strong {
+    color: var(--ink);
 }
 
-.footer-link:hover {
-    color: #f39c12;
+.faq-content p em {
+    color: var(--moss-deep);
 }
 
-.social-icons {
-    display: flex;
+/* The little check / heart icons (their color is set inline in the template) */
+.faq-content i.fa-solid {
+    color: var(--moss) !important;
+}
+
+.faq-icon {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
     justify-content: center;
-    gap: 20px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    font-family: var(--font-sans);
+    font-size: 1.2rem;
+    color: var(--moss);
+    transition: transform 0.3s var(--ease-soft), background 0.3s ease;
 }
 
-.social-icon img {
-    width: 22px;
-    height: 22px;
-    transition: transform 0.3s ease, filter 0.3s ease;
+.faq-title:hover .faq-icon {
+    background: var(--moss-soft);
 }
 
-.social-icon img:hover {
-    transform: scale(1.2);
-    filter: brightness(1.2);
+.faq-icon.rotated {
+    transform: rotate(45deg);
 }
 
-.end-of-site p {
-    font-family: 'Cinzel', sans-serif;
-    font-size: 14px;
-    color: #bdc3c7;
-    margin-top: 20px;
+.whatsapp-link {
+    display: inline-block;
+    color: #1E7E4A;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid rgba(30, 126, 74, 0.45);
+    padding: 8px 16px;
+    border-radius: 999px;
+    transition: all 0.3s ease;
+    margin: 6px 0 0 28px;
 }
 
-@media (max-width: 768px) {
-    .footer-content {
-        flex-direction: column;
-    }
-
-    .social-icons {
-        margin-top: 20px;
-    }
+.whatsapp-link i {
+    color: #1E7E4A !important;
 }
+
+.whatsapp-link:hover {
+    background-color: #1E7E4A;
+    color: #fff;
+}
+
+.whatsapp-link:hover i {
+    color: #fff !important;
+}
+
+/* ----- Free forever ---------------------------------------------------------- */
 
 .buy-buttons-container {
     position: relative;
-    width: 300px; /* Expand the container */
-    height: 150px; /* Increase height for better positioning */
+    width: min(100%, 440px);
+    margin: 56px auto 24px;
+    padding: 32px 28px 30px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    left: 33%;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lift);
 }
 
-/* Old Price Button - Smaller & Positioned at Top-Left */
+/* A wheat-colored thread across the top of the card */
+.buy-buttons-container::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    width: 120px;
+    height: 4px;
+    transform: translateX(-50%);
+    border-radius: 0 0 4px 4px;
+    background: var(--wheat);
+}
+
 .old-price {
     position: absolute;
     top: -6px;
-    margin-left: -19rem;
     transform: scale(0.8);
-    background-color: #ccc;
-    color: #333;
-    font-weight: bold;
+    background-color: var(--paper-deep);
+    color: var(--ink-soft);
+    font-weight: 600;
     pointer-events: none;
 }
 
-/* Strikethrough Effect */
 .strikethrough {
     position: relative;
     display: inline-block;
-    color: red;
-    font-weight: bold;
+    color: var(--clay-deep);
+    font-weight: 600;
 }
 
 .strikethrough::after {
@@ -233,395 +183,26 @@
     top: 50%;
     width: 100%;
     height: 2px;
-    background: red;
+    background: var(--clay);
     transform: rotate(-10deg);
 }
 
-
-/* Subtle Glow Effect */
 .glow-effect {
     position: absolute;
     bottom: -6px;
     left: 50%;
     transform: translateX(-50%);
     opacity: 0.7;
-    animation: pulse 1.5s infinite alternate;
 }
 
-
-
-
-        /* Responsive Fixes for Mobile */
-        @media (max-width: 768px) {
-        .faq-container {
-            width: 95%;
-            margin: 20px auto;
-            padding: 10px;
-        }
-
-        .faq-title {
-            font-size: 1rem; /* Smaller font for smaller screens */
-            padding: 10px 15px;
-        }
-
-        .faq-content p {
-            font-size: 0.75rem; /* Slightly smaller text for readability */
-            line-height: 2.1; /* Adjusted spacing for mobile */
-            text-align: left;
-        }
-
-        .faq-icon {
-            font-size: 1rem;
-        }
-             /* Fix for glowing border on smaller screens */
-        .faq-container::before {
-            display: none; /* Hides the glowing border on mobile to avoid layout issues */
-        }
-
-        a.whatsapp-link {
-            color: #ff4500 !important; /* Red-gold color for all states */
-            font-weight: bold;
-            text-decoration: none; /* Removes underline */
-            transition: color 0.3s, text-shadow 0.3s; /* Smooth transition for hover effects */
-        }
-
-        a.whatsapp-link:visited {
-            color: #ff4500 !important; /* Ensures visited links are red-gold */
-        }
-
-        a.whatsapp-link:hover {
-            color: #ffd700 !important; /* Gold color on hover */
-            text-shadow: 0 0 5px #ffd700, 0 0 10px #ff4500; /* Glowing effect */
-        }
-
-        a.whatsapp-link:active {
-            color: #ff7700 !important; /* Slightly darker red-gold on active click */
-        }
-
-        /* Reset all browser link styles for this link */
-
-        a.whatsapp-link:link,
-        a.whatsapp-link:visited,
-        a.whatsapp-link:hover,
-        a.whatsapp-link:active {
-        text-decoration: none !important; /* No underline */
-        color: inherit !important; /* Ensures custom color is applied */
-    }
-
-    .buy-buttons-container
-    {
-    left: 9.3%;
-    }
-    .old-price {
-    margin-left: -12rem;
-    }
-
-    }
-
-
-
-/******************************/
-/* YLF Widget */
-/******************************/
-
-
-.ylf-faq {
-      position: relative;
-      width: 100%;
-      max-width: 900px;
-      min-height: 220px;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-      top: 15.3rem;
-      bottom: 2rem;
-    }
-
-
-.ylf-widget {
-      position: relative;
-      width: 100%;
-      max-width: 900px;
-      min-height: 220px;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-      top: 12rem;
-      bottom: 2rem;
-    }
-
-    .ylf-background {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, rgba(26, 255, 253, 0.1), rgba(255, 140, 0, 0.1));
-      border: 2px solid rgba(26, 255, 253, 0.6);
-    }
-
-    #particles-js {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-    }
-
-    .ylf-content {
-      position: relative;
-      z-index: 2;
-      padding: 30px;
-      color: #333;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .ylf-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-    }
-
-    .ylf-logo {
-      font-size: 28px;
-      font-weight: 700;
-      background: linear-gradient(90deg, #ff4500, #ff8c00);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      display: flex;
-      align-items: center;
-    }
-
-    .ylf-logo svg {
-      margin-right: 10px;
-    }
-
-    .ylf-tagline {
-      font-size: 16px;
-      color: #666;
-      margin-bottom: 20px;
-    }
-
-    .ylf-description {
-      font-size: 18px;
-      line-height: 1.6;
-      margin-bottom: 30px;
-      color: aliceblue;
-    }
-
-    .ylf-interaction {
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 15px;
-      padding: 10px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    }
-.ylf-input-container {
-    display: inline-flex;
-    flex-direction: row;
-    width: 100%;
-    max-width: 600px;
-    position: relative;
-}
-
-.ylf-input {
-    width: 100%;
-    min-height: 50px; /* Default height */
-    max-height: 200px; /* Maximum height before scrolling */
-    border: none;
-    background: rgba(240, 240, 240, 0.7);
-    border-radius: 10px;
-    padding: 12px 15px;
-    font-size: 16px;
-    color: #333;
-    outline: none;
-    resize: none; /* Prevent manual resizing */
-    overflow-y: auto; /* Enable scrolling if needed */
-    line-height: 1.5;
-    transition: height 0.2s ease-in-out;
-}
-
-
-    .ylf-input:focus {
-      box-shadow: 0 0 0 2px rgba(26, 255, 253, 0.6);
-    }
-
-    .ylf-button {
-      background: linear-gradient(90deg, #ff4500, #ff8c00);
-      border: none;
-      color: white;
-      border-radius: 10px;
-      padding: 12px 20px;
-      margin-left: 10px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .ylf-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(255, 69, 0, 0.3);
-    }
-
-    .ylf-button svg {
-      margin-left: 8px;
-    }
-
-    .ylf-response {
-      min-height: 60px;
-      font-size: 16px;
-      line-height: 1.5;
-      color: #333;
-      overflow: hidden;
-    }
-
-    .ylf-response.typing::after {
-      content: "|";
-      animation: blink 1s infinite;
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
-    }
-
-    .ylf-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 20px;
-    }
-
-    .ylf-cta {
-      display: inline-block;
-      color: #ff4500;
-      text-decoration: none;
-      font-weight: 600;
-      padding: 8px 16px;
-      border-radius: 8px;
-      transition: all 0.3s ease;
-    }
-
-    .ylf-cta:hover {
-      background: rgba(255, 69, 0, 0.1);
-      transform: translateX(3px);
-    }
-
-    .ylf-cta svg {
-      margin-left: 5px;
-      vertical-align: middle;
-    }
-
-    .ylf-pills {
-      display: flex;
-      gap: 8px;
-    }
-
-    .ylf-pill {
-      font-size: 12px;
-      background: rgba(26, 255, 253, 0.1);
-      color: #008b8b;
-      padding: 5px 10px;
-      border-radius: 30px;
-      font-weight: 500;
-    }
-
-  .ylf-faq .p2-container {
-    font-size: 10px; /* Adjust font size as needed */
-    text-align: right; /* Aligns text to the right */
-    /* Alternatively, you can use float: right; */
-  }
-
-        .ylf-faq h3 {
-    margin-bottom: 0.3rem; /* Adjust as needed */
-        margin-top: 0.2rem; /* Adjust as needed */
-  }
-      .ylf-faq p {
-    margin-bottom: 0px; /* Adjust as needed */
-  }
-
-
-    @media (max-width: 600px) {
-      .ylf-widget {
-        min-height: 400px;
-      }
-
-      .ylf-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-      }
-
-      .ylf-description {
-        font-size: 14.4px;
-      }
-
-      .ylf-tagline {
-        font-size: 14.4px;
-        margin-bottom: 10px;
-      }
-
-      .ylf-input-container {
-        flex-direction: column;
-      }
-
-      .ylf-button {
-        margin-left: 0;
-        margin-top: 10px;
-        width: 100%;
-      }
-
-      .ylf-footer {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-      }
-
-      .ylf-pills {
-        margin-top: 10px;
-        flex-wrap: wrap;
-      }
-
-      .ylf-faq {
-      top: 3rem;
-      }
-
-      .ylf-widget {
-      top: 5rem;
-
-      }
-     .ylf-faq {
-     min-height: 140px;
-     }
-
-    #footer {
-    top: 13rem;
-    }
-    }
-
-
-/* ------------------------------------------------------------------
- * Free-Forever pricing block — replaces the old strikethrough +
- * discounted-price button pair. The course is free; the strike-through
- * "400 LEI" is kept purely as visual anchor for what it used to cost.
- * ------------------------------------------------------------------ */
 .price-display {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
-    margin-bottom: 16px;
+    gap: 6px;
+    margin-bottom: 20px;
 }
 
-/* Override the legacy button-flavoured .old-price rules inside the
-   price-display context — here it's a plain inline span, not a button. */
 .price-display .old-price {
     position: relative;
     display: inline-block;
@@ -629,9 +210,10 @@
     transform: none;
     background: none;
     pointer-events: auto;
-    font-size: 1.4rem;
-    color: rgba(255, 255, 255, 0.5);
-    font-weight: bold;
+    font-family: var(--font-sans);
+    font-size: 1.25rem;
+    color: var(--ink-faint);
+    font-weight: 600;
     line-height: 1.1;
 }
 
@@ -641,26 +223,22 @@
     left: -0.22em;
     right: -0.22em;
     top: 50%;
-    height: 3px;
-    background: #ff1717;
+    height: 2px;
+    background: var(--clay);
     border-radius: 999px;
     transform: translateY(-50%) rotate(-7deg);
-    box-shadow: 0 0 8px rgba(255, 23, 23, 0.65);
     pointer-events: none;
 }
 
 .price-display .free-forever {
     position: relative;
-    font-family: 'Cinzel', serif;
-    font-size: clamp(1.6rem, 3vw + 0.6rem, 2.6rem);
-    font-weight: bold;
-    background: linear-gradient(90deg, #ff4500, #ffd700);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
-    text-shadow: 0 0 12px rgba(255, 140, 0, 0.4);
-    letter-spacing: 2px;
+    font-family: var(--font-serif);
+    font-size: clamp(1.8rem, 3vw + 0.6rem, 2.6rem);
+    font-weight: 500;
+    font-style: italic;
+    color: var(--moss-deep);
+    letter-spacing: 0;
+    line-height: 1.1;
     text-align: center;
 }
 
@@ -669,20 +247,22 @@
     content: none;
 }
 
-/* Countdown Timer */
+/* ----- Countdown (kept for future use) ----------------------------------- */
+
 .countdown-container {
-    background: #1a1a1a;
+    background: var(--surface);
+    border: 1px solid var(--line);
     padding: 1rem;
-    border-radius: 12px;
+    border-radius: var(--radius);
     text-align: center;
     margin: 2rem auto;
     max-width: 600px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-soft);
 }
 
 .countdown-container h3 {
-    color: #fff;
-    font-family: 'Inter', sans-serif;
+    color: var(--ink);
+    font-family: var(--font-serif);
     margin-bottom: 1.5rem;
     font-size: 1.5rem;
 }
@@ -694,24 +274,432 @@
 }
 
 .time-block {
-    background: #262626;
+    background: var(--paper-deep);
     padding: 1rem;
-    border-radius: 8px;
+    border-radius: 10px;
     min-width: 80px;
 }
 
 .number {
-    color: #4f46e5;
-    font-family: 'Space Mono', monospace;
+    color: var(--moss-deep);
+    font-family: var(--font-serif);
     font-size: 2rem;
-    font-weight: 700;
+    font-weight: 600;
     margin-bottom: 0.5rem;
 }
 
 .label {
-    color: #a1a1aa;
-    font-family: 'Inter', sans-serif;
+    color: var(--ink-faint);
+    font-family: var(--font-sans);
     font-size: 0.875rem;
     text-transform: uppercase;
     letter-spacing: 1px;
+}
+
+/* ----- YLF teaser ---------------------------------------------------------- */
+
+.ylf-faq {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    margin: 64px auto 0;
+    text-align: center;
+}
+
+.ylf-faq h3 {
+    margin-bottom: 0.3rem;
+    margin-top: 0.2rem;
+}
+
+.ylf-faq p {
+    margin-bottom: 0;
+}
+
+.ylf-faq .p2-container {
+    font-size: 12px;
+    color: var(--ink-faint);
+    text-align: right;
+}
+
+.ylf-widget {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    min-height: 220px;
+    margin: 20px auto 72px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-lift);
+    text-align: left;
+}
+
+.ylf-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(ellipse 60% 80% at 100% 0%, rgba(210, 230, 231, 0.9), transparent 70%),
+        radial-gradient(ellipse 50% 70% at 0% 100%, rgba(215, 228, 211, 0.9), transparent 70%),
+        var(--surface);
+    border: none;
+}
+
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.ylf-content {
+    position: relative;
+    z-index: 2;
+    padding: clamp(20px, 3vw, 34px);
+    color: var(--ink);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.ylf-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.ylf-logo {
+    font-family: var(--font-serif);
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--moss-deep);
+    display: flex;
+    align-items: center;
+}
+
+.ylf-logo svg {
+    margin-right: 10px;
+}
+
+.ylf-logo svg * {
+    stroke: var(--moss) !important;
+}
+
+.ylf-tagline {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 16px;
+    color: var(--ink-faint);
+    margin-bottom: 16px;
+}
+
+.ylf-description {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 26px;
+    color: var(--ink-soft);
+}
+
+.ylf-interaction {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 10px;
+    box-shadow: 0 1px 2px rgba(43, 38, 33, 0.05);
+}
+
+.ylf-input-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    position: relative;
+}
+
+.ylf-input {
+    width: 100%;
+    min-height: 50px;
+    max-height: 200px;
+    border: none;
+    background: transparent;
+    border-radius: 12px;
+    padding: 12px 15px;
+    font-family: var(--font-sans);
+    font-size: 16px;
+    color: var(--ink);
+    outline: none;
+    resize: none;
+    overflow-y: auto;
+    line-height: 1.5;
+    transition: height 0.2s ease-in-out, background 0.2s ease;
+}
+
+.ylf-input::placeholder {
+    color: var(--ink-faint);
+}
+
+.ylf-input:focus {
+    background: var(--paper);
+    box-shadow: none;
+}
+
+.ylf-button {
+    background: var(--clay);
+    border: none;
+    color: #fff;
+    border-radius: 999px;
+    padding: 12px 22px;
+    margin-left: 10px;
+    cursor: pointer;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    transition: background 0.3s ease, transform 0.3s var(--ease-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+}
+
+.ylf-button:hover {
+    background: var(--clay-deep);
+    transform: translateY(-1px);
+    box-shadow: none;
+}
+
+.ylf-button svg {
+    margin-left: 8px;
+}
+
+.ylf-response {
+    min-height: 60px;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    overflow: hidden;
+}
+
+.ylf-response.typing::after {
+    content: "|";
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.ylf-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.ylf-cta {
+    display: inline-block;
+    color: var(--moss-deep);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 999px;
+    transition: all 0.3s ease;
+}
+
+.ylf-cta:hover {
+    background: var(--moss-soft);
+    transform: translateX(3px);
+}
+
+.ylf-cta svg {
+    margin-left: 5px;
+    vertical-align: middle;
+}
+
+.ylf-pills {
+    display: flex;
+    gap: 8px;
+}
+
+.ylf-pill {
+    font-size: 12px;
+    background: var(--river-soft);
+    color: var(--river-deep);
+    padding: 5px 12px;
+    border-radius: 30px;
+    font-weight: 600;
+}
+
+/* ----- Footer: the one dark band, a forest at night ------------------------ */
+
+#footer {
+    position: relative;
+    left: 0;
+    right: 0;
+    margin-top: 0;
+    background: var(--night);
+    color: var(--night-ink);
+    padding: 40px 0 28px;
+    font-family: var(--font-sans);
+    text-align: center;
+    width: 100%;
+    z-index: 1000;
+    /* full-bleed past the centered section */
+    box-shadow: 0 0 0 100vmax var(--night);
+    clip-path: inset(0 -100vmax -100vmax);
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.footer-section {
+    margin: 10px 0;
+}
+
+.footer-link {
+    color: var(--night-ink);
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+    color: var(--sun);
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+}
+
+.social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(243, 237, 224, 0.08);
+    border: 1px solid rgba(243, 237, 224, 0.14);
+    transition: background 0.3s ease, transform 0.3s var(--ease-soft);
+}
+
+.social-icon:hover {
+    background: rgba(243, 237, 224, 0.16);
+    transform: translateY(-2px);
+}
+
+.social-icon img {
+    width: 20px;
+    height: 20px;
+}
+
+.end-of-site p {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 14px;
+    color: rgba(243, 237, 224, 0.6);
+    margin-top: 16px;
+}
+
+/* ----- Mobile ---------------------------------------------------------------- */
+
+@media (max-width: 768px) {
+    .faq-container {
+        width: 100%;
+        margin: 20px auto;
+    }
+
+    .faq-title {
+        font-size: 1.05rem;
+        padding: 16px 18px;
+    }
+
+    .faq-content,
+    .faq-content.expanded {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .faq-content p {
+        font-size: 0.98rem;
+        line-height: 1.8;
+    }
+
+    .whatsapp-link {
+        margin-left: 0;
+    }
+
+    .buy-buttons-container {
+        margin-top: 40px;
+        padding: 28px 20px 26px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+    }
+
+    .social-icons {
+        margin-top: 8px;
+    }
+}
+
+@media (max-width: 600px) {
+    .ylf-widget {
+        min-height: 400px;
+        margin-bottom: 48px;
+    }
+
+    .ylf-faq {
+        margin-top: 40px;
+    }
+
+    .ylf-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+
+    .ylf-description {
+        font-size: 16px;
+    }
+
+    .ylf-tagline {
+        font-size: 14.4px;
+        margin-bottom: 10px;
+    }
+
+    .ylf-input-container {
+        flex-direction: column;
+    }
+
+    .ylf-button {
+        margin-left: 0;
+        margin-top: 10px;
+        width: 100%;
+    }
+
+    .ylf-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .ylf-pills {
+        margin-top: 10px;
+        flex-wrap: wrap;
+    }
 }
