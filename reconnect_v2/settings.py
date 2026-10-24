@@ -14,6 +14,8 @@ import environ
 CSRF_TRUSTED_ORIGINS = [
     'https://reconnectv2.com',
     'https://www.reconnectv2.com',
+    'https://reconnect-course.com',
+    'https://www.reconnect-course.com',
     'http://192.168.0.196:8000',
     'http://127.0.0.1:8000/',
 
@@ -54,8 +56,10 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = env('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+# Optional: only the contact form sends email. Without these the site still runs;
+# the contact form just reports that sending failed.
+EMAIL_HOST_USER = env('EMAIL_HOST_USER', default='')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='')
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.

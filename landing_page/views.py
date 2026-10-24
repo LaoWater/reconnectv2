@@ -86,6 +86,9 @@ def submit_newsletter(request):
             if phone and not phone.isdigit():
                 return JsonResponse({'error': 'Phone must contain only numbers'}, status=400)
 
+            if db is None:  # Firebase key not deployed: newsletter is off
+                return JsonResponse({'error': 'Newsletter sign-ups are paused'}, status=503)
+
             # Check for duplicate email in Firestore
             existing_docs = db.collection('newsletter_subscribers').where('email', '==', email).stream()
             if any(existing_docs):
@@ -118,16 +121,17 @@ def ylf_response(request):
     # Retrieve the API key from the environment variable
     api_key = os.getenv("OPENAI_API_KEY")
 
-    if not api_key:
-        return JsonResponse({"error": "OPENAI_API_KEY is not set in the environment"}, status=500)
-
-    # Initialize the OpenAI client with the API key
-    client = OpenAI(api_key=api_key)
-
     prompt = None
     model_response = None
 
     if request.method == 'POST':
+        # Only sending a message needs the key; the page itself always renders.
+        if not api_key:
+            return JsonResponse({"error": "OPENAI_API_KEY is not set in the environment"}, status=500)
+
+        # Initialize the OpenAI client with the API key
+        client = OpenAI(api_key=api_key)
+
         # Check if the user is logged in
         username = None
         if request.user.is_authenticated:
@@ -343,7 +347,9 @@ def export_database(request):
     # Security: Require a secret key in the request
     secret_key = request.GET.get('secret_key')
     env_secret_key = os.getenv("SECRET_KEY_DB_EXPORT", None)
-    if secret_key != env_secret_key:  # Replace with your actual key
+    # Fail closed: with no key configured, nobody may download the database
+    # (before, a missing key made None == None and let anyone in).
+    if not env_secret_key or secret_key != env_secret_key:
         return HttpResponseForbidden("Unauthorized access.")
 
     # Path to the database file

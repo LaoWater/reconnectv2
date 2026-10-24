@@ -151,6 +151,9 @@ For a comprehensive list and detailed insights, please visit [Bibliography Page]
 
 ## **Installation and Deployment Guide**
 
+> [!TIP]
+> **Deploying?** The current, step-by-step commands (build, deploy without traffic, test, switch, roll back) are in [DEPLOY.md](DEPLOY.md).
+
 **1. Install Requirements**
 
 ```bash

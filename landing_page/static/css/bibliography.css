@@ -6,28 +6,33 @@
   box-sizing: border-box;
 }
 
+/* ------------------------------------------------------------------
+ * Bibliography — "a reading room in morning light" (Dawn, 2026-10).
+ * Linen paper, a shelf card on --surface, soft hairlines, ink on paper.
+ * ------------------------------------------------------------------ */
 
-/* Updated Body Styles */
 body {
-    background: linear-gradient(to bottom, #1a1a1a, #000); /* Fallback for unsupported browsers */
-    color: #dfe;
+    background: var(--paper);
+    color: var(--ink-soft);
     font-size: 0.95rem;
-    font-family: "Poppins", sans-serif;
-    font-weight: bold;
+    font-family: var(--font-sans);
+    font-weight: 400;
     overflow-x: hidden;
     margin: 0;
     padding: 0;
 }
+
     /* Container to center the main content */
     .bibliography-container {
       width: 100%;
       min-height: 50vh;
       position: relative;
+      z-index: 1;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding-bottom: 80px; /* Extra space at bottom if needed */
+      padding: 0 16px 80px; /* Extra space at bottom if needed */
     }
 
     /* === TOP-LEFT BOOK ICON === */
@@ -38,16 +43,22 @@ body {
       z-index: 1000;
     }
     .icon-container i {
-      font-size: 2.5rem;
-      color: #7ec8e3;
-      text-shadow: 0 0 6px #7ec8e3;
+      font-size: 2rem;
+      color: var(--moss);
+      opacity: 0.85;
     }
 
     /* === PRESENTATION SECTION (Hero-like) === */
     .presentation-container {
-      max-width: 900px;
-      margin: 5rem auto;
+      max-width: 760px;
+      margin: 7rem auto 3rem;
       text-align: center;
+    }
+
+    .presentation-container h2 {
+      font-size: clamp(2rem, 3vw + 1rem, 3rem);
+      color: var(--ink);
+      margin-bottom: 0.4rem;
     }
 
     .presentation-container .h2 {
@@ -56,37 +67,49 @@ body {
     /* Title in the hero section */
     .presentation-title {
       font-size: 2.2rem;
-      color: #7ec8e3;
+      color: var(--ink);
       margin-bottom: 20px;
     }
 
-    /* Subtitle text */
+    /* Subtitle text — "~The Beauty and Limitation of Words~" */
     .presentation-subtitle {
-      font-size: 1rem;
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(1.1rem, 1vw + 0.85rem, 1.35rem);
       line-height: 1.5;
+      color: var(--river-deep);
       margin-bottom: 15px;
     }
 
     .presentation-details {
-      font-size: 0.95rem;
-      line-height: 1.6;
+      font-size: 1.08rem;
+      line-height: 1.75;
       margin-bottom: 15px;
     }
 
     .presentation-details2 {
-      font-size: 1rem;
-      font-style: bold;
+      font-size: 1.05rem;
+      line-height: 1.75;
       margin-bottom: 25px;
     }
+    .presentation-details2 em {
+      color: var(--ink-soft);
+    }
     .presentation-details4 {
-      font-size: 1.1rem;
-      font-style: bold;
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      line-height: 1.6;
+    }
+    .presentation-details4 strong {
+      color: var(--moss-deep);
+      font-weight: 500;
     }
 
     /* OPTIONAL: highlight pseudo-class */
     highlight {
-      color: #7ec8e3;
-      background-color: #333;
+      color: var(--ink);
+      background-color: var(--wheat-soft);
       padding: 2px 5px;
       border-radius: 4px;
     }
@@ -97,39 +120,42 @@ body {
       margin: 0 auto 40px auto;
       text-align: center;
       padding: 20px;
-      background-color: #2e2e2e;
-      border-radius: 8px;
-      box-shadow:
-        inset 0 0 15px rgba(126,200,227,0.2),
-        0 0 15px rgba(126,200,227,0.2);
+      background-color: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
     }
     .bibliography-intro h2 {
-      color: #7ec8e3;
+      color: var(--moss-deep);
       margin-bottom: 15px;
       font-size: 1.6rem;
     }
     .bibliography-intro p {
-      line-height: 1.5;
-      font-size: 0.95rem;
+      line-height: 1.6;
+      font-size: 1rem;
       margin-bottom: 10px;
       margin-top: 1.53rem;
     }
 
 
-/* === ACTUAL BIBLIOGRAPHY LIST WRAPPER === */
+/* === ACTUAL BIBLIOGRAPHY LIST WRAPPER — the shelf === */
 
 .scrolling-list {
     width: 70%;
     max-width: 900px;
     height: 60vh;
-    background-color: #2e2e2e;
-    border-radius: 8px;
-    box-shadow: inset 0 0 15px rgba(126, 200, 227, 0.2), 0 0 15px rgba(126, 200, 227, 0.2);
+    background-color: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
     position: relative;
+    padding: 10px 0;
     -webkit-overflow-scrolling: touch; /* Add this line */
     overflow: scroll;
+    overflow-x: hidden;
     overflow-y: scroll;
-
+    scrollbar-width: thin;
+    scrollbar-color: var(--line) transparent;
 }
 
 /* Custom scrollbar styling */
@@ -138,13 +164,13 @@ body {
 }
 
 .scrolling-list::-webkit-scrollbar-thumb {
-    background: rgba(126, 200, 227, 0.5); /* Semi-transparent blue */
+    background: var(--line);
     border-radius: 6px;
-    border: 2px solid #2e2e2e; /* Matches background for a smooth look */
+    border: 3px solid var(--surface);
 }
 
 .scrolling-list::-webkit-scrollbar-thumb:hover {
-    background: rgba(126, 200, 227, 0.8); /* Slightly darker on hover */
+    background: var(--ink-faint);
 }
 
 .scrolling-list::-webkit-scrollbar-track {
@@ -163,45 +189,68 @@ body {
 }
 
 
+    /* Each book — a spine on the shelf */
     .reference-item {
       position: relative;
-      padding: 10px;
-      line-height: 1.3;
-      text-align: center;
-      transition: background-color 0.3s;
+      margin: 0 14px;
+      padding: 13px 22px 13px 28px;
+      line-height: 1.45;
+      text-align: left;
+      border-radius: 10px;
+      transition: background-color 0.3s var(--ease-soft);
+    }
+    .reference-item::before {
+      content: "";
+      position: absolute;
+      left: 12px;
+      top: 13px;
+      bottom: 13px;
+      width: 3px;
+      border-radius: 2px;
+      background: var(--river-soft);
+      transition: background-color 0.3s var(--ease-soft);
     }
     .reference-item:hover {
-      background-color: #3b3b3b;
+      background-color: var(--paper-deep);
     }
+    .reference-item:hover::before {
+      background: var(--river);
+    }
+    /* Spines carry the same tint as their title (river / moss / wheat / clay) */
+    .reference-item:has(> a[style*="moss"])::before   { background: var(--moss-soft); }
+    .reference-item:has(> a[style*="#85601F"])::before { background: var(--wheat-soft); }
+    .reference-item:has(> a[style*="clay"])::before   { background: var(--clay-soft); }
+    .reference-item:has(> a[style*="moss"]):hover::before   { background: var(--moss); }
+    .reference-item:has(> a[style*="#85601F"]):hover::before { background: var(--wheat); }
+    .reference-item:has(> a[style*="clay"]):hover::before   { background: var(--clay); }
 
-/* Gradient line between items */
+/* Hairline between books */
 .reference-item::after {
     content: "";
     position: absolute;
-    left: 0;
+    left: 28px;
+    right: 22px;
     bottom: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(to right, #5aaac8, #7ec8e3, #a8e1f2);
-    border-radius: 2px;
-    box-shadow: 0 0 10px rgba(126, 200, 227, 0.8), 0 0 20px rgba(126, 200, 227, 0.5);
-    overflow: hidden;
-    /* animation: pulseLine 6s ease-in-out infinite, shimmerEffect 6s linear infinite; */
+    height: 1px;
+    background: var(--line);
+    opacity: 0.7;
+}
+.reference-item:last-child::after {
+    display: none;
 }
 
-/* Subtle glow effect to make it alive */
+/* (kept for reference; not used) */
 @keyframes pulseLine {
     0%, 100% {
         transform: scaleX(0.8);
         opacity: 0.8;
     }
     50% {
-        transform: scaleX(1); /* Slightly stretch the line */
+        transform: scaleX(1);
         opacity: 1;
     }
 }
 
-/* Shimmer movement across the line */
 @keyframes shimmerEffect {
     0% {
         background-position: -150% 0;
@@ -213,35 +262,61 @@ body {
 
 
     .reference-item a {
-      color: #7ec8e3;
+      font-family: var(--font-serif);
+      font-size: 1.02rem;
+      font-weight: 500;
+      color: var(--river-deep);
       text-decoration: none;
       transition: color 0.3s ease;
     }
     .reference-item a:hover {
-      color: #a8e1f2;
       text-decoration: underline;
+      text-decoration-color: var(--wheat);
+      text-decoration-thickness: 2px;
+      text-underline-offset: 4px;
     }
-/* === SUMMARY POPUP === */
+
+/* === SUMMARY POPUP — a reading card === */
 .summary-popup {
     position: absolute;
     top: 0;
     left: 0;
-    background-color: rgba(34, 34, 34, 0.95);
-    color: #a8e1f2;
-    border: 1px solid #7ec8e3;
-    border-radius: 8px;
+    background-color: var(--surface);
+    color: var(--ink-soft);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
     padding: 20px;
     display: none;
     z-index: 80;
     width: 570px;
     height: 300px; /* Increased height for image and text */
-    box-shadow: 0 0 10px #7ec8e3, 0 0 20px rgba(126, 200, 227, 0.3);
-    transform: scale(0.8);
-    transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+    box-shadow: var(--shadow-lift);
+    transform: scale(0.96);
+    transition: transform 0.2s var(--ease-soft), opacity 0.2s ease-in-out;
     opacity: 0;
     display: flex; /* Flexbox for layout */
     flex-direction: row; /* Image on left, text on right */
     gap: 20px; /* Space between image and text */
+}
+/* Invisible popup must not swallow clicks */
+.summary-popup:not(.show) {
+    pointer-events: none;
+}
+/* With a mouse the card is read-only; letting the pointer pass through
+   avoids hover flicker when the card overlaps the shelf. */
+@media (hover: hover) {
+    .summary-popup {
+        pointer-events: none;
+    }
+}
+/* The script parks the card left of the shelf (50% - 855px), which only fits
+   on very wide screens. Between tablet and ~1740px, anchor it to the right
+   edge instead so it never runs off-screen. */
+@media (min-width: 769px) and (max-width: 1739px) {
+    .summary-popup {
+        left: auto !important;
+        right: 16px;
+    }
 }
 
 /* Popup visible state */
@@ -255,26 +330,34 @@ body {
 .summary-popup img {
     width: 40%; /* Adjust size as needed */
     height: auto;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    max-height: 100%;
+    object-fit: contain;
+    align-self: flex-start;
+    border-radius: 6px;
+    box-shadow: var(--shadow-soft);
 }
 
 /* Text container styling */
 .summary-popup .text-content {
     flex: 1;
     overflow: hidden;
-    font-size: 0.8rem;
-    line-height: 1.3;
+    font-family: var(--font-sans);
+    font-size: 0.86rem;
+    line-height: 1.5;
+    color: var(--ink-soft);
     white-space: pre-wrap; /* Preserve whitespace for typing effect */
+    -webkit-mask-image: linear-gradient(to bottom, #000 82%, transparent);
+    mask-image: linear-gradient(to bottom, #000 82%, transparent);
 }
 
 
     hr {
     border: none;
     height: 1px;
-    background: #add8e6;
-    opacity: 0.5;
-    margin: 20px 0;
+    width: 120px;
+    margin: 22px auto;
+    background: var(--wheat);
+    opacity: 0.6;
 }
 
     .nav-center {
@@ -293,10 +376,11 @@ body {
     width: 80%;
     max-width: 900px;
     margin: 50px auto;
-    border-radius: 15px;
+    border-radius: var(--radius-lg);
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(126, 200, 227, 0.5));
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-lift);
+    background: var(--paper-deep);
     opacity: 0; /* Hidden initially for fade-in effect */
     transform: translateY(50px); /* Initial offset for animation */
     transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
@@ -307,7 +391,7 @@ body {
     width: 100%;
     height: auto;
     display: block;
-    filter: brightness(0.8); /* Slight darkening effect for modern look */
+    filter: none;
     transition: filter 0.3s ease-in-out;
     pointer-events: auto; /* Ensure interaction */
     touch-action: manipulation; /* Prevent default touch behaviors like full-screen */
@@ -315,10 +399,10 @@ body {
 
 /* Hover effect on video */
 .video-content:hover {
-    filter: brightness(1); /* Brighten on hover */
+    filter: none;
 }
 
-/* Gradient edges around the video */
+/* Soft scrim at the bottom so the caption reads */
 .video-container::before,
 .video-container::after {
     content: '';
@@ -329,8 +413,8 @@ body {
     right: 0;
     pointer-events: none;
     z-index: 2;
-    border-radius: 15px;
-    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.5));
+    border-radius: var(--radius-lg);
+    background: linear-gradient(to bottom, transparent 60%, rgba(43, 38, 33, 0.18));
 }
 
 /* Overlay for enabling sound */
@@ -342,11 +426,15 @@ body {
     bottom: 0;
     display: flex;
     justify-content: center;
-    align-items: center;
-    color: white;
-    font-size: 1rem;
-    font-weight: bold;
+    align-items: flex-end;
+    padding-bottom: 10px;
+    color: var(--night-ink);
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
+    background: linear-gradient(to bottom, transparent 88%, rgba(31, 44, 36, 0.7));
     cursor: pointer;
     z-index: 3; /* Ensure it overlays the video */
     opacity: 1;
@@ -365,15 +453,18 @@ body {
     bottom: 57px;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.7);
-    color: white;
+    background: var(--surface);
+    color: var(--ink);
+    border: 1px solid var(--line);
     padding: 10px 20px;
-    border-radius: 8px;
+    border-radius: 999px;
+    font-family: var(--font-sans);
     font-size: 0.9rem;
     text-align: center;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--shadow-lift);
     transition: opacity 0.3s ease-in-out;
     z-index: 9999;
+    pointer-events: none;
 }
 
 /* Mute/Unmute Icon Styling */
@@ -381,42 +472,51 @@ body {
     position: absolute;
     top: 15px; /* Position it in the top-left corner */
     left: 15px;
-    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--surface);
+    border: 1px solid var(--line);
     border-radius: 50%; /* Circle icon */
-    padding: 10px;
+    padding: 0;
     cursor: pointer;
     z-index: 10; /* Ensure it overlays the video */
-    box-shadow: 0 0 15px rgba(126, 200, 227, 0.5), 0 0 30px rgba(126, 200, 227, 0.3);
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.2s var(--ease-soft), background-color 0.2s ease-in-out;
 }
 
 /* Icon Inside */
 .mute-icon i {
-    font-size: 1.5rem;
-    color: #7ec8e3; /* Light blue */
+    font-size: 1.1rem;
+    color: var(--moss);
 }
 
 /* Hover Effect */
 .mute-icon:hover {
-    transform: scale(1.1); /* Slight zoom effect */
-    box-shadow: 0 0 20px rgba(126, 200, 227, 0.8), 0 0 40px rgba(126, 200, 227, 0.6);
+    transform: scale(1.06);
+    background-color: var(--moss-soft);
 }
 
 
 
 .hover-info {
-  font-size: 0.855rem;
+  font-size: 0.9rem;
   position: relative;
   left: 17.5%;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
   display: flex;
   align-items: center;
-  color: white;
+  color: var(--ink-faint);
   padding: 5px 10px;
   border-radius: 8px;
   cursor: pointer;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: none;
   transition: opacity 0.3s ease, transform 0.2s ease;
+}
+.hover-info .small-icon {
+  color: var(--river);
 }
 
 
@@ -426,27 +526,79 @@ body {
 }
 
 
+@media (prefers-reduced-motion: reduce) {
+    .video-container,
+    .summary-popup,
+    .reference-item {
+        transition: none;
+    }
+}
+html[data-motion="lite"] .video-container,
+html[data-motion="lite"] .summary-popup {
+    transition: none;
+}
+
+
  /************************************************************
  * Media Query for Mobile Devices
  ************************************************************/
 
 @media only screen and (max-width: 768px) {
+      /* on phones the icon would float over the shelf — let it scroll away */
+      .icon-container {
+        position: absolute;
+        z-index: 2;
+    }
       .icon-container i {
         margin-top: 2.3rem;
+        font-size: 1.6rem;
+    }
+
+    .presentation-container {
+      margin: 6rem auto 2rem;
     }
 
     .scrolling-list {
-    width: 92%;
+    width: 100%;
+    }
+
+    .reference-item {
+      margin: 0 6px;
+      padding: 12px 14px 12px 22px;
+    }
+    .reference-item::before {
+      left: 8px;
+    }
+    .reference-item::after {
+      left: 22px;
+      right: 14px;
+    }
+    .reference-item a {
+      font-size: 0.98rem;
     }
 
     .summary-popup {
     width: 245px;
-
+    padding: 14px;
+    gap: 12px;
     }
 
     /* Book image styling */
 .summary-popup img {
     width: 40%; /* Adjust size as needed */
+    }
+
+    .video-container {
+      width: 100%;
+    }
+    .video-overlay {
+      font-size: 0.6rem;
+      padding-bottom: 5px;
+    }
+
+    .hover-info {
+      left: 0;
+      justify-content: center;
     }
 
     #loginBtn {
@@ -458,8 +610,8 @@ body {
 
 /* Text container styling */
 .summary-popup .text-content {
-    font-size: 0.7rem;
-    line-height: 1.1;
+    font-size: 0.76rem;
+    line-height: 1.35;
 }
 
         p {

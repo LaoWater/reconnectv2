@@ -5,6 +5,11 @@
   box-sizing: border-box;
 }
 
+/* ------------------------------------------------------------------
+ * The Food Prophet — Dawn redesign (2026-10).
+ * Linen paper, soil ink, moss / river / clay accents; the "matrix"
+ * typing becomes a calm monospace field note in river on river-soft.
+ * ------------------------------------------------------------------ */
 
 html
 {
@@ -13,13 +18,14 @@ html
 }
 
 
-/* Background active after scrolling */
+/* Background active after scrolling — the lotus, washed in morning light */
 body.background-active {
+    background-color: var(--paper);
     background-image: linear-gradient(
         to bottom,
-        rgba(51, 51, 51, 1),
-        rgba(51, 51, 51, 0.7),
-        rgba(0, 0, 0, 0.7)
+        rgba(247, 242, 231, 0.94),
+        rgba(247, 242, 231, 0.86) 45%,
+        rgba(229, 236, 225, 0.92)
     ),
     url('/static/ReactPage_FoodProphet/white_lotus.jpg');
     background-size: cover;
@@ -52,12 +58,12 @@ nav {
 
 
 body {
-     color: black;
+     color: var(--ink-soft);
       overflow-x: hidden;
       overflow-y: auto;
       min-height: 100vh;
       position: relative;
-    background: #000;
+    background: var(--paper);
     transition: background 0.5s ease-in-out; /* Smooth transition for background changes */
     zoom: 1;
     filter: none;
@@ -78,7 +84,7 @@ body {
 
 .fade-in-section {
   opacity: 0;
-  animation: fadeIn 1.5s ease-in-out forwards;
+  animation: fadeIn 1.5s var(--ease-soft) forwards;
   margin-bottom: 0px;
   margin-top: 2rem;
   position: relative; /* Required for z-index to take effect */
@@ -108,29 +114,35 @@ body {
 
 /* ========== TEXT STYLES ========== */
 h1 {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #ffa500;
+  font-size: clamp(2rem, 3vw + 1rem, 3rem);
+  font-weight: 500;
+  color: var(--ink);
   text-align: center;
 }
 
+h1 strong {
+  font-weight: 600;
+  color: var(--moss-deep);
+}
+
 .subtitle {
-  font-size: 1rem;
-  color: #add8e6;
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  color: var(--river-deep);
   text-align: center;
   margin-bottom: 20px;
 }
 
 h2 {
-  font-size: 1.45rem;
-  color: #ffa500;
-  margin-bottom: 0px;
+  font-size: 1.6rem;
+  color: var(--moss-deep);
+  margin-bottom: 0.4rem;
   margin-top: 20px;
 }
 
 p {
-  font-size: 1rem;
-  color: #f0f8ff;
+  font-size: 1.08rem;
+  color: var(--ink-soft);
   line-height: 1.8;
 }
 
@@ -141,57 +153,78 @@ Interactive List Setup
 .interactive-list {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 0.6rem auto;
+  max-width: 760px;
 }
 
 .interactive-list li {
-    margin: 7px 0;
+    margin: 6px 0;
+    padding: 6px 12px;
     position: relative;
-    font-size: 16.5px;
+    font-size: 1.05rem;
+    line-height: 1.6;
     display: block;
     align-items: center;
     cursor: pointer;
     text-align: center;
+    font-weight: 400;
+    color: var(--ink-soft);
+    border-radius: 10px;
+    transition: background-color 0.3s var(--ease-soft);
+}
+
+.interactive-list li:hover {
+    background-color: var(--paper-deep);
+}
+
+.interactive-list li strong {
+    color: var(--ink);
     font-weight: 600;
 }
 
 
 .interactive-list li i {
   margin-right: 10px;
-  font-size: 24px;
-  color: #4CAF50;
-  transition: transform 0.3s ease, color 0.3s ease;
+  font-size: 20px;
+  color: var(--moss);
+  transition: transform 0.3s var(--ease-soft), color 0.3s ease;
 }
 
 .interactive-list li:hover i {
-  transform: scale(1.2);
-  color: #8BC34A;
+  transform: scale(1.12);
+  color: var(--river);
 }
 
+/* The "system log" — a calm monospace field note */
 .hover-effect {
   display: none;
   position: absolute;
-  top: 50px;
+  top: calc(100% + 6px);
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.9);
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
-  font-family: "Courier New", Courier, monospace;
-  color: green;
+  background: var(--river-soft);
+  padding: 16px 20px;
+  border: 1px solid rgba(42, 115, 128, 0.22);
+  border-left: 3px solid var(--river);
+  border-radius: 12px;
+  box-shadow: var(--shadow-lift);
+  font-family: ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace;
+  color: var(--river-deep);
   z-index: 10;
   width: 80%;
   max-width: 470px;
   opacity: 0;
-  text-align: center;
+  text-align: left;
   transition: opacity 0.3s ease-in-out;
+  overflow: hidden;
 }
 
 .hover-effect pre {
   white-space: pre-wrap;
-  font-size: 16px;
-  font-weight: bold;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--river-deep);
   animation: typing 3s steps(30, end) 1;
 }
 
@@ -219,50 +252,43 @@ Interactive List Setup
 ul {
   margin-left: 20px;
   list-style-type: disclosure-closed;
-  color: #f0f8ff;
+  color: var(--ink-soft);
 }
 
 ul li strong {
-  color: #add8e6;
+  color: var(--ink);
 }
 
 hr {
   border: none;
   height: 1px;
-  background: #add8e6;
-  opacity: 0.5;
-  margin: 20px 0;
+  width: 120px;
+  background: var(--wheat);
+  opacity: 0.6;
+  margin: 22px auto;
 }
 
 /* Container Centering */
 .content-wrapper {
   max-width: 900px;
   margin: 50px auto 0px;
-  padding: 20px 0 0;
+  padding: 20px 16px 0;
   text-align: center;
-  border-radius: 15px;h
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(10px);
+  border-radius: 15px;
 }
 
 
 /* React Container Font Adjustment */
 #root h2 {
-    font-family: 'Poppins', serif;
+    font-family: var(--font-serif);
     font-size: 1.5rem;
-    color: rgb(85, 85, 85);
+    color: var(--moss-deep);
     margin-bottom: 1.5rem;
     background: none;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: darkslategray;
+    -webkit-background-clip: border-box;
+    -webkit-text-fill-color: currentColor;
     animation: none !important;
     text-shadow: none;
-}
-
-
-@keyframes root-glow2 {
-    0% { text-shadow: 0 0 2px #00bfff; }
-    100% { text-shadow: 0 0 3px 0 0 0px #00bfff; }
 }
 
 
@@ -297,7 +323,8 @@ hr {
 
 
 /************************************************************
- * MINIMALIST PULSE GRID (OPTIONAL)
+ * SOFT SEED FIELD (was the pulse grid) — a faint scatter of
+ * wheat dots behind the intro, breathing very slowly.
  ************************************************************/
 .pulse-web {
   pointer-events: none;
@@ -306,36 +333,21 @@ hr {
   left: 0;
   width: 100%;
   height: 43%;
-  background: radial-gradient(circle, transparent, #08c 1.5px, transparent 3px),
-              linear-gradient(45deg, transparent 10%, #08c 10%, transparent 20%),
-              linear-gradient(-45deg, transparent 10%, #08c 10%, transparent 20%);
-  background-size: 80px 80px, 120px 120px, 120px 120px;
-  background-blend-mode: screen;
-  opacity: 0.05;
-  z-index: 10;
-  animation: pulse-web 10s ease-in-out infinite;
+  background: radial-gradient(circle, rgba(201, 151, 58, 0.55) 1.2px, transparent 1.8px);
+  background-size: 34px 34px;
+  -webkit-mask-image: linear-gradient(to bottom, #000, transparent 85%);
+  mask-image: linear-gradient(to bottom, #000, transparent 85%);
+  opacity: 0.35;
+  z-index: 0;
+  animation: pulse-web 14s ease-in-out infinite;
 }
 
 @keyframes pulse-web {
   0%, 100% {
-    background-size: 80px 80px, 120px 120px, 120px 120px;
-    opacity: 0.12;
-    transform: scale(0.9) rotate(0deg);
-  }
-  25% {
-    background-size: 90px 90px, 140px 140px, 140px 140px;
-    opacity: 0.15;
-    transform: scale(1) rotate(11deg);
+    opacity: 0.3;
   }
   50% {
-    background-size: 100px 100px, 160px 160px, 135px 135px;
-    opacity: 0.25;
-    transform: scale(1.07) rotate(13deg);
-  }
-  75% {
-    background-size: 90px 90px, 140px 140px, 140px 140px;
-    opacity: 0.15;
-    transform: scale(1) rotate(11deg);
+    opacity: 0.5;
   }
 }
 
@@ -348,19 +360,19 @@ hr {
       display: flex;
       flex-direction: column;
       align-items: center;
-      color: #ccc;
+      color: var(--ink-faint);
       opacity: 0;
       animation: fadeIn 2.5s ease 1.2s forwards;
     }
     .scroll-indicator span {
-    font-family: 'Poppins', sans-serif;
+      font-family: var(--font-sans);
       font-size: 0.9rem;
       margin-bottom: 0.4rem;
     }
     .scroll-indicator svg {
       width: 24px;
       height: 24px;
-      fill: #08c;
+      fill: var(--moss);
       animation: arrowBounce 2s infinite;
     }
         @keyframes arrowBounce {
@@ -397,55 +409,52 @@ hr {
     font-size: 1.2rem;
       cursor: pointer; /* Ensures cursor is a pointer, not text-edit */
 
-  transition: transform 0.3s ease, text-shadow 0.3s ease;
+  transition: transform 0.3s var(--ease-soft), color 0.3s ease;
 }
 
 
-/* Pulsate Animation */
+/* Gentle breathing (kept for any caller; no glow) */
 @keyframes pulsate {
   0% {
     transform: scale(1);
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
   }
   50% {
     transform: scale(1.02);
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
   }
   100% {
     transform: scale(1);
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
   }
 }
 
 
-/* Neon Blue for Visualize */
+/* River for Visualize */
 .visualize {
-  color: #00bfff;
-  text-shadow: 0 0 5px #00bfff, 0 0 10px #00bfff, 0 0 20px #00bfff;
+  color: var(--river);
+  text-shadow: none;
 }
 .visualize:hover {
-  transform: scale(1.1);
-  text-shadow: 0 0 15px #00bfff, 0 0 30px #00bfff, 0 0 45px #00bfff;
+  transform: scale(1.06);
+  color: var(--river-deep);
 }
 
-/* Neon Green for Simulate */
+/* Moss for Simulate */
 .simulate {
-  color: #00ff00;
-  text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 20px #00ff00;
+  color: var(--moss);
+  text-shadow: none;
 }
 .simulate:hover {
-  transform: scale(1.1);
-  text-shadow: 0 0 15px #00ff00, 0 0 30px #00ff00, 0 0 45px #00ff00;
+  transform: scale(1.06);
+  color: var(--moss-deep);
 }
 
-/* Red-Gold for Transform */
+/* Clay for Transform */
 .transform {
-  color: #ff4500;
-  text-shadow: 0 0 5px #ff4500, 0 0 10px #ff8c00, 0 0 20px #ff8c00;
+  color: var(--clay);
+  text-shadow: none;
 }
 .transform:hover {
-  transform: scale(1.1);
-  text-shadow: 0 0 15px #ff4500, 0 0 30px #ff8c00, 0 0 45px #ff8c00;
+  transform: scale(1.06);
+  color: var(--clay-deep);
 }
 
 
@@ -458,22 +467,28 @@ hr {
   position: relative;
   padding: 3px 0 0;
   text-align: center;
-  font-family: Arial, sans-serif;
-  color: #fff;
+  font-family: var(--font-serif);
+  color: var(--ink);
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s var(--ease-soft);
 }
 
 .hover-item p {
-  font-size: 1.5rem;
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 500;
   margin: 0;
 }
 
-.hover-item:hover {
-  transform: scale(1.1);
+.hover-item p i {
+  font-style: italic;
 }
 
-/* Hover Video Styling */
+.hover-item:hover {
+  transform: scale(1.04);
+}
+
+/* Hover Video Styling — a framed card */
 .hover-video {
   display: none;
   position: absolute;
@@ -482,11 +497,13 @@ hr {
   transform: translateX(-50%);
   width: 300px;
   height: 200px;
-  background: rgba(0, 0, 0, 0.9);
-  border: 2px solid #00ff00;
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0, 255, 0, 0.8);
+  background: var(--surface);
+  border: 4px solid var(--surface);
+  outline: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lift);
   overflow: hidden;
+  z-index: 20;
 }
 
 
@@ -505,20 +522,32 @@ hr {
 }
 
 
-/* Matrix line styling */
+/* Matrix line styling — now a quiet log line */
 .matrix-line {
   display: inline-block;
   width: 120%;
 
-  color: green;
-  font-family: monospace, sans-serif;
-  font-size: 13.5px;
+  color: var(--river-deep);
+  font-family: ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace;
+  font-size: 13px;
   white-space: pre; /* Preserve spaces */
   text-align: left;
-  font-weight: bolder;
-  line-height: 0.5;
+  font-weight: 400;
+  line-height: 0.6;
   z-index: 100;
 
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse-web,
+  .scroll-indicator svg {
+    animation: none;
+  }
+}
+html[data-motion="lite"] .pulse-web,
+html[data-motion="lite"] .scroll-indicator svg {
+  animation: none;
 }
 
 
@@ -542,10 +571,10 @@ hr {
   left: 0;
   width: 100%;
   height: 100%; /* Fullscreen coverage */
-  background: radial-gradient(circle, transparent, #08c 1.5px, transparent 2px);
-  background-size: 300px 60px;
-  opacity: 0.07;
-  z-index: 10; /* Ensure it’s below content but above background */
+  background: radial-gradient(circle, rgba(201, 151, 58, 0.55) 1.2px, transparent 1.8px);
+  background-size: 30px 30px;
+  opacity: 0.2;
+  z-index: 0;
 
 
 
@@ -557,15 +586,12 @@ hr {
   top: 0;
   left: 0;
   width: 100%;
-  height: 145%;
-  background: radial-gradient(circle, transparent, #08c 1.5px, transparent 3px),
-              linear-gradient(45deg, transparent 10%, #08c 10%, transparent 20%),
-              linear-gradient(-45deg, transparent 10%, #08c 10%, transparent 20%);
-  background-size: 80px 80px, 120px 120px, 120px 120px;
-  background-blend-mode: screen;
-  opacity: 0.08;
-  z-index: 10;
-  animation: pulse-web 10s ease-in-out infinite;
+  height: 60%;
+  background: radial-gradient(circle, rgba(201, 151, 58, 0.55) 1.2px, transparent 1.8px);
+  background-size: 28px 28px;
+  opacity: 0.3;
+  z-index: 0;
+  animation: pulse-web 14s ease-in-out infinite;
 }
 
 
@@ -586,19 +612,19 @@ hr {
 
     /* Text adjustments */
     p {
-        font-size: 0.93rem; /* Scale down paragraphs */
+        font-size: 1rem; /* Scale down paragraphs */
         margin: 0.2rem 1rem; /* Decrease horizontal margins */
     }
 
     h1 {
-        font-size: 1.63rem; /* Scale down main titles */
-        margin-bottom: 0rem;
+        font-size: 1.85rem; /* Scale down main titles */
+        margin-bottom: 0.3rem;
         margin-top: 0rem;
     }
 
     h2 {
         font-size: 1.45rem; /* Adjust subheadings */
-        margin-bottom: 1rem;
+        margin-bottom: 0.6rem;
     }
 
 
@@ -616,25 +642,35 @@ hr {
     }
 
     .hover-item p {
-    font-size: 1.2em;
+    font-size: 1.25em;
     margin: 0;
 }
 
+.interactive-paragraphs {
+    gap: 18px;
+}
+
 .interactive-list li {
-    margin: 7px 0;
+    margin: 6px 0;
     position: relative;
-    font-size: 15px;
+    font-size: 0.98rem;
 
 }
 
 .interactive-list li i {
     margin-right: 5.5px;
-    font-size: 20px;
+    font-size: 18px;
     }
+
+.hover-effect {
+    width: 94%;
+    padding: 12px 14px;
+}
 
 .content-wrapper {
     max-width: 900px;
     margin: 23px 8px 0px;
+    padding: 20px 4px 0;
 }
 
 nav {
@@ -661,5 +697,212 @@ padding: 0.3rem 2rem;
 
 
     #root p {
-  color: black !important; /* !important to override other styles */
+  color: var(--ink-soft) !important; /* !important to override other styles */
+}
+
+
+/************************************************************
+ * REACT WIDGET — scoped Dawn overrides.
+ * The app is a compiled styled-components bundle
+ * (static/ReactPage_FoodProphet); we only re-skin it from here.
+ * Hashed class names (.sc-*) belong to the current build —
+ * if the bundle is rebuilt, re-check these selectors.
+ ************************************************************/
+
+/* App header: light glass bar, ink text, no cursive */
+#root .AppContainer > header {
+  background: rgba(255, 252, 246, 0.82);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  box-shadow: none;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  color: var(--ink);
+}
+#root .AppContainer > header,
+#root .AppContainer > header div,
+#root .AppContainer > header button,
+#root .AppContainer > header svg {
+  color: var(--ink);
+}
+#root .AppContainer > header > div:nth-child(2) {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 500;
+  color: var(--moss-deep);
+}
+#root .AppContainer > header a {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  color: var(--ink);
+  text-shadow: none;
+}
+#root .AppContainer > header a:hover {
+  color: var(--moss);
+}
+
+/* Slide-out menu (was a charcoal gradient) */
+#root .sc-drVZOg {
+  background: var(--surface);
+  background-image: none;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-lift);
+  color: var(--ink);
+}
+#root .sc-drVZOg a {
+  font-family: var(--font-sans);
+  color: var(--ink);
+}
+#root .sc-drVZOg a:hover {
+  color: var(--moss);
+  background: var(--moss-soft);
+}
+
+/* Proverb card (was white on smoked glass) */
+#root .sc-dEkLRj {
+  background: rgba(255, 252, 246, 0.92);
+  color: var(--ink-soft);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-soft);
+  font-family: var(--font-serif);
+  font-style: italic;
+  text-shadow: none;
+}
+#root .sc-dEkLRj span {
+  color: var(--ink-faint);
+  font-style: normal;
+  font-family: var(--font-sans);
+}
+
+/* Info icon + its explainer bubble */
+#root .sc-diYFot,
+#root .sc-diYFot svg {
+  color: var(--river);
+}
+#root .sc-kEfuZE {
+  background: var(--surface);
+  color: var(--ink-soft);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: var(--shadow-lift);
+  font-family: var(--font-sans);
+}
+#root .sc-kEfuZE strong-white {
+  color: var(--ink-soft);
+}
+#root .sc-kEfuZE strong-green {
+  color: var(--moss);
+}
+#root .sc-kEfuZE strong {
+  color: var(--ink);
+}
+
+/* Simulation cards */
+#root .sc-ivxoEo,
+#root .sc-jwIPbr {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-soft);
+}
+#root .sc-jwIPbr {
+  box-shadow: none;
+}
+#root .sc-jwIPbr > svg {
+  background: var(--paper) !important;
+}
+#root .sc-jwIPbr > svg line[stroke="blue"] {
+  stroke: var(--river);
+}
+#root .sc-ovuCP,
+#root .sc-jtQUzJ,
+#root .sc-eauhAA {
+  color: var(--ink-soft);
+}
+#root .sc-eOzmre {
+  color: var(--ink-faint);
+}
+
+/* Buttons — Dawn vocabulary */
+#root button {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+/* Add Archetype / Defaults — the call to action */
+#root .sc-ghWlax {
+  background: var(--clay);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 6px 16px;
+}
+#root .sc-ghWlax:hover {
+  background: var(--clay-deep);
+}
+/* Clear All — quiet, but clearly a warning */
+#root .sc-ixGGxD {
+  background: transparent;
+  color: var(--clay-deep);
+  border: 1px solid var(--clay-soft);
+  border-radius: 999px;
+  padding: 6px 16px;
+}
+#root .sc-ixGGxD:hover {
+  background: var(--clay-soft);
+}
+/* Speed controls — secondary */
+#root .sc-jtQUzJ button {
+  background: var(--surface);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+#root .sc-jtQUzJ button:hover {
+  background: var(--moss-soft);
+}
+/* Meal / pause / reset */
+#root .sc-cHqXqK button {
+  background: var(--moss-soft);
+  color: var(--moss-deep);
+  border: 1px solid transparent;
+  border-radius: 999px;
+}
+#root .sc-cHqXqK button:hover {
+  background: var(--moss);
+  color: #fff;
+}
+/* Card close (×) */
+#root .sc-kLhKbu {
+  color: var(--clay);
+  background: transparent;
+}
+#root .sc-kLhKbu:hover {
+  color: var(--clay-deep);
+}
+#root .hara-hachi-bu-text {
+  fill: var(--river) !important;
+}
+#root .AppContainer > header button {
+  border-radius: 10px;
+}
+#root .AppContainer > header button:hover,
+#root .AppContainer > header button:focus-visible {
+  background: var(--moss-soft);
+  color: var(--moss-deep);
+}
+
+/* Phones: keep the simulation cards inside the viewport (they ran ~6px wide) */
+@media only screen and (max-width: 768px) {
+  #root .sc-dntaoT {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  #root .sc-ivxoEo {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+  #root .sc-jwIPbr,
+  #root .sc-jwIPbr > svg {
+    max-width: 100%;
+  }
 }

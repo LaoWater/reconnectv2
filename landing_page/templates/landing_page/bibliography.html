@@ -9,7 +9,7 @@
   <meta charset="UTF-8">
   <title>Bibliography</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  <link rel="stylesheet" href="{% static 'css/bibliography.css' %}">
+  <link rel="stylesheet" href="{% static 'css/bibliography.css' %}?v=20261024-dawn">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 
 
@@ -29,12 +29,15 @@
 
     background-size: cover;
 
-    /* Apply a natural gradient towards the edges */
-    mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0.7) 80%, rgba(0, 0, 0, 0) 100%);
-    -webkit-mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0.7) 80%, rgba(0, 0, 0, 0) 100%);
+    /* Dawn: the tree rings become a faint watermark on linen paper,
+       fading out toward the edges like light through a reading-room window. */
+    mask-image: radial-gradient(ellipse at 50% 30%, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.55) 45%, rgba(0, 0, 0, 0) 80%);
+    -webkit-mask-image: radial-gradient(ellipse at 50% 30%, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.55) 45%, rgba(0, 0, 0, 0) 80%);
 
-    /* Overlay filters for reduced brightness and enhanced contrast */
-    filter: brightness(0.40) contrast(1.2) opacity(0.8);
+    /* Washed, warm and quiet so ink on paper keeps its contrast */
+    filter: sepia(0.45) saturate(0.7) brightness(1.15) contrast(0.85);
+    opacity: 0.13;
+    pointer-events: none;
 }
 
 
@@ -43,7 +46,9 @@
 }
 
 .bibliography-image {
-    background-attachment: fixed;
+    /* the layer itself is position:fixed, so the image needs no fixed attachment
+       (which tears into bands on mobile once a mask/filter is applied) */
+    background-attachment: scroll;
 }
 
     #audio-controls button
@@ -109,7 +114,7 @@ Fear of suffering is worse than the suffering itself. No heart has ever suffered
 I don’t live in either my past or my future. I’m interested only in the present. If you can concentrate always on the present, you’ll be a happy man, life is the moment we’re living now.
 "
              data-cover="{% static 'images/books/placeholder.jpg' %}">
-          <a href="#" style="color: #FF6699;">Paulo Coelho - The Alchemist</a>
+          <a href="#" style="color: var(--clay);">Paulo Coelho - The Alchemist</a>
         </div>
         <div class="reference-item" data-summary="The Mind is a powerful tool that can be used for either creation or destruction.
 
@@ -118,7 +123,7 @@ Engineering one's inner world—thoughts, emotions, and energies—to create a l
 Three dimensions of human existence: the physical body, the mind, and the energy body (prana or life force). Imbalances in any of these dimensions can lead to suffering and Yoga can help bring them into harmony.
 "
              data-cover="{% static 'images/books/placeholder.jpg' %}">
-          <a href="#" style="color: #F1B675;">Sadhguru - Inner Engineering: A Yogi’s Guide to Joy</a>
+          <a href="#" style="color: #85601F;">Sadhguru - Inner Engineering: A Yogi’s Guide to Joy</a>
         </div>
         <div class="reference-item" data-summary="The Neuroplasticity — the brain's ability to reorganize itself by forming new neural connections throughout life.
 
@@ -134,7 +139,7 @@ One's habits, thoughts, and experiences shape the brain. The profound impact of 
 The brain's remarkable plasticity, those patterns are not fixed but can be modified through practices such as mindfulness, cognitive training, and meditation. By understanding our emotional style, can learn to adapt and improve our emotional well-being, relationships, and overall quality of life.
 "
              data-cover="{% static 'images/books/placeholder.jpg' %}">
-          <a href="#" style="color: #9CC09A;">Richard Davidson - The Emotional Life of Your Brain: How Its Unique Patterns Affect the Way You Think, Feel, and Live</a>
+          <a href="#" style="color: var(--moss-deep);">Richard Davidson - The Emotional Life of Your Brain: How Its Unique Patterns Affect the Way You Think, Feel, and Live</a>
         </div>
         <div class="reference-item" data-summary="Mindfulness is not just a formal meditation practice but a way of Living in the Presence. Bringing mindful attention to all aspects of our daily lives (brushing teeth, walking, eating, interacting community).
 
@@ -143,14 +148,14 @@ Bring the awareness to your Body & Mind in every moment. How you eat? How you mo
 Mindfulness can reduce stress, foster clarity, and nurture compassion, enabling individuals to lead more balanced and meaningful lives.
 "
              data-cover="{% static 'images/books/placeholder.jpg' %}">
-          <a href="#" style="color: #FF6699;">Thich Nhat Hanh - The Miracle of Mindfulness: An Introduction to the Practice of Meditation</a>
+          <a href="#" style="color: var(--clay);">Thich Nhat Hanh - The Miracle of Mindfulness: An Introduction to the Practice of Meditation</a>
         </div>
         <div class="reference-item" data-summary="1. Heartwood of the Bodhi Tree: How to cultivate mindfulness and understanding through the Four Noble Truths and the Eightfold Path. Focus on internal transformation, rather than mere external rituals. Free the mind from attachments, desires, and illusions to achieve true liberation and inner peace.
 
 2. No Religion: True spirituality transcends institutionalized religions. The practice of Buddhism as a means to cultivate wisdom, compassion, and mindfulness in daily life. Enlightenment is not confined to religious systems but is accessible to anyone willing to engage deeply with their own mind and experience.
 "
              data-cover="{% static 'images/books/placeholder.jpg' %}">
-          <a href="#" style="color: #F1B675;">Buddhadasa Bhikkhu - Heartwood of the Bodhi Tree, No Religion</a>
+          <a href="#" style="color: #85601F;">Buddhadasa Bhikkhu - Heartwood of the Bodhi Tree, No Religion</a>
         </div>
         <div class="reference-item" data-summary="Mindfulness—a practice of being fully present in the moment without judgment—it can enhance mental clarity, emotional well-being, and life quality. It can be integrated into all aspects of our lives, eating, walking, working and interacting with others.
 
@@ -167,7 +172,7 @@ A diet rich in &quot;living foods&quot;, primarily raw, organic fruits, vegetabl
 
 Conscious eating, paying attention to all aspects of the eating experience and the effects on the body and mind. Occasional fasting and cleansing to detoxify the body and enhance spiritual awareness."
              data-cover="{% static 'images/books/placeholder.jpg' %}">
-          <a href="#" style="color: #9CC09A;">Gabriel Cousens - Conscious Eating</a>
+          <a href="#" style="color: var(--moss-deep);">Gabriel Cousens - Conscious Eating</a>
         </div>
         <div class="reference-item" data-summary="The profound influence of thoughts and emotions on our physical and mental states, by changing our inner world, we can change our outer reality.
 
@@ -191,7 +196,7 @@ Characteristics of Flow:
 - Balance between challenge and skills
 "
              data-cover="{% static 'images/books/placeholder.jpg' %}">
-          <a href="#" style="color: #9CC09A;">Mihaly Csikszentmihalyi - Flow: The Psychology of Optimal Experience</a>
+          <a href="#" style="color: var(--moss-deep);">Mihaly Csikszentmihalyi - Flow: The Psychology of Optimal Experience</a>
         </div>
         <div class="reference-item" data-summary="KonMari Method: The Japanese art of decluttering and organizing, with a focus on creating a peaceful and joyful living environment. Tidying by category rather than by location. Only keep items that &quot;spark joy&quot; and to discard everything else.
 
@@ -207,7 +212,7 @@ Wu Wei 無為: Effortless action that arises from aligning oneself with the natu
 Yin and Yang 陰陽: The opposite dancing forces that govern the universe. The interplay and balance of these forces are essential for harmony.
 "
              data-cover="{% static 'images/books/placeholder.jpg' %}">
-          <a href="#" style="color: #FF6699;">Lao Tzu - Tao Te Ching 道德經 : The Book of the Way</a>
+          <a href="#" style="color: var(--clay);">Lao Tzu - Tao Te Ching 道德經 : The Book of the Way</a>
         </div>
         <div class="reference-item" data-summary="True happiness and fulfillment come from focusing on what is within our control (our inner life, thought, judgement and our pursuit of virtue), while accepting what lies beyond it with grace.
 
@@ -225,7 +230,7 @@ The Stoic distinction between what we can control (our thoughts and actions) and
 Internalize our goals, our happiness should not depend on external outcomes. Focus on the process of pursuing our goals rather than the results. Virtue is the only true good, living a life guided by principles like wisdom, justice, courage, and temperance.
 "
              data-cover="{% static 'images/books/placeholder.jpg' %}">
-          <a href="#" style="color: #9CC09A;">William B. Irvine - A Guide to the Good Life: The Ancient Art of Stoic Joy</a>
+          <a href="#" style="color: var(--moss-deep);">William B. Irvine - A Guide to the Good Life: The Ancient Art of Stoic Joy</a>
         </div>
         <div class="reference-item" data-summary="Written as a private journal during his reign as Roman Emperor, the work reveals Aurelius's thoughts on resilience, self-discipline, and the nature of existence.
 
@@ -239,7 +244,7 @@ Explore themes such as accepting the inevitability of change, maintaining equani
 Philosophy was not merely a theoretical pursuit but a way of life. Focusing on the present moment. Contemplating the vastness of the universe and our place within it. Reflecting on our actions and thoughts to identify areas for improvement.
 "
              data-cover="{% static 'images/books/placeholder.jpg' %}">
-          <a href="#" style="color: #9CC09A;">Pierre Hadot - The Inner Citadel: The Meditations of Marcus Aurelius</a>
+          <a href="#" style="color: var(--moss-deep);">Pierre Hadot - The Inner Citadel: The Meditations of Marcus Aurelius</a>
         </div>
         <div class="reference-item" data-summary="Addressed to his friend Lucilius, these letters blend personal advice with profound reflections on life, ethics, and the human condition.
 
@@ -253,7 +258,7 @@ The nature of happiness, the importance of self-discipline, the transient nature
 Logotherapy: The primary motivational force in humans is the will to meaning. Suffering can be transformed into a meaningful achievement if faced with courage and dignity, it provides an opportunity for inner growth and self-discovery.
 "
              data-cover="{% static 'images/books/placeholder.jpg' %}">
-          <a href="#" style="color: #9CC09A;">Viktor E. Frankl - Man's Search for Meaning</a>
+          <a href="#" style="color: var(--moss-deep);">Viktor E. Frankl - Man's Search for Meaning</a>
         </div>
         <div class="reference-item" data-summary="Hawkins introduces &quot;Scale of Consciousness&quot; a logarithmic scale ranging from shame (lowest frequency) to enlightenment (highest frequency). By letting go of negative emotions, raise our level of consciousness and experience greater well-being.
 
@@ -263,7 +268,7 @@ Letting Go Technique:
 3. Surrendering the need to control or change the feeling: Letting go of the desire to hold onto or push away the emotion.
 "
              data-cover="{% static 'images/books/placeholder.jpg' %}">
-          <a href="#" style="color: #F1B675;">David Hawkins - Letting Go: The Pathway of Surrender</a>
+          <a href="#" style="color: #85601F;">David Hawkins - Letting Go: The Pathway of Surrender</a>
         </div>
         <div class="reference-item" data-summary="Emotions influence the brain, decision-making, relationships, and overall well-being. Emotional intelligence can be developed through practice and self-reflection, making it an accessible and transformative skill for anyone. Know yourself.
 
@@ -275,7 +280,7 @@ Emotional skills can be learned:
 - Social skills: Building and maintaining positive relationships.
 "
              data-cover="{% static 'images/books/placeholder.jpg' %}">
-          <a href="#" style="color: #9CC09A;">Daniel Goleman - Emotional Intelligence: Why It Can Matter More Than IQ</a>
+          <a href="#" style="color: var(--moss-deep);">Daniel Goleman - Emotional Intelligence: Why It Can Matter More Than IQ</a>
         </div>
         <div class="reference-item" data-summary="The connection between thoughts, emotions, and physical health, by changing our mindset, we can improve mental, emotional and physical health. Self-Love and Self-Acceptance are the foundations for healing and living a fulfilled life.
 
@@ -291,7 +296,7 @@ Forgiveness, both of ourselves and others. Holding onto resentment and anger can
 Mindful eating: Paying attention to the present moment while eating, noticing the taste, texture, and smell of food, and recognizing physical sensations of hunger and fullness. Listening to your body's signal, let the body tell you what to eat, when to stop. Trust our own inner wisdom and intuition, rather than external authorities or rules.
 "
              data-cover="{% static 'images/books/placeholder.jpg' %}">
-          <a href="#" style="color: #9CC09A;">Geneen Roth - Women, Food, and God: An Unexpected Path to Almost Everything</a>
+          <a href="#" style="color: var(--moss-deep);">Geneen Roth - Women, Food, and God: An Unexpected Path to Almost Everything</a>
         </div>
         <div class="reference-item" data-summary="How the food industry exploits our biological tendencies. The addictive nature of hyper-processed foods rich in sugar, fat, and salt, which are engineered to trigger cravings and override natural hunger signals. These foods hijack the brain's reward system, creating a cycle of desire and overeating.
 
@@ -305,7 +310,7 @@ Breaking the Cycle by bringing the awareness to the body. Mindful Eating, paying
 2. Scattered Minds: ADD often arises from disruptions in the parent-child relationship during formative years, particularly due to stress, emotional disconnection, or trauma which affect brain development and result in the characteristic challenges of ADD, such as impulsivity, inattention, and difficulty with emotional regulation.
 "
              data-cover="{% static 'images/books/placeholder.jpg' %}">
-          <a href="#" style="color: #9CC09A;">Gabor Maté - When the Body Says No: The Cost of Hidden Stress, Scattered Minds: The Origins and Healing of Attention Deficit Disorder</a>
+          <a href="#" style="color: var(--moss-deep);">Gabor Maté - When the Body Says No: The Cost of Hidden Stress, Scattered Minds: The Origins and Healing of Attention Deficit Disorder</a>
         </div>
         <div class="reference-item" data-summary="Epigenetics: Changes in environmental factors, including thoughts and beliefs, can modify how genes are read and expressed, it do not involve alterations to the underlying DNA sequence.
 
@@ -327,7 +332,7 @@ Reprogramming the Subconscious through Hypnosis, Repetition and affirmation can 
 7. Crown Chakra: Spirituality, enlightenment.
 "
              data-cover="{% static 'images/books/placeholder.jpg' %}">
-          <a href="#" style="color: #FF6699">Caroline Myss - Anatomy of the Spirit: The Seven Stages of Power and Healing</a>
+          <a href="#" style="color: var(--clay);">Caroline Myss - Anatomy of the Spirit: The Seven Stages of Power and Healing</a>
         </div>
         <div class="reference-item" data-summary="Mind & Body are interconnected. Trauma is both psychological & physical experience. It can alter brain structure and function, lead to hypervigilance, emotional numbing. The body stores traumatic memories and experiences, leading to chronic physical symptoms of pain, tension, and digestive problems.  
 
@@ -345,7 +350,7 @@ Body-Based Therapies:
 Somatic Experiencing: Resolving trauma by allowing the body to complete its natural fight, flight, or freeze responses that were interrupted during the traumatic event. Trauma is not defined by the event itself but by the body's inability to process it fully. By reconnecting with bodily sensations and releasing stored energy, one can heal without needing to relive the trauma.
 "
              data-cover="{% static 'images/books/placeholder.jpg' %}">
-          <a href="#" style="color: #9CC09A;">Peter Levine - Waking the Tiger: Healing Trauma</a>
+          <a href="#" style="color: var(--moss-deep);">Peter Levine - Waking the Tiger: Healing Trauma</a>
         </div>
         <div class="reference-item" data-summary="Zebras only experience acute stress from escaping predators.
 
@@ -363,7 +368,7 @@ The repressed emotions lead to changes in the autonomic nervous system, which ca
 Mind and Body are interconnected. Acknowledging and addressing emotional roots can alleviate physical pain.
 "
              data-cover="{% static 'images/books/placeholder.jpg' %}">
-          <a href="#" style="color: #9CC09A;">John Sarno - Healing Back Pain: The Mind-Body Connection</a>
+          <a href="#" style="color: var(--moss-deep);">John Sarno - Healing Back Pain: The Mind-Body Connection</a>
         </div>
         <div class="reference-item" data-summary="Pasteur: The germ theory of disease. It became the foundation for modern medicine that diseases are caused by microorganisms, treating infections with vaccines and other medical interventions.
 
@@ -381,7 +386,7 @@ Many cognitive and emotional challenges, such as depression, anxiety, memory los
 Heal the body through Optimize Nutrition & Gut Health, Reduce Inflammation, Balance Hormones, Detoxification, Boost Energy Metabolism, Stress management, in turn, will optimize brain function and heal the mind & body.
 "
              data-cover="{% static 'images/books/placeholder.jpg' %}">
-          <a href="#" style="color: #9CC09A;">Mark Hyman - The UltraMind Solution: Fix Your Broken Brain by Healing Your Body First</a>
+          <a href="#" style="color: var(--moss-deep);">Mark Hyman - The UltraMind Solution: Fix Your Broken Brain by Healing Your Body First</a>
         </div>
         <div class="reference-item" data-summary="The link between gut health and brain function. Introduces the GAPS diet, a natural healing protocol aimed at addressing conditions such as autism, ADHD, dyslexia, anxiety, and depression by restoring gut balance.
 
@@ -395,7 +400,7 @@ Explains how imbalances in gut microbiota can lead to toxin buildup, impairing b
 The PNAS studies suggest that the WHM may have the potential to Influence the Autonomic Nervous System (voluntary control over the sympathetic nervous system), Modulate the Immune Response, reduce inflammation, and Improve Stress Resilience, help individuals better manage stress and cope with challenging situations.
 "
              data-cover="{% static 'images/books/placeholder.jpg' %}">
-          <a href="#" style="color: #F1B675;">National Academy of Sciences (PNAS) - Wim Hof Method and Immune Response</a>
+          <a href="#" style="color: #85601F;">National Academy of Sciences (PNAS) - Wim Hof Method and Immune Response</a>
         </div>
         <div class="reference-item" data-summary="The long-term impact of physical activity on mental health.
 
@@ -413,7 +418,7 @@ The mechanisms include the release of endorphins, regulation of neurotransmitter
 Additionally, physical activity improves sleep quality, cognitive function, and self-esteem, creating a holistic impact on psychological well-being.
 "
              data-cover="{% static 'images/books/placeholder.jpg' %}">
-          <a href="#" style="color: #9CC09A;">Aditya Mahindru - Role of Physical Activity on Mental Health and Well-Being: A Review</a>
+          <a href="#" style="color: var(--moss-deep);">Aditya Mahindru - Role of Physical Activity on Mental Health and Well-Being: A Review</a>
         </div>
         <div class="reference-item" data-summary="Diaphragmatic breathing, a controlled breathing technique emphasizing deep breaths from the diaphragm, significantly improves attention and reduces negative emotions and perceived stress levels.
 
@@ -429,7 +434,7 @@ Participants practicing diaphragmatic breathing showed better cognitive performa
 Individuals with higher exposure to fine particulate matter (PM2.5) in the past were more likely to report experiencing anxiety. The findings suggest that air pollution may have a direct impact on mental health, with fine particulate matter potentially influencing brain function and stress response mechanisms.
 "
              data-cover="{% static 'images/books/placeholder.jpg' %}">
-          <a href="#" style="color: #9CC09A;">Melinda C. Power - The relation between past exposure to fine particulate air pollution and prevalent anxiety: observational cohort study</a>
+          <a href="#" style="color: var(--moss-deep);">Melinda C. Power - The relation between past exposure to fine particulate air pollution and prevalent anxiety: observational cohort study</a>
         </div>
         <div class="reference-item" data-summary="Why we find exercise challenging and often avoid it? We may not have evolved to exercise, we evolved to be active.
 
@@ -449,7 +454,7 @@ This has significant implications for posture, movement patterns, and overall bi
 Understanding these connections allows us to address the root cause of pain and dysfunction, rather than just treating the symptoms.
 "
              data-cover="{% static 'images/books/placeholder.jpg' %}">
-          <a href="#" style="color: #FF6699;">Thomas Myers - Anatomy Trains</a>
+          <a href="#" style="color: var(--clay);">Thomas Myers - Anatomy Trains</a>
         </div>
         <div class="reference-item" data-summary="Many musculoskeletal problems are not primarily due to structural damage (like disc herniations) but rather due to functional disturbances in the musculoskeletal system.
 
@@ -475,7 +480,7 @@ Treatment approach:
 - Improving sensorimotor control.
 "
               data-cover="{% static 'images/books/placeholder.jpg' %}">
-           <a href="#" style="color: #9CC09A;">Vladimir Janda - Assessment and Treatment of Muscle Imbalance</a>
+           <a href="#" style="color: var(--moss-deep);">Vladimir Janda - Assessment and Treatment of Muscle Imbalance</a>
         </div>
         <div class="reference-item" data-summary="Provides a comprehensive approach to understanding pain, its root causes, and how to address it holistically. Viewing the body as an interconnected system rather than focusing solely on isolated symptoms.
 
@@ -493,7 +498,7 @@ Functional Movement Screen (FMS):A series of seven movement tests designed to id
 Through correcting faulty movement patterns to restore proper mobility, stability, and improve movement quality.
 "
              data-cover="{% static 'images/books/placeholder.jpg' %}">
-          <a href="#" style="color: #9CC09A;">Gray Cook - Movement</a>
+          <a href="#" style="color: var(--moss-deep);">Gray Cook - Movement</a>
         </div>
         <div class="reference-item" data-summary="TRX training uses adjustable straps suspended from a single anchor point. This creates instability, forcing the user to engage their core and stabilizer muscles throughout each exercise.
 
@@ -511,7 +516,7 @@ It provides a comprehensive framework for understanding the nature of consciousn
 Cultivating mental focus, overcoming distractions, and aligning body, mind, and spirit for a spiritual growth.
 "
              data-cover="{% static 'images/books/placeholder.jpg' %}">
-          <a href="#" style="color: #F1B675;">Patañjali - The Yoga Sutras of Patanjali</a>
+          <a href="#" style="color: #85601F;">Patañjali - The Yoga Sutras of Patanjali</a>
         </div>
         <div class="reference-item" data-summary="Human body is equipped with an innate healing system that, when properly supported, can address many illnesses and restore balance without excessive reliance on pharmaceutical interventions.
 
@@ -520,14 +525,14 @@ One's life style of diet, movement, sleep; Mind's emotion, beliefs; pollutions i
 Natural Therapies with Whole-foods diet, Herbal medicine, Meditation, yoga, Traditional Chinese Medicine (TCM) and Ayurveda can support the body's healing processes.
 "
              data-cover="{% static 'images/books/placeholder.jpg' %}">
-          <a href="#" style="color: #FF6699;">Andrew Weil - Spontaneous Healing: How to Discover and Enhance Your Body's Natural Ability to Maintain and Heal Itself</a>
+          <a href="#" style="color: var(--clay);">Andrew Weil - Spontaneous Healing: How to Discover and Enhance Your Body's Natural Ability to Maintain and Heal Itself</a>
         </div>
         <div class="reference-item" data-summary="Accumulated toxins from our environment, food, and lifestyle can overwhelm the body's detoxification systems and contribute to various health problems.
 
 Junger presents a 21-day detox program that incorporates a combination of clean eating, fasting, and supplements to support the body’s cleansing process, reset the metabolism, strengthen the immune system, and restore balance in the body.
 "
              data-cover="{% static 'images/books/placeholder.jpg' %}">
-          <a href="#" style="color: #9CC09A;">Alejandro Junger - Clean: The Revolutionary Program to Restore the Body's Natural Ability to Heal Itself</a>
+          <a href="#" style="color: var(--moss-deep);">Alejandro Junger - Clean: The Revolutionary Program to Restore the Body's Natural Ability to Heal Itself</a>
         </div>
         <div class="reference-item" data-summary="Food is our most powerful medicine, by choosing the seasonal nature vegetables, sea vegetables, whole & unprocessed food, and preparing them properly, we can prevent and even reverse many health conditions.
 
@@ -541,7 +546,7 @@ Yin and Yang represent opposing but complementary forces that are present in all
 Daily Dozen: A checklist of foods he recommends consuming each day to ensure adequate nutrient intake. This includes servings of legumes, berries, other fruits, cruciferous vegetables, greens, other vegetables, flaxseeds, nuts and seeds, whole grains, foods that provide the most nutrients per calorie, healthy beverages, and exercise.
 "
              data-cover="{% static 'images/books/placeholder.jpg' %}">
-          <a href="#" style="color: #9CC09A;">Michael Greger - How Not to Die: Discover the Foods Scientifically Proven to Prevent and Reverse Disease</a>
+          <a href="#" style="color: var(--moss-deep);">Michael Greger - How Not to Die: Discover the Foods Scientifically Proven to Prevent and Reverse Disease</a>
         </div>
         <div class="reference-item" data-summary="Nutrient density: The ratio of micronutrients (vitamins, minerals, antioxidants, phytochemicals) to calories in food. The higher the nutrient density of the foods we eat, the better our health and the easier it is to lose weight.
 
@@ -555,7 +560,7 @@ When we eat nutrient-dense foods, our bodies naturally regulate our appetite and
 Common traits among the people in Blue Zones: Strong social connections, Plant-based diets, Eat until 80% full to prevent over eating(Hara Hachi Bu), Regular physical activity, Shed stress, and a Sense of purpose in life(Ikigai).
 "
              data-cover="{% static 'images/books/placeholder.jpg' %}">
-          <a href="#" style="color: #F1B675;">Dan Buettner - The Blue Zones: Lessons for Living Longer from the People Who've Lived the Longest</a>
+          <a href="#" style="color: #85601F;">Dan Buettner - The Blue Zones: Lessons for Living Longer from the People Who've Lived the Longest</a>
         </div>
         <div class="reference-item" data-summary="Presents the findings of a large-scale epidemiological study conducted in rural China, in collaboration with Cornell and Oxford University.
 
@@ -569,7 +574,7 @@ Whole food, plant-based diet is optimal for human health. Animal protein promote
 The Wahls Protocol emphasizes nutrient-dense, whole foods that support cellular repair and immune function. Eliminating processed foods, gluten, dairy, and other inflammatory substances while focusing on consuming a variety of vegetables, healthy fats, and high-quality proteins. Reduce inflammation, improve energy levels, and promote healing at the cellular level.
 "
              data-cover="{% static 'images/books/placeholder.jpg' %}">
-          <a href="#" style="color: #9CC09A;">Terry Wahls - The Wahls Protocol: A Radical New Way to Treat All Chronic Autoimmune Conditions Using Paleo Principles</a>
+          <a href="#" style="color: var(--moss-deep);">Terry Wahls - The Wahls Protocol: A Radical New Way to Treat All Chronic Autoimmune Conditions Using Paleo Principles</a>
         </div>
         <div class="reference-item" data-summary="Carbs are destroying your brain. Even so-called healthy carbs like whole grains can cause diseases. Your brain is not in your genes. It's in the food you eat. The cornerstone of all degenerative conditions, including brain disorders, is inflammation, which can be triggered by carbs, especially containing gluten or high in sugar.
 
@@ -585,7 +590,7 @@ Phytic acid, a compound found in grains that can inhibit mineral absorption. But
 Introduces basic food combining principles from Ayurveda, combining certain foods can improve digestion and nutrient absorption.
 "
              data-cover="{% static 'images/books/placeholder.jpg' %}">
-          <a href="#" style="color: #9CC09A;">John Douillard - Eat Wheat: A Scientific and Clinically-Proven Approach to Safely Bringing Wheat and Dairy Back into Your Diet</a>
+          <a href="#" style="color: var(--moss-deep);">John Douillard - Eat Wheat: A Scientific and Clinically-Proven Approach to Safely Bringing Wheat and Dairy Back into Your Diet</a>
         </div>
         <div class="reference-item" data-summary="Combines modern biomedical science with traditional herbal knowledge. Healing by considering the whole person—physical, emotional, and spiritual—rather than just treating isolated symptoms. Incorporating centuries of accumulated knowledge and experience on traditional herbal systems.
 
@@ -597,7 +602,7 @@ The book is organized by body systems (e.g., digestive, nervous, cardiovascular)
         <div class="reference-item" data-summary="Provides detailed descriptions of each herb, its medicinal properties, preparation methods, and how to use it for various health conditions.
 "
              data-cover="{% static 'images/books/placeholder.jpg' %}">
-          <a href="#" style="color: #9CC09A;">Andrew Chevallier - Encyclopedia of Herbal Medicine: The Definitive Home Reference Guide to 550 Key Herbs with All Their Uses as Remedies for Common Ailments</a>
+          <a href="#" style="color: var(--moss-deep);">Andrew Chevallier - Encyclopedia of Herbal Medicine: The Definitive Home Reference Guide to 550 Key Herbs with All Their Uses as Remedies for Common Ailments</a>
         </div>
         <div class="reference-item" data-summary="Superfoods are vibrant, nutritionally dense foods that offer tremendous dietary and healing potential. Incredibly nutritious plant products such as goji berries, hempseed, cacao beans (raw chocolate), maca root, spirulina, bee products and coconut products.
 
@@ -611,14 +616,14 @@ As powerful sources of clean protein, vitamins, minerals, enzymes, antioxidants,
 For reader to experiment and find what works best for individual needs and goals.
 "
              data-cover="{% static 'images/books/placeholder.jpg' %}">
-          <a href="#" style="color: #9CC09A;">Ben Greenfield - Boundless: Upgrade Your Brain, Optimize Your Body & Defy Aging</a>
+          <a href="#" style="color: var(--moss-deep);">Ben Greenfield - Boundless: Upgrade Your Brain, Optimize Your Body & Defy Aging</a>
         </div>
         <div class="reference-item" data-summary="Addressing the root causes of illness rather than just treating symptoms. By focusing on making small, sustainable changes in daily habits that have a significant impact on physical, emotional and mental health.
 
 Covers various aspects of wellness, including nutrition, exercise, sleep, mindfulness, environmental toxins, detoxification, Mind-Body Connection, and stress management.
 "
              data-cover="{% static 'images/books/placeholder.jpg' %}">
-          <a href="#" style="color: #FF6699;">Frank Lipman - The New Health Rules: Simple Changes to Achieve Whole-Body Wellness</a>
+          <a href="#" style="color: var(--clay);">Frank Lipman - The New Health Rules: Simple Changes to Achieve Whole-Body Wellness</a>
         </div>
         <div class="reference-item" data-summary="No single diet or lifestyle is universally perfect. Improving health through small, sustainable lifestyle changes. Make choices along a &quot;spectrum&quot; ranging from unhealthy to healthy, based on individual needs and goals.
 
@@ -627,7 +632,7 @@ Foods are neither good nor bad, but some are more healthful than others. Author 
 Together with regular physical Exercise, Yoga, Meditation, Breathing exercise. Use information to customize a way of eating and living based on your own needs and preferences.
 "
              data-cover="{% static 'images/books/placeholder.jpg' %}">
-          <a href="#" style="color: #9CC09A;">Dean Ornish - The Spectrum: A Scientifically Proven Program to Feel Better, Live Longer, Lose Weight, and Gain Health</a>
+          <a href="#" style="color: var(--moss-deep);">Dean Ornish - The Spectrum: A Scientifically Proven Program to Feel Better, Live Longer, Lose Weight, and Gain Health</a>
         </div>
         <div class="reference-item" data-summary="How modern lifestyles, habits and processed foods, indoor environments, and stress have contributed to dysfunctional breathing patterns, such as over-breathing (hyperventilation), shallow breathing, and mouth breathing. Which further influence various health issues of sleep disorders, anxiety, and chronic illnesses.
 
@@ -636,7 +641,7 @@ Nasal breathing's benefit: filtering, warming, and humidifying the air, releasin
 Learning to breath properly will help to improve life quality, body & mental health.
 "
              data-cover="{% static 'images/books/placeholder.jpg' %}">
-          <a href="#" style="color: #F1B675;">James Nestor - Breath: The New Science of a Lost Art</a>
+          <a href="#" style="color: #85601F;">James Nestor - Breath: The New Science of a Lost Art</a>
         </div>
         <div class="reference-item" data-summary="A set of breathing exercises, focuses on retraining breathing patterns to normalize breathing volume and increase carbon dioxide levels in the body.
 
@@ -645,7 +650,7 @@ Contrary to popular belief, CO2 is not just a waste gas. It plays a vital role i
 Through practical techniques to retrain breathing patterns, help improve athletic endurance, reduce stress, enhance sleep quality, and address conditions like asthma, anxiety, and chronic fatigue.
 "
              data-cover="{% static 'images/books/placeholder.jpg' %}">
-          <a href="#" style="color: #9CC09A;">Patrick McKeown - The Oxygen Advantage: Simple, Scientifically Proven Breathing Techniques</a>
+          <a href="#" style="color: var(--moss-deep);">Patrick McKeown - The Oxygen Advantage: Simple, Scientifically Proven Breathing Techniques</a>
         </div>
         <div class="reference-item" data-summary="1. The Archetypes and The Collective Unconscious: Collective Unconscious is a shared, inherited reservoir of universal experiences and patterns of behavior that exists within the psyche of all individuals.
 
@@ -663,7 +668,7 @@ Through practical techniques to retrain breathing patterns, help improve athleti
 3. Beyond the Pleasure Principle: Freud, in his own way, discovers and explores the concept of Dualities. Life is, after all, a Tear and a Smile.
 "
              data-cover="{% static 'images/books/placeholder.jpg' %}">
-          <a href="#" style="color: #9CC09A;">Sigmund Freud - The Interpretation of Dreams, Civilization and Its Discontents, Beyond the Pleasure Principle</a>
+          <a href="#" style="color: var(--moss-deep);">Sigmund Freud - The Interpretation of Dreams, Civilization and Its Discontents, Beyond the Pleasure Principle</a>
         </div>
         <div class="reference-item" data-summary="The Tripitaka (&quot;Three Baskets&quot;) is the Buddhist scriptures. A large collection of teachings attributed to the Buddha or his earliest disciples, divided into three main sections:
 
@@ -681,7 +686,7 @@ Through practical techniques to retrain breathing patterns, help improve athleti
 2. Counsels from The Holy Mountain: A collection of his letters and homilies. Focus on Repentance, Confession, Humility, Obedience, Love and Forgiveness. The Importance of Prayer as a means of communion with God. Resist temptations through prayer, fasting, and other spiritual disciplines.
 "
              data-cover="{% static 'images/books/placeholder.jpg' %}">
-          <a href="#" style="color: #9CC09A;">Părintele Efrem – The Art of Salvation, Counsels from The Holy Mountain</a>
+          <a href="#" style="color: var(--moss-deep);">Părintele Efrem – The Art of Salvation, Counsels from The Holy Mountain</a>
         </div>
 
 

@@ -1,5 +1,5 @@
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/first_contact.css' %}?v=20260514-landing-video-balanced">
+<link rel="stylesheet" href="{% static 'css/first_contact.css' %}?v=20261024-dawn">
 
 <!-- Language Buttons -->
 <div class="language-buttons" style="text-align: center; margin: 20px 0;">
@@ -8,24 +8,88 @@
 </div>
 
 
-<div class="anvil-animation">
-        <div class="anvil-container">
-            <div class="hammer"></div>
-            <div class="anvil"></div>
-            <div class="sparks"></div>
-        </div>
-    </div>
+<!-- Dawn over the field: sun, hills, a river, a peasant's house, birds. Drawn inline, animated in first_contact.css. -->
+<svg class="dawn-scene" viewBox="0 0 1200 380" role="img" aria-label="Sunrise over a field and a river, with a peasant's house on the hill" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <radialGradient id="dawnSunFill" cx="42%" cy="38%" r="65%">
+            <stop offset="0" stop-color="#FDECBD"/>
+            <stop offset="0.55" stop-color="#F2C66B"/>
+            <stop offset="1" stop-color="#E39A4C"/>
+        </radialGradient>
+        <radialGradient id="dawnHaloFill">
+            <stop offset="0" stop-color="#F7D58E" stop-opacity="0.55"/>
+            <stop offset="0.5" stop-color="#F7D58E" stop-opacity="0.18"/>
+            <stop offset="1" stop-color="#F7D58E" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="dawnRiverFill" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#D7E9E8"/>
+            <stop offset="1" stop-color="#86B9BD"/>
+        </linearGradient>
+    </defs>
+
+    <!-- Sun and its halo, rising behind the hills -->
+    <g class="dawn-sun">
+        <circle class="dawn-halo" cx="600" cy="232" r="190" fill="url(#dawnHaloFill)"/>
+        <circle cx="600" cy="232" r="66" fill="url(#dawnSunFill)"/>
+    </g>
+
+    <!-- Birds -->
+    <g class="dawn-birds" stroke="#4A4238" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M402 118 q 9 -9 18 0 q 9 -9 18 0"/>
+        <path d="M452 96 q 6 -6 12 0 q 6 -6 12 0"/>
+        <path d="M760 138 q 7 -7 14 0 q 7 -7 14 0"/>
+    </g>
+
+    <!-- Far hills -->
+    <path d="M0 254 C 140 212 290 222 420 240 C 540 256 640 206 790 214 C 930 222 1060 198 1200 226 V380 H0 Z" fill="#D3DECB"/>
+
+    <!-- Peasant's house on the far right hill, smoke from the chimney -->
+    <g transform="translate(948 196)">
+        <path class="dawn-smoke" d="M33 -6 C 27 -18 41 -24 34 -36 C 28 -46 40 -52 36 -62" stroke="#9A8F80" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <rect x="28" y="2" width="8" height="14" fill="#8E3E1D"/>
+        <rect x="4" y="18" width="44" height="26" rx="1.5" fill="#F3E7CF"/>
+        <path d="M-2 20 L26 0 L54 20 Z" fill="#B4552E"/>
+        <rect x="21" y="29" width="10" height="15" fill="#6E4F33"/>
+        <rect x="9" y="25" width="8" height="7" fill="#F2C66B"/>
+    </g>
+
+    <!-- Middle hills -->
+    <path d="M0 292 C 170 252 330 278 510 268 C 690 258 800 240 960 266 C 1070 284 1140 270 1200 276 V380 H0 Z" fill="#AFC6A6"/>
+
+    <!-- A lone tree on the left -->
+    <g transform="translate(214 214)">
+        <rect x="11" y="40" width="6" height="34" rx="2" fill="#6E4F33"/>
+        <circle cx="14" cy="30" r="24" fill="#5F8A5E"/>
+        <circle cx="0" cy="40" r="15" fill="#6E9A69"/>
+        <circle cx="29" cy="41" r="14" fill="#557F55"/>
+    </g>
+
+    <!-- Near field with furrows -->
+    <path d="M0 322 C 210 298 410 312 600 306 C 800 300 990 296 1200 316 V380 H0 Z" fill="#86AB7F"/>
+    <g stroke="#729868" stroke-width="2" fill="none" opacity="0.7" stroke-linecap="round">
+        <path d="M40 352 C 180 336 320 334 440 340"/>
+        <path d="M70 372 C 220 356 360 352 470 358"/>
+        <path d="M780 340 C 900 332 1030 334 1170 348"/>
+        <path d="M760 362 C 900 352 1040 354 1180 368"/>
+    </g>
+
+    <!-- The river: born at the horizon, widening toward us -->
+    <path d="M592 262 C 572 278 626 290 604 304 C 578 320 520 340 474 380 L 764 380 C 704 350 650 326 664 306 C 676 290 616 280 610 262 Z" fill="url(#dawnRiverFill)"/>
+    <path class="dawn-shimmer" d="M603 274 C 596 288 628 298 612 314 C 594 332 560 352 548 380" stroke="#FFFFFF" stroke-width="2.4" stroke-dasharray="8 16" fill="none" stroke-linecap="round" opacity="0.85"/>
+    <path class="dawn-shimmer" d="M622 300 C 640 318 660 340 690 380" stroke="#FFFFFF" stroke-width="1.6" stroke-dasharray="5 18" fill="none" stroke-linecap="round" opacity="0.6"/>
+</svg>
 
 
     <h1>Re-Connect – The Art of Life</h1>
 
     <p>
-        <br>Discover the Art of Reconnecting your Body & Mind to Transform your Life and Health, awakening inner vitality, and finding Peace amidst life's challenges.
+        <br>Discover the Art of Reconnecting your Body & Mind: a path toward more health, energy and vitality, and a little more Peace amidst life's challenges.
     </p>
 
     <p>
         <strong><br>Any chronic pain you might have</strong> — from back pain, discontent, lack of energy, lack of direction, the absence of that "spark" for life, disorientation, a heavy Body —
-        <strong><span class="underline">it All can be understood and healed</span></strong>.
+        <strong><span class="underline">it All can be met with Understanding, and a path toward more ease and health can begin</span></strong>.
+        <br><em>A path shared from experience, walking beside a doctor's care, not in place of it.</em>
     </p>
 
     <!-- Mystical Alchemy Symbol -->
@@ -79,10 +143,8 @@
 <!-- Animating page elements - for all pages using selectors and Observer -->
 <script src="{% static 'js/elements_animations.js' %}"></script>
 
-<!-- JS for self-made animations - Anvil Strike -->
-<script src="{% static 'js/anvil_strike.js' %}"></script>
+
 
 
 
 <!-- External Scripts & Libraries  -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>

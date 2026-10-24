@@ -30,17 +30,20 @@
 </script>
 
 <!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#F7F2E7">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
 <!-- Django Static CSS -->
 {% load static %}
 <!-- Load Loading Screen Script first -->
 <script src="{% static 'js/alchemy_of_sounds_and_loading_screen.js' %}"></script>
 <!-- Base scripts like: Google Login, Forms, Nav Bar rendering, etc -->
-<script src="{% static 'js/base_scripts.js' %}"></script>
-<link rel="stylesheet" href="{% static 'css/base.css' %}">
-<link rel="stylesheet" href="{% static 'css/styles.css' %}">
-<link rel="stylesheet" href="{% static 'css/animations.css' %}">
+<script src="{% static 'js/base_scripts.js' %}?v=20261024-dawn"></script>
+<link rel="stylesheet" href="{% static 'css/base.css' %}?v=20261024-dawn">
+<link rel="stylesheet" href="{% static 'css/styles.css' %}?v=20261024-dawn">
+<link rel="stylesheet" href="{% static 'css/animations.css' %}?v=20261024-dawn">
 <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
 
 
@@ -190,30 +193,13 @@
 <!-- Load TikTok Pixel script from external file -->
 <script src="{% static 'js/tiktokPixel.js' %}"></script>
 
-<!-- Load sparks only on certain pages (computationally heavy) AND only when the device can carry it.
-     The capability layer in <head> sets data-motion=lite for mobile / reduced-motion / save-data,
-     in which case neither sparks.js nor THREE.js are loaded at all — saves ~110KB + the RAF loop. -->
-{% if request.path != '/contact/' and request.path != '/ylf/' and request.path != '/bibliography/' and request.path != '/food-prophet/' %}
-<script>
-  if (document.documentElement.dataset.motion === 'full') {
-    var threeTag = document.createElement('script');
-    threeTag.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js';
-    threeTag.onload = function(){
-      var sparksTag = document.createElement('script');
-      sparksTag.src = "{% static 'js/sparks.js' %}";
-      document.body.appendChild(sparksTag);
-    };
-    document.head.appendChild(threeTag);
-  }
-</script>
-{% endif %}
+<!-- The fire-sparks scene (THREE.js) was retired with the dawn redesign; the ambient light now lives in animations.css. -->
 
 
 
 
 <!-- External Scripts & Libraries  -->
-<!-- Canvas for Effects -->
-<canvas id="background"></canvas>
+
 
 <!-- Google tag & Analytics Script (gtag.js) - Defering scripts for better 1st page load-->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0BH19MJ8ZP" defer></script>

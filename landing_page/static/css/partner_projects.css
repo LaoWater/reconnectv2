@@ -1,6 +1,6 @@
 /* Partner Projects — sibling-project carousel sitting between sections 1 and 2.
    Voice inherits the host (Re-Connect): dark cosmic surface, cyan/gold accents,
-   Poppins (body) + Cinzel (display). Restraint, not chrome.
+   Source Sans 3 (body) + Fraunces (display). Restraint, not chrome.
 
    Motion is gated by the runtime capability layer in base.html:
    - html[data-motion="lite"]  → no transitions, no auto-advance (JS reads this too)
@@ -11,7 +11,7 @@
     position: relative;
     width: 100%;
     padding: var(--space-6, 64px) 0 var(--space-5, 40px);
-    color: #e6f4f3;
+    color: var(--ink-soft);
 }
 
 .partner-projects__inner {
@@ -26,18 +26,18 @@
 }
 
 .partner-projects__title {
-    font-family: 'Cinzel', serif;
-    font-weight: 700;
-    font-size: clamp(1.6rem, 2.4vw, 2.2rem);
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: clamp(1.7rem, 2.4vw, 2.3rem);
     letter-spacing: 0.02em;
-    color: #ffffff;
+    color: var(--ink);
     margin: 0;
 }
 
 .partner-projects__intro {
-    font-family: 'Poppins', sans-serif;
+    font-family: var(--font-sans);
     font-size: 1rem;
-    color: rgba(230, 244, 243, 0.72);
+    color: var(--ink-faint);
     margin: var(--space-2, 8px) auto var(--space-5, 40px);
     max-width: 640px;
     text-align: center;
@@ -78,15 +78,16 @@
     display: flex;
     flex-direction: column;
     color: inherit;
-    background: linear-gradient(140deg, rgba(45, 52, 54, 0.55), rgba(34, 47, 62, 0.42));
-    border: 1px solid rgba(26, 255, 253, 0.14);
-    border-radius: 14px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
     padding: var(--space-3, 16px) var(--space-4, 24px) var(--space-4, 24px);
     transition:
         opacity 500ms var(--ease-soft, ease),
         border-color 300ms var(--ease-soft, ease),
         transform 500ms var(--ease-soft, ease);
-    opacity: 0.32;
+    opacity: 0.45;
     transform: scale(0.96);
 }
 
@@ -104,13 +105,13 @@
 
 .partner-card__link:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 2px rgba(26, 255, 253, 0.45) inset;
+    box-shadow: 0 0 0 3px var(--moss-soft) inset;
     border-radius: inherit;
 }
 
 @supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
     .partner-card {
-        background: linear-gradient(140deg, rgba(45, 52, 54, 0.42), rgba(34, 47, 62, 0.32));
+        background: rgba(255, 252, 246, 0.92);
         -webkit-backdrop-filter: blur(10px) saturate(120%);
         backdrop-filter: blur(10px) saturate(120%);
     }
@@ -124,7 +125,7 @@
 
 .partner-card:hover,
 .partner-card:has(.partner-card__link:focus-visible) {
-    border-color: rgba(26, 255, 253, 0.48);
+    border-color: var(--moss);
 }
 
 .partner-card__logo-frame {
@@ -154,28 +155,28 @@
 /* Text fallback when the logo file is missing — set the project name in
    the display typeface, matching the spec's missing-asset rule. */
 .partner-card__logo-fallback {
-    font-family: 'Cinzel', serif;
-    font-weight: 700;
+    font-family: var(--font-serif);
+    font-weight: 600;
     font-size: 1.4rem;
     letter-spacing: 0.04em;
-    color: rgba(255, 255, 255, 0.92);
+    color: var(--ink);
     text-align: center;
 }
 
 .partner-card__name {
-    font-family: 'Cinzel', serif;
-    font-weight: 700;
+    font-family: var(--font-serif);
+    font-weight: 600;
     font-size: 1.15rem;
-    color: #ffffff;
+    color: var(--ink);
     margin: 0 0 6px;
     text-align: center;
 }
 
 .partner-card__description {
-    font-family: 'Poppins', sans-serif;
+    font-family: var(--font-sans);
     font-size: 0.92rem;
     line-height: 1.45;
-    color: rgba(230, 244, 243, 0.84);
+    color: var(--ink-soft);
     margin: 0 0 var(--space-2, 8px);
     text-align: center;
     flex-grow: 1;
@@ -186,12 +187,13 @@
 .partner-card__status {
     display: inline-block;
     align-self: center;
-    font-family: 'Poppins', sans-serif;
+    font-family: var(--font-sans);
     font-size: 0.7rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: rgba(250, 255, 0, 0.86);
-    border: 1px solid rgba(250, 255, 0, 0.32);
+    color: var(--clay-deep);
+    background: var(--clay-soft);
+    border: 1px solid rgba(180, 85, 46, 0.25);
     border-radius: 999px;
     padding: 3px 10px;
     margin: 0 auto var(--space-2, 8px);
@@ -206,21 +208,21 @@
     gap: 6px;
     margin-top: var(--space-2, 8px);
     padding-top: var(--space-3, 16px);
-    border-top: 1px solid rgba(26, 255, 253, 0.12);
+    border-top: 1px solid var(--line);
 }
 
 .partner-card__partner-label {
-    font-family: 'Poppins', sans-serif;
+    font-family: var(--font-sans);
     font-size: 0.72rem;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: rgba(230, 244, 243, 0.56);
+    color: var(--ink-faint);
 }
 
 .partner-card__partner-mark {
-    font-family: 'Cinzel', serif;
+    font-family: var(--font-serif);
     font-size: 0.96rem;
-    color: rgba(255, 255, 255, 0.86);
+    color: var(--ink);
     letter-spacing: 0.04em;
 }
 
@@ -238,9 +240,9 @@
 }
 
 .partner-card__cta-line {
-    font-family: 'Poppins', sans-serif;
+    font-family: var(--font-sans);
     font-size: 0.92rem;
-    color: rgba(230, 244, 243, 0.82);
+    color: var(--ink-soft);
     margin: 0;
 }
 
@@ -252,12 +254,12 @@
     display: inline-block;
     font-family: 'Source Code Pro', 'Courier New', monospace;
     font-size: 0.94rem;
-    font-weight: 700;
+    font-weight: 600;
     letter-spacing: 0.08em;
-    color: #1AFFFD;
-    background: rgba(26, 255, 253, 0.08);
-    border: 1px solid rgba(26, 255, 253, 0.32);
-    border-radius: 4px;
+    color: var(--moss-deep);
+    background: var(--moss-soft);
+    border: 1px dashed rgba(62, 106, 71, 0.45);
+    border-radius: 8px;
     padding: 2px 8px;
     margin: 0 4px;
     cursor: copy;
@@ -266,17 +268,17 @@
 
 .partner-card__cta-code:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 2px rgba(26, 255, 253, 0.5);
+    box-shadow: 0 0 0 3px var(--moss-soft);
 }
 
 .partner-card__cta-code:hover {
-    background: rgba(26, 255, 253, 0.16);
+    background: #C9DBC4;
 }
 
 .partner-card__cta-code.is-copied {
-    background: rgba(250, 255, 0, 0.16);
-    border-color: rgba(250, 255, 0, 0.42);
-    color: #FAFF00;
+    background: var(--wheat-soft);
+    border-color: var(--wheat);
+    color: var(--clay-deep);
 }
 
 /* ---------- controls (prev/next + dots) ---------- */
@@ -292,8 +294,8 @@
 .partner-carousel__arrow {
     background: transparent;
     border: none;
-    color: rgba(230, 244, 243, 0.62);
-    font-family: 'Poppins', sans-serif;
+    color: var(--ink-soft);
+    font-family: var(--font-sans);
     font-size: 0.85rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -304,12 +306,12 @@
 
 .partner-carousel__arrow:hover,
 .partner-carousel__arrow:focus-visible {
-    color: #1AFFFD;
+    color: var(--moss);
     outline: none;
 }
 
 .partner-carousel__arrow:focus-visible {
-    text-shadow: 0 0 8px rgba(26, 255, 253, 0.5);
+    text-shadow: none;
 }
 
 .partner-carousel__dots {
@@ -323,7 +325,7 @@
     height: 8px;
     border-radius: 50%;
     background: transparent;
-    border: 1px solid rgba(230, 244, 243, 0.36);
+    border: 1px solid #C9BBA2;
     padding: 0;
     cursor: pointer;
     transition:
@@ -334,13 +336,13 @@
 
 .partner-carousel__dot:hover,
 .partner-carousel__dot:focus-visible {
-    border-color: rgba(26, 255, 253, 0.72);
+    border-color: var(--moss);
     outline: none;
 }
 
 .partner-carousel__dot.is-current {
-    background: #1AFFFD;
-    border-color: #1AFFFD;
+    background: var(--moss);
+    border-color: var(--moss);
     transform: scale(1.15);
 }
 

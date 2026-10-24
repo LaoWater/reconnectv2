@@ -395,11 +395,11 @@ const hamburger = document.getElementById("hamburger");
         particle.style.setProperty("--tx", tx + "px");
         particle.style.setProperty("--ty", ty + "px");
 
-        // Apply a color and glow effect similar to your text style
-        const colors = ["#ff4500", "#ff8c00", "rgba(255, 140, 0, 0.8)"];
+        // Seeds of the dawn palette: moss, wheat, river, clay
+        const colors = ["#3E6A47", "#C9973A", "#2A7380", "#B4552E"];
         const randomColor = colors[Math.floor(Math.random() * colors.length)];
         particle.style.background = randomColor;
-        particle.style.boxShadow = `0 0 10px ${randomColor}, 0 0 20px ${randomColor}`;
+        particle.style.boxShadow = "none";
 
         // Use a slightly longer duration if needed and trigger the proper animation type
         if (animationType === "explode") {

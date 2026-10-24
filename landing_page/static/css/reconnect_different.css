@@ -1,70 +1,78 @@
 
-    .custom-list {
-        list-style: none !important;
-        padding: 0;
-         margin-top: 5px; /* Adds spacing for the quote */
-    }
+/* Why current methods often fail — lists, conclusion, music video (dawn redesign) */
 
-    .custom-list li {
-        margin-bottom: 10px;
-    font-size: 0.8rem !important;
-    }
-
-    .custom-list i {
-         color: #5DADE2; /* Light blue color */
-        margin-right: 10px;
-            transition: color 0.3s ease; /* Smooth color transition for hover */
-
-    }
-
-    .custom-list i:hover {
-    color: #D35400; /* Red-gold hover color */
+.custom-list {
+    list-style: none !important;
+    padding: 0;
+    margin-top: 5px;
 }
 
-    .custom-list strong {
-    text-decoration: underline; /* Adds underline to subtitles */
+.custom-list li {
+    margin-bottom: 12px;
+    font-size: 1rem !important;
+    line-height: 1.6;
 }
 
+.custom-list i {
+    color: var(--river);
+    margin-right: 10px;
+    transition: color 0.3s ease;
+}
 
-  /* Title container: position relative so the SVG can be absolutely positioned */
-  .concluzie-title {
+.custom-list i:hover {
+    color: var(--clay);
+}
+
+.custom-list strong {
+    color: var(--ink);
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: var(--wheat);
+    text-underline-offset: 3px;
+}
+
+/* Title container: position relative so the SVG can be absolutely positioned */
+.concluzie-title {
     position: relative;
     display: inline-block;
     z-index: 1;
-  }
-
-/* Positions the SVG much lower under the title */
-.title-curve {
-  position: absolute;
-  width: 100%;
-  height: 50px;
-  left: 0;
-  bottom: -33px; /* Moves it much lower */
-  pointer-events: none; /* Allows clicks to pass through */
 }
 
-
+/* The hand-drawn curve under "Conclusion" */
+.title-curve {
+    position: absolute;
+    width: 100%;
+    height: 50px;
+    left: 0;
+    bottom: -33px;
+    pointer-events: none;
+}
+.title-curve path {
+    stroke: var(--wheat) !important;
+    opacity: 0.9 !important;
+}
 
 /* Official Music Video Embedding */
-  .course-presentation {
+.course-presentation {
     padding: 4rem 0;
-    background-color: #f8f9fa;
-  }
+    background-color: transparent;
+}
 
-  .container {
+.container {
     max-width: 1000px;
     margin: 0 auto;
     padding: 0 1.5rem;
-  }
+}
 
-   .video-wrapper {
+.video-wrapper {
     margin-bottom: 2.5rem;
-    border-radius: 12px;
+    border-radius: var(--radius-lg);
     overflow: hidden;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-  }
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-lift);
+}
 
-  .cta-container {
+.cta-container {
     text-align: center;
     margin-top: 2rem;
-  }
+}

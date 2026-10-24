@@ -33,10 +33,10 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: radial-gradient(circle, rgba(173,216,230,1), rgba(135,206,250,0.5));
+    background: radial-gradient(circle at 35% 35%, #FFFFFF, var(--river-soft) 55%, #9CC9CD);
     border-radius: 50%;
     animation: breathing 4s infinite ease-in-out;
-    box-shadow: 0 0 11.25px rgba(173,216,230,0.7), inset 0 0 4.5px rgba(135,206,250,0.5);
+    box-shadow: 0 0 0 1px rgba(42, 115, 128, 0.18), 0 4px 14px rgba(42, 115, 128, 0.25);
     z-index: 5; /* Lower than the video */
     overflow: visible; /* Ensures video visibility */
 }
@@ -50,8 +50,9 @@
     transform: translate(-50%, -50%);
     border-radius: 50%;
     object-fit: cover;
-    mix-blend-mode: screen; /* Makes black areas transparent */
-    opacity: 1; /* Keep the heartbeat fully visible */
+    mix-blend-mode: multiply; /* On linen, white areas disappear instead of black */
+    filter: invert(1) hue-rotate(180deg) saturate(0.6);
+    opacity: 0.55;
     pointer-events: none;
 }
 
@@ -63,10 +64,9 @@
     width: 111px;
     height: 111px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(135,206,250,0.3), rgba(0,191,255,0));
+    background: radial-gradient(circle, rgba(42, 115, 128, 0.0) 40%, rgba(42, 115, 128, 0.22) 62%, rgba(42, 115, 128, 0) 72%);
     transform: translate(-50%, -50%) scale(0.45);
     animation: airwaveExpand 4s infinite ease-in-out;
-    mix-blend-mode: screen;
     opacity: 0.7;
     z-index: 10; /* Behind the video */
 }
@@ -217,9 +217,8 @@
     transform: translateX(-50%);
     width: 26px;     /* 20px*1.3 */
     height: 6.5px;   /* 5px*1.3 */
-    background: linear-gradient(to top, #3e2c00, #5b3d00, #8b5a2b);
+    background: linear-gradient(to top, #4A3523, #6E4F33, #8C6A45);
     border-radius: 50%;
-    box-shadow: inset 0 0 2.6px rgba(0,0,0,0.5); /* 2px*1.3 */
 }
 
 /* Seed */
@@ -229,9 +228,8 @@
     left: 50%;
     width: 10.4px;   /* 8px*1.3 */
     height: 10.4px;  /* 8px*1.3 */
-    background: radial-gradient(circle at 30% 30%, #ffd700, #ff8c00);
+    background: radial-gradient(circle at 30% 30%, var(--sun), var(--wheat));
     border-radius: 50%;
-    box-shadow: 0 0 3.9px rgba(255,215,0,0.7); /* 3px*1.3 */
     transform: translateX(-50%);
     opacity: 1;
     animation: seedCycle 12s linear infinite;
@@ -252,7 +250,7 @@
     bottom: 15.6px;  /* 12px*1.3 */
     left: 50%;
     width: 2.6px;    /* 2px*1.3 */
-    background: linear-gradient(to top, #3CB371, #98FB98);
+    background: linear-gradient(to top, var(--moss), #8DB48A);
     border-radius: 2.6px; /* 2px*1.3 */
     transform: translateX(-50%) scaleY(0);
     animation: sproutCycle 12s linear infinite;
@@ -272,7 +270,7 @@
     bottom: 15.6px; /* 12px*1.3 */
     left: 50%;
     width: 5.2px;   /* 4px*1.3 */
-    background: linear-gradient(to top, #6B8E23, #ADFF2F);
+    background: linear-gradient(to top, #6E4F33, #8C6A45);
     border-radius: 2.6px; /* 2px*1.3 */
     transform: translateX(-50%) scaleY(0);
     animation: trunkCycle 12s linear infinite;
@@ -311,7 +309,7 @@
 .branch {
     position: absolute;
     height: 2.6px;   /* 2px*1.3 */
-    background: linear-gradient(to right, #3CB371, #7FFF00);
+    background: linear-gradient(to right, #6E4F33, var(--moss));
     border-radius: 2.6px; /* 2px*1.3 */
     transform-origin: center left;
     width: 0;
@@ -371,7 +369,7 @@
     bottom: 42.9px; /* 33px*1.3 */
     width: 52px;    /* 40px*1.3 */
     height: 52px;   /* 40px*1.3 */
-    background: radial-gradient(circle, #7FFF00 30%, #32CD32 80%);
+    background: radial-gradient(circle at 40% 35%, #8DB48A 20%, var(--moss) 85%);
     border-radius: 50%;
     transform: translateX(-50%) scale(0);
     opacity: 0;
@@ -393,7 +391,7 @@
     height: 13px;  /* 10px*1.3 */
     left: 50%;
     bottom: 42.9px; /* 33px*1.3 */
-    background: radial-gradient(circle, #ff0000 30%, #8b0000 80%);
+    background: radial-gradient(circle at 35% 35%, #E07A4F 25%, var(--clay-deep) 85%);
     border-radius: 50%;
     transform: translateX(-50%) scale(0);
     opacity: 0;
@@ -423,20 +421,19 @@
 .symbol.movement .cosmic-center {
     width: 12px;
     height: 12px;
-    background: radial-gradient(circle, #FFD700, #FF8C00);
+    background: radial-gradient(circle at 35% 35%, var(--sun), var(--clay));
     border-radius: 50%;
     position: absolute;
     top: 26px;
     left: 26px;
     z-index: 2;
-    box-shadow: 0 0 5px rgba(255,215,0,0.8);
 }
 
 .symbol.movement .spiral {
     position: absolute;
     width: 90px;
     height: 90px;
-    border: 1px dashed rgba(255, 165, 0, 0.5);
+    border: 1px dashed rgba(62, 106, 71, 0.45);
     border-radius: 50%;
     animation: spin-spiral 6s infinite linear;
 }
@@ -445,7 +442,7 @@
     position: absolute;
     width: 60px;
     height: 60px;
-    border: 2px solid rgba(255,140,0,0.5);
+    border: 2px solid rgba(201, 151, 58, 0.55);
     border-radius: 50%;
     animation: orbit-dance 4s infinite linear;
 }
@@ -453,12 +450,11 @@
     content: '';
     width: 9px;
     height: 9px;
-    background: #FF4500;
+    background: var(--clay);
     border-radius: 50%;
     position: absolute;
     top: -3px;
     left: 16px;
-    box-shadow: 0 0 4px rgba(255,69,0,0.7);
 }
 
 @keyframes spin-spiral {
@@ -506,62 +502,52 @@ html[data-motion="lite"] .mystical-symbol {
 
 
 /* ------------------------------------------------------------------
- * Ambient warmth — TWO layers of glow that paint on every device,
- * including mobile / lite-motion where the heavy sparks scene is
- * gated off. The page should never feel like a pitch-black void;
- * even with zero JS running, these layers carry the fire palette.
+ * Ambient light (dawn redesign, 2026-10). Two soft layers that replace
+ * the old forge embers and the THREE.js sparks:
  *
- *   body::before  →  large ember hearth at the bottom of the viewport
- *   body::after   →  warm candle light from the top-right corner
+ *   body::before  →  morning sun, warm, top-left of the viewport
+ *   body::after   →  cool meadow air, bottom-right
  *
- * Both sit at z-index 0 (above body background, below content/canvas).
- * Animated breathing on full-motion; static on lite to spare cycles.
+ * Pure CSS, a few hundred bytes, no GPU loop. They sit behind content.
  * ------------------------------------------------------------------ */
 
-/* The hearth — restrained warmth rising from the bottom of every page. */
 body::before {
     content: "";
     position: fixed;
-    left: 50%;
-    bottom: -25vh;
-    width: 160vw;
-    height: 95vh;
-    transform: translateX(-50%);
+    top: -30vh;
+    left: -20vw;
+    width: 80vw;
+    height: 80vh;
     background:
-        radial-gradient(ellipse 60% 70% at center,
-            rgba(255, 112, 38, 0.24) 0%,
-            rgba(255, 78, 24, 0.13) 30%,
-            rgba(190, 48, 8, 0.05) 58%,
-            transparent 78%);
+        radial-gradient(closest-side circle at center,
+            rgba(242, 198, 107, 0.22) 0%,
+            rgba(242, 198, 107, 0.08) 38%,
+            transparent 68%);
     pointer-events: none;
-    z-index: 0;
-    animation: emberBreath 9s ease-in-out infinite alternate;
-    mix-blend-mode: screen;
+    z-index: -1;
+    animation: emberBreath 12s ease-in-out infinite alternate;
 }
 
-/* The candle — softer warm light from the top-right corner, gives the
-   page asymmetry instead of a symmetric blob from the bottom. */
 body::after {
     content: "";
     position: fixed;
-    top: -20vh;
+    bottom: -30vh;
     right: -20vw;
-    width: 70vw;
-    height: 70vh;
+    width: 75vw;
+    height: 75vh;
     background:
-        radial-gradient(circle at center,
-            rgba(80, 155, 175, 0.14) 0%,
-            rgba(255, 128, 46, 0.07) 42%,
-            transparent 65%);
+        radial-gradient(closest-side circle at center,
+            rgba(141, 180, 138, 0.18) 0%,
+            rgba(42, 115, 128, 0.06) 42%,
+            transparent 68%);
     pointer-events: none;
-    z-index: 0;
-    animation: candleFlicker 14s ease-in-out infinite alternate;
-    mix-blend-mode: screen;
+    z-index: -1;
+    animation: candleFlicker 16s ease-in-out infinite alternate;
 }
 
 @keyframes emberBreath {
-    0%   { opacity: 0.55; transform: translateX(-50%) scale(0.96); }
-    100% { opacity: 0.72; transform: translateX(-50%) scale(1.04); }
+    0%   { opacity: 0.8; transform: scale(0.96); }
+    100% { opacity: 1;   transform: scale(1.06); }
 }
 
 @keyframes candleFlicker {
@@ -573,9 +559,9 @@ body::after {
 /* Lite-motion devices keep the glow, drop the pulse. */
 html[data-motion="lite"] body::before {
     animation: none;
-    opacity: 0.62;
+    opacity: 0.9;
 }
 html[data-motion="lite"] body::after {
     animation: none;
-    opacity: 0.48;
+    opacity: 0.9;
 }

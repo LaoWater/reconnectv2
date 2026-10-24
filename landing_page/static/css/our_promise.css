@@ -1,4 +1,6 @@
 
+/* What we found on the way — Făt-Frumos, childhood, and the water (dawn redesign) */
+
 /******************************/
 /* Video Section Styling      */
 /******************************/
@@ -8,11 +10,11 @@
     width: 85%;
     height: 400px;
     overflow: hidden;
-    margin: 60px auto; /* Create spacing that blends naturally */
+    margin: 60px auto;
     padding: 20px;
-    border-radius: 15px;
-    background: rgba(0, 0, 0, 0.5); /* Adds a slight transparency around the video */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 165, 0, 0.2);
+    border-radius: var(--radius-lg);
+    background: var(--river-deep);
+    box-shadow: var(--shadow-lift);
 }
 
 .background-video {
@@ -24,19 +26,25 @@
     object-fit: cover;
     transform: translate(-50%, -50%);
     z-index: 1;
-/* May 2025 - The Jedi Returns in Solitude to Dagobah - Becoming Faceless */
-    filter: brightness(0.33) contrast(1.2); /* Slightly adjust brightness for better blending */
+    /* The footage is personal: keep it a whisper. Only a soft shape moving,
+       like something seen through water, should come through. */
+    opacity: 0.16;
+    filter: blur(10px) grayscale(0.7) brightness(1.4);
+    transform: translate(-50%, -50%) scale(1.08); /* hide the blurred edges */
 }
 
+/* Deep river water over the faint footage, so the words read clearly */
 .video-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.9));
+    background:
+        radial-gradient(ellipse 70% 60% at 50% 45%, rgba(42, 115, 128, 0.25), transparent 70%),
+        linear-gradient(180deg, rgba(29, 85, 96, 0.35) 0%, rgba(29, 85, 96, 0) 50%, rgba(31, 44, 36, 0.45) 100%);
     z-index: 2;
-    opacity: 0.9;
+    opacity: 1;
 }
 
 .video-text {
@@ -44,137 +52,92 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: #ffa500;
+    width: 90%;
+    color: var(--night-ink);
     text-align: center;
     z-index: 3;
 }
 
 .video-text h2 {
-    font-size: 1.3rem;
-    color: #ffa500;
-    text-shadow: 0 0 10px #ffa500, 0 0 20px #ff7700;
+    font-size: clamp(1.4rem, 1.8vw + 0.8rem, 2rem);
+    font-style: italic;
+    font-weight: 400;
+    color: #FFFDF8;
+    text-shadow: 0 2px 18px rgba(0, 0, 0, 0.25);
     margin-bottom: 200px;
 }
 
 .video-text p {
-    font-size: 1rem;
-    color: #fff;
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    color: #FFFDF8;
+    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.3);
     line-height: 1.6;
     margin-top: 100px;
-
 }
 
+.promise-section {
+    margin: 0 auto 2.5rem;
+    max-width: 720px;
+}
 
 .promise-section h3 {
-    font-size: 1.13rem;
-    font-family: 'Cinzel', serif;
-    background: linear-gradient(90deg, #ff4500, #ff8c00);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 0rem;
-    text-shadow: 0 0 15px rgba(255,140,0,0.8), 0 0 30px rgba(255,69,0,0.5);
-    font-weight: bold;       /* Enhance visibility */
-    letter-spacing: 1px;     /* Add slight spacing for better readability */
+    font-size: clamp(1.15rem, 0.9vw + 0.9rem, 1.45rem);
+    font-family: var(--font-serif);
+    font-weight: 500;
+    color: var(--moss-deep);
+    margin-bottom: 0.6rem;
+    letter-spacing: 0;
 }
-
 
 .promise-section p {
-    font-size: 0.85rem;
-    font-family: 'Poppins', serif;
-    color: #FFF;
-    margin-bottom: 0rem;
-    text-shadow:
-        0 0 1px #FFD700;
-    font-weight: bold;
-    letter-spacing: 1px;
+    font-size: 1.08rem;
+    font-family: var(--font-sans);
+    color: var(--ink-soft);
+    margin-bottom: 0.2rem;
+    font-weight: 400;
+    letter-spacing: 0;
 }
 
-
- .philosopher-stone {
-      width: 77px;
-      height: 77px;
-      fill: none;             /* No fill, only border (stroke) */
-      stroke: #1afffd;        /* Neon aqua stroke color */
-      stroke-width: 3.5px;      /* Make the stroke visible */
-      stroke-linejoin: round; /* Smooth corners */
-      animation: pulse-glow 12s ease-in-out infinite;
-      /* For older browsers, prefix the animation if needed */
-    }
-
-
-    @keyframes pulse-glow {
-      0% {
-        transform: rotate(0deg) scale(1);
-        filter: drop-shadow(0 0 15px #1afffd);
-        stroke: #1afffd;
-      }
-      20% {
-        transform: rotate(90deg) scale(0.9);
-        filter: drop-shadow(0 0 22px #1afffd);
-        stroke: #FAFF00;  /* Gold stroke halfway through */
-      }
-
-      44% {
-        transform: rotate(180deg) scale(0.8);
-        filter: drop-shadow(0 0 33px #FAFF00);
-        stroke: #1afffd;
-      }
-
-      70% {
-        transform: rotate(270deg) scale(1.05);
-        filter: drop-shadow(0 0 22px #FAFF00);
-        stroke: #1afffd;
-      }
-
-      85% {
-        transform: rotate(180deg) scale(0.7);
-        filter: drop-shadow(0 0 90px #1afffd);
-        stroke: #FAFF00;
-      }
-      100% {
-        transform: rotate(0deg) scale(1);
-        filter: drop-shadow(0 0 10px #1afffd);
-        stroke: #1afffd;
-      }
-    }
-
-        .philosopher-stone:hover {
-  animation: none; /* Speed up the glow on hover */
-  transform: scale(1); /* Slight zoom-in and spin */
-  filter: drop-shadow(0 0 55px #FAFF00); /* Intense glow */
+/* The three slow-turning stones under the video */
+.philosopher-stone {
+    width: 64px;
+    height: 64px;
+    fill: none;
+    stroke: var(--moss);
+    stroke-width: 2.5px;
+    stroke-linejoin: round;
+    opacity: 0.85;
+    animation: pulse-glow 18s ease-in-out infinite;
 }
 
+@keyframes pulse-glow {
+    0%   { transform: rotate(0deg) scale(1);      stroke: var(--moss); }
+    33%  { transform: rotate(120deg) scale(0.92); stroke: var(--river); }
+    66%  { transform: rotate(240deg) scale(1.04); stroke: var(--wheat); }
+    100% { transform: rotate(360deg) scale(1);    stroke: var(--moss); }
+}
+
+.philosopher-stone:hover {
+    animation-play-state: paused;
+}
 
 /******************************/
-/* Some Final Responsive Design Adjustments */
+/* Responsive                 */
 /******************************/
 
 @media (max-width: 768px) {
+    .promise-section h3 {
+        font-size: 1.15rem;
+    }
 
-        .promise-section h3 {
-    font-size: 17px;
-    font-family: 'Cinzel', serif;
-    background: linear-gradient(90deg, #ff4500, #ff8c00);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 0rem;
-    text-shadow: 0 0 15px rgba(255,140,0,0.8), 0 0 30px rgba(255,69,0,0.5);
-    font-weight: bold;       /* Enhance visibility */
-    letter-spacing: 1px;     /* Add slight spacing for better readability */
-}
-
-
-.promise-section p {
-    font-size: 0.75rem;
-    font-family: 'Poppins', serif;
-    color: #FFF;
-    margin-bottom: 0rem;
-    font-weight: bold;
-    letter-spacing: 1px;
+    .promise-section p {
+        font-size: 1rem;
         text-shadow: none;
+    }
+
+    .video-section {
+        width: 100%;
+        height: 340px;
+    }
 }
-        }
-
-
-
