@@ -6,22 +6,33 @@
 ########################################################
 
 
-import firebase_admin
-from firebase_admin import credentials, firestore
 import json
+import os
 
 # Path to your service account key JSON file
-cred = credentials.Certificate('static/other/reconnectv2-d46d6-firebase-adminsdk-lbxc6-6c57cc8259.json')
+CRED_PATH = 'static/other/reconnectv2-d46d6-firebase-adminsdk-lbxc6-6c57cc8259.json'
 
-# Initialize the app
-firebase_admin.initialize_app(cred)
-
-# Get Firestore database instance
-db = firestore.client()
+# Firestore only serves the newsletter form. If the key file isn't there (e.g. a deploy
+# from a machine without it), the site still starts and the newsletter form just
+# answers with an error, instead of the whole app crashing at import time.
+db = None
+if os.path.exists(CRED_PATH):
+    try:
+        import firebase_admin
+        from firebase_admin import credentials, firestore
+        firebase_admin.initialize_app(credentials.Certificate(CRED_PATH))
+        db = firestore.client()
+    except Exception as e:
+        print(f"Firebase disabled: {e}")
+else:
+    print("Firebase disabled: key file not found; newsletter sign-ups are off.")
 
 
 
 def download_subscribers():
+    if db is None:
+        print("Firebase is not configured (key file missing).")
+        return
     try:
         collection_ref = db.collection('newsletter_subscribers')
         docs = collection_ref.stream()

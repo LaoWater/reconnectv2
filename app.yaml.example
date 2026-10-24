@@ -1,0 +1,44 @@
+# App Engine config template for Re-Connect.
+#
+#   cp app.yaml.example app.yaml      (app.yaml is git-ignored: your keys never reach GitHub)
+#
+# Then fill in the two values marked FILL_ME. Everything else matches the live setup.
+# See DEPLOY.md for the full deploy / test / switch / rollback steps.
+
+runtime: python312
+entrypoint: bash startup.sh        # copies db.sqlite3 to /tmp, runs migrations, starts gunicorn
+
+instance_class: F1
+automatic_scaling:
+  target_cpu_utilization: 0.65
+  min_instances: 1
+  max_instances: 5
+
+env_variables:
+  DJANGO_SETTINGS_MODULE: "reconnect_v2.settings"
+
+  # Any long random string. Generate one with:
+  #   python3 -c "import secrets; print(secrets.token_urlsafe(50))"
+  # Changing it only logs everyone out once.
+  DJANGO_SECRET_KEY: "FILL_ME"
+
+  # The YLF chatbot. From https://platform.openai.com/api-keys
+  OPENAI_API_KEY: "FILL_ME"
+
+  # Optional. Password for the /export-database download link.
+  # Leave it empty and that link stays closed to everyone.
+  SECRET_KEY_DB_EXPORT: ""
+
+  # Optional: newsletter (Firebase key file in static/other/) and contact-form email
+  # (EMAIL_HOST_USER / EMAIL_HOST_PASSWORD) are switched off when missing; the site
+  # still starts. Add EMAIL_HOST_USER / EMAIL_HOST_PASSWORD here to turn email back on.
+
+handlers:
+  # Built by `python manage.py collectstatic --noinput` before every deploy
+  - url: /static
+    static_dir: staticfiles
+    secure: always
+
+  - url: /.*
+    script: auto
+    secure: always

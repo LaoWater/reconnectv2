@@ -1,6 +1,7 @@
 # Deploying Re-Connect
 
-Copy-paste guide for deploying the site to Google App Engine from the Mac.
+Copy-paste guide for deploying the site to Google App Engine, from any machine with `gcloud`
+(Mac commands shown; on Windows use Git Bash).
 
 | | |
 |---|---|
@@ -14,26 +15,32 @@ version keeps running until you switch, so a bad deploy never reaches visitors a
 
 ---
 
-## 0. Files git does not carry (check once per machine)
+## 0. `app.yaml` — the only file git does not carry
 
-These live only on the deploying machine. They are git-ignored on purpose: never commit them.
-
-| File (relative to repo root) | What it is |
-|---|---|
-| `app.yaml` | App Engine config, including the environment variables below |
-| `.env` | Read by `settings.py` (`EMAIL_HOST_USER`, `EMAIL_HOST_PASSWORD`, …) |
-| `static/other/reconnectv2-d46d6-firebase-adminsdk-lbxc6-6c57cc8259.json` | Firebase admin key (loaded by `firebase_config.py` at startup — the app crashes without it) |
-| `static/other/reconnectv2-64cc06c747d9.json` | Google Cloud service-account key |
-
-Environment variables the live version had in `app.yaml` (names only):
-`DJANGO_SECRET_KEY`, `DJANGO_SETTINGS_MODULE`, `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`,
-`OPENAI_API_KEY`, `SECRET_KEY_DB_EXPORT`.
-
-Quick check that they are all present:
+`app.yaml` holds your keys, so it is git-ignored. Create it from the template once per machine:
 
 ```bash
-ls -la app.yaml .env static/other/
+cp app.yaml.example app.yaml
+python3 -c "import secrets; print(secrets.token_urlsafe(50))"   # paste as DJANGO_SECRET_KEY
 ```
+
+Then open `app.yaml` and fill the two `FILL_ME` values:
+
+| Value | Needed for | If missing |
+|---|---|---|
+| `DJANGO_SECRET_KEY` | The site to start (signs logins and forms) | Site won't start. Any new random string works; changing it just logs everyone out once. |
+| `OPENAI_API_KEY` | The YLF chatbot | Every page works; chat messages fail. |
+
+Everything else is optional and switches itself off when absent; the site still starts:
+
+| Optional | What it turns on |
+|---|---|
+| `SECRET_KEY_DB_EXPORT` (in `app.yaml`) | The `/export-database/` download link. Empty = closed to everyone. |
+| `EMAIL_HOST_USER`, `EMAIL_HOST_PASSWORD` (in `app.yaml` or `.env`) | Contact-form emails |
+| `static/other/reconnectv2-d46d6-firebase-adminsdk-lbxc6-6c57cc8259.json` | Newsletter sign-ups (Firebase). Without it the form answers "paused". |
+
+> Each deploy (and each instance restart) starts from the `db.sqlite3` committed in the repo,
+> so accounts or saved chats created on the live site since then are not kept.
 
 ---
 
