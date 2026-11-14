@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/static/ReactPage_FoodProphet/static/css/main.c81bf91f.css",
-    "main.js": "/static/ReactPage_FoodProphet/static/js/main.f88d7755.js",
+    "main.js": "/static/ReactPage_FoodProphet/static/js/main.5765c635.js",
     "static/js/764.5e91d5d3.chunk.js": "/static/ReactPage_FoodProphet/static/js/764.5e91d5d3.chunk.js",
     "static/js/206.3463098d.chunk.js": "/static/ReactPage_FoodProphet/static/js/206.3463098d.chunk.js",
     "index.html": "/static/ReactPage_FoodProphet/index.html"
   },
   "entrypoints": [
     "static/css/main.c81bf91f.css",
-    "static/js/main.f88d7755.js"
+    "static/js/main.5765c635.js"
   ]
 }

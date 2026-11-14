@@ -147,9 +147,9 @@ const InfoWithTooltip = () => {
   return (
     <Intro>
       <p className="intro-text">
-        Two days, side by side: a modern routine and a centenarian&rsquo;s from
-        the Blue Zones. Watch how fullness rises and settles through the day, then
-        build your own.
+        Two eating archetypes, side by side: a modern routine and a Blue Zones
+        centenarian. Each one simulates fullness hour by hour, day after day, for as
+        long as you let it run. Speed time up, add a meal, or build your own.
       </p>
 
       {/* Hover is scoped to the button + its panel only, not the whole row */}

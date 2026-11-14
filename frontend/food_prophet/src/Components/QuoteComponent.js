@@ -35,15 +35,13 @@ const quotes = [
 
 // Styled Components
 const QuoteContainer = styled.div`
-  /* In the flow, centred under the header, so it never covers the intro.
-     min-height keeps the page still as quotes of different lengths rotate. */
-  position: relative;
-  max-width: 520px;
-  min-height: 5.5rem;
-  margin: 1.5rem auto 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  /* Wide screens: floats top-right under the header, out of the flow,
+     so it takes no row of its own. Narrower screens: centred in the flow
+     (min-height keeps the page still as quotes of different lengths rotate). */
+  position: absolute;
+  right: 4%;
+  margin-top: 1.25rem;
+  max-width: 420px;
   text-align: center;
   font-family: 'Georgia', serif;
   font-size: 1.05rem;
@@ -55,6 +53,17 @@ const QuoteContainer = styled.div`
   font-style: italic;
   transition: opacity 2.2s ease-in-out;
   opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
+
+  @media (max-width: 1499px) {
+    position: relative;
+    right: auto;
+    max-width: 520px;
+    min-height: 5.5rem;
+    margin: 1.5rem auto 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 
   @media (max-width: 768px) {
     max-width: calc(100% - 32px);
