@@ -131,14 +131,14 @@ Before the dawn redesign, the live version was `20260515t034443`.
 
 ## Tidy old versions (saves money)
 
-The service uses automatic scaling with `minInstances: 1`, so **every serving version keeps one
-instance running, even with no traffic**. A few days after a good deploy, stop (or delete) the old ones:
+The service uses automatic scaling with `minInstances: 1`, so **every deployed version can keep one
+instance running, even with no traffic**. Automatic-scaling versions cannot be *stopped*
+(`gcloud app versions stop` answers `INVALID_ARGUMENT`), only deleted. A few days after a good
+deploy, delete the old ones (the code stays in git, so a deleted version can always be redeployed):
 
 ```bash
 gcloud app versions list --project reconnectv2
-gcloud app versions stop OLD_VERSION_ID --project reconnectv2
-# or, to remove it entirely:
-gcloud app versions delete OLD_VERSION_ID --project reconnectv2
+gcloud app versions delete OLD_VERSION_ID --service default --project reconnectv2
 ```
 
 ---
