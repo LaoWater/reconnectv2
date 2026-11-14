@@ -871,3 +871,29 @@ padding: 0.3rem 2rem;
     max-width: 100%;
   }
 }
+
+/************************************************************
+ * Compact view for the React widget on desktop.
+ * The widget was designed for a ~0.73 scale. Zoom only #root,
+ * statically: never animate it and never put zoom/filter on
+ * <body> (that broke position:fixed modals).
+ * Phones keep 1 (the cards already scale themselves there).
+ ************************************************************/
+@media only screen and (min-width: 901px) {
+  #root {
+    zoom: 0.73;
+  }
+  /* Sizes below are pre-zoom (x0.73 on screen) */
+  #root .sc-ghWlax,
+  #root .sc-ixGGxD {
+    font-size: 1.3rem;
+    padding: 12px 28px;
+  }
+  #root .sc-dEkLRj {
+    font-size: 1.35rem;
+    max-width: 640px;
+  }
+  #root .sc-dEkLRj span {
+    font-size: 1.1rem;
+  }
+}

@@ -10,37 +10,47 @@ import { FaInfoCircle } from 'react-icons/fa';
 // Intro line + the "About this showcase" button
 const Intro = styled.div`
   position: relative;
-  max-width: 640px;
+  max-width: 820px; /* sizes here are pre-zoom: #root is zoomed to 0.73 on desktop */
   margin: 1.25rem auto 1.25rem;
   padding: 0 16px;
   text-align: center;
 
   .intro-text {
     margin: 0 0 0.75rem;
-    font-size: 1.05rem;
+    font-size: 1.4rem;
     line-height: 1.55;
     color: var(--ink-soft, #4a4237);
+  }
+
+  @media (max-width: 900px) {
+    .intro-text { font-size: 1.05rem; }
+    .info-button { font-size: 1rem; min-height: 44px; }
+  }
+
+  .info-anchor {
+    position: relative;
+    display: inline-block;
   }
 
   .info-button {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    min-height: 44px;
-    padding: 0.5rem 1.1rem;
+    min-height: 58px;
+    padding: 0.6rem 1.6rem;
     border: 1px solid var(--line, #ddd3c2);
     border-radius: 999px;
     background: var(--surface, #fffcf6);
     color: var(--river, #2f6f7e);
-    font-size: 1rem;
+    font-size: 1.3rem;
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.2s ease, border-color 0.2s ease;
   }
 
   .info-button svg {
-    width: 1.35rem;
-    height: 1.35rem;
+    width: 1.7rem;
+    height: 1.7rem;
   }
 
   .info-button:hover,
@@ -59,25 +69,29 @@ const Panel = styled.div`
   top: 100%;
   left: 50%;
   transform: translateX(-50%);
-  width: min(460px, calc(100vw - 32px));
+  width: min(600px, calc(100vw - 32px));
   padding-top: 10px;
   z-index: 50;
   text-align: left;
   display: ${({ $open }) => ($open ? 'block' : 'none')};
 
   .panel-body {
-    padding: 1rem 1.25rem;
+    padding: 1.25rem 1.5rem;
     background: var(--surface, #fffcf6);
     color: var(--ink-soft, #4a4237);
     border: 1px solid var(--line, #ddd3c2);
     border-radius: 12px;
     box-shadow: 0 12px 32px rgba(60, 48, 30, 0.16);
-    font-size: 0.95rem;
+    font-size: 1.25rem;
     line-height: 1.55;
   }
 
   p {
     margin: 0 0 0.75rem;
+  }
+
+  @media (max-width: 900px) {
+    .panel-body { font-size: 0.95rem; }
   }
 
   p:last-child {
@@ -131,19 +145,21 @@ const InfoWithTooltip = () => {
   useEffect(() => () => clearTimeout(closeTimer.current), []);
 
   return (
-    <Intro ref={wrapRef} onMouseEnter={show} onMouseLeave={hideSoon}>
+    <Intro>
       <p className="intro-text">
         Two days, side by side: a modern routine and a centenarian&rsquo;s from
         the Blue Zones. Watch how fullness rises and settles through the day, then
         build your own.
       </p>
 
+      {/* Hover is scoped to the button + its panel only, not the whole row */}
+      <span className="info-anchor" ref={wrapRef} onMouseEnter={show} onMouseLeave={hideSoon}>
       <button
         type="button"
         className="info-button"
         aria-expanded={open}
         aria-controls="food-prophet-guide"
-        onClick={() => setOpen((v) => !v)}
+        onClick={show}
         onFocus={show}
       >
         <FaInfoCircle aria-hidden="true" />
@@ -173,6 +189,7 @@ const InfoWithTooltip = () => {
           </p>
         </div>
       </Panel>
+      </span>
     </Intro>
   );
 };

@@ -3,11 +3,12 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
-  /* The host Django page owns <body> (font, background). Never set zoom,
+  /* :where(#root) keeps these app-only at low specificity (component styles still win).
+     The host Django page owns <body> (font, background). Never set zoom,
      filter or transform on body here: each one makes body the containing
      block for position:fixed and throws the modals off-screen. */
 
-  button {
+  :where(#root) button {
     cursor: pointer;
     padding: 10px 20px;
     border: none;
@@ -18,11 +19,11 @@ const GlobalStyles = createGlobalStyle`
     transition: background-color 0.3s ease;
   }
 
-  button:hover {
+  :where(#root) button:hover {
     background-color: #45a049;
   }
 
-  button:focus {
+  :where(#root) button:focus {
     outline: none;
   }
 `;

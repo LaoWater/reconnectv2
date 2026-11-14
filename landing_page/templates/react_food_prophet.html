@@ -11,7 +11,7 @@
   <title>React Page - Food Prophet</title>
   <link rel="stylesheet" href="{{ react_assets.css }}">
   <meta name="csrf-token" content="{{ csrf_token }}">
-    <link rel="stylesheet" href="{% static 'css/food_prophet.css' %}?v=20261114-calm">
+    <link rel="stylesheet" href="{% static 'css/food_prophet.css' %}?v=20261114-compact">
 
   {% csrf_token %}
 
@@ -176,7 +176,7 @@
   <!-- React App Mount Point - Entry Point -->
   <div id="root" class="invisible" data-react-src="{{ react_assets.js }}"></div>
   <!-- Re-load CSS so it over-writes incoming app -->
-  <link rel="stylesheet" href="{% static 'css/food_prophet.css' %}?v=20261114-calm">
+  <link rel="stylesheet" href="{% static 'css/food_prophet.css' %}?v=20261114-compact">
 
 
 <script>
@@ -399,7 +399,9 @@ let isZoomedIn = false;
             lastScrollTop = scrollTop;
 
             const viewportFactor = isMobile() ? 0.85 : 0.65;
-            const threshold = Math.max(0, reactApp.offsetTop - window.innerHeight * viewportFactor);
+            // getBoundingClientRect, not offsetTop: #root is zoomed and offsetTop reports zoomed units
+            const rootTop = reactApp.getBoundingClientRect().top + scrollTop;
+            const threshold = Math.max(0, rootTop - window.innerHeight * viewportFactor);
 
             // console.log(`scrollTop: ${scrollTop}, threshold: ${threshold}`);
 
