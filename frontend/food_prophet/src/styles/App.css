@@ -1,0 +1,80 @@
+.AppContainer {
+    width: 100%;
+    min-height: 131vh;
+    padding: 0px;
+    text-align: center;
+    position: static;
+    overflow: hidden;
+  }
+  
+  /* .AppContainer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      linear-gradient(to bottom, rgba(51, 51, 51, 1), rgba(51, 51, 51, 0.7), rgba(0, 0, 0, 0.7)),
+      url('/public/static/ReactPage_FoodProphet/white_lotus.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    filter: brightness(1) blur(0px);
+    z-index: -1;
+  }
+   */
+
+  .ContentWrapper {
+    margin-top: 2.5rem;
+    text-align: center;
+
+    @media (max-width: 900px) {
+      max-width: 100%; /* Adjust for smaller screens */
+    }
+  }
+  
+
+
+  .App {
+    text-align: center;
+  }
+  
+  .App-logo {
+    height: 40vmin;
+    pointer-events: none;
+  }
+  
+  @media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+      animation: App-logo-spin infinite 20s linear;
+    }
+
+
+
+  }
+  
+  .App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+  }
+  
+  .App-link {
+    color: #61dafb;
+  }
+  
+  @keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  

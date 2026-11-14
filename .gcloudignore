@@ -17,3 +17,8 @@
 __pycache__/
 # Ignored by the build system
 /setup.cfg
+# Local-only: Python env, React source + node_modules (the built bundle lives in landing_page/static)
+venv/
+frontend/
+node_modules/
+tmp/

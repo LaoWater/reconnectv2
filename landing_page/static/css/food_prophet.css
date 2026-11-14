@@ -31,21 +31,11 @@ body.background-active {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    filter: brightness(1) blur(0px);
+    /* No filter/transform on body: either one turns body into the containing
+       block for position:fixed, which threw the React modals off-screen. */
 }
 
 
-/* Apply zoom when the threshold is crossed */
-body.zoom-active {
-    zoom: 0.73; /* Zoomed-in effect for React app integration */
-
-}
-
-/* Reset the zoom for the interactive video container */
-body.zoom-active .interactive-paragraphs {
-    transform: scale(1.059);
-
-}
 
 nav {
     width: 100%;
@@ -65,9 +55,6 @@ body {
       position: relative;
     background: var(--paper);
     transition: background 0.5s ease-in-out; /* Smooth transition for background changes */
-    zoom: 1;
-    filter: none;
-
 }
 
 /* ========== FADE-IN ANIMATION ========== */
@@ -774,28 +761,6 @@ padding: 0.3rem 2rem;
   font-family: var(--font-sans);
 }
 
-/* Info icon + its explainer bubble */
-#root .sc-diYFot,
-#root .sc-diYFot svg {
-  color: var(--river);
-}
-#root .sc-kEfuZE {
-  background: var(--surface);
-  color: var(--ink-soft);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  box-shadow: var(--shadow-lift);
-  font-family: var(--font-sans);
-}
-#root .sc-kEfuZE strong-white {
-  color: var(--ink-soft);
-}
-#root .sc-kEfuZE strong-green {
-  color: var(--moss);
-}
-#root .sc-kEfuZE strong {
-  color: var(--ink);
-}
 
 /* Simulation cards */
 #root .sc-ivxoEo,

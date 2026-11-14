@@ -1,17 +1,13 @@
 {
   "files": {
-    "main.css": "/static/ReactPage_FoodProphet/static/css/main.3a6f7d61.css",
-    "main.js": "/static/ReactPage_FoodProphet/static/js/main.cf2d30ab.js",
-    "static/js/328.7305d138.chunk.js": "/static/ReactPage_FoodProphet/static/js/328.7305d138.chunk.js",
-    "static/js/453.ce10dfa4.chunk.js": "/static/ReactPage_FoodProphet/static/js/453.ce10dfa4.chunk.js",
-    "index.html": "/static/ReactPage_FoodProphet/index.html",
-    "main.3a6f7d61.css.map": "/static/ReactPage_FoodProphet/static/css/main.3a6f7d61.css.map",
-    "main.cf2d30ab.js.map": "/static/ReactPage_FoodProphet/static/js/main.cf2d30ab.js.map",
-    "328.7305d138.chunk.js.map": "/static/ReactPage_FoodProphet/static/js/328.7305d138.chunk.js.map",
-    "453.ce10dfa4.chunk.js.map": "/static/ReactPage_FoodProphet/static/js/453.ce10dfa4.chunk.js.map"
+    "main.css": "/static/ReactPage_FoodProphet/static/css/main.c81bf91f.css",
+    "main.js": "/static/ReactPage_FoodProphet/static/js/main.6a813199.js",
+    "static/js/764.5e91d5d3.chunk.js": "/static/ReactPage_FoodProphet/static/js/764.5e91d5d3.chunk.js",
+    "static/js/206.3463098d.chunk.js": "/static/ReactPage_FoodProphet/static/js/206.3463098d.chunk.js",
+    "index.html": "/static/ReactPage_FoodProphet/index.html"
   },
   "entrypoints": [
-    "static/css/main.3a6f7d61.css",
-    "static/js/main.cf2d30ab.js"
+    "static/css/main.c81bf91f.css",
+    "static/js/main.6a813199.js"
   ]
 }

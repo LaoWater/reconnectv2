@@ -11,7 +11,7 @@
   <title>React Page - Food Prophet</title>
   <link rel="stylesheet" href="{{ react_assets.css }}">
   <meta name="csrf-token" content="{{ csrf_token }}">
-    <link rel="stylesheet" href="{% static 'css/food_prophet.css' %}?v=20261024-dawn">
+    <link rel="stylesheet" href="{% static 'css/food_prophet.css' %}?v=20261114-calm">
 
   {% csrf_token %}
 
@@ -176,7 +176,7 @@
   <!-- React App Mount Point - Entry Point -->
   <div id="root" class="invisible" data-react-src="{{ react_assets.js }}"></div>
   <!-- Re-load CSS so it over-writes incoming app -->
-  <link rel="stylesheet" href="{% static 'css/food_prophet.css' %}?v=20261024-dawn">
+  <link rel="stylesheet" href="{% static 'css/food_prophet.css' %}?v=20261114-calm">
 
 
 <script>
@@ -374,37 +374,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-  function smoothZoom(target, start, end, duration) {
-    const startTime = performance.now(); // Record the start time
-    const deltaZoom = end - start; // Total zoom change
-    const isMobileDevice = isMobile();
-
-    // Define logic for mobile, skip incremental zoom in/outs as Mobile Browsers do not handle well
-    if(isMobileDevice) {
-    target.style.zoom = end;
-    return;
-    }
-
-    function animateZoom(currentTime) {
-        const elapsed = currentTime - startTime; // Calculate elapsed time
-        const progress = Math.min(elapsed / duration, 1); // Normalize progress (0 to 1)
-        const currentZoom = start + deltaZoom * progress; // Calculate current zoom level
-
-        if (progress < 1) {
-           target.style.zoom = currentZoom; // Desktop can use zoom
-           requestAnimationFrame(animateZoom);
-        } else {
-            // Ensure final zoom level is set
-            target.style.zoom = end;
-        }
-    }
-
-    requestAnimationFrame(animateZoom); // Start the animation
-}
-
-
-
-// Add flags to track the current zoom state
+// Tracks whether the React app is currently revealed (simple fade, no zoom)
 let isZoomedIn = false;
 
     // Scroll handling logic
@@ -449,7 +419,6 @@ let isZoomedIn = false;
             reactApp.classList.remove('invisible');
             reactApp.classList.add('visible');
             loadReactApp();
-            smoothZoom(document.body, 1, 0.73, 500); // Zoom in smoothly over 500ms
         } else if (lastScrollTop <= threshold && isZoomedIn) {
             // Trigger zoom out only if currently zoomed in
             isZoomedIn = false;
@@ -461,7 +430,6 @@ let isZoomedIn = false;
             }
             reactApp.classList.remove('visible');
             reactApp.classList.add('invisible');
-            smoothZoom(document.body, 0.73, 1, 500); // Zoom out smoothly over 500ms
         }
 
 
